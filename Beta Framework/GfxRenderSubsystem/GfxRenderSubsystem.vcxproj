@@ -53,7 +53,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GFXSUBSYSTEM_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\BetaGameFramework\GfxRenderSubsystem\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\GfxRenderSubsystem\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,13 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\common.h" />
-    <ClInclude Include="include\Frontend\GfxSubsystem.h" />
+    <ClInclude Include="include\GfxSubsystem.h" />
     <ClInclude Include="include\stdafx.h" />
     <ClInclude Include="include\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Frontend\GfxSubsystem.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="src\GfxSubsystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

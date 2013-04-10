@@ -1,3 +1,8 @@
+/*
+ * Include this file if you're using this subsystem.
+ *
+ */
+
 #pragma once
 #ifndef _GFXSUBSYSTEM_H
 #define _GFXSUBSYSTEM_H

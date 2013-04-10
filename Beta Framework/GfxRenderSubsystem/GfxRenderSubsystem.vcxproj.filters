@@ -14,9 +14,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Frontend\GfxSubsystem.h">
-      <Filter>Frontend</Filter>
-    </ClInclude>
     <ClInclude Include="include\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -26,16 +23,16 @@
     <ClInclude Include="include\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Frontend\GfxSubsystem.cpp">
+    <ClInclude Include="include\GfxSubsystem.h">
       <Filter>Frontend</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GfxSubsystem.cpp">
+      <Filter>Frontend</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

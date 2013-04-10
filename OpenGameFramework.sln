@@ -3,6 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GfxRenderSubsystem", "GfxRenderSubsystem\GfxRenderSubsystem.vcxproj", "{C3FE4A41-D966-44B6-AD51-1E83E9A72A68}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Beta Framework", "Beta Framework", "{53979975-400A-4456-9337-155B92C3A641}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delta Applications", "Delta Applications", "{3882FAC3-6E1B-447E-8437-1C2819E12E75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alpha Tools", "Alpha Tools", "{351714B5-C84B-4C41-9FD9-52CE2C811E4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gamme Backend", "Gamme Backend", "{8C258F33-127E-4E0A-B580-6C89B6ACBE9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Omega Bootstrapper", "Omega Bootstrapper", "{669DCCF6-7330-423D-B72F-87AA50FCC5E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -16,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3FE4A41-D966-44B6-AD51-1E83E9A72A68} = {53979975-400A-4456-9337-155B92C3A641}
 	EndGlobalSection
 EndGlobal
