@@ -12,27 +12,45 @@
     <Filter Include="Frontend">
       <UniqueIdentifier>{0a11117f-44a4-4620-8a3a-e8629b987956}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GfxSubsystem.h">
-      <Filter>Frontend</Filter>
-    </ClInclude>
+    <Filter Include="Frontend\Window">
+      <UniqueIdentifier>{6d662b63-4100-432f-b96e-0489b6f3978d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Window\SDL">
+      <UniqueIdentifier>{ed258970-62c5-4a7b-a442-7dcffbce3171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GfxSubsystem.cpp">
+    <ClCompile Include="GfxSubsystem.cpp">
       <Filter>Frontend</Filter>
     </ClCompile>
+    <ClCompile Include="GfxWindow.cpp">
+      <Filter>Frontend\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLWindow.cpp">
+      <Filter>Frontend\Window\SDL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GfxSubsystem.h">
+      <Filter>Frontend</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxWindow.h">
+      <Filter>Frontend\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonGfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLWindow.h">
+      <Filter>Frontend\Window\SDL</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

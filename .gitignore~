@@ -12,7 +12,7 @@
 *.lastbuildstate
 *.obj
 *.idb
-Extras*
+SDL*
 *.opensdf
 *.sdf
 *.suo

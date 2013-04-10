@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C3FE4A41-D966-44B6-AD51-1E83E9A72A68}</ProjectGuid>
+    <ProjectGuid>{74703C32-1244-40CA-91D9-FD244F20CAFC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GfxRenderSubsystem</RootNamespace>
+    <RootNamespace>Core</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -52,14 +52,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GFXSUBSYSTEM_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL-1.2.15\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;CORE_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm-0.9.4.3\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Debug;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL-1.2.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Core.lib;OpenGL32.lib;glew32.lib;GLU32.lib;SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,20 +78,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="README.md" />
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GfxSubsystem.cpp" />
-    <ClCompile Include="GfxWindow.cpp" />
-    <ClCompile Include="SDLWindow.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CommonGfx.h" />
-    <ClInclude Include="GfxSubsystem.h" />
-    <ClInclude Include="GfxWindow.h" />
-    <ClInclude Include="SDLWindow.h" />
+    <ClInclude Include="CommonCore.h" />
+    <ClInclude Include="CoreExternal.h" />
+    <ClInclude Include="ErrorCatch.h" />
+    <ClInclude Include="ITickable.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ErrorCatch.cpp" />
+    <ClCompile Include="ITickable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
