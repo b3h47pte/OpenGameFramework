@@ -1,6 +1,5 @@
 /*
  * Include this file if you're using this subsystem.
- *
  */
 
 #pragma once
@@ -8,23 +7,14 @@
 #define _GFXSUBSYSTEM_H
 
 #include "CommonGfx.h"
+#include "IRenderable.h"
 
 class IGfxWindow;
-
-// GFXSUBSYSTEM_EXPORT defined in project properties for the GfxRenderSubsystem
-#ifdef _WIN32
-	#ifdef GFXSUBSYSTEM_EXPORT // inside DLL
-		#define GFXSUBAPI __declspec(dllexport)
-	#else // outside DLL
-		#define GFXSUBAPI __declspec(dllimport)
-	#endif  // GFXSUBSYTEM_EXPORT
-#else
-	#define GFXSUBAPI
-#endif
 
 class IGfxSubsystem: public ITickable
 {
 public:
+	virtual void RegisterRenderable(IRenderable*) = 0;
 };
 
 extern "C" GFXSUBAPI IGfxSubsystem* GetGfxSubsystem();
@@ -38,6 +28,11 @@ class GfxSubsystem: public IGfxSubsystem, public ErrorCatch
 public:
 	GfxSubsystem(void);
 	~GfxSubsystem(void);
+
+	/*
+	 * Backend Communication.
+	 */
+	virtual void RegisterRenderable(IRenderable*);
 
 	/*
 	 * Error Management.
@@ -61,9 +56,14 @@ private:
 	IGfxWindow* mWindow;
 
 	/*
-	 * Whether or not to keep ticking -- will be set to false when SDL_QUIT is received.
+	 * Whether or not to keep ticking -- will be set to false when SDL_QUIT is received (or more accurately -- when we want to start rendering)
 	 */ 
 	bool mStillRunning;
+
+	/*
+	 * Backend that cares all of the dirty work.
+	 */ 
+	class GfxBackend* mBackend;
 };
 
 #endif // _GFXSUBSYSTEM_H

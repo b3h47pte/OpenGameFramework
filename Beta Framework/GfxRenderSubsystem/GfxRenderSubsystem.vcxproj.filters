@@ -18,6 +18,12 @@
     <Filter Include="Frontend\Window\SDL">
       <UniqueIdentifier>{ed258970-62c5-4a7b-a442-7dcffbce3171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Backend">
+      <UniqueIdentifier>{84ea8c51-5973-4e2c-b801-8aad22ad1c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Renderable">
+      <UniqueIdentifier>{6e1b7e04-84a4-4a18-bd4e-4a287bdd7ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -31,6 +37,12 @@
     </ClCompile>
     <ClCompile Include="SDLWindow.cpp">
       <Filter>Frontend\Window\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="GfxBackend.cpp">
+      <Filter>Backend</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>Frontend\Renderable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +63,12 @@
     </ClInclude>
     <ClInclude Include="SDLWindow.h">
       <Filter>Frontend\Window\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>Frontend\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxBackend.h">
+      <Filter>Backend</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

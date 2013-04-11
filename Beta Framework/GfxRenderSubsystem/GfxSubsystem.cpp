@@ -5,6 +5,8 @@
 #include "SDLWindow.h"
 #endif
 
+#include "GfxBackend.h"
+
 /* 
  * Factory Function To create the GFx Subsystem. Will return NULL when it fails.
  */
@@ -68,3 +70,15 @@ void GfxSubsystem::Tick(float inDeltaTime) {
 		}
 	}
 }
+
+//##########################################
+// Backend Communication
+//##########################################
+
+/*
+ * Register a renderable by passing it to the backend. The backend will take care of the details, there is no need to do any checks here for validity.
+ */ 
+void GfxSubsystem::RegisterRenderable(IRenderable* inRenderable) {
+
+}
+
