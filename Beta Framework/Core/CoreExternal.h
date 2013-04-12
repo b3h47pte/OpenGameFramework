@@ -9,12 +9,19 @@
 #include "CommonCore.h"
 #include "ErrorCatch.h"
 #include "ITickable.h"
+#include "TIntrusiveLinkedList.h"
 
 // Use GLM for Math
 #define GLM_FORCE_RADIANS
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
-#include <gtc/quaternion.hpp>
-#include <gtx/string_cast.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/string_cast.hpp>
+
+#ifndef _DEBUG
+#define NDEBUG
+#endif
+
+#include <assert.h>
 #endif

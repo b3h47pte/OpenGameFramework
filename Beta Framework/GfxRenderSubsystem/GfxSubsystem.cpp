@@ -79,6 +79,6 @@ void GfxSubsystem::Tick(float inDeltaTime) {
  * Register a renderable by passing it to the backend. The backend will take care of the details, there is no need to do any checks here for validity.
  */ 
 void GfxSubsystem::RegisterRenderable(IRenderable* inRenderable) {
-
+	mBackend->RegisterRenderable(inRenderable);
 }
 

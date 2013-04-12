@@ -19,6 +19,12 @@
     <Filter Include="Tickable">
       <UniqueIdentifier>{f7858542-67c0-44ca-becb-d0ed8ab8dd13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data Structures">
+      <UniqueIdentifier>{c9456d8c-509f-4f90-ad2c-d8ad4621ce99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Structures\Intrusive Linked List">
+      <UniqueIdentifier>{95b97c15-6519-451f-acea-2b4b2ae8f226}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,8 +45,14 @@
     <ClInclude Include="ITickable.h">
       <Filter>Tickable</Filter>
     </ClInclude>
+    <ClInclude Include="TIntrusiveLink.h">
+      <Filter>Data Structures\Intrusive Linked List</Filter>
+    </ClInclude>
+    <ClInclude Include="TIntrusiveLinkedList.h">
+      <Filter>Data Structures\Intrusive Linked List</Filter>
+    </ClInclude>
     <ClInclude Include="ErrorCatch.h">
-      <Filter>Header Files</Filter>
+      <Filter>Error Handling</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

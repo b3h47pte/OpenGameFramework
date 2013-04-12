@@ -11,5 +11,6 @@
 
 #include <iostream>
 #include <string>
+#include <stddef.h>
 
 #endif // _COMMON_CORE_H

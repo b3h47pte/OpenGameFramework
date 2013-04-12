@@ -52,7 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\GfxRenderSubsystem;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\GfxRenderSubsystem;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core\;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -25,8 +25,7 @@
 #endif
 
 // Core
-#include "ErrorCatch.h"
-#include "ITickable.h"
+#include "CoreExternal.h"
 
 #include <iostream>
 

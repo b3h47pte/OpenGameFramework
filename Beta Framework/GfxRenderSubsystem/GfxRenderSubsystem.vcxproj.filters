@@ -24,6 +24,9 @@
     <Filter Include="Frontend\Renderable">
       <UniqueIdentifier>{6e1b7e04-84a4-4a18-bd4e-4a287bdd7ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Frontend\Renderable\Instance">
+      <UniqueIdentifier>{3a8bce0d-7374-47ba-adfa-d3793d22371d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -43,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="IRenderable.cpp">
       <Filter>Frontend\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderableInstance.cpp">
+      <Filter>Frontend\Renderable\Instance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="GfxBackend.h">
       <Filter>Backend</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderableInstance.h">
+      <Filter>Frontend\Renderable\Instance</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

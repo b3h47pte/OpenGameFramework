@@ -53,7 +53,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GFXSUBSYSTEM_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL-1.2.15\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL-1.2.15\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\CoreHeaders;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,6 +87,7 @@
     <ClCompile Include="GfxSubsystem.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
     <ClCompile Include="IRenderable.cpp" />
+    <ClCompile Include="IRenderableInstance.cpp" />
     <ClCompile Include="SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +96,7 @@
     <ClInclude Include="GfxSubsystem.h" />
     <ClInclude Include="GfxWindow.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="IRenderableInstance.h" />
     <ClInclude Include="SDLWindow.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
