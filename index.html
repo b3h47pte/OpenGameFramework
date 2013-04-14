@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Open Game Framework by b3h47pte</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Open Game Framework</h1>
+        <h2>Framework to develop a game!</h2>
+        <a href="https://github.com/b3h47pte/OpenGameFramework" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Open Game Framework</h1>
+
+<hr><h2>Vision and Objective</h2>
+
+<p>I believe that indie games are the future in bringing in fresh, innovative concepts into the gaming industry. Games like Chivalry: Medieval Warfare, Primal Carnage, The Ball, Sanctum, and more have been successful because they were given easy access to free tools like the UDK that enabled them to focus on making great games and significantly reduced the barrier to entry. Eventually, however, most teams discover that not having access to the source code of the engine prevented them from doing a lot of cool things but getting access to that would cost them a significant lump of money, pre and post-release.</p>
+
+<p>This is where Open Game Framework (OpenGF, Open Good Fun?) comes into the picture. With OpenGF, I plan to create all the various subsystems that are necessary for a game: rendering, physics, audio, etc. In addition, I plan to create a tool-set that would allow for easy content creation and editing. Finally, I also hope to introduce a backend system like Steamworks that would enable developers to track stats and more. Eventually I would also like to integrate some AAA technologies as well such as Scaleform, and Steamworks (although the integration of these AAA frameworks would most likely not be open source). By splitting OpenGF into these three areas, this would allow a developer to pick and choose what he/she wants to use. If the developer wanted to use OpenGF for rendering but take care of audio, he/she would easily be able to do that due to the modular setup of OpenGF. However, most indie developers want to create awesome games, not deal with tedious game engine internals. So, I will also create another layer that will neatly tie together all the subsystems and make it so that developers will only have to write code that deals with gameplay.</p>
+
+<hr><h2>Alpha Tools</h2>
+
+<p>Provide a toolset that will create content packages (maps, assets) to be used with the framework. However, any application that decides to make use of the alpha tools will also need to utilize the subsystem that deals with loading/saving these assets. </p>
+
+<p>TBD.</p>
+
+<hr><h2>Beta Framework</h2>
+
+<p>The beta layer is what goes on behind the scenes of the game engine. It will take care of the internals of rendering, audio, networking, etc. Due to the design of the framework, any subsystem (besides Core) can be used individually.    </p>
+
+<h4>Core</h4>
+
+<p>Any game/program that uses any of the subsystems MUST also use the Core subsystem as it contains a number of important classes that are used throughout the framework. Currently provides:</p>
+
+<ul>
+<li>Error Detection/Logging (ErrorCatch.h/cpp)</li>
+<li>Tickable Interface (ITickable.h/cpp)</li>
+<li>Various useful data structures</li>
+</ul><p>Planned features include:</p>
+
+<ul>
+<li>Memory management</li>
+</ul><h4>GfxRender Subsystem</h4>
+
+<p>Subsystem that will take care of rendering 3D or 2D elements into a window. In addition, it will create a window and capture input events that will be passed to whoever using function delegates. Currently makes use of OpenGL for rendering and SDL for creating the window and capturing input.</p>
+
+<hr><h2>Delta Applications</h2>
+
+<h4>Examples</h4>
+
+<p>Provides examples of using the various subsystems.</p>
+
+<hr><h2>Gamma Backend</h2>
+
+<p>A backend that will handle log-ins and authentication to not only determine if a player has legitimately acquired the game but also keep track of stats (public and developer only) in addition to achievements. In addition, will provide "player attributes" that allows developers to store information about users. The Gamma Backend will strive to make editing stats/attributes about users simple, efficient, and flexible.</p>
+
+<p>TBD. </p>
+
+<hr><h2>Omega Bootstrapper</h2>
+
+<p>Want to just focus on making a game? The Omega Bootstrapper will take care of initializing all the subsystems and all the developer has to do is to write gameplay code. I plan to make the gameplay code programmable using C/C++ rather than using a scripting language like LuA to make sure performance is not bottle-necked by the gameplay code.</p>
+
+<p>TBD.</p>
+
+<hr>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/b3h47pte/OpenGameFramework/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/b3h47pte/OpenGameFramework/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/b3h47pte/OpenGameFramework"></a> is maintained by <a href="https://github.com/b3h47pte">b3h47pte</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
