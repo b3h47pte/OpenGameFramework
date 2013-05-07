@@ -1,0 +1,74 @@
+#pragma once
+#ifndef _MESHRENDERABLE_H
+#define _MESHRENDERABLE_H
+
+#include "CommonGfx.h"
+#include "IRenderable.h"
+
+/*
+ * A Mesh Renderable.
+ * A "Mesh" is anything that is made up of triangles in the scene.
+ */
+class MeshRenderable: public IRenderable
+{
+public:
+	MeshRenderable(void);
+	virtual ~MeshRenderable(void);
+
+	/*
+	 * Accessor methods for Mesh Data (vertex, triangles, shaders).
+	 */
+	void AddVertex(glm::vec4 inP, glm::vec4 inN, glm::vec2 inT) { mVertexPosition.push_back(inP); mVertexNormals.push_back(inN); mTexCoords.push_back(inT); }
+	void AddTriangleIndex(int i) { mTriangleIndices.push_back(i); }
+	glm::vec4 GetVertexPosition(int i) const { return mVertexPosition[i]; }
+	glm::vec4 GetVertexNormal(int i) const { return mVertexNormals[i]; }
+	glm::vec2 GetVertexTexCoord(int i) const { return mTexCoords[i]; }
+
+	/*
+	 * Finalize Data and register data with OpenGL
+	 */ 
+	virtual void FinalizeData();
+
+	/*
+	 * Prepare to Render.
+	 * Bind buffers, compile/link shaders, all that good stuff.
+	 */
+	virtual bool PrepareToRender();
+	virtual bool FinishRender();
+
+private:
+	// Mesh Data
+	struct {
+		// Vertex Positions
+		std::vector<glm::vec4>		mVertexPosition;
+
+		// Vertex Normals
+		std::vector<glm::vec4>		mVertexNormals;
+
+		// Vertex Texture Coordinates
+		std::vector<glm::vec2>		mTexCoords;
+
+		// Vertex Indicies
+		std::vector<int>			mTriangleIndices;
+	};
+
+
+	/*
+	 * Function to create a new mesh instance.
+	 */
+	virtual IRenderableInstance* CreateRenderableInstance(WorldObject*);
+
+	/*
+	 * OpenGL Variables for Buffers, Shaders.
+	 */
+	// Element Buffer Object
+	GLuint mEBO;
+
+	// Vertex Array Object -- Assuming there's only one per mesh.
+	GLuint mVAO;
+
+	// Vertex Buffer Object
+	GLuint mVBO;
+};
+
+#endif // _MESHRENDERABLE

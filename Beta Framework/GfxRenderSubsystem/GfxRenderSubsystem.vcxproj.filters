@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -24,8 +20,29 @@
     <Filter Include="Frontend\Renderable">
       <UniqueIdentifier>{6e1b7e04-84a4-4a18-bd4e-4a287bdd7ad3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Frontend\Renderable\Instance">
+    <Filter Include="Frontend\Renderable\General">
+      <UniqueIdentifier>{1ceaa7c1-83f2-4fee-9d9d-3f6d9597d41f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Renderable\General\Instance">
       <UniqueIdentifier>{3a8bce0d-7374-47ba-adfa-d3793d22371d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Renderable\Mesh">
+      <UniqueIdentifier>{2975abc7-fadb-42a3-b72c-274028c3eca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Renderable\Particle">
+      <UniqueIdentifier>{e21e175b-dc80-4fdd-88c2-86737f43fc41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Renderable\Mesh\Instance">
+      <UniqueIdentifier>{533620a3-de43-48f9-a2cd-1c73099579e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frontend\Renderable\Particle\Instance">
+      <UniqueIdentifier>{02e76710-f630-4c4f-8dd8-404aff1ba6ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample Shaders">
+      <UniqueIdentifier>{cf9ed711-c6bc-45c6-a27f-101ae46f91ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample Shaders\Basic">
+      <UniqueIdentifier>{429edb84-dd60-4295-94c6-29014556392d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,11 +61,17 @@
     <ClCompile Include="GfxBackend.cpp">
       <Filter>Backend</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderable.cpp">
-      <Filter>Frontend\Renderable</Filter>
-    </ClCompile>
     <ClCompile Include="IRenderableInstance.cpp">
-      <Filter>Frontend\Renderable\Instance</Filter>
+      <Filter>Frontend\Renderable\General\Instance</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>Frontend\Renderable\General</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderable.cpp">
+      <Filter>Frontend\Renderable\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderableInstance.cpp">
+      <Filter>Frontend\Renderable\Mesh\Instance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,14 +93,28 @@
     <ClInclude Include="SDLWindow.h">
       <Filter>Frontend\Window\SDL</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderable.h">
-      <Filter>Frontend\Renderable</Filter>
-    </ClInclude>
     <ClInclude Include="GfxBackend.h">
       <Filter>Backend</Filter>
     </ClInclude>
     <ClInclude Include="IRenderableInstance.h">
-      <Filter>Frontend\Renderable\Instance</Filter>
+      <Filter>Frontend\Renderable\General\Instance</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>Frontend\Renderable\General</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderable.h">
+      <Filter>Frontend\Renderable\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderableInstance.h">
+      <Filter>Frontend\Renderable\Mesh\Instance</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sample Shaders\Basic\basic.frag">
+      <Filter>Sample Shaders\Basic</Filter>
+    </None>
+    <None Include="Sample Shaders\Basic\basic.vert">
+      <Filter>Sample Shaders\Basic</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -5,10 +5,10 @@
 
 #include "CommonGfx.h"
 
-class GFXSUBAPI IRenderableInstance: public ITickable
+class GFXSUBAPI IRenderableInstance:public WorldObject
 {
 public:
-	IRenderableInstance(class IRenderable*);
+	IRenderableInstance(class IRenderable*, WorldObject*);
 	virtual ~IRenderableInstance(void);
 
 	/*
@@ -22,10 +22,17 @@ public:
 	void UnregisterRenderableInstance();
 	virtual void OnDeregistration();
 
-
 	friend class IRenderable;
+	friend class GfxBackend;
 private:
-	IRenderable* mParent;
+	/*
+	 * What is the difference between Parent Renderable and Parent Object?
+	 * Parent Renderable -- Parent renderable holds the mesh's data (material, mesh data, etc)
+	 * Parent Object -- The object that this renderable instance is attached to (where we get parent orientation/location from)
+	 */
+	IRenderable*	mParentRenderable;
+	WorldObject*	mParentObject;
+
 	/*
 	 * Link in the linked list of all renderable instances.
 	 * NOTE: This gives warning C241
@@ -33,13 +40,24 @@ private:
 	 */
 #pragma warning (disable: 4251)
 	TIntrusiveLink<IRenderableInstance> mInstanceLink;
-
+#pragma warning (pop)
 	/*
 	 * Whether or not this renderable has already been registered by the backend.
 	 * NEVER CHANGE THIS VARIABLE WITHIN IRENDERABLEINSTANCE -- aside from the unregister function.
 	 */
 	bool mIsRegistered;
+
+	/*
+	 * Render function. Called in the Gfx Backend Render loop.
+	 */
+	void OnRender();
+
+	/*
+	 * Overridable Render Functions. PreRender/PostRender can (and should) be overriden. 
+	 * Gives user some flexibility in doing some extra stuff before/after this object gets rendered.
+	 */
+	virtual void PreRender() = 0;
+	virtual void PostRender() = 0;
 };
 
 #endif // _IRENDERABLEINSTANCE_H
-#pragma warning (pop)

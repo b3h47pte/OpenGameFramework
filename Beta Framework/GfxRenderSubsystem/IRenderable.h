@@ -15,22 +15,33 @@
  * IRenderable WILL register itself when created and WILL un-register upon destruction. The programmer however is reponsible for marking the Renderable as being ready to render.
  * NOTE: IRenderable ISN'T an INSTANCE. IRenderableInstances are what ACTUALLY are rendered. IRenderables are registered but instances are registered to the IRenderable and they are what get rendered.
  */
-class GFXSUBAPI IRenderable: public ITickable
+class GFXSUBAPI IRenderable
 {
 public:
 	IRenderable();
 	virtual ~IRenderable();
 
 	/*
+	 * Prepare to Render and Finish Rendering function notifications.
+	 * Bind buffers, compile/link shaders, all that good stuff, unbind buffers.
+	 */
+	virtual bool PrepareToRender() = 0;
+	virtual bool FinishRender() = 0;
+
+	/*
+	 * Finalize Data and register data with OpenGL
+	 */ 
+	virtual void FinalizeData() = 0; 
+
+	/*
+	 * Whether or not renderable is prepared to render yet.
+	 */
+	virtual bool GetIsReadyToRender() { return mDataSet; }
+
+	/*
 	 * Give users flexibility to do other stuff when the renderable gets registered. (Called AFTER registration).
 	 */
 	virtual void OnRegistration();
-
-	/*
-	 * Whether or not renderable is prepared to render yet (can return false if you want to temporarily hide the renderable from view).
-	 */
-	virtual bool GetIsReadyToRender() = 0;
-
 
 	/*
 	 * Unregister us from the link (backend). Called AFTER deregistration.
@@ -41,14 +52,21 @@ public:
 	/*
 	 * Creates and Registers an instance of this renderable object.
 	 */
-	IRenderableInstance* CreateAndRegisterInstance();
+	IRenderableInstance* CreateAndRegisterInstance(WorldObject*);
 
 	friend class GfxBackend;
+
+protected:
+	/*
+	 * Whether or not the renderable's data has been appropriately set yet.
+	 */ 
+	bool mDataSet;
+
 private:
 	/*
 	 * Function to create a new renderable instance. Made pure virtual because a renderable will have to know what kind of instance it'll make.
 	 */
-	virtual IRenderableInstance* CreateRenderableInstance() = 0;
+	virtual IRenderableInstance* CreateRenderableInstance(WorldObject*) = 0;
 
 	/*
 	 * A renderable will always be part of the the graphics backend (or at least it should be) so hold its link. 
@@ -65,6 +83,7 @@ private:
 	 * Linked list of all renderable instances. 
 	 */
 	TIntrusiveLinkedList<IRenderableInstance, offsetof(IRenderableInstance, mInstanceLink)> mInstanceList;
+#pragma warning (pop)
 
 	/*
 	 * Whether or not this renderable has already been registered by the backend.
@@ -75,4 +94,3 @@ private:
 
 
 #endif // _IRENDERABLE_H
-#pragma warning (pop)

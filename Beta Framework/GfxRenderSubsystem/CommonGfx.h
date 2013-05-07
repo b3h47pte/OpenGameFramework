@@ -28,6 +28,7 @@
 #include "CoreExternal.h"
 
 #include <iostream>
+#include <vector>
 
 // Define whether or not we're using SDL -- if not, we have to take care of creating contexts on each platform
 // TODO: Eventually move this out into some sort of build system becaus this define will be useful in more than one subsystem

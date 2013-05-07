@@ -1,7 +1,7 @@
 #include "IRenderableInstance.h"
 #include "IRenderable.h"
 
-IRenderableInstance::IRenderableInstance(IRenderable* inRen): mParent(inRen), mIsRegistered(false) {
+IRenderableInstance::IRenderableInstance(IRenderable* inRen, WorldObject* inObj): mParentRenderable(inRen), mParentObject(inObj), mIsRegistered(false) {
 }
 
 
@@ -32,4 +32,12 @@ void IRenderableInstance::OnDeregistration() {
 
 void IRenderableInstance::OnRegistration() {
 
+}
+
+/* 
+ * Render Function.
+ * Steps:
+ *	1) Retrive appropriate transformation data.
+ */
+void IRenderableInstance::OnRender() {
 }

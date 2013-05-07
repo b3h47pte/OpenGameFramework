@@ -4,7 +4,7 @@
 /*
  * Ctor/Dtor
  */
-IRenderable::IRenderable(): mIsRegistered(false) {
+IRenderable::IRenderable(): mIsRegistered(false), mDataSet(false) {
 	GetGfxSubsystem()->RegisterRenderable(this);
 	OnRegistration();
 }
@@ -16,8 +16,8 @@ IRenderable::~IRenderable() {
 /*
  * Create and register and instance for rendering.
  */
-IRenderableInstance* IRenderable::CreateAndRegisterInstance() {
-	IRenderableInstance* newInst = CreateRenderableInstance();
+IRenderableInstance* IRenderable::CreateAndRegisterInstance(WorldObject* parObj) {
+	IRenderableInstance* newInst = CreateRenderableInstance(parObj);
 
 	if (newInst) {
 		mInstanceList.AppendElement(newInst);

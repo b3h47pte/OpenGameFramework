@@ -19,9 +19,8 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-#ifndef _DEBUG
-#define NDEBUG
-#endif
+#include "Object.h"
+#include "WorldObject.h"
 
 #include <assert.h>
 #endif
