@@ -8,6 +8,7 @@
 
 #include "CommonGfx.h"
 #include "IRenderable.h"
+#include "MeshRenderable.h"
 
 class IGfxWindow;
 
@@ -39,7 +40,8 @@ public:
 	 */ 
 	enum EGfxErrorCodes {
 		EGLEW_FAIL,
-		EWINDOW_FAIL
+		EWINDOW_FAIL,
+		EBACKEND_FAIL
 	};
 
 	virtual void DumpError (int) const;

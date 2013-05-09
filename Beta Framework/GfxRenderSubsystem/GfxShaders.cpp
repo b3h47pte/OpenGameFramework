@@ -1,4 +1,5 @@
 #include "GfxShaders.h"
+#include "WFile.h"
 
 std::map<GLenum, std::map<std::string, GLuint> > GfxShaders::mShaderStore = std::map<GLenum, std::map<std::string, GLuint> >();
 
@@ -28,13 +29,18 @@ int GfxShaders::GetShaderID(GLenum type, const std::string& id) {
  * Compiles/links the shader and stores the Shader ID for future reference.
  * NOTE: Input shader MUST be NULL terminated.
  */
-bool GfxShaders::LoadShader(GLenum type, char** shader, int shaderLineCount, const std::string& id) {
+bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::string& id) {
 	int shaderId;
 	if (!(shaderId = glCreateShader(type)))
 		return false;
 
-	glShaderSource(shaderId, shaderLineCount, const_cast<const char**>(shader), NULL);
+	WFile wfile(file);
+	const char* data = wfile.ReadAllBinaryDataNull();
+
+	glShaderSource(shaderId, 1, &data, NULL);
 	glCompileShader(shaderId);
+
+	delete [] data;
 
 	int status;
 	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &status);

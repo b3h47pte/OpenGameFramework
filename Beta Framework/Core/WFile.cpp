@@ -13,24 +13,19 @@ WFile::~WFile(void)
 {
 }
 
-char** WFile::ReadAllTextData(int& outLines) {
-	outLines = 0;
-	ifstream file;
-	vector<string> allLines;
-	file.open(mFileName.c_str(), std::ifstream::in);
-	if (file.is_open()) {
-		std::string line;
-		while (file.good()) {
-			getline(file, line); 
-			allLines.push_back(line);
-		}
-	}
-	char** allData;
-	outLines = allLines.size();
-	allData = new char*[outLines];
-	for (int i = 0; i < outLines; i++) {
-		allData[i] = new char[allLines[i].size()];
-		memcpy(allData[i], allLines[i].c_str(), allLines[i].size() * sizeof(char));
-	}
+char* WFile::ReadAllBinaryDataNull() {
+	ifstream file(mFileName, std::ios::in | std::ios::binary);
+	int fsize;
+	file.seekg(0, file.end);
+	fsize = (int)file.tellg();
+	file.seekg(0, file.beg);
+
+	char* allData = new char[fsize+1];
+	if (!allData) return NULL;
+	file.read(allData, fsize);
+	allData[fsize] = '\0';
+	file.close();
+
+
 	return allData;
 }

@@ -21,17 +21,41 @@ public:
 	 */
 	enum ESDLErrorCodes {
 		ESDL_INITFAIL,
-		ESDL_SETVIDEOMODE,
+		ESDL_WINDOW,
 	};
 	virtual void DumpError(int) const;
+
+	/*
+	 * Tick
+	 */ 
+	virtual bool ShouldTick()  { return mStillRunning; }
+	virtual void Tick(float);
 private:
 	/*
 	 * SDL Variables
 	 */
-	SDL_Surface* mSDLSurface;
+	SDL_Window* mSDLWindow;
+	SDL_GLContext	mGLContext;
 
 	virtual void CreateOpenGLContext();
+
+	bool mStillRunning;
 };
+
+#ifndef NDEBUG
+#define SDL_ERROR_CHECK()	CHECK_SDL_ERROR()
+#else 
+#define	SDL_ERROR_CHECK()	
+#endif
+
+inline void CHECK_SDL_ERROR() {
+	const char *error = SDL_GetError();
+	if (*error != '\0')
+	{
+		printf("SDL Error: %s\n", error);
+		SDL_ClearError();
+	}
+}
 
 #endif // USE_SDL
 #endif // _SDLWINDOW_H 

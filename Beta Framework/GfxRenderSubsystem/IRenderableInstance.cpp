@@ -38,6 +38,8 @@ void IRenderableInstance::OnRegistration() {
  * Render Function.
  * Steps:
  *	1) Retrive appropriate transformation data.
+ *	2) Set shader data as necessary.
+ *	2) Call the OpenGL draw calls necesssary.
  */
 void IRenderableInstance::OnRender() {
 }

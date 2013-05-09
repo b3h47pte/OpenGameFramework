@@ -21,16 +21,21 @@ extern "C" GFXSUBAPI IGfxSubsystem* GetGfxSubsystem() {
 }
 
 GfxSubsystem::GfxSubsystem(void): mStillRunning(true) {
-	// Initialize some basic GLEW/OpenGL stuff if we can -- otherwise wait for the user to pass in the context and the like
-	if (!glewInit()) {
-		SetError(EGLEW_FAIL);
-	}
+	// Initialize Backend
+	mBackend = new GfxBackend();
 
 	// Initialize Window
 #ifdef USE_SDL
 	mWindow = new SDLWindow();
 #endif
 	WRAP_ERROR_CHECK_CLEANUP_SETERROR(mWindow, EWINDOW_FAIL);
+
+	// Initialize some basic GLEW/OpenGL stuff if we can -- otherwise wait for the user to pass in the context and the like
+	GLenum err;
+	err = glewInit();
+	if (GLEW_OK != err) {
+		SetError(EGLEW_FAIL);
+	}
 }
 
 GfxSubsystem::~GfxSubsystem(void) {
@@ -56,18 +61,15 @@ void GfxSubsystem::DumpError(int inErr) const {
  * Tick. Calls tick in the windowing system and in the backend.
  */
 void GfxSubsystem::Tick(float inDeltaTime) {
-	// handle all pending events
-	SDL_Event event;
-	while( SDL_PollEvent(&event) )
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			mStillRunning = false;
-			break;
-		default:      
-			break;
-		}
+	// Do Backend rendering first
+	if (mBackend->ShouldTick())
+		mBackend->Tick(inDeltaTime);
+
+	// Then take care of SDL
+	if (mWindow->ShouldTick()) {
+		mWindow->Tick(inDeltaTime);
+	} else {
+		mStillRunning = false;
 	}
 }
 

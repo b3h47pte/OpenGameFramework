@@ -4,7 +4,7 @@
 
 #include "CommonGfx.h"
 
-class IGfxWindow: public ErrorCatch
+class IGfxWindow: public ErrorCatch,  public ITickable
 {
 public:
 	IGfxWindow(void);

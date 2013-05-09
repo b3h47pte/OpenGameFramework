@@ -1,12 +1,14 @@
 #include "SDLWindow.h"
 
 
-SDLWindow::SDLWindow(void) {
+SDLWindow::SDLWindow(void): mStillRunning(true) {
 	CreateOpenGLContext();
 }
 
 
 SDLWindow::~SDLWindow(void) {
+	SDL_GL_DeleteContext(mGLContext);
+	SDL_DestroyWindow(mSDLWindow);
 }
 
 /*
@@ -25,21 +27,38 @@ void SDLWindow::CreateOpenGLContext() {
 		SetError(ESDL_INITFAIL);
 		return;
 	}
-
+	/*
 	SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
 	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
 	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
 	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 32 );
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1);
+	*/
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+	//SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+	//SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
+ 
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	// Create SDL Surface and allow the use of OpenGL
-	if ((mSDLSurface = SDL_SetVideoMode(mWindowSize.Width, mWindowSize.Height, 32, SDL_HWSURFACE | SDL_OPENGL)) == NULL) {
-		SetError(ESDL_SETVIDEOMODE);
-		SDL_Quit();
+	// Create SDL Window
+	mSDLWindow = SDL_CreateWindow("Gfx Backend", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		mWindowSize.Width, mWindowSize.Height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+
+	if (!mSDLWindow) {
+		SetError(ESDL_WINDOW);
 		return;
 	}
+	SDL_ERROR_CHECK();
+
+	// Create OpenGL Context
+	mGLContext = SDL_GL_CreateContext(mSDLWindow);
+	SDL_ERROR_CHECK();
 
 	// At this point, we can return and allow the graphics subsystem to continue on and initialize OpenGL
+	SDL_GL_SetSwapInterval(1);
 }
 
 /*
@@ -50,10 +69,28 @@ void SDLWindow::DumpError(int inErr) const {
 	case ESDL_INITFAIL:
 		ERROR_PRINT("SDL Failed to initialize.");
 		break;
-	case ESDL_SETVIDEOMODE:
-		ERROR_PRINT("Call to SDL_SetVideoMode failed.");
+	case ESDL_WINDOW:
+		ERROR_PRINT("Call to SDL_CreateWindow failed.");
 		break;
 	default:
 		break;
 	}
+}
+
+
+void SDLWindow::Tick(float inDeltaTime) {
+	// handle all pending events
+	SDL_Event event;
+	while( SDL_PollEvent(&event) )
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			mStillRunning = false;
+			break;
+		default:      
+			break;
+		}
+	}
+	SDL_GL_SwapWindow(mSDLWindow);
 }

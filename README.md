@@ -30,6 +30,8 @@ Any game/program that uses any of the subsystems MUST also use the Core subsyste
 * Error Detection/Logging (ErrorCatch.h/cpp)
 * Tickable Interface (ITickable.h/cpp)
 * Various useful data structures
+* Binary/Text File Read
+* Basic Object/World Object
 
 Planned features include:
 

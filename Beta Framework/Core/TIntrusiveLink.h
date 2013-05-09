@@ -42,7 +42,7 @@ public:
 		//	Previous: Previous node
 		newEle->mNext = this;
 		newEle->mPrev = mPrev;
-		newEle->mObject = newObj;
+		newEle->mObject = newObj;	
 
 		// Old Previous Node:
 		//	Next: New node

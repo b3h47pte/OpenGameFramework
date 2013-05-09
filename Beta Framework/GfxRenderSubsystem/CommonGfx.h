@@ -16,6 +16,7 @@
 #include "stdafx.h"
 
 // OpenGL and GLEW
+#define NO_SDL_GLEXT
 #include <gl\glew.h>
 #include <gl\GL.h>
 #include <gl\GLU.h>

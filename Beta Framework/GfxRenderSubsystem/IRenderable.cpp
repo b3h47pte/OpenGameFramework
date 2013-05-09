@@ -4,9 +4,7 @@
 /*
  * Ctor/Dtor
  */
-IRenderable::IRenderable(): mIsRegistered(false), mDataSet(false) {
-	GetGfxSubsystem()->RegisterRenderable(this);
-	OnRegistration();
+IRenderable::IRenderable(): mIsRegistered(false), mDataSet(false), mDataError(false) {
 }
 
 IRenderable::~IRenderable() {

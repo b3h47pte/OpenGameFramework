@@ -63,6 +63,11 @@ protected:
 	 */ 
 	bool mDataSet;
 
+	/*
+	 * Whether or not the data has errored.
+	 */
+	bool mDataError;
+
 private:
 	/*
 	 * Function to create a new renderable instance. Made pure virtual because a renderable will have to know what kind of instance it'll make.

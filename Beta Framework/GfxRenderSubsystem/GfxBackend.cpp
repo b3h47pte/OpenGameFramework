@@ -1,4 +1,5 @@
 #include "GfxBackend.h"
+#include "MeshRenderable.h"
 
 GfxBackend::GfxBackend(void)
 {
@@ -20,21 +21,23 @@ void GfxBackend::Tick(float inDeltaTime) {
  * Render function.
  */ 
 void GfxBackend::Render(float inDeltaTime) {
-	// Step through all registered renderables and grab their information to render
+	// Step through all registered renderables anx	d grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
 	while(curRenderPtr) {
 		// Renderable will take care of setting its data up so its children can render
-		curRenderPtr->PrepareToRender();
+		if (curRenderPtr->PrepareToRender()) {
 
-		// For each Renderable, go through its instances and grab their appropriate information so we can draw 
-		// everything with the same material and mesh in one go
-		IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
+			// For each Renderable, go through its instances and grab their appropriate information so we can draw 
+			// everything with the same material and mesh in one go
+			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 
-		while (curInstPtr) {
-			curInstPtr->OnRender();
-			curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
+			while (curInstPtr) {
+				curInstPtr->OnRender();
+				curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
+			}
+
+			curRenderPtr->FinishRender();
 		}
-		
 		curRenderPtr = mRenderableList.GetNextElement(curRenderPtr);
 	}
 }
@@ -46,8 +49,6 @@ void GfxBackend::RegisterRenderable(IRenderable* inRenderable) {
 	// First make sure the renderable hasn't been registered and then proceed to put the renderable into the right data structure
 	if (!inRenderable->mIsRegistered) {
 		inRenderable->mIsRegistered = true;
-
 		mRenderableList.AppendElement(inRenderable);
 	}
-
 }

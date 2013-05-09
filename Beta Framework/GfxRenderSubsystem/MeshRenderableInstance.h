@@ -5,7 +5,7 @@
 #include "CommonGfx.h"
 #include "IRenderableInstance.h"
 
-class MeshRenderableInstance: public IRenderableInstance
+class GFXSUBAPI MeshRenderableInstance: public IRenderableInstance
 {
 public:
 	MeshRenderableInstance(class IRenderable*, WorldObject*);

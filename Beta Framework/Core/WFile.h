@@ -11,10 +11,9 @@ public:
 	virtual ~WFile(void);
 
 	/*
-	 * Each line is represented by a char array.
-	 * The input reference to an int will output how many lines there are in the file.
+	 * Reas a file as binary data and puts a NULL at the end.
 	 */
-	char** ReadAllTextData(int&);
+	char* ReadAllBinaryDataNull();
 
 private:
 #pragma warning( push )

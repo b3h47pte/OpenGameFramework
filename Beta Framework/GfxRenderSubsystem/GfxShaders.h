@@ -14,7 +14,7 @@ public:
 	~GfxShaders(void);
 
 	static int	GetShaderID(GLenum, const std::string&);
-	static bool LoadShader(GLenum, char**, int, const std::string&);
+	static bool LoadShader(GLenum, const std::string&, const std::string&);
 
 private:
 	static std::map<GLenum, std::map<std::string, GLuint> > mShaderStore;
