@@ -23,19 +23,18 @@ void GfxBackend::Render(float inDeltaTime) {
 	// Step through all registered renderables and grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
 	while(curRenderPtr) {
-		if (curRenderPtr->GetIsReadyToRender()) {
-			// Renderable will take care of setting its data up so its children can render
-			curRenderPtr->PrepareToRender();
+		// Renderable will take care of setting its data up so its children can render
+		curRenderPtr->PrepareToRender();
 
-			// For each Renderable, go through its instances and grab their appropriate information so we can draw 
-			// everything with the same material and mesh in one go
-			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
+		// For each Renderable, go through its instances and grab their appropriate information so we can draw 
+		// everything with the same material and mesh in one go
+		IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 
-			while (curInstPtr) {
-				curInstPtr->OnRender();
-				curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
-			}
+		while (curInstPtr) {
+			curInstPtr->OnRender();
+			curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
 		}
+		
 		curRenderPtr = mRenderableList.GetNextElement(curRenderPtr);
 	}
 }

@@ -91,12 +91,14 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TIntrusiveLink.h" />
     <ClInclude Include="TIntrusiveLinkedList.h" />
+    <ClInclude Include="WFile.h" />
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ErrorCatch.cpp" />
     <ClCompile Include="ITickable.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="WFile.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

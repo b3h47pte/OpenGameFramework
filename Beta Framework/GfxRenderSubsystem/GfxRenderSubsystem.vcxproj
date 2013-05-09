@@ -79,7 +79,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Debug;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL-1.2.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Release;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL-1.2.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Core.lib;OpenGL32.lib;glew32.lib;GLU32.lib;SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GfxBackend.cpp" />
+    <ClCompile Include="GfxShaders.cpp" />
     <ClCompile Include="GfxSubsystem.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
     <ClCompile Include="IRenderable.cpp" />
@@ -99,6 +100,7 @@
   <ItemGroup>
     <ClInclude Include="CommonGfx.h" />
     <ClInclude Include="GfxBackend.h" />
+    <ClInclude Include="GfxShaders.h" />
     <ClInclude Include="GfxSubsystem.h" />
     <ClInclude Include="GfxWindow.h" />
     <ClInclude Include="IRenderable.h" />

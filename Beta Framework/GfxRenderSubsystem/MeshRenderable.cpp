@@ -1,5 +1,6 @@
 #include "MeshRenderable.h"
 #include "MeshRenderableInstance.h"
+#include "WFile.h"
 
 MeshRenderable::MeshRenderable(void) {
 }
@@ -68,5 +69,37 @@ void MeshRenderable::FinalizeData() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	// Load Shader Data 
+	// TODO: Load shader program from binary using the shader program name
+	int vertID = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
+	if (vertID == -1) {
+		char** vertexData;
+		int vertexLineCount;
+		WFile* vertFile = new WFile(mVertexShaderFile);
+		vertexData = vertFile->ReadAllTextData(vertexLineCount);
+		if (!GfxShaders::LoadShader(GL_VERTEX_SHADER, vertexData, vertexLineCount, mVertexShaderFile)) {
+			
+			return;
+		}
+	}
+
+	int fragID = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
+	if (fragID == -1) {
+		char** fragData;
+		int fragLineCount;
+		WFile* fragFile = new WFile(mFragShaderFile);
+		fragData = fragFile->ReadAllTextData(fragLineCount);
+		if (!GfxShaders::LoadShader(GL_FRAGMENT_SHADER, fragData, fragLineCount, mFragShaderFile)) {
+			return;
+		}
+	}
+
+	// Create Shader Program
+	mShaderProgramID = glCreateProgram();
+	glAttachShader(mShaderProgramID, vertID);
+	glAttachShader(mShaderProgramID, fragID);
+	glLinkProgram(mShaderProgramID);
+
 	mDataSet = true;
 }

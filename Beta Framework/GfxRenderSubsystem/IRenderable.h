@@ -5,6 +5,7 @@
 
 #include "CommonGfx.h"
 #include "IRenderableInstance.h"
+#include "GfxShaders.h"
 
 /*
  * A renderable object (interface). 

@@ -27,6 +27,9 @@
     <Filter Include="Object\World">
       <UniqueIdentifier>{fc4d031b-1bbe-423e-8e81-d1d551253086}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File Handling">
+      <UniqueIdentifier>{c0a27dc3-f384-457f-a390-2fdfe31b4df6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -62,6 +65,9 @@
     <ClInclude Include="WorldObject.h">
       <Filter>Object\World</Filter>
     </ClInclude>
+    <ClInclude Include="WFile.h">
+      <Filter>File Handling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ErrorCatch.cpp">
@@ -75,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="WorldObject.cpp">
       <Filter>Object\World</Filter>
+    </ClCompile>
+    <ClCompile Include="WFile.cpp">
+      <Filter>File Handling</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

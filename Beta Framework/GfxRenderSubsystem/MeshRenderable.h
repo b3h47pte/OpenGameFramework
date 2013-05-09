@@ -24,6 +24,11 @@ public:
 	glm::vec4 GetVertexNormal(int i) const { return mVertexNormals[i]; }
 	glm::vec2 GetVertexTexCoord(int i) const { return mTexCoords[i]; }
 
+	// Name of the shader program -- not going to be used for now but will be useful once I started saving the program binary out to a file
+	void SetShaderProgram(const std::string&);
+	void SetVertexShader(const std::string&);
+	void SetFragShader(const std::string&);
+
 	/*
 	 * Finalize Data and register data with OpenGL
 	 */ 
@@ -50,6 +55,20 @@ private:
 
 		// Vertex Indicies
 		std::vector<int>			mTriangleIndices;
+	};
+
+	// Shader Data
+	struct {
+		// Shader Program Name/ID
+		std::string			mShaderProgramName;
+		GLuint				mShaderProgramID;
+
+		// File to load Vertex Shader data from
+		std::string			mVertexShaderFile;
+
+		// File to load Fragment shader data from
+		std::string			mFragShaderFile;
+
 	};
 
 

@@ -17,32 +17,35 @@
     <Filter Include="Backend">
       <UniqueIdentifier>{84ea8c51-5973-4e2c-b801-8aad22ad1c97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Frontend\Renderable">
-      <UniqueIdentifier>{6e1b7e04-84a4-4a18-bd4e-4a287bdd7ad3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Frontend\Renderable\General">
-      <UniqueIdentifier>{1ceaa7c1-83f2-4fee-9d9d-3f6d9597d41f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Frontend\Renderable\General\Instance">
-      <UniqueIdentifier>{3a8bce0d-7374-47ba-adfa-d3793d22371d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Frontend\Renderable\Mesh">
-      <UniqueIdentifier>{2975abc7-fadb-42a3-b72c-274028c3eca1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Frontend\Renderable\Particle">
-      <UniqueIdentifier>{e21e175b-dc80-4fdd-88c2-86737f43fc41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Frontend\Renderable\Mesh\Instance">
-      <UniqueIdentifier>{533620a3-de43-48f9-a2cd-1c73099579e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Frontend\Renderable\Particle\Instance">
-      <UniqueIdentifier>{02e76710-f630-4c4f-8dd8-404aff1ba6ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sample Shaders">
       <UniqueIdentifier>{cf9ed711-c6bc-45c6-a27f-101ae46f91ae}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sample Shaders\Basic">
       <UniqueIdentifier>{429edb84-dd60-4295-94c6-29014556392d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable">
+      <UniqueIdentifier>{6e1b7e04-84a4-4a18-bd4e-4a287bdd7ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable\General">
+      <UniqueIdentifier>{1ceaa7c1-83f2-4fee-9d9d-3f6d9597d41f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable\General\Instance">
+      <UniqueIdentifier>{3a8bce0d-7374-47ba-adfa-d3793d22371d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable\Mesh">
+      <UniqueIdentifier>{2975abc7-fadb-42a3-b72c-274028c3eca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable\Mesh\Instance">
+      <UniqueIdentifier>{533620a3-de43-48f9-a2cd-1c73099579e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable\Particle">
+      <UniqueIdentifier>{e21e175b-dc80-4fdd-88c2-86737f43fc41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Renderable\Particle\Instance">
+      <UniqueIdentifier>{02e76710-f630-4c4f-8dd8-404aff1ba6ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Shaders">
+      <UniqueIdentifier>{74a24230-7fd2-41e6-8729-7968ffb88576}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,16 +65,19 @@
       <Filter>Backend</Filter>
     </ClCompile>
     <ClCompile Include="IRenderableInstance.cpp">
-      <Filter>Frontend\Renderable\General\Instance</Filter>
+      <Filter>Backend\Renderable\General\Instance</Filter>
     </ClCompile>
     <ClCompile Include="IRenderable.cpp">
-      <Filter>Frontend\Renderable\General</Filter>
+      <Filter>Backend\Renderable\General</Filter>
     </ClCompile>
     <ClCompile Include="MeshRenderable.cpp">
-      <Filter>Frontend\Renderable\Mesh</Filter>
+      <Filter>Backend\Renderable\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="MeshRenderableInstance.cpp">
-      <Filter>Frontend\Renderable\Mesh\Instance</Filter>
+      <Filter>Backend\Renderable\Mesh\Instance</Filter>
+    </ClCompile>
+    <ClCompile Include="GfxShaders.cpp">
+      <Filter>Backend\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,16 +103,19 @@
       <Filter>Backend</Filter>
     </ClInclude>
     <ClInclude Include="IRenderableInstance.h">
-      <Filter>Frontend\Renderable\General\Instance</Filter>
+      <Filter>Backend\Renderable\General\Instance</Filter>
     </ClInclude>
     <ClInclude Include="IRenderable.h">
-      <Filter>Frontend\Renderable\General</Filter>
+      <Filter>Backend\Renderable\General</Filter>
     </ClInclude>
     <ClInclude Include="MeshRenderable.h">
-      <Filter>Frontend\Renderable\Mesh</Filter>
+      <Filter>Backend\Renderable\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="MeshRenderableInstance.h">
-      <Filter>Frontend\Renderable\Mesh\Instance</Filter>
+      <Filter>Backend\Renderable\Mesh\Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxShaders.h">
+      <Filter>Backend\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
