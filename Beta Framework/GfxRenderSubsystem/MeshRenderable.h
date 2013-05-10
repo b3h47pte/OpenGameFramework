@@ -88,6 +88,10 @@ private:
 
 	// Vertex Buffer Object
 	GLuint mVBO;
+
+	// Shader Matrices
+	GLint mProjectionMatrix;
+	GLint mModelMatrix;
 };
 
 #endif // _MESHRENDERABLE

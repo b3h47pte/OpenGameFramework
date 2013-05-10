@@ -21,6 +21,8 @@ void GfxBackend::Tick(float inDeltaTime) {
  * Render function.
  */ 
 void GfxBackend::Render(float inDeltaTime) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	// Step through all registered renderables anx	d grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
 	while(curRenderPtr) {
@@ -51,4 +53,21 @@ void GfxBackend::RegisterRenderable(IRenderable* inRenderable) {
 		inRenderable->mIsRegistered = true;
 		mRenderableList.AppendElement(inRenderable);
 	}
+}
+
+/*
+ * Initialize Graphics API (OpenGL, DirectX, whatever)
+ */
+bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
+	// Initialize some basic GLEW/OpenGL stuff if we can -- otherwise wait for the user to pass in the context and the like
+	GLenum err;
+	err = glewInit();
+	if (GLEW_OK != err) {
+		return false;
+	}
+
+	glViewport(0, 0, width, height);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	return true;
 }

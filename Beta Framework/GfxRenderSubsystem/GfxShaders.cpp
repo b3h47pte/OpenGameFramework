@@ -52,5 +52,7 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 		return false;
 	}
 
+	mShaderStore[type][id] = shaderId;
+
 	return true;
 }

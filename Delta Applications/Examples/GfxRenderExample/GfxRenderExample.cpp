@@ -14,9 +14,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		return 0;
 	
 	float verts[3][4] = {
-		{-0.90f, -0.90f, 0.f, 0.f},
-		{0.85f, -0.90f, 0.f, 0.f},
-		{-0.90f, 0.85f, 0.f, 0.f}
+		{-1.f, -1.f, -2.f, 1.f},
+		{1.f, -1.f, -2.f, 1.f},
+		{-1.f, 1.f, -2.f, 1.f}
 	};
 
 	float norms[3][4] = {

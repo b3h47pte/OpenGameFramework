@@ -1,6 +1,7 @@
 #include "MeshRenderable.h"
 #include "MeshRenderableInstance.h"
 #include "GfxSubsystem.h"
+#include "GfxBackend.h"
 
 MeshRenderable::MeshRenderable(void) {
 }
@@ -25,10 +26,15 @@ bool MeshRenderable::PrepareToRender() {
 	if (!mDataSet) {
 		FinalizeData();
 	}
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
 	glBindVertexArray(mVAO);
-	glBindBuffer(GL_ARRAY_BUFFER, mVBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
 	glUseProgram(mShaderProgramID);
+	
+		
+	// TEMPORARY
+	glm::mat4 projection_matrix = glm::frustum(-1.f, 1.f, -0.75f, 0.75f, 1.f, 500.f);
+	glUniformMatrix4fv(mProjectionMatrix, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+
 	return true;
 }
 
@@ -36,10 +42,8 @@ bool MeshRenderable::PrepareToRender() {
  * Finish Rendering by unbinding buffers so that these buffers aren't mistakenly read from/modified.
  */
 bool MeshRenderable::FinishRender() {
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glUseProgram(0);
+	glBindVertexArray(0);
 	return true;
 }
 
@@ -57,27 +61,28 @@ IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parOb
  * for this renerable to reload the state later for rendering. Also handled registering the mesh with the graphics subsystem.
  */
 void MeshRenderable::FinalizeData() {
-	// Create Element Array Buffer (EBO) to hold the indicies of vertices
-	glGenBuffers(1, &mEBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(mTriangleIndices), &mTriangleIndices[0], GL_STATIC_DRAW);
-
 	// Create the VAO to hold the mesh's data (color, position, etc.)
 	glGenVertexArrays(1, &mVAO);
 	glBindVertexArray(mVAO);
 
+	// Create Element Array Buffer (EBO) to hold the indicies of vertices
+	glGenBuffers(1, &mEBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * mTriangleIndices.size(), &mTriangleIndices[0], GL_STATIC_DRAW);
+
 	// Setup VBO
 	glGenBuffers(1, &mVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(mVertexPosition) + sizeof(mVertexNormals) + sizeof(mTexCoords), NULL, GL_STATIC_DRAW);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(mVertexPosition), &mVertexPosition[0]);
-	glBufferSubData(GL_ARRAY_BUFFER, sizeof(mVertexPosition), sizeof(mVertexNormals), &mVertexNormals[0]);
-	glBufferSubData(GL_ARRAY_BUFFER, sizeof(mVertexPosition) + sizeof(mVertexNormals), sizeof(mTexCoords), &mTexCoords[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size() 
+		+ sizeof(glm::vec2) * mTexCoords.size(), NULL, GL_STATIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * mVertexPosition.size(), &mVertexPosition[0]);
 
-	// Make sure no-one else inadvertently messes around with this mesh data.
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size(), sizeof(glm::vec4) * mVertexNormals.size(), &mVertexNormals[0]);
+	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size(), 
+		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]);
+	
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0,  (void*)0);
 
 	// Load Shader Data 
 	// TODO: Load shader program from binary using the shader program name
@@ -105,10 +110,19 @@ void MeshRenderable::FinalizeData() {
 	glAttachShader(mShaderProgramID, fragID);
 	glLinkProgram(mShaderProgramID);
 
+	
 	mDataSet = true;
 	// Regeister Ourselves
 	GetGfxSubsystem()->RegisterRenderable(this);
 	OnRegistration();
+
+	// Get locations of the matrices
+	mProjectionMatrix = glGetUniformLocation(mShaderProgramID, "projection_matrix");
+		
+	// Make sure no-one else inadvertently messes around with this mesh data.
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }
 
 /*

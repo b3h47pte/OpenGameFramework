@@ -39,7 +39,7 @@ public:
 	 * Error Management.
 	 */ 
 	enum EGfxErrorCodes {
-		EGLEW_FAIL,
+		EGAPI_FAIL,
 		EWINDOW_FAIL,
 		EBACKEND_FAIL
 	};

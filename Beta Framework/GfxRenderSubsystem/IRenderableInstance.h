@@ -50,7 +50,7 @@ private:
 	/*
 	 * Render function. Called in the Gfx Backend Render loop.
 	 */
-	void OnRender();
+	virtual void OnRender();
 
 	/*
 	 * Overridable Render Functions. PreRender/PostRender can (and should) be overriden. 

@@ -30,11 +30,9 @@ GfxSubsystem::GfxSubsystem(void): mStillRunning(true) {
 #endif
 	WRAP_ERROR_CHECK_CLEANUP_SETERROR(mWindow, EWINDOW_FAIL);
 
-	// Initialize some basic GLEW/OpenGL stuff if we can -- otherwise wait for the user to pass in the context and the like
-	GLenum err;
-	err = glewInit();
-	if (GLEW_OK != err) {
-		SetError(EGLEW_FAIL);
+	// OpenGL initialization
+	if(!mBackend->InitializeGraphicsAPI(mWindow->GetWindowWidth(), mWindow->GetWindowHeight())) {
+		SetError(EGAPI_FAIL);
 	}
 }
 
@@ -46,8 +44,8 @@ GfxSubsystem::~GfxSubsystem(void) {
  */ 
 void GfxSubsystem::DumpError(int inErr) const {
 	switch (inErr) {
-	case EGLEW_FAIL:
-		ERROR_PRINT("GLEW failed to initialize.");
+	case EGAPI_FAIL:
+		ERROR_PRINT("Graphics API failed to initialize.");
 		break;
 	case EWINDOW_FAIL:
 		ERROR_PRINT("The Window failed to initialize.");

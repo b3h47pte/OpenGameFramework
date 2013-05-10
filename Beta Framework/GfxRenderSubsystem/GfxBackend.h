@@ -20,6 +20,11 @@ public:
 	virtual bool ShouldTick()  { return true; }
 	virtual void Tick(float);
 
+	/*
+	 * Graphics API Initialization
+	 */ 
+	virtual bool InitializeGraphicsAPI(int, int);
+
 private:
 	
 	/* 
@@ -40,5 +45,6 @@ private:
 	TIntrusiveLinkedList<IRenderable, offsetof(IRenderable, mBackendLink)> mRenderableList;
 
 };
+
 
 #endif // _GFXBACKEND_H
