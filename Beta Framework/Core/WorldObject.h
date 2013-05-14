@@ -32,11 +32,17 @@ public:
 	void			SetRotation(const glm::vec3& in) { mRotation = glm::fquat(in); }
 	void			SetRotation(const glm::mat4& in) { mRotation = glm::toQuat(in); }
 
+	glm::mat4		GetTransformationMatrix() { return mTransformationMatrix; }
+
+protected:
+	virtual void	UpdateTransformationMatrix();
+
 private:
 	// We have accessor methods for these functions so they'll never be accessed outside of this DLL - Disable Warning C4251
 #pragma warning (disable: 4251)
 	glm::vec4	mPosition;
 	glm::fquat	mRotation;
+	glm::mat4	mTransformationMatrix;
 #pragma warning (pop)
 };
 

@@ -88,8 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GfxBackend.cpp" />
+    <ClCompile Include="GfxCamera.cpp" />
     <ClCompile Include="GfxShaders.cpp" />
     <ClCompile Include="GfxSubsystem.cpp" />
+    <ClCompile Include="GfxViewport.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderableInstance.cpp" />
@@ -100,8 +102,10 @@
   <ItemGroup>
     <ClInclude Include="CommonGfx.h" />
     <ClInclude Include="GfxBackend.h" />
+    <ClInclude Include="GfxCamera.h" />
     <ClInclude Include="GfxShaders.h" />
     <ClInclude Include="GfxSubsystem.h" />
+    <ClInclude Include="GfxViewport.h" />
     <ClInclude Include="GfxWindow.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderableInstance.h" />

@@ -6,21 +6,23 @@
 #endif
 
 #include "GfxBackend.h"
+#include "GfxViewport.h"
+#include "GfxCamera.h"
 
 /* 
  * Factory Function To create the GFx Subsystem. Will return NULL when it fails.
  */
-extern "C" GFXSUBAPI IGfxSubsystem* GetGfxSubsystem() {
+extern "C" GFXSUBAPI IGfxSubsystem* GetGfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)) {
 	// Initialize a GFx Subsystem entirely and make sure it's ready to use right after this function is called
-	static GfxSubsystem* newSub = [] () {
-		GfxSubsystem* sub = new GfxSubsystem();
+	static GfxSubsystem* newSub = [&] () {
+		GfxSubsystem* sub = new GfxSubsystem(camptr);
 		WRAP_ERROR_CHECK_CLEANUP_SETNULL_RETURN(sub);
 		return sub;
 	}();
 	return newSub;
 }
 
-GfxSubsystem::GfxSubsystem(void): mStillRunning(true) {
+GfxSubsystem::GfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)): mStillRunning(true), mActiveViewports(1) {
 	// Initialize Backend
 	mBackend = new GfxBackend();
 
@@ -29,6 +31,12 @@ GfxSubsystem::GfxSubsystem(void): mStillRunning(true) {
 	mWindow = new SDLWindow();
 #endif
 	WRAP_ERROR_CHECK_CLEANUP_SETERROR(mWindow, EWINDOW_FAIL);
+
+	// Create Default Viewport
+	mAllViewports[0] = new GfxViewport(mWindow->GetWindowWidth(), mWindow->GetWindowHeight(), 0, 0, 0, camptr(90.f,
+		(float) mWindow->GetWindowWidth()/ mWindow->GetWindowHeight()));
+	for (int i = 1; i < GFX_MAX_VIEWPORTS; i++)
+		mAllViewports[i] = NULL;
 
 	// OpenGL initialization
 	if(!mBackend->InitializeGraphicsAPI(mWindow->GetWindowWidth(), mWindow->GetWindowHeight())) {
@@ -69,6 +77,65 @@ void GfxSubsystem::Tick(float inDeltaTime) {
 	} else {
 		mStillRunning = false;
 	}
+}
+
+//##########################################
+// Viewport
+//##########################################
+int GfxSubsystem::SetViewportNumber(int inView) {
+	mActiveViewports = std::max(std::min(inView, GFX_MAX_VIEWPORTS), 1);
+
+	// Size of each viewport
+	// TODO: Let user specify how viewports get split?
+	// TODO: Make this more elegant
+	// 1 -- Whole Screen
+	// 2 -- Split Vertically
+	// 3 -- P1 gets top, P2 P3 gets bottom split
+	// 4 -- Each player gets a corner
+	switch (mActiveViewports) {
+	case 1:
+		mAllViewports[0]->Resize(mWindow->GetWindowWidth(), mWindow->GetWindowHeight(), 0, 0);
+		break;
+	case 2:
+	case 3:
+		mAllViewports[0]->Resize(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, 0);
+		break;
+	case 4:
+		mAllViewports[0]->Resize(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 0, 0);
+		break;
+	}
+
+	for (int i = 1; i < mActiveViewports; i++) {
+		if (mAllViewports[i] == NULL) {
+			switch (mActiveViewports) {
+			case 2:
+				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, mWindow->GetWindowHeight() / 2, i,
+					mCameraFactoryFunc(90.f, (float)(mWindow->GetWindowHeight() / 2) / (mWindow->GetWindowHeight() / 2) ));
+			case 3:
+				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 
+					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
+					mWindow->GetWindowHeight() / 2, i,
+					mCameraFactoryFunc(90.f, (float)(mWindow->GetWindowHeight() / 2) / ((i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2) ));
+			case 4:
+				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 
+					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
+					((i / 2) % 2 == 0) ? 0 : mWindow->GetWindowHeight() / 2, i,
+					mCameraFactoryFunc(90.f, (float)(((i / 2) % 2 == 0) ? 0 : mWindow->GetWindowHeight() / 2) / ((i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2) ));
+				break;
+			}
+		}
+	}
+
+	for (int i = mActiveViewports; i < GFX_MAX_VIEWPORTS; i++) {
+		if (mAllViewports[i] != NULL)
+			delete mAllViewports[i];
+	}
+
+	return mActiveViewports;
+}
+
+class IGfxViewport* GfxSubsystem::GetViewport(int inView) {
+	return mAllViewports[inView];
 }
 
 //##########################################

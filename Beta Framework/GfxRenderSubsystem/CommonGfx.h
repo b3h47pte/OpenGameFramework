@@ -25,6 +25,9 @@
 	#include <Windows.h>
 #endif
 
+// Other Defines Need for the Gfx Subsystem
+#define GFX_MAX_VIEWPORTS	4
+
 // Core
 #include "CoreExternal.h"
 

@@ -113,7 +113,7 @@ void MeshRenderable::FinalizeData() {
 	
 	mDataSet = true;
 	// Regeister Ourselves
-	GetGfxSubsystem()->RegisterRenderable(this);
+	GetGfxSubsystem(NULL)->RegisterRenderable(this);
 	OnRegistration();
 
 	// Get locations of the matrices
