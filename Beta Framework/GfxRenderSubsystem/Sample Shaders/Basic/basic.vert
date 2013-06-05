@@ -9,6 +9,6 @@ layout(location = 2) in vec2 vTexCoord;
 out vec4 vs_color;
 
 void main() {
-	vs_color = vec4(1.f, 1.f, 1.f, 1.f);
+	vs_color = vec4(0.f, 1.f, 1.f, 1.f);
 	gl_Position = projection_matrix * vPosition;
 }
