@@ -73,6 +73,7 @@ void SDLWindow::DumpError(int inErr) const {
 
 
 void SDLWindow::Tick(float inDeltaTime) {
+	
 	// handle all pending events
 	SDL_Event event;
 	while( SDL_PollEvent(&event) )
@@ -86,5 +87,6 @@ void SDLWindow::Tick(float inDeltaTime) {
 			break;
 		}
 	}
+	
 	SDL_GL_SwapWindow(mSDLWindow);
 }

@@ -52,7 +52,7 @@ public:
 	 * Get the Link element from the input element which definitely has a link element
 	 */
 	TIntrusiveLink<T>* GetLinkFromElement(T* newEle) {
-		return (TIntrusiveLink<T>*)((size_t)(newEle + mOffset));
+		return (TIntrusiveLink<T>*)((size_t)(newEle) + mOffset);
 	}
 
 	/*

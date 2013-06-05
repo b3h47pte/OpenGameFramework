@@ -5,13 +5,19 @@
 
 #include "CommonGfx.h"
 
-class GFXSUBAPI IGfxCamera: public WorldObject {
+class  IGfxCamera: public WorldObject {
 public:
 	virtual float GetFOV() const = 0;
 	virtual void SetFOV(float) = 0;
 
 	virtual float GetAspectRatio() const = 0;
 	virtual void SetAspectRatio(float) = 0;
+
+	virtual float GetZNear() const = 0;
+	virtual void SetZNear(float) = 0;
+
+	virtual float GetZFar() const = 0;
+	virtual void SetZFar(float) = 0;
 };
 
 /*
@@ -30,9 +36,15 @@ public:
 	virtual float GetAspectRatio() const { return mAspectRatio; }
 	virtual void SetAspectRatio(float in) { mAspectRatio = in; }
 
+	virtual float GetZNear() const { return mZNear; }
+	virtual void SetZNear(float in) { mZNear = in; }
+
+	virtual float GetZFar() const { return mZFar; }
+	virtual void SetZFar(float in) { mZFar = in; }
+
 private:
 	/*
-	 * FOV
+	 * FOV (Y-Direction)
 	 */
 	float mFOV;
 
@@ -40,9 +52,15 @@ private:
 	 * Aspect Ratio
 	 */
 	float mAspectRatio;
+
+	/*
+	 * Z-Far/Near. Defaults to 1.f and 200.f
+	 */
+	float mZFar;
+	float mZNear;
 };
 
 #define CAM_FACTORY_FCTN_PTR(var) IGfxCamera* (*var) (float, float)
 
-extern "C" GFXSUBAPI IGfxCamera* GFX_CREATE_DEFAULT_CAMERA(float inFOV, float inAR);
+extern "C"  IGfxCamera* GFX_CREATE_DEFAULT_CAMERA(float inFOV, float inAR);
 #endif // _GFXCAMERA_H

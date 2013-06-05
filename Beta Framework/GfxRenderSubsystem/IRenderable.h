@@ -16,7 +16,7 @@
  * IRenderable WILL register itself when created and WILL un-register upon destruction. The programmer however is reponsible for marking the Renderable as being ready to render.
  * NOTE: IRenderable ISN'T an INSTANCE. IRenderableInstances are what ACTUALLY are rendered. IRenderables are registered but instances are registered to the IRenderable and they are what get rendered.
  */
-class GFXSUBAPI IRenderable
+class  IRenderable
 {
 public:
 	IRenderable();

@@ -11,7 +11,7 @@
  * An object that will get placed into whatever "world" is being created by the game developer.
  * Main Difference between this and an object: Has a position/orientation in some space. 
  */
-class COREAPI WorldObject: public Object
+class  WorldObject: public Object
 {
 public:
 	WorldObject();

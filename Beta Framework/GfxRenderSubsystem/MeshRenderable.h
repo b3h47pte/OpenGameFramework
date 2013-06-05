@@ -9,7 +9,7 @@
  * A Mesh Renderable.
  * A "Mesh" is anything that is made up of triangles in the scene.
  */
-class GFXSUBAPI MeshRenderable: public IRenderable
+class  MeshRenderable: public IRenderable
 {
 public:
 	MeshRenderable(void);
@@ -59,15 +59,14 @@ private:
 
 	// Shader Data
 	struct {
-		// Shader Program Name/ID
-		std::string			mShaderProgramName;
-		GLuint				mShaderProgramID;
 
 		// File to load Vertex Shader data from
 		std::string			mVertexShaderFile;
+		int	mVertexShaderId;
 
 		// File to load Fragment shader data from
 		std::string			mFragShaderFile;
+		int mFragShaderId;
 
 	};
 
@@ -88,10 +87,6 @@ private:
 
 	// Vertex Buffer Object
 	GLuint mVBO;
-
-	// Shader Matrices
-	GLint mProjectionMatrix;
-	GLint mModelMatrix;
 };
 
 #endif // _MESHRENDERABLE

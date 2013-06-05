@@ -9,6 +9,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	
 	IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_DEFAULT_CAMERA);
 	if (!gfx)
 		return 0;

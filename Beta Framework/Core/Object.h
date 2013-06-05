@@ -7,7 +7,7 @@
 /*
  * All things used by the framework is an "object".
  */
-class COREAPI Object
+class  Object
 {
 public:
 	Object(void);

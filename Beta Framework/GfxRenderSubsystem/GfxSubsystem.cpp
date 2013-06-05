@@ -12,7 +12,7 @@
 /* 
  * Factory Function To create the GFx Subsystem. Will return NULL when it fails.
  */
-extern "C" GFXSUBAPI IGfxSubsystem* GetGfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)) {
+extern "C"  IGfxSubsystem* GetGfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)) {
 	// Initialize a GFx Subsystem entirely and make sure it's ready to use right after this function is called
 	static GfxSubsystem* newSub = [&] () {
 		GfxSubsystem* sub = new GfxSubsystem(camptr);
@@ -67,16 +67,23 @@ void GfxSubsystem::DumpError(int inErr) const {
  * Tick. Calls tick in the windowing system and in the backend.
  */
 void GfxSubsystem::Tick(float inDeltaTime) {
+	
 	// Do Backend rendering first
-	if (mBackend->ShouldTick())
-		mBackend->Tick(inDeltaTime);
-
+	if (mBackend->ShouldTick()) {
+		// Go through and render each viewport
+		for (int i = 0; i < mActiveViewports; i++) {
+			mBackend->SetActiveViewport(mAllViewports[i]);
+			mBackend->Tick(inDeltaTime);
+		}
+	}
+	
 	// Then take care of SDL
 	if (mWindow->ShouldTick()) {
 		mWindow->Tick(inDeltaTime);
 	} else {
 		mStillRunning = false;
 	}
+	
 }
 
 //##########################################
@@ -105,22 +112,30 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 		break;
 	}
 
+	int width;
+	int height;
 	for (int i = 1; i < mActiveViewports; i++) {
 		if (mAllViewports[i] == NULL) {
 			switch (mActiveViewports) {
 			case 2:
+				width = mWindow->GetWindowWidth();
+				height = mWindow->GetWindowHeight() / 2;
 				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, mWindow->GetWindowHeight() / 2, i,
-					mCameraFactoryFunc(90.f, (float)(mWindow->GetWindowHeight() / 2) / (mWindow->GetWindowHeight() / 2) ));
+					mCameraFactoryFunc(90.f, (float)width/ height));
 			case 3:
+				width = mWindow->GetWindowWidth() / 2;
+				height = mWindow->GetWindowHeight() / 2;
 				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 
 					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
 					mWindow->GetWindowHeight() / 2, i,
-					mCameraFactoryFunc(90.f, (float)(mWindow->GetWindowHeight() / 2) / ((i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2) ));
+					mCameraFactoryFunc(90.f, (float)width/ height));
 			case 4:
+				width = mWindow->GetWindowWidth() / 2;
+				height = mWindow->GetWindowHeight() / 2;
 				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 
 					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
 					((i / 2) % 2 == 0) ? 0 : mWindow->GetWindowHeight() / 2, i,
-					mCameraFactoryFunc(90.f, (float)(((i / 2) % 2 == 0) ? 0 : mWindow->GetWindowHeight() / 2) / ((i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2) ));
+					mCameraFactoryFunc(90.f, (float)width/ height));
 				break;
 			}
 		}

@@ -7,6 +7,13 @@
 class IGfxViewport {
 public:
 	virtual void Resize(int, int, int, int) = 0;
+
+	virtual int GetViewportWidth() const = 0;
+	virtual int GetViewportHeight() const = 0;
+	virtual void GetViewportPosition(int&, int&) const = 0;
+
+	virtual void SetCamera(class IGfxCamera* cam) = 0;
+	virtual class IGfxCamera* GetCamera() = 0;
 };
 
 class GfxViewport: public IGfxViewport
@@ -19,6 +26,10 @@ public:
 	 * If we change the number of viewports, I opt to resize an existing viewport instead of deleting and making a new viewport.
 	 */
 	virtual void Resize(int, int, int, int);
+
+	virtual int GetViewportWidth() const { return mWidth; }
+	virtual int GetViewportHeight() const { return mHeight; }
+	virtual void GetViewportPosition(int& inX, int& inY) const { inX = mPosX; inY = mPosY; }
 
 	/*
 	 * Set/Get Camera

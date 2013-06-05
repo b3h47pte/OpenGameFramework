@@ -25,7 +25,17 @@ public:
 	 */ 
 	virtual bool InitializeGraphicsAPI(int, int);
 
+	/*
+	 * Viewport to render for.
+	 */
+	virtual void SetActiveViewport(class IGfxViewport* in) { mActiveViewport = in; }
+
 private:
+
+	/*
+	 * Active Viewport.
+	 */
+	class IGfxViewport* mActiveViewport;
 	
 	/* 
 	 * Render function. 

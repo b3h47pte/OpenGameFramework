@@ -9,10 +9,7 @@
 #include "CommonGfx.h"
 
 // Headers needed for classes using the Gfx subsystem.
-#ifndef GFXSUBSYSTEM_EXPORT
 #include "GfxViewport.h"
-#endif
-
 #include "GfxCamera.h"
 
 class IGfxWindow;
@@ -36,7 +33,7 @@ public:
 
 };
 
-extern "C" GFXSUBAPI IGfxSubsystem* GetGfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr));
+extern "C"  IGfxSubsystem* GetGfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr));
 
 /*
  * GfxSubsystem handles window and OpenGL setup and will pass messages between the client and the graphics backend.

@@ -9,7 +9,7 @@ class ErrorCatch;
 /*
  * Allows us to detect whether or not there has been some sort of error that happened via some public functions. 
  */ 
-class COREAPI ErrorCatch
+class ErrorCatch
 {
 public:
 	ErrorCatch(void);

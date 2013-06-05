@@ -4,7 +4,7 @@
 
 #include "CommonCore.h"
 
-class COREAPI ITickable
+class  ITickable
 {
 public:
 	ITickable(void);

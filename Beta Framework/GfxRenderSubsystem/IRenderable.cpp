@@ -1,6 +1,8 @@
 #include "IRenderable.h"
 #include "GfxSubsystem.h"
 
+#include "MeshRenderableInstance.h"
+
 /*
  * Ctor/Dtor
  */

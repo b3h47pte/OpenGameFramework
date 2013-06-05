@@ -11,7 +11,6 @@ MeshRenderable::~MeshRenderable(void) {
 	glDeleteBuffers(1, &mVBO);
 	glDeleteVertexArrays(1, &mVAO);
 	glDeleteBuffers(1, &mEBO);
-	glDeleteProgram(mShaderProgramID);
 }
 
 /*
@@ -28,13 +27,6 @@ bool MeshRenderable::PrepareToRender() {
 	}
 	glBindVertexArray(mVAO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
-	glUseProgram(mShaderProgramID);
-	
-		
-	// TEMPORARY
-	glm::mat4 projection_matrix = glm::frustum(-1.f, 1.f, -0.75f, 0.75f, 1.f, 500.f);
-	glUniformMatrix4fv(mProjectionMatrix, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-
 	return true;
 }
 
@@ -42,7 +34,6 @@ bool MeshRenderable::PrepareToRender() {
  * Finish Rendering by unbinding buffers so that these buffers aren't mistakenly read from/modified.
  */
 bool MeshRenderable::FinishRender() {
-	glUseProgram(0);
 	glBindVertexArray(0);
 	return true;
 }
@@ -52,6 +43,17 @@ bool MeshRenderable::FinishRender() {
  */
 IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parObj) {
 	IRenderableInstance* newInst = new MeshRenderableInstance(this, parObj);
+	
+	// Create new shader program
+	GLuint newProg = glCreateProgram();
+	glAttachShader(newProg, mVertexShaderId);
+	glAttachShader(newProg, mFragShaderId);
+	glLinkProgram(newProg);
+	glDetachShader(newProg, mVertexShaderId);
+	glDetachShader(newProg, mFragShaderId);
+	newInst->SetShaderProgram(newProg);
+	if (glIsProgram(newProg) == GL_FALSE) std::cout << "no longer a program?" <<std::endl;
+	
 	return newInst;
 }
 
@@ -61,6 +63,7 @@ IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parOb
  * for this renerable to reload the state later for rendering. Also handled registering the mesh with the graphics subsystem.
  */
 void MeshRenderable::FinalizeData() {
+	
 	// Create the VAO to hold the mesh's data (color, position, etc.)
 	glGenVertexArrays(1, &mVAO);
 	glBindVertexArray(mVAO);
@@ -86,39 +89,29 @@ void MeshRenderable::FinalizeData() {
 
 	// Load Shader Data 
 	// TODO: Load shader program from binary using the shader program name
-	int vertID = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
-	if (vertID == -1) {
+	mVertexShaderId = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
+	if (mVertexShaderId == -1) {
 		if (!GfxShaders::LoadShader(GL_VERTEX_SHADER, mVertexShaderFile, mVertexShaderFile)) {	
 			mDataError = true;
 			return;
 		}
-		vertID = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
+		mVertexShaderId = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
 	}
 
-	int fragID = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
-	if (fragID == -1) {
+	mFragShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
+	if (mFragShaderId == -1) {
 		if (!GfxShaders::LoadShader(GL_FRAGMENT_SHADER, mFragShaderFile, mFragShaderFile)) {
 			mDataError = true;
 			return;
 		}
-		fragID = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
+		mFragShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
 	}
 
-	// Create Shader Program
-	mShaderProgramID = glCreateProgram();
-	glAttachShader(mShaderProgramID, vertID);
-	glAttachShader(mShaderProgramID, fragID);
-	glLinkProgram(mShaderProgramID);
-
-	
 	mDataSet = true;
 	// Regeister Ourselves
 	GetGfxSubsystem(NULL)->RegisterRenderable(this);
 	OnRegistration();
 
-	// Get locations of the matrices
-	mProjectionMatrix = glGetUniformLocation(mShaderProgramID, "projection_matrix");
-		
 	// Make sure no-one else inadvertently messes around with this mesh data.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

@@ -4,7 +4,7 @@
 
 #include "CommonCore.h"
 
-class COREAPI WFile
+class  WFile
 {
 public:
 	WFile(const std::string&);
