@@ -17,4 +17,6 @@ void GfxViewport::Resize(int inWidth, int inHeight, int inPosX, int inPosY) {
 	mHeight = inHeight;
 	mPosX = inPosX;
 	mPosY = inPosY;
+
+	mCamera->SetAspectRatio((float)inWidth / inHeight);
 }

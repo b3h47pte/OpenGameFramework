@@ -13,6 +13,13 @@ GfxBackend::~GfxBackend(void)
 }
 
 /*
+ * Tick renders all elements so perform the clear here (glClear) so that we don't wipe elements from a previous viewport.
+ */
+void GfxBackend::PreTick() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+/*
  * Tick to render all renderables.
  */
 void GfxBackend::Tick(float inDeltaTime) {
@@ -37,8 +44,6 @@ void GfxBackend::Render(float inDeltaTime) {
 	projData.mData = &camPerspective;
 	projData.mType = ESDT_MATRIX4x4;
 	projData.mUniform = true;
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	// Step through all registered renderables anx	d grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
@@ -51,8 +56,6 @@ void GfxBackend::Render(float inDeltaTime) {
 			// everything with the same material and mesh in one go
 			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 			
-			
-
 			while (curInstPtr) {
 				GLuint shaderProg = curInstPtr->GetShaderProgram();
 

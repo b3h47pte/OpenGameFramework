@@ -22,7 +22,7 @@ extern "C"  IGfxSubsystem* GetGfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)) {
 	return newSub;
 }
 
-GfxSubsystem::GfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)): mStillRunning(true), mActiveViewports(1) {
+GfxSubsystem::GfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)): mStillRunning(true), mActiveViewports(1), mCameraFactoryFunc(camptr) {
 	// Initialize Backend
 	mBackend = new GfxBackend();
 
@@ -37,6 +37,7 @@ GfxSubsystem::GfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)): mStillRunning(true), m
 		(float) mWindow->GetWindowWidth()/ mWindow->GetWindowHeight()));
 	for (int i = 1; i < GFX_MAX_VIEWPORTS; i++)
 		mAllViewports[i] = NULL;
+
 
 	// OpenGL initialization
 	if(!mBackend->InitializeGraphicsAPI(mWindow->GetWindowWidth(), mWindow->GetWindowHeight())) {
@@ -71,6 +72,7 @@ void GfxSubsystem::Tick(float inDeltaTime) {
 	// Do Backend rendering first
 	if (mBackend->ShouldTick()) {
 		// Go through and render each viewport
+		mBackend->PreTick();
 		for (int i = 0; i < mActiveViewports; i++) {
 			mBackend->SetActiveViewport(mAllViewports[i]);
 			mBackend->Tick(inDeltaTime);
@@ -122,6 +124,7 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 				height = mWindow->GetWindowHeight() / 2;
 				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, mWindow->GetWindowHeight() / 2, i,
 					mCameraFactoryFunc(90.f, (float)width/ height));
+				break;
 			case 3:
 				width = mWindow->GetWindowWidth() / 2;
 				height = mWindow->GetWindowHeight() / 2;
@@ -129,6 +132,7 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
 					mWindow->GetWindowHeight() / 2, i,
 					mCameraFactoryFunc(90.f, (float)width/ height));
+				break;
 			case 4:
 				width = mWindow->GetWindowWidth() / 2;
 				height = mWindow->GetWindowHeight() / 2;
@@ -142,8 +146,10 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 	}
 
 	for (int i = mActiveViewports; i < GFX_MAX_VIEWPORTS; i++) {
-		if (mAllViewports[i] != NULL)
+		if (mAllViewports[i] != NULL) {
 			delete mAllViewports[i];
+			mAllViewports[i] = NULL;
+		}
 	}
 
 	return mActiveViewports;

@@ -17,6 +17,7 @@ public:
 	/*
 	 * Tick
 	 */ 
+	virtual void PreTick();
 	virtual bool ShouldTick()  { return true; }
 	virtual void Tick(float);
 

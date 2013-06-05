@@ -29,7 +29,7 @@ public:
 
 	virtual int GetViewportWidth() const { return mWidth; }
 	virtual int GetViewportHeight() const { return mHeight; }
-	virtual void GetViewportPosition(int& inX, int& inY) const { inX = mPosX; inY = mPosY; }
+	virtual void GetViewportPosition(int& inX, int& inY) const { inX = mPosX; inY = mHeight - mPosY; }
 
 	/*
 	 * Set/Get Camera
@@ -40,11 +40,11 @@ public:
 private:
 	// Size of Viewport (can only be rectangles...if you want other weird shapes then...I dislike you severely :( )
 	int mWidth;
-	int mHeight;
+	int mHeight; 
 
 	// Position on Screen
 	int mPosX;
-	int mPosY;
+	int mPosY; // -- (0,0) is the top left of the screen. GetViewportPosition changes it to become the bottom left of the screen.
 
 	// Viewport ID. 
 	int mViewportNumber;

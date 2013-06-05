@@ -10,6 +10,7 @@ public:
 	ITickable(void);
 	virtual ~ITickable(void);
 
+	virtual void PreTick() {}
 	virtual void Tick(float) = 0;
 	virtual bool ShouldTick() = 0;
 };

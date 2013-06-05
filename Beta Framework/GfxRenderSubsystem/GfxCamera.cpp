@@ -1,7 +1,7 @@
 #include "GfxCamera.h"
 
 extern "C"  IGfxCamera* GFX_CREATE_DEFAULT_CAMERA(float inFOV, float inAR) {
-	static IGfxCamera* cam = [&] () {
+	IGfxCamera* cam = [&] () {
 		IGfxCamera* newCam = new GfxCamera();
 		if (!newCam) return (IGfxCamera*)NULL;
 		newCam->SetFOV(inFOV);
