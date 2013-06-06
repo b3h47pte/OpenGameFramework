@@ -3,6 +3,7 @@
 #define _WFILE_H
 
 #include "CommonCore.h"
+#include <vector>
 
 class  WFile
 {
@@ -11,9 +12,14 @@ public:
 	virtual ~WFile(void);
 
 	/*
-	 * Reas a file as binary data and puts a NULL at the end.
+	 * Reads a file as binary data and puts a NULL at the end.
 	 */
 	char* ReadAllBinaryDataNull();
+
+	/*
+	 * Reads a file as pure text data and each line is a string inside the input vector.
+	 */
+	void ReadAllTextData(std::vector<std::string>&);
 
 private:
 #pragma warning( push )

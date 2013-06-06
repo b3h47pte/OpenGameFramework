@@ -25,7 +25,17 @@ char* WFile::ReadAllBinaryDataNull() {
 	file.read(allData, fsize);
 	allData[fsize] = '\0';
 	file.close();
-
-
 	return allData;
+}
+
+void WFile::ReadAllTextData(std::vector<std::string>& outObjData) {
+	ifstream file(mFileName, std::ios::in);
+	string line;
+	if (file.is_open()) {
+		while (file.good()) { 
+			getline(file, line);
+			outObjData.push_back(line);
+		}
+	}
+	file.close();
 }

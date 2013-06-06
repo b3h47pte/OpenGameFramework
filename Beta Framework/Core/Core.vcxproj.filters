@@ -30,6 +30,9 @@
     <Filter Include="File Handling">
       <UniqueIdentifier>{c0a27dc3-f384-457f-a390-2fdfe31b4df6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File Handling\Configuration">
+      <UniqueIdentifier>{6e4ab5e4-3e62-4556-846e-a2fbf64902c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -68,6 +71,9 @@
     <ClInclude Include="WFile.h">
       <Filter>File Handling</Filter>
     </ClInclude>
+    <ClInclude Include="WConfigFile.h">
+      <Filter>File Handling\Configuration</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ErrorCatch.cpp">
@@ -84,6 +90,9 @@
     </ClCompile>
     <ClCompile Include="WFile.cpp">
       <Filter>File Handling</Filter>
+    </ClCompile>
+    <ClCompile Include="WConfigFile.cpp">
+      <Filter>File Handling\Configuration</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

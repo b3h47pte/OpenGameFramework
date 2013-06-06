@@ -55,6 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,6 +93,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TIntrusiveLink.h" />
     <ClInclude Include="TIntrusiveLinkedList.h" />
+    <ClInclude Include="WConfigFile.h" />
     <ClInclude Include="WFile.h" />
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
@@ -99,6 +101,7 @@
     <ClCompile Include="ErrorCatch.cpp" />
     <ClCompile Include="ITickable.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="WConfigFile.cpp" />
     <ClCompile Include="WFile.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>

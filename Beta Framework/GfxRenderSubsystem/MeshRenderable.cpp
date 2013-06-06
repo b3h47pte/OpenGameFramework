@@ -116,14 +116,32 @@ void MeshRenderable::FinalizeData() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+
+	// Clear Data
+	mVertexPosition.clear();
+	mVertexNormals.clear();
+	mTexCoords.clear();
+	mTriangleIndices.clear();
 }
 
 /*
  * Add vertex.
  */
 void MeshRenderable::AddVertex(float p[4], float n[4], float t[2]) {
+	AddVertexPosition(p);
+	AddVertexNormal(n);
+	AddVertexTex(t);
+}
+
+void MeshRenderable::AddVertexPosition(float p[4]) {
 	mVertexPosition.push_back(glm::vec4(p[0], p[1], p[2], p[3]));
+}
+
+void MeshRenderable::AddVertexNormal(float n[4]) {
 	mVertexNormals.push_back(glm::vec4(n[0], n[1], n[2], n[3]));
+}
+
+void MeshRenderable::AddVertexTex(float t[2]) {
 	mTexCoords.push_back(glm::vec2(t[0], t[1]));
 }
 

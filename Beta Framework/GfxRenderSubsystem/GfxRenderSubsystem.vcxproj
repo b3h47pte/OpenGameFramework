@@ -55,6 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\CoreHeaders;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,6 +92,7 @@
     <ClCompile Include="GfxCamera.cpp" />
     <ClCompile Include="GfxShaders.cpp" />
     <ClCompile Include="GfxSubsystem.cpp" />
+    <ClCompile Include="GfxUtility.cpp" />
     <ClCompile Include="GfxViewport.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
     <ClCompile Include="IRenderable.cpp" />
@@ -105,6 +107,7 @@
     <ClInclude Include="GfxCamera.h" />
     <ClInclude Include="GfxShaders.h" />
     <ClInclude Include="GfxSubsystem.h" />
+    <ClInclude Include="GfxUtility.h" />
     <ClInclude Include="GfxViewport.h" />
     <ClInclude Include="GfxWindow.h" />
     <ClInclude Include="IRenderable.h" />

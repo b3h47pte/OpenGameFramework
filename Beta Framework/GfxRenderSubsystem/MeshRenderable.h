@@ -20,6 +20,9 @@ public:
 	 */
 	void AddVertex(float p[4], float n[4], float t[2]);
 	void AddTriangleIndex(int i) { mTriangleIndices.push_back(i); }
+	void AddVertexPosition(float p[4]);
+	void AddVertexNormal(float n[4]);
+	void AddVertexTex(float t[2]);
 	glm::vec4 GetVertexPosition(int i) const { return mVertexPosition[i]; }
 	glm::vec4 GetVertexNormal(int i) const { return mVertexNormals[i]; }
 	glm::vec2 GetVertexTexCoord(int i) const { return mTexCoords[i]; }
