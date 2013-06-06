@@ -21,7 +21,7 @@ public:
 	 */
 	void ReadAllTextData(std::vector<std::string>&);
 
-private:
+protected:
 #pragma warning( push )
 #pragma warning (disable: 4251)
 	std::string mFileName;
