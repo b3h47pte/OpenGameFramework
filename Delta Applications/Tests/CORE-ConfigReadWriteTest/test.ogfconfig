@@ -1,0 +1,14 @@
+[DEFAULT]
+key1=5
+key2=1
+key3=2
+key4=3
+
+[SECTION]
+key1=0.500000
+key2=1.00000
+key3=2.00000
+
+[TESTTEST]
+Chicken=Buttocks
+

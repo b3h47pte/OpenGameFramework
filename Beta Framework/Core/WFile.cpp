@@ -16,7 +16,7 @@ WFile::~WFile(void)
 char* WFile::ReadAllBinaryDataNull() {
 	ifstream file(mFileName, std::ios::in | std::ios::binary);
 	int fsize;
-	file.seekg(0, file.end);
+	file.seekg(0, file.end); 
 	fsize = (int)file.tellg();
 	file.seekg(0, file.beg);
 

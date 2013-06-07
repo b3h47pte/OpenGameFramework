@@ -95,6 +95,7 @@
     <ClCompile Include="GfxUtility.cpp" />
     <ClCompile Include="GfxViewport.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
+    <ClCompile Include="ILight.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderableInstance.cpp" />
     <ClCompile Include="MeshRenderable.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="GfxUtility.h" />
     <ClInclude Include="GfxViewport.h" />
     <ClInclude Include="GfxWindow.h" />
+    <ClInclude Include="ILight.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderableInstance.h" />
     <ClInclude Include="MeshRenderable.h" />

@@ -1,0 +1,9 @@
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\bin\Debug\OGF-ConfigEditor.exe.config
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\bin\Debug\OGF-ConfigEditor.exe
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\bin\Debug\OGF-ConfigEditor.pdb
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Debug\OGF-ConfigEditor.csprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Debug\OGF_ConfigEditor.MainWindow.resources
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Debug\OGF_ConfigEditor.Properties.Resources.resources
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Debug\OGF-ConfigEditor.csproj.GenerateResource.Cache
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Debug\OGF-ConfigEditor.exe
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Debug\OGF-ConfigEditor.pdb

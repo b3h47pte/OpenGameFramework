@@ -9,7 +9,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	WConfigFile newConfig("test.config");
+	WConfigFile newConfig("test.ogfconfig");
 	newConfig.SetFloatData(std::string("Section"), "key1", 0.5f);
 	newConfig.SetFloatData(std::string("Section"), "key2", 1.0f);
 	newConfig.SetFloatData(std::string("Section"), "key3", 2.0f);
@@ -20,7 +20,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	newConfig.SetStrData(std::string("TestTest"), "Chicken", "Buttocks", 8);
 	newConfig.SaveConfigFile();
 
-	WConfigFile newConfig2("test.config");
+	WConfigFile newConfig2("test.ogfconfig");
 	cout << newConfig2.GetFloatData(string("Section"), "key1") << endl;
 	cout << newConfig2.GetFloatData(string("Section"), "key2") << endl;
 	cout << newConfig2.GetFloatData(string("Section"), "key3") << endl;

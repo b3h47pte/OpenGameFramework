@@ -56,6 +56,12 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{95b4f5db-8592-4dea-abbc-6dd6c633905e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Backend\Light">
+      <UniqueIdentifier>{b9b0b6e0-2ff0-4658-9999-c5cf98553c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Light\General">
+      <UniqueIdentifier>{5870c4a0-b9ed-4d89-9900-21b889894c2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -96,6 +102,9 @@
     </ClCompile>
     <ClCompile Include="GfxUtility.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="ILight.cpp">
+      <Filter>Backend\Light\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="GfxUtility.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ILight.h">
+      <Filter>Backend\Light\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
