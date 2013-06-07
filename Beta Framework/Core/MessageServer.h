@@ -4,6 +4,8 @@
 
 #include "CommonCore.h"
 #include "MessageTypes.h"
+#include "ITickable.h"
+#include <time.h>
 
 /*
  * Central messaging system (server).
@@ -11,7 +13,7 @@
  * Whenever a client has a message to send, it pushes it into a (thread-safe?) queue on the server which will then 
  *	push it out towards the appropriate groups later.
  */
-class MessageServer
+class MessageServer: public ITickable
 {
 public:
 	MessageServer(void);
@@ -24,6 +26,12 @@ public:
 	// Keyboard Input
 	void PushKeyInputMessage(const sKeyInputMessageData&);
 	sKeyInputMessageData PopKeyInputMessage();
+
+	/*
+	 * Tick
+	 */
+	virtual void Tick(float);
+	virtual bool ShouldTick() { return true; }
 
 private:
 	/*
@@ -39,6 +47,8 @@ private:
 	 */
 	KeyInputMessageQueue	mKeyInputQueue;
 	KeyInputClientList		mKeyInputClients;
+	bool					mProcessKeyInputMessages;
+	void ProcessKeyInputMessages();
 };
 
 MessageServer* GetGlobalMessageServer();

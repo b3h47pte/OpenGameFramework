@@ -30,8 +30,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << newConfig2.GetIntData(string("default"), "key4") << endl;
 	cout << newConfig2.GetStrData(string("TestTest"), "Chicken") << endl;
 
-
-
 	int exit;
 	std::cin >> exit;
 	return 0;

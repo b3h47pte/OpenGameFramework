@@ -103,5 +103,6 @@ void SDLWindow::ProcessKeyboardInputSDL(uint32_t eventType, unsigned int repeat,
 	data.mKeyCode = key.sym;
 	data.mKeyState = repeat ? INPUT_KEY_REPEAT : ((eventType == SDL_KEYDOWN) ? INPUT_KEY_DOWN : INPUT_KEY_UP);
 	data.mRepeatCount = repeat;
+	data.mClockTickTime = clock();
 	GetGlobalMessageServer()->PushKeyInputMessage(data);
 }

@@ -3,11 +3,13 @@
 #include <algorithm>
 
 IMessageClient::IMessageClient(void) {
-	RegisterInitialGroups();
 }
 
 
 IMessageClient::~IMessageClient(void) {
+	for (auto grp : mRegisteredGroups) {
+		UnregisterGroup(grp);
+	}
 }
 
 void IMessageClient::RegisterGroup(EMessageGroups in) {

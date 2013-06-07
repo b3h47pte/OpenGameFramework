@@ -1,4 +1,5 @@
 #include "MessageServer.h"
+#include "IMessageClient.h"
 
 MessageServer* GetGlobalMessageServer() {
 	static MessageServer* msg = [] () {
@@ -9,7 +10,7 @@ MessageServer* GetGlobalMessageServer() {
 	return msg;
 }
 
-MessageServer::MessageServer(void) {
+MessageServer::MessageServer(void): mProcessKeyInputMessages(true) {
 }
 
 
@@ -57,4 +58,25 @@ sKeyInputMessageData MessageServer::PopKeyInputMessage() {
 	sKeyInputMessageData top = mKeyInputQueue.front();
 	mKeyInputQueue.pop();
 	return top;
+}
+
+/*
+ * Tick -- process all messages in the queue every tick. 
+ * TODO: When doing multi-threading, make sure to lock the queues when reading off of it.
+ */ 
+void MessageServer::Tick(float) {
+	ProcessKeyInputMessages();
+}
+
+void MessageServer::ProcessKeyInputMessages() {
+	if (!mProcessKeyInputMessages)
+		return;
+
+	while (!mKeyInputQueue.empty()) {
+		sKeyInputMessageData data = mKeyInputQueue.front();
+		for (auto client : mKeyInputClients) {
+			client->NotifyKeyInputMessage(data);
+		}
+		mKeyInputQueue.pop();
+	}
 }

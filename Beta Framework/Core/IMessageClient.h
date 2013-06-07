@@ -19,8 +19,13 @@ public:
 	void UnregisterGroup(EMessageGroups);
 	bool IsRegistered(EMessageGroups);
 
+	/*
+	 * Message notification functions -- child classes should overwrite only the ones that they need.
+	 */
+	virtual void NotifyKeyInputMessage(const sKeyInputMessageData&) {}
+
 protected:
-	virtual void RegisterInitialGroups() {};
+	virtual void RegisterInitialGroups() = 0;
 
 private:
 	std::vector<EMessageGroups> mRegisteredGroups;
