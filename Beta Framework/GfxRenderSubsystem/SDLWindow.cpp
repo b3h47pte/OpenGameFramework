@@ -1,5 +1,5 @@
 #include "SDLWindow.h"
-
+#include "MessageServer.h"
 
 SDLWindow::SDLWindow(void): mStillRunning(true) {
 	CreateOpenGLContext();
@@ -73,7 +73,6 @@ void SDLWindow::DumpError(int inErr) const {
 
 
 void SDLWindow::Tick(float inDeltaTime) {
-	
 	// handle all pending events
 	SDL_Event event;
 	while( SDL_PollEvent(&event) )
@@ -83,10 +82,26 @@ void SDLWindow::Tick(float inDeltaTime) {
 		case SDL_QUIT:
 			mStillRunning = false;
 			break;
+		case SDL_KEYDOWN:
+		case SDL_KEYUP:
+			ProcessKeyboardInputSDL(event.type, event.key.repeat, event.key.keysym);
+			break;
 		default:      
 			break;
 		}
 	}
 	
 	SDL_GL_SwapWindow(mSDLWindow);
+}
+
+/*
+ * Only the SDL Window will process its own input within the window class (or maybe I can rip this out?).  
+ * Will pass input data into the central messaging system.
+ */
+void SDLWindow::ProcessKeyboardInputSDL(uint32_t eventType, unsigned int repeat, SDL_Keysym key) {
+	sKeyInputMessageData data;
+	data.mKeyCode = key.sym;
+	data.mKeyState = repeat ? INPUT_KEY_REPEAT : ((eventType == SDL_KEYDOWN) ? INPUT_KEY_DOWN : INPUT_KEY_UP);
+	data.mRepeatCount = repeat;
+	GetGlobalMessageServer()->PushKeyInputMessage(data);
 }

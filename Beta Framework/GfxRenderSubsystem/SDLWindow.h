@@ -30,7 +30,13 @@ public:
 	 */ 
 	virtual bool ShouldTick()  { return mStillRunning; }
 	virtual void Tick(float);
+
 private:
+	/*
+	 * Input
+	 */ 
+	virtual void ProcessKeyboardInputSDL(uint32_t, unsigned int, SDL_Keysym);
+
 	/*
 	 * SDL Variables
 	 */

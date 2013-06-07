@@ -87,7 +87,10 @@
     <ClInclude Include="CommonCore.h" />
     <ClInclude Include="CoreExternal.h" />
     <ClInclude Include="ErrorCatch.h" />
+    <ClInclude Include="IMessageClient.h" />
     <ClInclude Include="ITickable.h" />
+    <ClInclude Include="MessageServer.h" />
+    <ClInclude Include="MessageTypes.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -99,7 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ErrorCatch.cpp" />
+    <ClCompile Include="IMessageClient.cpp" />
     <ClCompile Include="ITickable.cpp" />
+    <ClCompile Include="MessageServer.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="WConfigFile.cpp" />
     <ClCompile Include="WFile.cpp" />

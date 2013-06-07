@@ -33,6 +33,15 @@
     <Filter Include="File Handling\Configuration">
       <UniqueIdentifier>{6e4ab5e4-3e62-4556-846e-a2fbf64902c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Messaging">
+      <UniqueIdentifier>{04be7223-f8dc-4b92-9ade-5f8072b0f14d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messaging\Client">
+      <UniqueIdentifier>{86b3b049-3d39-4ace-8c43-9ddc284365e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Messaging\Server">
+      <UniqueIdentifier>{9c7acf32-9dc5-45e4-bfc1-0869074efc46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -74,6 +83,15 @@
     <ClInclude Include="WConfigFile.h">
       <Filter>File Handling\Configuration</Filter>
     </ClInclude>
+    <ClInclude Include="IMessageClient.h">
+      <Filter>Messaging\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageServer.h">
+      <Filter>Messaging\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageTypes.h">
+      <Filter>Messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ErrorCatch.cpp">
@@ -93,6 +111,12 @@
     </ClCompile>
     <ClCompile Include="WConfigFile.cpp">
       <Filter>File Handling\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="IMessageClient.cpp">
+      <Filter>Messaging\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageServer.cpp">
+      <Filter>Messaging\Server</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
