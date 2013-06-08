@@ -14,40 +14,60 @@ Alpha Tools
 --------------------------
 Provide a toolset that will create content packages (maps, assets) to be used with the framework. However, any application that decides to make use of the alpha tools will also need to utilize the subsystem that deals with loading/saving these assets. 
 
-TBD.
+#### OGF Config Editor
+
+Simple tool to modify the config files (*.ogfconfig) for a project.
 
 - - -
 
 Beta Framework
 --------------------------
 
-The beta layer is what goes on behind the scenes of the game engine. It will take care of the internals of rendering, audio, networking, etc. Due to the design of the framework, any subsystem (besides Core) can be used individually. 	
+The beta layer is what goes on behind the scenes of the game engine. It will take care of the internals of rendering, audio, networking, etc. Due to the design of the framework, any subsystem (besides Core) can be used individually. If you want to use a subsystem, one must link the generated *.lib (Windows) file into the project. There are no DLL files as I decided that the simplicity in just having one executable when using the core framework components would be simpler to manage.
 
 #### Core
 
 Any game/program that uses any of the subsystems MUST also use the Core subsystem as it contains a number of important classes that are used throughout the framework. Currently provides:
 
-* Error Detection/Logging (ErrorCatch.h/cpp)
-* Tickable Interface (ITickable.h/cpp)
+* Error Detection/Logging
+* Tickable Interface
 * Various useful data structures
 * Binary/Text File Read
+* Configuration File Read/Write
 * Basic Object/World Object
+* Message Passing
 
 Planned features include:
 
 * Memory management
+* Mulit-threading Management
 
 #### GfxRender Subsystem
 
-Subsystem that will take care of rendering 3D or 2D elements into a window. In addition, it will create a window and capture input events that will be passed to whoever using function delegates. Currently makes use of OpenGL for rendering and SDL for creating the window and capturing input.
+Subsystem that will take care of rendering 3D or 2D elements into a window. In addition, it will create a window and capture input events that will be passed to whoever using function delegates. Currently makes use of OpenGL for rendering and SDL for creating the window and capturing input. Currently provides:
+
+* Window Creation (SDL)
+* Keyboard Input Detection (SDL)
+* Perspective View and Camera View Transformations
+* Rendering to Multiple Viewports
+* Basic Shaders (Vertex and Fragment)
+* Functionality to read in an OBJ file
+
+#### Audio Subsystem
+
+Provides a wrapper around FMOD to more easily play sounds and modify variou settings. Will later provide usage of other audio systems if possible (XAudio, etc). 
+
+#### Network Library
+
+Library to provide easy-to-use TCP and UDP networking functionality. 
 
 - - -
 
 Delta Applications
 --------------------------
-#### Examples
+#### Tests
 
-Provides examples of using the various subsystems.
+Unit tests for features in the subsystems. Also provide examples (basic and naive ones) of how one can approach utilizing the subsystems.
 
 - - -
 
@@ -59,10 +79,10 @@ A backend that will handle log-ins and authentication to not only determine if a
 TBD. 
 - - -
 
-Omega Bootstrapper
+Omega Engine
 --------------------------
 
-Want to just focus on making a game? The Omega Bootstrapper will take care of initializing all the subsystems and all the developer has to do is to write gameplay code. I plan to make the gameplay code programmable using C/C++ rather than using a scripting language like LuA to make sure performance is not bottle-necked by the gameplay code.
+Want to just focus on making a game? The Omega Engine will take care of initializing all the subsystems and all the developer has to do is to write gameplay code. I plan to make the gameplay code programmable using C/C++ rather than using a scripting language like LuA to make sure performance is not bottle-necked by the gameplay code.
 
 TBD.
 - - -

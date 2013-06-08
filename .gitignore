@@ -16,3 +16,4 @@ Extras*
 *.opensdf
 *.sdf
 *.suo
+ipch*
