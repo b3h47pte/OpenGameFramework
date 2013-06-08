@@ -46,12 +46,15 @@
 
 <p>Provide a toolset that will create content packages (maps, assets) to be used with the framework. However, any application that decides to make use of the alpha tools will also need to utilize the subsystem that deals with loading/saving these assets. </p>
 
-<p>TBD.</p>
+<h4>
+<a name="ogf-config-editor" class="anchor" href="#ogf-config-editor"><span class="octicon octicon-link"></span></a>OGF Config Editor</h4>
+
+<p>Simple tool to modify the config files (*.ogfconfig) for a project.</p>
 
 <hr><h2>
 <a name="beta-framework" class="anchor" href="#beta-framework"><span class="octicon octicon-link"></span></a>Beta Framework</h2>
 
-<p>The beta layer is what goes on behind the scenes of the game engine. It will take care of the internals of rendering, audio, networking, etc. Due to the design of the framework, any subsystem (besides Core) can be used individually.    </p>
+<p>The beta layer is what goes on behind the scenes of the game engine. It will take care of the internals of rendering, audio, networking, etc. Due to the design of the framework, any subsystem (besides Core) can be used individually. If you want to use a subsystem, one must link the generated *.lib (Windows) file into the project. There are no DLL files as I decided that the simplicity in just having one executable when using the core framework components would be simpler to manage.</p>
 
 <h4>
 <a name="core" class="anchor" href="#core"><span class="octicon octicon-link"></span></a>Core</h4>
@@ -59,25 +62,47 @@
 <p>Any game/program that uses any of the subsystems MUST also use the Core subsystem as it contains a number of important classes that are used throughout the framework. Currently provides:</p>
 
 <ul>
-<li>Error Detection/Logging (ErrorCatch.h/cpp)</li>
-<li>Tickable Interface (ITickable.h/cpp)</li>
+<li>Error Detection/Logging</li>
+<li>Tickable Interface</li>
 <li>Various useful data structures</li>
+<li>Binary/Text File Read</li>
+<li>Configuration File Read/Write</li>
+<li>Basic Object/World Object</li>
+<li>Message Passing</li>
 </ul><p>Planned features include:</p>
 
 <ul>
 <li>Memory management</li>
+<li>Mulit-threading Management</li>
 </ul><h4>
 <a name="gfxrender-subsystem" class="anchor" href="#gfxrender-subsystem"><span class="octicon octicon-link"></span></a>GfxRender Subsystem</h4>
 
-<p>Subsystem that will take care of rendering 3D or 2D elements into a window. In addition, it will create a window and capture input events that will be passed to whoever using function delegates. Currently makes use of OpenGL for rendering and SDL for creating the window and capturing input.</p>
+<p>Subsystem that will take care of rendering 3D or 2D elements into a window. In addition, it will create a window and capture input events that will be passed to whoever using function delegates. Currently makes use of OpenGL for rendering and SDL for creating the window and capturing input. Currently provides:</p>
+
+<ul>
+<li>Window Creation (SDL)</li>
+<li>Keyboard Input Detection (SDL)</li>
+<li>Perspective View and Camera View Transformations</li>
+<li>Rendering to Multiple Viewports</li>
+<li>Basic Shaders (Vertex and Fragment)</li>
+<li>Functionality to read in an OBJ file</li>
+</ul><h4>
+<a name="audio-subsystem" class="anchor" href="#audio-subsystem"><span class="octicon octicon-link"></span></a>Audio Subsystem</h4>
+
+<p>Provides a wrapper around FMOD to more easily play sounds and modify variou settings. Will later provide usage of other audio systems if possible (XAudio, etc). </p>
+
+<h4>
+<a name="network-library" class="anchor" href="#network-library"><span class="octicon octicon-link"></span></a>Network Library</h4>
+
+<p>Library to provide easy-to-use TCP and UDP networking functionality. </p>
 
 <hr><h2>
 <a name="delta-applications" class="anchor" href="#delta-applications"><span class="octicon octicon-link"></span></a>Delta Applications</h2>
 
 <h4>
-<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h4>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h4>
 
-<p>Provides examples of using the various subsystems.</p>
+<p>Unit tests for features in the subsystems. Also provide examples (basic and naive ones) of how one can approach utilizing the subsystems.</p>
 
 <hr><h2>
 <a name="gamma-backend" class="anchor" href="#gamma-backend"><span class="octicon octicon-link"></span></a>Gamma Backend</h2>
@@ -87,9 +112,9 @@
 <p>TBD. </p>
 
 <hr><h2>
-<a name="omega-bootstrapper" class="anchor" href="#omega-bootstrapper"><span class="octicon octicon-link"></span></a>Omega Bootstrapper</h2>
+<a name="omega-engine" class="anchor" href="#omega-engine"><span class="octicon octicon-link"></span></a>Omega Engine</h2>
 
-<p>Want to just focus on making a game? The Omega Bootstrapper will take care of initializing all the subsystems and all the developer has to do is to write gameplay code. I plan to make the gameplay code programmable using C/C++ rather than using a scripting language like LuA to make sure performance is not bottle-necked by the gameplay code.</p>
+<p>Want to just focus on making a game? The Omega Engine will take care of initializing all the subsystems and all the developer has to do is to write gameplay code. I plan to make the gameplay code programmable using C/C++ rather than using a scripting language like LuA to make sure performance is not bottle-necked by the gameplay code.</p>
 
 <p>TBD.</p>
 
