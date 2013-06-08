@@ -74,6 +74,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GFXSUBSYSTEM_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,6 +102,7 @@
     <ClCompile Include="MeshRenderable.cpp" />
     <ClCompile Include="MeshRenderableInstance.cpp" />
     <ClCompile Include="SDLWindow.cpp" />
+    <ClCompile Include="SDLWindowKeyboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonGfx.h" />

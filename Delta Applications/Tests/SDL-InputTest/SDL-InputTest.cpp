@@ -1,7 +1,9 @@
-// CORE-MessagingTest.cpp : Defines the entry point for the console application.
+// SDL-InputTest.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
+#include <iostream>
+#include "GfxSubsystem.h"
 #include "MessageServer.h"
 #include "IMessageClient.h"
 
@@ -25,24 +27,19 @@ protected:
 private:
 };
 
+
 int _tmain(int argc, _TCHAR* argv[])
 {
+	IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_DEFAULT_CAMERA);
 	MessageServer* srv = GetGlobalMessageServer();
 	TestMessageClient* client = new TestMessageClient();
-
-	sKeyInputMessageData data;
-	data.mClockTickTime = clock();
-	data.mKeyCode = 0;
-	data.mKeyState = 1;
-	srv->PushKeyInputMessage(data);
-
-	srv->Tick(0.1f);
-
-	delete client;
-
-	int exit;
-	std::cin >> exit;
-
+	if (!gfx)
+		return 0;
+	while(gfx->ShouldTick()) {
+		gfx->Tick(0.1f);
+		srv->Tick(0.1f);
+		Sleep(1);
+	}
 	return 0;
 }
 

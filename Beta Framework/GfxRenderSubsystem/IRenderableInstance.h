@@ -1,5 +1,4 @@
 #pragma once
-#pragma warning( push )
 #ifndef _IRENDERABLEINSTANCE_H
 #define _IRENDERABLEINSTANCE_H
 
@@ -51,6 +50,11 @@ protected:
 
 private:
 	/*
+	 * Prepares shader data. 
+	 */
+	virtual void PrepareShaderData();
+
+	/*
 	 * What is the difference between Parent Renderable and Parent Object?
 	 * Parent Renderable -- Parent renderable holds the mesh's data (material, mesh data, etc)
 	 * Parent Object -- The object that this renderable instance is attached to (where we get parent orientation/location from)
@@ -63,14 +67,12 @@ private:
 	 * NOTE: This gives warning C241
 	 * Going to pragma it out because it should not be an issue since the variable is private and no-one outside of this DLL should be touching it
 	 */
-#pragma warning (disable: 4251)
 	TIntrusiveLink<IRenderableInstance> mInstanceLink;
 
 	// Uniform Shader Data -- Differentiate between those set internally and those set externally so it can be thread-safe
 	std::map<GLint, SShaderData*> mInternalShaderData;
 	std::map<GLint, SShaderData*> mExternalShaderData;
 	typedef std::map<GLint, SShaderData*>::iterator SHADER_DATA_ITER_t;
-#pragma warning (pop)
 	/*
 	 * Whether or not this renderable has already been registered by the backend.
 	 * NEVER CHANGE THIS VARIABLE WITHIN IRENDERABLEINSTANCE -- aside from the unregister function.

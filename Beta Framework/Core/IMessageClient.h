@@ -24,7 +24,6 @@ public:
 	 */
 	virtual void NotifyKeyInputMessage(const sKeyInputMessageData&) {}
 
-protected:
 	virtual void RegisterInitialGroups() = 0;
 
 private:

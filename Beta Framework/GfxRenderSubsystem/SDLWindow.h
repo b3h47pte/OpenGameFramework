@@ -9,6 +9,7 @@
 #include "GfxWindow.h"
 
 #include "SDL.h"
+#include "MessageKeyboardInputTypes.h"
 
 class SDLWindow: public IGfxWindow
 {
@@ -36,6 +37,7 @@ private:
 	 * Input
 	 */ 
 	virtual void ProcessKeyboardInputSDL(uint32_t, unsigned int, SDL_Keysym);
+	virtual EKeyboardInput ConvertSDLKeyCodeToOGFKeycode(int32_t);
 
 	/*
 	 * SDL Variables

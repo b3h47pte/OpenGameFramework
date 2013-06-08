@@ -1,5 +1,5 @@
 // stdafx.cpp : source file that includes just the standard includes
-// AutomatedTesting.pch will be the pre-compiled header
+// GFX-CameraMoveTest.pch will be the pre-compiled header
 // stdafx.obj will contain the pre-compiled type information
 
 #include "stdafx.h"

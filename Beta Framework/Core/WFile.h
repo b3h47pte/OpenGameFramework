@@ -22,10 +22,7 @@ public:
 	void ReadAllTextData(std::vector<std::string>&);
 
 protected:
-#pragma warning( push )
-#pragma warning (disable: 4251)
 	std::string mFileName;
-#pragma warning (pop)
 };
 
 #endif // _WFILE_H

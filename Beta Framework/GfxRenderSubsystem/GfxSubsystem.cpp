@@ -107,10 +107,10 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 		break;
 	case 2:
 	case 3:
-		mAllViewports[0]->Resize(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, 0);
+		mAllViewports[0]->Resize(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, mWindow->GetWindowHeight() / 2);
 		break;
 	case 4:
-		mAllViewports[0]->Resize(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 0, 0);
+		mAllViewports[0]->Resize(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 0, mWindow->GetWindowHeight() / 2);
 		break;
 	}
 
@@ -122,7 +122,7 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 			case 2:
 				width = mWindow->GetWindowWidth();
 				height = mWindow->GetWindowHeight() / 2;
-				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, mWindow->GetWindowHeight() / 2, i,
+				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth(), mWindow->GetWindowHeight() / 2, 0, 0, i,
 					mCameraFactoryFunc(90.f, (float)width/ height));
 				break;
 			case 3:
@@ -130,7 +130,7 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 				height = mWindow->GetWindowHeight() / 2;
 				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 
 					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
-					mWindow->GetWindowHeight() / 2, i,
+					0, i,
 					mCameraFactoryFunc(90.f, (float)width/ height));
 				break;
 			case 4:
@@ -138,7 +138,7 @@ int GfxSubsystem::SetViewportNumber(int inView) {
 				height = mWindow->GetWindowHeight() / 2;
 				mAllViewports[i] = new GfxViewport(mWindow->GetWindowWidth() / 2, mWindow->GetWindowHeight() / 2, 
 					(i % 2 == 0) ? 0 : mWindow->GetWindowWidth() / 2, 
-					((i / 2) % 2 == 0) ? 0 : mWindow->GetWindowHeight() / 2, i,
+					((i / 2) % 2 == 0) ? mWindow->GetWindowHeight() / 2 : 0, i,
 					mCameraFactoryFunc(90.f, (float)width/ height));
 				break;
 			}

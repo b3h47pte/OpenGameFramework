@@ -1,5 +1,4 @@
 #pragma once
-#pragma warning( push )
 #ifndef _IRENDERABLE_H
 #define _IRENDERABLE_H
 
@@ -79,7 +78,6 @@ private:
 	 * NOTE: This gives warning C241: 'IRenderable::mBackendLink' : class 'TIntrusiveLink<T>' needs to have dll-interface to be used by clients of class 'IRenderable'
 	 * Going to pragma it out because it should not be an issue since the variable is private and no-one outside of this DLL should be touching it
 	 */
-#pragma warning (disable: 4251)
 	/*
 	 * Link in the linked list of all renderables.
 	 */ 
@@ -89,7 +87,6 @@ private:
 	 * Linked list of all renderable instances. 
 	 */
 	TIntrusiveLinkedList<IRenderableInstance, offsetof(IRenderableInstance, mInstanceLink)> mInstanceList;
-#pragma warning (pop)
 
 	/*
 	 * Whether or not this renderable has already been registered by the backend.

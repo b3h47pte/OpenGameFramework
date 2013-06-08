@@ -100,9 +100,9 @@ void SDLWindow::Tick(float inDeltaTime) {
  */
 void SDLWindow::ProcessKeyboardInputSDL(uint32_t eventType, unsigned int repeat, SDL_Keysym key) {
 	sKeyInputMessageData data;
-	data.mKeyCode = key.sym;
+	data.mKeyCode = ConvertSDLKeyCodeToOGFKeycode(key.sym);
 	data.mKeyState = repeat ? INPUT_KEY_REPEAT : ((eventType == SDL_KEYDOWN) ? INPUT_KEY_DOWN : INPUT_KEY_UP);
-	data.mRepeatCount = repeat;
 	data.mClockTickTime = clock();
 	GetGlobalMessageServer()->PushKeyInputMessage(data);
 }
+

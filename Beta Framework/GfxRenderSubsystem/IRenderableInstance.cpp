@@ -38,6 +38,13 @@ void IRenderableInstance::OnRegistration() {
  * Render Function.
  */
 void IRenderableInstance::OnRender() {
+	PrepareShaderData();
+}
+
+/*
+ * Set shader data as necessary -- internal/externally set shader data.
+ */
+void IRenderableInstance::PrepareShaderData() {
 	if (mShaderProgramID != -1) {
 		for(SHADER_DATA_ITER_t iterator = mInternalShaderData.begin(); iterator != mInternalShaderData.end(); iterator++) {
 			if (iterator->second->mUniform) {

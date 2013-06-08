@@ -1,0 +1,8 @@
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\bin\Release\OGF-ConfigEditor.exe.config
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\bin\Release\OGF-ConfigEditor.exe
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\bin\Release\OGF-ConfigEditor.pdb
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Release\OGF_ConfigEditor.MainWindow.resources
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Release\OGF_ConfigEditor.Properties.Resources.resources
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Release\OGF-ConfigEditor.csproj.GenerateResource.Cache
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Release\OGF-ConfigEditor.exe
+C:\Users\Michael\Documents\GitHub\OpenGameFramework\Alpha Tools\OGF-ConfigEditor\obj\Release\OGF-ConfigEditor.pdb

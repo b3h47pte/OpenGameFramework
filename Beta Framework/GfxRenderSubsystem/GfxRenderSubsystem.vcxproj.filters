@@ -106,6 +106,9 @@
     <ClCompile Include="ILight.cpp">
       <Filter>Backend\Light\General</Filter>
     </ClCompile>
+    <ClCompile Include="SDLWindowKeyboard.cpp">
+      <Filter>Frontend\Window\SDL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GfxSubsystem.h">

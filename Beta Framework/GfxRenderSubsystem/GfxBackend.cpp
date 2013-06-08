@@ -40,10 +40,17 @@ void GfxBackend::Render(float inDeltaTime) {
 		mActiveViewport->GetCamera()->GetAspectRatio(), mActiveViewport->GetCamera()->GetZNear(),
 		mActiveViewport->GetCamera()->GetZFar());
 	
+	glm::mat4 viewMat = mActiveViewport->GetCamera()->GetTransformationMatrix();
+	
 	SShaderData projData;
 	projData.mData = &camPerspective;
 	projData.mType = ESDT_MATRIX4x4;
 	projData.mUniform = true;
+
+	SShaderData viewData;
+	viewData.mData = &viewMat;
+	viewData.mType = ESDT_MATRIX4x4;
+	viewData.mUniform = true;
 	
 	// Step through all registered renderables anx	d grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
@@ -60,10 +67,14 @@ void GfxBackend::Render(float inDeltaTime) {
 				GLuint shaderProg = curInstPtr->GetShaderProgram();
 
 				curInstPtr->PrepareRender();
-				// Set uniforms that ALL shaders must accept.
 
+				// Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
+				// MODEL matrix will be determined by the mesh/renderable itself. 
 				int projIndx = curInstPtr->GetUniformLocation("projection_matrix");
 				curInstPtr->SetInternalShaderData(projIndx, &projData);
+
+				int viewIndx = curInstPtr->GetUniformLocation("view_matrix");
+				curInstPtr->SetInternalShaderData(viewIndx, &viewData);
 
 				curInstPtr->OnRender();
 				curInstPtr->FinishRender();
