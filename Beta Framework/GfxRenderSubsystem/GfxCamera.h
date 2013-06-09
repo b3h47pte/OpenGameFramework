@@ -41,9 +41,6 @@ public:
 	virtual float GetZFar() const { return mZFar; }
 	virtual void SetZFar(float in) { mZFar = in; }
 
-	// Camera needs to return the inverse of its transformation matrix. When camera moves left, it is equivalent to an object moving right.
-	virtual glm::mat4		GetTransformationMatrix() { return glm::inverse(WorldObject::GetTransformationMatrix()); }
-
 private:
 	/*
 	 * FOV (Y-Direction)

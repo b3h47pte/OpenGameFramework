@@ -11,7 +11,7 @@ extern "C"  IGfxCamera* GFX_CREATE_DEFAULT_CAMERA(float inFOV, float inAR) {
 	return cam;
 }
 
-GfxCamera::GfxCamera(void): mZFar(200.f), mZNear(1.f)
+GfxCamera::GfxCamera(void): mZFar(200.f), mZNear(0.5f)
 {
 }
 

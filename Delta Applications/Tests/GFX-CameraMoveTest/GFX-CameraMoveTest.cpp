@@ -12,7 +12,7 @@
 
 class TestMessageClient: public GfxCamera, public IMessageClient, public ITickable {
 public:
-	TestMessageClient() : mRight(0.f), mForward(0.f), mUp(0.f) { RegisterInitialGroups(); }
+	TestMessageClient() : mRight(0.f), mForward(0.f), mUp(0.f), mTurnLeft(0.f), mTurnUp(0.f) { RegisterInitialGroups(); }
 	~TestMessageClient() {}
 
 	virtual void NotifyKeyInputMessage(const sKeyInputMessageData& in) {
@@ -36,7 +36,20 @@ public:
 			case EKEY_LEFT_CTRL:
 				mUp = -1.f;
 				break;
+			case EKEY_LEFT:
+				mTurnLeft = 1.f;
+				break;
+			case EKEY_RIGHT:
+				mTurnLeft = -1.f;
+				break;
+			case EKEY_UP:
+				mTurnUp = 1.f;
+				break;
+			case EKEY_DOWN:
+				mTurnUp = -1.f;
+				break;
 			}
+			
 		} else {
 			switch (in.mKeyCode) {
 			case EKEY_W: // move camera forward
@@ -51,6 +64,14 @@ public:
 			case EKEY_LEFT_CTRL:
 				mUp = 0.f;
 				break;
+			case EKEY_LEFT:
+			case EKEY_RIGHT:
+				mTurnLeft = 0.f;
+				break;
+			case EKEY_UP:
+			case EKEY_DOWN:
+				mTurnUp = 0.f;
+				break;
 			}
 		}
 	}
@@ -62,6 +83,14 @@ public:
 		glm::vec4 udir = GetUpDirection();
 		pos += (delta * (fdir * 1.f * mForward + rdir * 1.f * mRight + udir * 1.f * mUp));
 		SetPosition(pos);
+
+		glm::mat4 rot = GetRotationMatrix();
+		glm::mat4 mat;
+		mat = glm::rotate(mat, 0.1f * mTurnLeft, glm::vec3(udir)) * rot;
+
+		glm::mat4 mat2;
+		mat2 = glm::rotate(mat2, 0.1f * mTurnUp, glm::vec3(rdir)) * mat;
+		SetRotation(mat2);
 	}
 
 	virtual bool ShouldTick() { return true; }
@@ -75,6 +104,9 @@ private:
 	float mRight;
 	float mForward;
 	float mUp;
+
+	float mTurnLeft;
+	float mTurnUp;
 };
 
 extern "C"  IGfxCamera* GFX_CREATE_TEST_CAMERA(float inFOV, float inAR) {
