@@ -11,7 +11,8 @@ using namespace std;
 /*
  * Reads in the OBJ file and creates a MeshRenderable. 
  */
-IRenderable* ReadOBJFile(std::string inFile) {
+IRenderable* 
+GfxReadOBJFile(std::string inFile) {
 	static float DEFAULT_TEX_COORD[2] = {0.f, 0.f};
 	WFile file(inFile);
 

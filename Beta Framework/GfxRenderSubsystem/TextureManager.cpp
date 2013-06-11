@@ -1,0 +1,119 @@
+#include "TextureManager.h"
+#include "ITexture.h"
+
+TextureManager* GetTextureManager() {
+	static TextureManager* mng = [] (){
+		TextureManager* tm = new TextureManager();
+		return tm;
+	}();
+	return mng;
+}
+
+TextureManager::TextureManager(void): mTextureInvalidationTime(DEFAULT_TEXTURE_INVALID_TIME) {
+}
+
+
+TextureManager::~TextureManager(void) {
+}
+
+/*
+ * Go through and check to make sure all textures are stil relevant and needed.
+ */
+void TextureManager::Tick(float delta) {
+	clock_t time = clock();
+	for (auto it = mAllTextures.cbegin(); it != mAllTextures.cend(); ) {
+		// Check if texture is inactive (if it is, erase it)
+		if (CheckTextureInvalid(time, (*it).second)) {
+			(*it).second->ReleaseResources();
+			delete ((*it).second);
+			it = mAllTextures.erase(it);
+		}
+	}
+}
+
+/*
+ * Determines whether or not a texture should be kept in memory.
+ * A texture is put under consideration for invalidation once 'mTextureUseCount'
+ * reaches 0. When 'mTextureUseCount' is at 0, it may mean that the texture
+ * is no longer being used or that it just has been loaded/used yet. In any case,
+ * after a specified amount of time (configurable, most likely?) of idleness,
+ * the texture will be removed.
+ */
+bool TextureManager::CheckTextureInvalid(clock_t curTime, class ITexture* inTexture) const {
+	if (inTexture->mReleased)
+		return true;
+
+	if (inTexture->mTextureUseCount > 0)
+		return false;
+
+	if (curTime - inTexture->mTextureLastTouch < mTextureInvalidationTime)
+		return false;
+
+	return true;
+}
+
+/*
+ * Get Texture by checking the map for the ID.
+ */
+const ITexture* TextureManager::GetTextureConst(const std::string& id) const {
+	if (mAllTextures.find(id) != mAllTextures.end())
+		return mAllTextures.at(id);
+	return NULL;
+}
+
+ITexture* TextureManager::GetTexture(const std::string& id) {
+	if (mAllTextures.find(id) != mAllTextures.end())
+		return mAllTextures.at(id);
+	return NULL;
+}
+
+ITexture* TextureManager::CreateTexture(const std::string& id, ETextureType type, ETextureDataType dataType) {
+	ITexture* newTex = new ITexture();
+	newTex->mTextureType = type;
+	newTex->mTextureDataType = dataType;
+	return newTex;
+}
+
+void TextureManager::SetTextureSpecification(class ITexture* tex, int numTextures, int texWidth, int texHeight) {
+	tex->mTextureData = CreateTextureArray(tex->mTextureDataType, numTextures);
+	tex->mNumTextures = numTextures;
+	tex->mTexSizeWidth = texWidth;
+	tex->mTexSizeHeight = texHeight;
+	tex->KeepAliveTouch();
+}
+
+void TextureManager::SetTextureData(class ITexture* tex, int texNum, void* texData) {
+	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, tex->mTexSizeWidth, tex->mTexSizeHeight);
+	memcpy(tex->mTextureData[texNum], texData, sizeof(tex->mTextureData[texNum]));
+}
+
+void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {
+	switch (type) {
+	case ETDT_INT:
+		return (void**)new int*[num];
+		break;
+	case ETDT_BYTE:
+		return (void**)new char*[num];
+		break;
+	case ETDT_FLOAT:
+		return (void**)new float*[num];
+		break;
+	}
+	return NULL;
+}
+
+void* TextureManager::CreateTextureData(ETextureDataType type, int width, int height) {
+	int num = width * height;
+	switch (type) {
+	case ETDT_INT:
+		return (void*)new int[num];
+		break;
+	case ETDT_BYTE:
+		return (void*)new char[num];
+		break;
+	case ETDT_FLOAT:
+		return (void*)new float[num];
+		break;
+	}
+	return NULL;
+}

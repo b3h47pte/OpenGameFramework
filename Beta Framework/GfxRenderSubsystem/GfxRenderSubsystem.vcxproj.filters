@@ -62,6 +62,15 @@
     <Filter Include="Backend\Light\General">
       <UniqueIdentifier>{5870c4a0-b9ed-4d89-9900-21b889894c2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Backend\Material">
+      <UniqueIdentifier>{2b0f8ed9-1c12-4448-b848-29e8d505d438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Material\Texture">
+      <UniqueIdentifier>{e4963bf2-4c69-4ef8-b540-2745839e1ba5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Material\Texture\Manager">
+      <UniqueIdentifier>{1a6b8e85-56a0-4053-9671-eff9edb0c735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -108,6 +117,12 @@
     </ClCompile>
     <ClCompile Include="SDLWindowKeyboard.cpp">
       <Filter>Frontend\Window\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="ITexture.cpp">
+      <Filter>Backend\Material\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Backend\Material\Texture\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +173,12 @@
     </ClInclude>
     <ClInclude Include="ILight.h">
       <Filter>Backend\Light\General</Filter>
+    </ClInclude>
+    <ClInclude Include="ITexture.h">
+      <Filter>Backend\Material\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Backend\Material\Texture\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

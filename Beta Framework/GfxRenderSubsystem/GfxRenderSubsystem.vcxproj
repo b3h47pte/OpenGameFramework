@@ -99,10 +99,12 @@
     <ClCompile Include="ILight.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderableInstance.cpp" />
+    <ClCompile Include="ITexture.cpp" />
     <ClCompile Include="MeshRenderable.cpp" />
     <ClCompile Include="MeshRenderableInstance.cpp" />
     <ClCompile Include="SDLWindow.cpp" />
     <ClCompile Include="SDLWindowKeyboard.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonGfx.h" />
@@ -116,11 +118,13 @@
     <ClInclude Include="ILight.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderableInstance.h" />
+    <ClInclude Include="ITexture.h" />
     <ClInclude Include="MeshRenderable.h" />
     <ClInclude Include="MeshRenderableInstance.h" />
     <ClInclude Include="SDLWindow.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sample Shaders\Basic\basic.frag" />

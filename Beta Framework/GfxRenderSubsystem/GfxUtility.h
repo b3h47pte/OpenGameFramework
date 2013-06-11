@@ -17,7 +17,7 @@ class IRenderable;
  * Creating an instance and registering the renderable/instance is up to the user.
  * Setting the proper shader data is also up to the user.
  */
-IRenderable* ReadOBJFile(std::string);
+IRenderable* GfxReadOBJFile(std::string);
 
 
 #endif // _GFXUTILITY_H
