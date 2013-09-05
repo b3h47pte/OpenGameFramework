@@ -1,13 +1,14 @@
 #include "GfxUtility.h"
 #include "MeshRenderable.h"
 #include "WFile.h"
+#include "TextureManager.h"
 
 #include <sstream>
 #include <algorithm>
 #include <iterator>
 
 using namespace std;
-
+#ifndef GFXUTILITY_NOOBJ
 /*
  * Reads in the OBJ file and creates a MeshRenderable. 
  */
@@ -117,3 +118,91 @@ GfxReadOBJFile(std::string inFile) {
 
 	return newMesh;
 }
+#endif // GFXUTILITY_NOOBJ
+
+#ifndef GFXUTILITY_FREEIMAGE
+
+/*
+ * 1) Create Texture
+ * 2) Load Data from Image
+ * 3) Put image data into texture.
+ * 4) Return!
+ * NOTE: ONLY SUPPORT JPEG FOR NOW. Other file formats will be added in later when I figure out what to do with the alpha channel.
+ */
+class ITexture* CreateTextureFromImage(const std::string& id, const std::string& path) {
+	TextureManager* tm = GetTextureManager();
+	if (!tm) {
+		return NULL;
+	}
+
+	ITexture* tex = tm->CreateTexture(id, ETT_2D, ETDT_BYTE);
+	if (!tex) {
+		return NULL;
+	}
+	
+	// Get file extension to determine what kind of image we are loading.
+	// Supported: JPEG, PNG, TIFF, TARGA, BMP
+	size_t idx = path.find_last_of('.');
+	FREE_IMAGE_FORMAT fmt = FIF_UNKNOWN;
+	if (idx != string::npos) {
+		std::string suffix = path.substr(idx+1);
+		if (suffix == "jpg" || suffix == "jpeg") {
+			fmt = FIF_JPEG;
+		} /*else if (suffix == "png") {
+			fmt = FIF_PNG;
+		} else if (suffix == "tiff" || suffix == "tif") {
+			fmt = FIF_TIFF;
+		} else if (suffix == "tga") {
+			fmt = FIF_TARGA;
+		} else if (suffix == "bmp") {
+			fmt = FIF_BMP;
+		} */ else {
+			// Non-supported file format.
+			std::cout << "CreateTextureFromImage :: Unsupported file format." << std::endl;
+			return NULL;
+		}
+	} else {
+		// No file format? Don't want to assume anything so error out.
+		std::cout << "CreateTextureFromImage :: No file format detected." << std::endl;
+		return NULL;
+	}
+	FIBITMAP* bmp = FreeImage_Load(fmt, path.c_str(), 0);
+	if (!bmp) {
+		// Error loading up the image.
+		std::cout << "CreateTextureFromImage :: Error loading image." << std::endl;
+		return NULL;
+	}
+
+	// Get details about the image.
+	unsigned int width = FreeImage_GetWidth(bmp);
+	unsigned int height = FreeImage_GetHeight(bmp);
+	tm->SetTextureSpecification(tex, 1, width, height);
+
+	// Create array that contains all the relevant pixel data for the image.
+	size_t outSize;
+	char* data = (char*)tm->CreateTextureData(ETDT_BYTE, width, height,outSize);
+	if (!data) {
+		std::cout << "CreateTextureFromImage :: Error creating texture data." << std::endl;
+		FreeImage_Unload(bmp);
+		return NULL;
+	}
+
+	RGBQUAD rgb;
+	for (unsigned int y = 0; y < height; ++y) {
+		for (unsigned int x = 0; x < width; ++x) {
+			FreeImage_GetPixelColor(bmp, x, y, &rgb);
+			int idx = x * width + y;
+			data[idx] = rgb.rgbRed;
+			data[idx+1] = rgb.rgbGreen;
+			data[idx+2] = rgb.rgbBlue;
+		}
+	}
+	tm->SetTextureData(tex, 0, data);
+	delete [] data;
+
+	FreeImage_Unload(bmp);
+
+	return tex;
+}
+
+#endif // GFXUTILITY_FREEIMAGE

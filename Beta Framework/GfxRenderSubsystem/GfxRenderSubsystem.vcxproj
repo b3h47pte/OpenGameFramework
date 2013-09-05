@@ -54,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\CoreHeaders;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\CoreHeaders;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\freeimage\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -73,7 +73,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GFXSUBSYSTEM_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\CoreHeaders;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\freeimage\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>

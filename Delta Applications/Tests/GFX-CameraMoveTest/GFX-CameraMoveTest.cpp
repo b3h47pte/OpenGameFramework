@@ -86,10 +86,10 @@ public:
 
 		glm::mat4 rot = GetRotationMatrix();
 		glm::mat4 mat;
-		mat = glm::rotate(mat, 0.1f * mTurnLeft, glm::vec3(udir)) * rot;
+		mat = glm::rotate(rot, 0.1f * mTurnLeft, glm::vec3(GetWorldUp()));
 
 		glm::mat4 mat2;
-		mat2 = glm::rotate(mat2, 0.1f * mTurnUp, glm::vec3(rdir)) * mat;
+		mat2 = glm::rotate(mat, 0.1f * mTurnUp, glm::vec3(GetWorldRight()));
 		SetRotation(mat2);
 	}
 

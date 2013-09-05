@@ -20,6 +20,10 @@ public:
 	WorldObject(glm::vec4 inPos, glm::quat inRot);
 	~WorldObject(void);
 
+	static glm::vec4	GetWorldUp() { return glm::vec4(0.f, 1.f, 0.f, 0.f); }
+	static glm::vec4	GetWorldForward() { return glm::vec4(0.f, 0.f, -1.f, 0.f); }
+	static glm::vec4	GetWorldRight() { return glm::vec4(1.f, 0.f, 0.f, 0.f); }
+
 	/*
 	 * Accessor methods for position and rotation.
 	 */
@@ -36,9 +40,9 @@ public:
 
 	virtual glm::mat4		GetTransformationMatrix() { return mTransformationMatrix; }
 
-	virtual glm::vec4 GetForwardDirection() { return glm::normalize(GetRotationMatrix() * glm::vec4(0.f, 0.f, -1.f, 0.f)); }
-	virtual glm::vec4 GetRightDirection() { return glm::normalize(GetRotationMatrix() * glm::vec4(1.f, 0.f, 0.f, 0.f)); }
-	virtual glm::vec4 GetUpDirection() { return glm::normalize(GetRotationMatrix() * glm::vec4(0.f, 1.f, 0.f, 0.f)); }
+	virtual glm::vec4 GetForwardDirection() const { return glm::normalize(GetRotationMatrix() * GetWorldForward()); }
+	virtual glm::vec4 GetRightDirection() const { return glm::normalize(GetRotationMatrix() * GetWorldRight()); }
+	virtual glm::vec4 GetUpDirection() const { return glm::normalize(GetRotationMatrix() * GetWorldUp()); }
 
 protected:
 	virtual void	UpdateTransformationMatrix();

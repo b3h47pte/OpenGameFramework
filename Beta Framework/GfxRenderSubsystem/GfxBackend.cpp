@@ -2,6 +2,7 @@
 #include "MeshRenderable.h"
 #include "GfxViewport.h"
 #include "GfxCamera.h"
+#include "TextureManager.h"
 
 GfxBackend::GfxBackend(void)
 {
@@ -110,6 +111,11 @@ bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
 	GLenum err;
 	err = glewInit();
 	if (GLEW_OK != err) {
+		return false;
+	}
+
+	mCurrentTextureManager = GetTextureManager();
+	if (!mCurrentTextureManager) {
 		return false;
 	}
 

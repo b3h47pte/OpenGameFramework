@@ -13,7 +13,6 @@
  */
 enum ETextureType {
 	ETT_2D,
-	ETT_CUBEMAP,
 	ETT_UNKNOWN
 };
 
@@ -90,7 +89,11 @@ private:
 	 * Create Texture Data
 	 */
 	void**	CreateTextureArray(ETextureDataType, int);
-	void*	CreateTextureData(ETextureDataType, int, int);
+	void*	CreateTextureData(ETextureDataType, int, int, size_t&);
+
+#ifndef GFXUTILITY_FREEIMAGE
+	friend class ITexture* CreateTextureFromImage(const std::string&, const std::string&);
+#endif //  GFXUTILITY_FREEIMAGE
 };
 
 TextureManager* GetTextureManager();

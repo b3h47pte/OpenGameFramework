@@ -34,6 +34,11 @@ public:
 private:
 
 	/*
+	 * Texture Manager.
+	 */
+	class TextureManager* mCurrentTextureManager;
+
+	/*
 	 * Active Viewport.
 	 */
 	class IGfxViewport* mActiveViewport;

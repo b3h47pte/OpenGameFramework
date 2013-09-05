@@ -83,8 +83,12 @@ void TextureManager::SetTextureSpecification(class ITexture* tex, int numTexture
 }
 
 void TextureManager::SetTextureData(class ITexture* tex, int texNum, void* texData) {
-	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, tex->mTexSizeWidth, tex->mTexSizeHeight);
-	memcpy(tex->mTextureData[texNum], texData, sizeof(tex->mTextureData[texNum]));
+	size_t dataEleSize = -1;
+	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, tex->mTexSizeWidth, tex->mTexSizeHeight, dataEleSize);
+	if (!tex->mTextureData[texNum]) {
+		return;
+	}
+	memcpy(tex->mTextureData[texNum], texData, dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
 }
 
 void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {
@@ -102,16 +106,19 @@ void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {
 	return NULL;
 }
 
-void* TextureManager::CreateTextureData(ETextureDataType type, int width, int height) {
-	int num = width * height;
+void* TextureManager::CreateTextureData(ETextureDataType type, int width, int height, size_t& outSize) {
+	int num = width * height * 3;
 	switch (type) {
 	case ETDT_INT:
+		outSize = sizeof(int);
 		return (void*)new int[num];
 		break;
 	case ETDT_BYTE:
+		outSize = sizeof(char);
 		return (void*)new char[num];
 		break;
 	case ETDT_FLOAT:
+		outSize = sizeof(float);
 		return (void*)new float[num];
 		break;
 	}
