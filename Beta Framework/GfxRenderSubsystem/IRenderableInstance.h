@@ -5,12 +5,14 @@
 #include "CommonGfx.h"
 
 enum EShaderDataType {
-	ESDT_MATRIX4x4			// Assumes data comes in as glm::mat4
+	ESDT_MATRIX4x4,			// Assumes data comes in as glm::mat4
+	ESDT_TEX2D
 };
 
 struct SShaderData {
 	bool mUniform;
 	void* mData;
+	std::string mLocation;
 	EShaderDataType mType;
 };
 
@@ -49,6 +51,9 @@ protected:
 	virtual void FinishRender();
 
 private:
+	// Texture Location Count -- 0 to n...will allow us to control which texture unit gets assigned to what sampler in the shader.
+	unsigned int mTextureLocationCount;
+
 	/*
 	 * Prepares shader data. 
 	 */

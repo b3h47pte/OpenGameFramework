@@ -70,6 +70,10 @@ ITexture* TextureManager::GetTexture(const std::string& id) {
 ITexture* TextureManager::CreateTexture(const std::string& id, ETextureType type, ETextureDataType dataType) {
 	ITexture* newTex = new ITexture();
 	newTex->mTextureType = type;
+	if (type == ETT_2D) {
+		newTex->mBindTarget = GL_TEXTURE_2D;
+	}
+
 	newTex->mTextureDataType = dataType;
 	return newTex;
 }
@@ -89,6 +93,7 @@ void TextureManager::SetTextureData(class ITexture* tex, int texNum, void* texDa
 		return;
 	}
 	memcpy(tex->mTextureData[texNum], texData, dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
+	tex->TextureDataLoaded();
 }
 
 void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {

@@ -1,5 +1,6 @@
 #include "IRenderableInstance.h"
 #include "IRenderable.h"
+#include "ITexture.h"
 
 IRenderableInstance::IRenderableInstance(IRenderable* inRen, WorldObject* inObj): mParentRenderable(inRen), mParentObject(inObj), mIsRegistered(false), mShaderProgramID(-1) {
 }
@@ -46,6 +47,7 @@ void IRenderableInstance::OnRender() {
  */
 void IRenderableInstance::PrepareShaderData() {
 	if (mShaderProgramID != -1) {
+		mTextureLocationCount = 0;
 		for(SHADER_DATA_ITER_t iterator = mInternalShaderData.begin(); iterator != mInternalShaderData.end(); iterator++) {
 			if (iterator->second->mUniform) {
 				SetUniformShaderData(iterator->first, iterator->second);
@@ -79,6 +81,17 @@ void IRenderableInstance::SetUniformShaderData(GLint inLoc, SShaderData* inData)
 	switch (inData->mType) {
 	case ESDT_MATRIX4x4:
 		glUniformMatrix4fv(inLoc, 1, GL_FALSE, glm::value_ptr(*(glm::vec4*)inData->mData));
+		break;
+	case ESDT_TEX2D:
+		{
+			glUseProgram(mShaderProgramID);
+			GLint loc = glGetUniformLocation(mShaderProgramID, inData->mLocation.c_str());
+			glUniform1i(loc, mTextureLocationCount);
+			glActiveTexture(GL_TEXTURE0 + mTextureLocationCount);
+			ITexture* tex = (ITexture*)inData->mData;
+			glBindTexture(tex->GetTextureBindTarget(), tex->GetTextureID());
+			++mTextureLocationCount;
+		}
 		break;
 	default:
 		break;

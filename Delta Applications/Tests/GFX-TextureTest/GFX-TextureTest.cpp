@@ -6,7 +6,9 @@
 #include <iostream>
 #include "GfxSubsystem.h"
 #include "MeshRenderable.h"
+#include "MeshRenderableInstance.h"
 #include "TextureManager.h"
+#include "ITexture.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -14,6 +16,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_DEFAULT_CAMERA);
 	if (!gfx)
 		return 0;
+	TextureManager* texMan = GetTextureManager();
+	if (!texMan)
+		return 0;
+	ITexture* texture = CreateTextureFromImage("test", "C:/Users/Michael/Documents/GitHub/OpenGameFramework/Delta Applications/Tests/GFX-TextureTest/Textures/grass.jpg");
 	
 	float verts[3][4] = {
 		{-1.f, -1.f, -2.f, 1.f},
@@ -29,9 +35,16 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	float tex[3][2] = {
 		{0.f, 0.f},
-		{0.f, 0.f},
-		{0.f, 0.f}
+		{1.f, 0.f},
+		{0.f, 1.f}
 	};
+
+	SShaderData texData;
+	texData.mData = texture;
+	texData.mType = ESDT_TEX2D;
+	texData.mUniform = true;
+	texData.mLocation = "tex";
+
 	MeshRenderable* mesh = new MeshRenderable();
 	mesh->AddVertex(verts[0], norms[0], tex[0]);
 	mesh->AddVertex(verts[1], norms[1], tex[1]);
@@ -39,10 +52,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	mesh->AddTriangleIndex(0);
 	mesh->AddTriangleIndex(1);
 	mesh->AddTriangleIndex(2);
-	mesh->SetVertexShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Basic/basic.vert");
-	mesh->SetFragShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Basic/basic.frag");
+	mesh->SetVertexShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.vert");
+	mesh->SetFragShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.frag");
 	mesh->FinalizeData();
-	mesh->CreateAndRegisterInstance(NULL);
+	IRenderableInstance* inst = mesh->CreateAndRegisterInstance(NULL);
+	inst->SetExternalShaderData(0, &texData);
 
 	while(gfx->ShouldTick()) {
 		gfx->Tick(0.1f);

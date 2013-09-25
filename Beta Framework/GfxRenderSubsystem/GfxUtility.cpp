@@ -120,7 +120,7 @@ GfxReadOBJFile(std::string inFile) {
 }
 #endif // GFXUTILITY_NOOBJ
 
-#ifndef GFXUTILITY_FREEIMAGE
+#ifndef GFXUTILITY_NOFREEIMAGE
 
 /*
  * 1) Create Texture

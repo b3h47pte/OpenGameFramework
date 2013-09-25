@@ -71,6 +71,7 @@ void GfxBackend::Render(float inDeltaTime) {
 
 				// Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
 				// MODEL matrix will be determined by the mesh/renderable itself. 
+				// TODO: Generalize this based on the actual object...somehow.
 				int projIndx = curInstPtr->GetUniformLocation("projection_matrix");
 				curInstPtr->SetInternalShaderData(projIndx, &projData);
 

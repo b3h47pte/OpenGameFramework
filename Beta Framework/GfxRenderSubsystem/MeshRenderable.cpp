@@ -84,8 +84,11 @@ void MeshRenderable::FinalizeData() {
 	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size(), 
 		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]);
 	
-	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0,  (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*) (sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size()));
+	glEnableVertexAttribArray(1);
 
 	// Load Shader Data 
 	// TODO: Load shader program from binary using the shader program name

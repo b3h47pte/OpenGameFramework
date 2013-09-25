@@ -22,7 +22,7 @@ IRenderable* GfxReadOBJFile(std::string);
 
 #endif
 
-#ifndef GFXUTILITY_FREEIMAGE
+#ifndef GFXUTILITY_NOFREEIMAGE
 
 #include "FreeImage.h"
 
@@ -31,7 +31,7 @@ IRenderable* GfxReadOBJFile(std::string);
  */
 class ITexture* CreateTextureFromImage(const std::string&, const std::string&);
 
-#endif //  GFXUTILITY_FREEIMAGE
+#endif //  GFXUTILITY_NOFREEIMAGE
 
 
 #endif // _GFXUTILITY_H

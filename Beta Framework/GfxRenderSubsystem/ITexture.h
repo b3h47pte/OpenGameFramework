@@ -15,6 +15,12 @@ public:
 	friend class TextureManager;
 
 	GLuint GetTextureID() const { return mTextureID; }
+	unsigned int GetTextureBindTarget() const { return mBindTarget; }
+
+	/*
+	 * Notify when data is modified and should be copied into the texture object.
+	 */
+	void TextureDataLoaded();
 
 	/*
 	 * Release Resources (will be called by destructor but can manually call this just in case).
@@ -44,6 +50,7 @@ private:
 	 * A texture should really only be bound to one texture object (I hope?).
 	 */
 	GLuint			mTextureID;
+	unsigned int	mBindTarget;
 
 	/*
 	 * Number of materials currently using this texture.

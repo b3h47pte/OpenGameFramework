@@ -129,6 +129,8 @@
   <ItemGroup>
     <None Include="Sample Shaders\Basic\basic.frag" />
     <None Include="Sample Shaders\Basic\basic.vert" />
+    <None Include="Sample Shaders\Texture\texture.frag" />
+    <None Include="Sample Shaders\Texture\texture.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
