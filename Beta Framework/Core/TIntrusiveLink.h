@@ -81,7 +81,7 @@ public:
 		mNext = newEle;
 	}
 
-	template<typename T, size_t inOffset> friend class TIntrusiveLinkedList;
+	template<typename T1, size_t inOffset> friend class TIntrusiveLinkedList;
 private:
 	TIntrusiveLink<T>* mPrev;
 	TIntrusiveLink<T>* mNext;

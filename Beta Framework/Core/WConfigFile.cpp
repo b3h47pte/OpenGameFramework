@@ -41,7 +41,7 @@ void WConfigFile::ParseConfigData(const std::vector<std::string>& inData) {
 		// Read in section name
 		if (parsedLine[0] == '[') {
 			curSection = line.substr(1, line.size() - 2);
-			transform(curSection.begin(), curSection.end(), curSection.begin(), toupper);
+			transform(curSection.begin(), curSection.end(), curSection.begin(), ::toupper);
 		}
 		// Read in data
 		else if (parsedLine.find('=') != string::npos) {
@@ -86,34 +86,34 @@ ConfigData_t WConfigFile::ReadConfigDataFromString(const std::string& inData) {
 }
 
 int WConfigFile::GetIntData(std::string& section, const std::string& key) const {
-	transform(section.begin(), section.end(), section.begin(), toupper);
+	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	if (mConfigData.find(section) != mConfigData.end() && mConfigData.at(section).find(key) != mConfigData.at(section).end())
 		return mConfigData.at(section).at(key).intData;
 	return 0;
 }
 
 float WConfigFile::GetFloatData(std::string& section, const std::string& key) const {
-	transform(section.begin(), section.end(), section.begin(), toupper);
+	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	if (mConfigData.find(section) != mConfigData.end() && mConfigData.at(section).find(key) != mConfigData.at(section).end())
 		return mConfigData.at(section).at(key).floatData;
 	return 0.f;
 }
 
 const char* WConfigFile::GetStrData(std::string& section, const std::string& key) const {
-	transform(section.begin(), section.end(), section.begin(), toupper);
+	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	if (mConfigData.find(section) != mConfigData.end() && mConfigData.at(section).find(key) != mConfigData.at(section).end())
 		return mConfigData.at(section).at(key).strData;
 	return "";
 }
 
 void WConfigFile::SetIntData(std::string& section, const std::string& key, int data) {
-	transform(section.begin(), section.end(), section.begin(), toupper);
+	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	mConfigData[section][key].dataType = 0;
 	mConfigData[section][key].intData = data;
 }
 
 void WConfigFile::SetFloatData(std::string& section, const std::string& key, float data) {
-	transform(section.begin(), section.end(), section.begin(), toupper);
+	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	mConfigData[section][key].dataType = 1;
 	mConfigData[section][key].floatData = data;
 }
@@ -122,7 +122,7 @@ void WConfigFile::SetFloatData(std::string& section, const std::string& key, flo
  * 'size' contains the number of chars in the char array (data).
  */ 
 void WConfigFile::SetStrData(std::string& section, const std::string& key, char* data, int size) {
-	transform(section.begin(), section.end(), section.begin(), toupper);
+	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	// If this string data doesn't already exist, we will want to allocate memory for it
 	// Otherwise if it does exist, delete and create new memory
 	if (mConfigData.find(section) != mConfigData.end() && mConfigData.at(section).find(key) != mConfigData.at(section).end()) {
