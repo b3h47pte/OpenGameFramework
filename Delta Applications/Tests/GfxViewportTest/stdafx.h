@@ -12,6 +12,8 @@
 	#include<tchar.h>
 #else
 	#define _TCHAR char*
+	#define Sleep usleep
+	#include <unistd.h>
 #endif
 
 

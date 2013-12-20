@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 {
 	IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_DEFAULT_CAMERA);
 	MessageServer* srv = GetGlobalMessageServer();
-	TestMessageClient* client = new TestMessageClient();
+	TestMessageClient* client = new TestMessageClient();(void)client;
 	if (!gfx)
 		return 0;
 	while(gfx->ShouldTick()) {
