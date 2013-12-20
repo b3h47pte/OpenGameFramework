@@ -9,6 +9,7 @@ public:
 	virtual ~IGfxViewport() {}
 	virtual void Resize(int, int, int, int) = 0;
 
+	virtual int GetViewportId() const = 0;
 	virtual int GetViewportWidth() const = 0;
 	virtual int GetViewportHeight() const = 0;
 	virtual void GetViewportPosition(int&, int&) const = 0;
@@ -31,6 +32,7 @@ public:
 	virtual int GetViewportWidth() const { return mWidth; }
 	virtual int GetViewportHeight() const { return mHeight; }
 	virtual void GetViewportPosition(int& inX, int& inY) const { inX = mPosX; inY = mPosY; }
+	virtual int GetViewportId() const { return mViewportNumber; }
 
 	/*
 	 * Set/Get Camera

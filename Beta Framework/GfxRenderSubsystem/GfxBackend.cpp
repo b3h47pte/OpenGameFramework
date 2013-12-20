@@ -65,7 +65,7 @@ void GfxBackend::Render(float inDeltaTime) {
 			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 			
 			while (curInstPtr) {
-				GLuint shaderProg = curInstPtr->GetShaderProgram();
+				GLuint shaderProg = curInstPtr->GetShaderProgram(); (void) shaderProg;
 
 				curInstPtr->PrepareRender();
 

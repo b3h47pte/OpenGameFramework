@@ -6,7 +6,7 @@
 /*
  * Ctor/Dtor
  */
-IRenderable::IRenderable(): mIsRegistered(false), mDataSet(false), mDataError(false) {
+IRenderable::IRenderable(): mDataSet(false), mDataError(false), mIsRegistered(false)  {
 }
 
 IRenderable::~IRenderable() {
