@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <iterator>
 
+#define DEBUG_TO_STDOUT 0
+
 using namespace std;
 #ifndef GFXUTILITY_NOOBJ
 /*
@@ -180,7 +182,7 @@ class ITexture* CreateTextureFromImage(const std::string& id, const std::string&
 
 	// Create array that contains all the relevant pixel data for the image.
 	size_t outSize;
-	char* data = (char*)tm->CreateTextureData(ETDT_BYTE, width, height,outSize);
+	uint8_t* data = (uint8_t*)tm->CreateTextureData(ETDT_BYTE, width, height,outSize);
 	if (!data) {
 		std::cout << "CreateTextureFromImage :: Error creating texture data." << std::endl;
 		FreeImage_Unload(bmp);
@@ -188,15 +190,28 @@ class ITexture* CreateTextureFromImage(const std::string& id, const std::string&
 	}
 
 	RGBQUAD rgb;
-	for (unsigned int y = 0; y < height; ++y) {
-		for (unsigned int x = 0; x < width; ++x) {
+
+#if DEBUG_TO_STDOUT
+	std::cout << "P3" << std::endl;
+	std::cout << width << " " << height << " " << "255" << std::endl;
+#endif
+
+	for (unsigned int x = 0; x < width; ++x) {
+		for (unsigned int y = 0; y < height; ++y) {
 			FreeImage_GetPixelColor(bmp, x, y, &rgb);
-			int idx = x * width + y;
-			data[idx] = rgb.rgbRed;
-			data[idx+1] = rgb.rgbGreen;
-			data[idx+2] = rgb.rgbBlue;
+			int idx = x * width * 3 + y * 3;
+#if DEBUG_TO_STDOUT
+			std::cout << (int)rgb.rgbRed << " " << (int)rgb.rgbGreen << " " << (int)rgb.rgbBlue << " ";
+#endif
+			data[idx] = (int)rgb.rgbRed;
+			data[idx+1] = (int)rgb.rgbGreen;
+			data[idx+2] = (int)rgb.rgbBlue;
 		}
+#if DEBUG_TO_STDOUT
+		std::cout << std::endl;
+#endif
 	}
+
 	tm->SetTextureData(tex, 0, data);
 	delete [] data;
 

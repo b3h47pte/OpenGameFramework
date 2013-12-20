@@ -153,6 +153,97 @@ Network/fast:
 	$(MAKE) -f "Beta Framework/NetworkLibrary/CMakeFiles/Network.dir/build.make" "Beta Framework/NetworkLibrary/CMakeFiles/Network.dir/build"
 .PHONY : Network/fast
 
+#=============================================================================
+# Target rules for targets named CORE-ConfigReadWriteTest
+
+# Build rule for target.
+CORE-ConfigReadWriteTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-ConfigReadWriteTest
+.PHONY : CORE-ConfigReadWriteTest
+
+# fast build rule for target.
+CORE-ConfigReadWriteTest/fast:
+	$(MAKE) -f "Delta Applications/Tests/CORE-ConfigReadWriteTest/CMakeFiles/CORE-ConfigReadWriteTest.dir/build.make" "Delta Applications/Tests/CORE-ConfigReadWriteTest/CMakeFiles/CORE-ConfigReadWriteTest.dir/build"
+.PHONY : CORE-ConfigReadWriteTest/fast
+
+#=============================================================================
+# Target rules for targets named CORE-MessagingTest
+
+# Build rule for target.
+CORE-MessagingTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-MessagingTest
+.PHONY : CORE-MessagingTest
+
+# fast build rule for target.
+CORE-MessagingTest/fast:
+	$(MAKE) -f "Delta Applications/Tests/CORE-MessagingTest/CMakeFiles/CORE-MessagingTest.dir/build.make" "Delta Applications/Tests/CORE-MessagingTest/CMakeFiles/CORE-MessagingTest.dir/build"
+.PHONY : CORE-MessagingTest/fast
+
+#=============================================================================
+# Target rules for targets named GFX-CameraMoveTest
+
+# Build rule for target.
+GFX-CameraMoveTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-CameraMoveTest
+.PHONY : GFX-CameraMoveTest
+
+# fast build rule for target.
+GFX-CameraMoveTest/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-CameraMoveTest/CMakeFiles/GFX-CameraMoveTest.dir/build.make" "Delta Applications/Tests/GFX-CameraMoveTest/CMakeFiles/GFX-CameraMoveTest.dir/build"
+.PHONY : GFX-CameraMoveTest/fast
+
+#=============================================================================
+# Target rules for targets named GFX-TextureTest
+
+# Build rule for target.
+GFX-TextureTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-TextureTest
+.PHONY : GFX-TextureTest
+
+# fast build rule for target.
+GFX-TextureTest/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-TextureTest/CMakeFiles/GFX-TextureTest.dir/build.make" "Delta Applications/Tests/GFX-TextureTest/CMakeFiles/GFX-TextureTest.dir/build"
+.PHONY : GFX-TextureTest/fast
+
+#=============================================================================
+# Target rules for targets named GfxRenderExample
+
+# Build rule for target.
+GfxRenderExample: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GfxRenderExample
+.PHONY : GfxRenderExample
+
+# fast build rule for target.
+GfxRenderExample/fast:
+	$(MAKE) -f "Delta Applications/Tests/GfxRenderExample/CMakeFiles/GfxRenderExample.dir/build.make" "Delta Applications/Tests/GfxRenderExample/CMakeFiles/GfxRenderExample.dir/build"
+.PHONY : GfxRenderExample/fast
+
+#=============================================================================
+# Target rules for targets named GfxViewportTest
+
+# Build rule for target.
+GfxViewportTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GfxViewportTest
+.PHONY : GfxViewportTest
+
+# fast build rule for target.
+GfxViewportTest/fast:
+	$(MAKE) -f "Delta Applications/Tests/GfxViewportTest/CMakeFiles/GfxViewportTest.dir/build.make" "Delta Applications/Tests/GfxViewportTest/CMakeFiles/GfxViewportTest.dir/build"
+.PHONY : GfxViewportTest/fast
+
+#=============================================================================
+# Target rules for targets named SDL-InputTest
+
+# Build rule for target.
+SDL-InputTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SDL-InputTest
+.PHONY : SDL-InputTest
+
+# fast build rule for target.
+SDL-InputTest/fast:
+	$(MAKE) -f "Delta Applications/Tests/SDL-InputTest/CMakeFiles/SDL-InputTest.dir/build.make" "Delta Applications/Tests/SDL-InputTest/CMakeFiles/SDL-InputTest.dir/build"
+.PHONY : SDL-InputTest/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +256,13 @@ help:
 	@echo "... Gfx"
 	@echo "... Audio"
 	@echo "... Network"
+	@echo "... CORE-ConfigReadWriteTest"
+	@echo "... CORE-MessagingTest"
+	@echo "... GFX-CameraMoveTest"
+	@echo "... GFX-TextureTest"
+	@echo "... GfxRenderExample"
+	@echo "... GfxViewportTest"
+	@echo "... SDL-InputTest"
 .PHONY : help
 
 

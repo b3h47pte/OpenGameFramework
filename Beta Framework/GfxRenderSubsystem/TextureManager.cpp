@@ -87,11 +87,18 @@ void TextureManager::SetTextureSpecification(class ITexture* tex, int numTexture
 }
 
 void TextureManager::SetTextureData(class ITexture* tex, int texNum, void* texData) {
+	
+
+
 	size_t dataEleSize = -1;
 	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, tex->mTexSizeWidth, tex->mTexSizeHeight, dataEleSize);
 	if (!tex->mTextureData[texNum]) {
 		return;
 	}
+
+	
+
+
 	memcpy(tex->mTextureData[texNum], texData, dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
 	tex->TextureDataLoaded();
 }
@@ -102,7 +109,7 @@ void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {
 		return (void**)new int*[num];
 		break;
 	case ETDT_BYTE:
-		return (void**)new char*[num];
+		return (void**)new uint8_t*[num];
 		break;
 	case ETDT_FLOAT:
 		return (void**)new float*[num];
@@ -119,8 +126,8 @@ void* TextureManager::CreateTextureData(ETextureDataType type, int width, int he
 		return (void*)new int[num];
 		break;
 	case ETDT_BYTE:
-		outSize = sizeof(char);
-		return (void*)new char[num];
+		outSize = sizeof(uint8_t);
+		return (void*)new uint8_t[num];
 		break;
 	case ETDT_FLOAT:
 		outSize = sizeof(float);

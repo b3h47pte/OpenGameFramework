@@ -36,8 +36,8 @@ int main(int argc, char** argv)
 
 	float tex[3][2] = {
 		{0.f, 0.f},
-		{1.f, 0.f},
-		{0.f, 1.f}
+		{1.0f, 0.0f},
+		{0.f, 1.0f}
 	};
 
 	SShaderData texData;

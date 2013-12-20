@@ -18,7 +18,6 @@ MeshRenderableInstance::~MeshRenderableInstance(void)
  *	2) Call the OpenGL draw calls necesssary.
  */
 void MeshRenderableInstance::OnRender() { 
-
 	IRenderableInstance::OnRender();
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)0);
 }
