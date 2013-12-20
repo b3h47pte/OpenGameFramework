@@ -1,0 +1,7 @@
+add_subdirectory(CORE-ConfigReadWriteTest)
+add_subdirectory(CORE-MessagingTest)
+add_subdirectory(GFX-CameraMoveTest)
+add_subdirectory(GFX-TextureTest)
+add_subdirectory(GfxRenderExample)
+add_subdirectory(GfxViewportTest)
+add_subdirectory(SDL-InputTest)

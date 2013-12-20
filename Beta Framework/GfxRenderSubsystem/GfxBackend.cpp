@@ -110,6 +110,11 @@ void GfxBackend::RegisterRenderable(IRenderable* inRenderable) {
 bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
 	// Initialize some basic GLEW/OpenGL stuff if we can -- otherwise wait for the user to pass in the context and the like
 	GLenum err;
+
+#ifdef __APPLE__
+	glewExperimental = GL_TRUE;
+#endif
+
 	err = glewInit();
 	if (GLEW_OK != err) {
 		return false;

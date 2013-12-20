@@ -8,8 +8,12 @@
 #include "targetver.h"
 
 #include <stdio.h>
-#include <tchar.h>
-
-
+#ifdef _WIN32
+	#include<tchar.h>
+#else
+	#define _TCHAR char*
+	#define Sleep usleep
+	#include <unistd.h>
+#endif
 
 // TODO: reference additional headers your program requires here

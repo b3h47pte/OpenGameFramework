@@ -78,9 +78,14 @@ void MeshRenderable::FinalizeData() {
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size() 
 		+ sizeof(glm::vec2) * mTexCoords.size(), NULL, GL_STATIC_DRAW);
+
+	// Vertex Position
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * mVertexPosition.size(), &mVertexPosition[0]);
 
+	// Vertex Normals
 	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size(), sizeof(glm::vec4) * mVertexNormals.size(), &mVertexNormals[0]);
+
+	// Vertex Tex Coord
 	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size(), 
 		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]);
 	

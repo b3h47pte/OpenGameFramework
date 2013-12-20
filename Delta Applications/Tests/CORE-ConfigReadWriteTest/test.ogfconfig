@@ -1,5 +1,5 @@
 [DEFAULT]
-key1=5
+key1=0
 key2=1
 key3=2
 key4=3
@@ -10,5 +10,5 @@ key2=1.00000
 key3=2.00000
 
 [TESTTEST]
-Chicken=Buttocks
+Chicken=AAAAAAAA
 

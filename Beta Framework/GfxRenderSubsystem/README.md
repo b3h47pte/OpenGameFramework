@@ -11,4 +11,4 @@ Handles the interaction between the GfxRender Backend and the code that wants to
 
 Technical Details
 ------------------
-Makes use of OpenGL.
+akes use of OpenGL.

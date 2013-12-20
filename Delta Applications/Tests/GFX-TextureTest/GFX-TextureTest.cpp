@@ -9,8 +9,9 @@
 #include "MeshRenderableInstance.h"
 #include "TextureManager.h"
 #include "ITexture.h"
+#include "GfxUtility.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char** argv)
 {
 	
 	IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_DEFAULT_CAMERA);
@@ -19,7 +20,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	TextureManager* texMan = GetTextureManager();
 	if (!texMan)
 		return 0;
-	ITexture* texture = CreateTextureFromImage("test", "C:/Users/Michael/Documents/GitHub/OpenGameFramework/Delta Applications/Tests/GFX-TextureTest/Textures/grass.jpg");
+	ITexture* texture = CreateTextureFromImage("test", "Textures/grass.jpg");
 	
 	float verts[3][4] = {
 		{-1.f, -1.f, -2.f, 1.f},
@@ -52,8 +53,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	mesh->AddTriangleIndex(0);
 	mesh->AddTriangleIndex(1);
 	mesh->AddTriangleIndex(2);
-	mesh->SetVertexShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.vert");
-	mesh->SetFragShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.frag");
+	mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.vert");
+	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.frag");
 	mesh->FinalizeData();
 	IRenderableInstance* inst = mesh->CreateAndRegisterInstance(NULL);
 	inst->SetExternalShaderData(0, &texData);

@@ -36,6 +36,10 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 
 	WFile wfile(file);
 	const char* data = wfile.ReadAllBinaryDataNull();
+	if (!data) {
+		std::cout << "Load Shader Error: No data read from shader file." << std::endl;
+		return false;
+	}
 
 	glShaderSource(shaderId, 1, &data, NULL);
 	glCompileShader(shaderId);

@@ -7,28 +7,32 @@
 
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char** argv)
 {
 	WConfigFile newConfig("test.ogfconfig");
-	newConfig.SetFloatData(std::string("Section"), "key1", 0.5f);
-	newConfig.SetFloatData(std::string("Section"), "key2", 1.0f);
-	newConfig.SetFloatData(std::string("Section"), "key3", 2.0f);
-	newConfig.SetIntData(std::string("defAult"), "key1", 0);
-	newConfig.SetIntData(std::string("DEfAult"), "key2", 1);
-	newConfig.SetIntData(std::string("default"), "key3", 2);
-	newConfig.SetIntData(std::string("DEFAULT"), "key4", 3);
-	newConfig.SetStrData(std::string("TestTest"), "Chicken", "Buttocks", 8);
+	std::string sec[] = { "Section", "defAult", "DEfaUlt", "default", "DEFAULT", "TESTTEST"};
+	newConfig.SetFloatData(sec[0], "key1", 0.5f);
+	newConfig.SetFloatData(sec[0], "key2", 1.0f);
+	newConfig.SetFloatData(sec[0], "key3", 2.0f);
+	newConfig.SetIntData(sec[1], "key1", 0);
+	newConfig.SetIntData(sec[2], "key2", 1);
+	newConfig.SetIntData(sec[3], "key3", 2);
+	newConfig.SetIntData(sec[4], "key4", 3);
+	char* mm = new char[8];
+	for (int i = 0; i < 8; ++i) 
+		mm[i] = 'A';
+	newConfig.SetStrData(sec[5], "Chicken", mm, 8);
 	newConfig.SaveConfigFile();
 
 	WConfigFile newConfig2("test.ogfconfig");
-	cout << newConfig2.GetFloatData(string("Section"), "key1") << endl;
-	cout << newConfig2.GetFloatData(string("Section"), "key2") << endl;
-	cout << newConfig2.GetFloatData(string("Section"), "key3") << endl;
-	cout << newConfig2.GetIntData(string("default"), "key1") << endl;
-	cout << newConfig2.GetIntData(string("default"), "key2") << endl;
-	cout << newConfig2.GetIntData(string("default"), "key3") << endl;
-	cout << newConfig2.GetIntData(string("default"), "key4") << endl;
-	cout << newConfig2.GetStrData(string("TestTest"), "Chicken") << endl;
+	cout << newConfig2.GetFloatData(sec[0], "key1") << endl;
+	cout << newConfig2.GetFloatData(sec[0], "key2") << endl;
+	cout << newConfig2.GetFloatData(sec[0], "key3") << endl;
+	cout << newConfig2.GetIntData(sec[3],"key1") << endl;
+	cout << newConfig2.GetIntData(sec[3], "key2") << endl;
+	cout << newConfig2.GetIntData(sec[3], "key3") << endl;
+	cout << newConfig2.GetIntData(sec[3], "key4") << endl;
+	cout << newConfig2.GetStrData(sec[5], "Chicken") << endl;
 
 	int exit;
 	std::cin >> exit;

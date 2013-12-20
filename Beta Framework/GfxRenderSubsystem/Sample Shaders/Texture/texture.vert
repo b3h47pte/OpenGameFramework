@@ -1,11 +1,11 @@
-#version 330 core
+#version 330
 
 uniform mat4 projection_matrix, view_matrix;
 
 
 layout(location = 0) in vec4 vPosition;
-// layout(location = 1) in vec4 vNormal;
-layout(location = 1) in vec2 vTexCoord;
+layout(location = 1) in vec4 vNormal;
+layout(location = 2) in vec2 vTexCoord;
 
 out vec4 vs_color;
 out vec2 vs_tex_coord;

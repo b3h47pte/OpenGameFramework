@@ -121,8 +121,9 @@ extern "C"  IGfxCamera* GFX_CREATE_TEST_CAMERA(float inFOV, float inAR) {
 }
 
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char** argv)
 {
+
 	IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_TEST_CAMERA);
 	MessageServer* srv = GetGlobalMessageServer();
 	if (!gfx)
@@ -146,6 +147,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		{0.f, 0.f}
 	};
 
+	const GLubyte* strVersion = glGetString (GL_VERSION); 	
+	std::cout << strVersion << std::endl;
+
 	MeshRenderable* mesh = new MeshRenderable();
 	mesh->AddVertex(verts[0], norms[0], tex[0]);
 	mesh->AddVertex(verts[1], norms[1], tex[1]);
@@ -153,8 +157,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	mesh->AddTriangleIndex(0);
 	mesh->AddTriangleIndex(1);
 	mesh->AddTriangleIndex(2);
-	mesh->SetVertexShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Basic/basic.vert");
-	mesh->SetFragShader("C:/Users/Michael/Documents/GitHub/OpenGameFramework/Beta Framework/GfxRenderSubsystem/Sample Shaders/Basic/basic.frag");
+	mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Basic/basic.vert");
+	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Basic/basic.frag");
 	mesh->FinalizeData();
 	mesh->CreateAndRegisterInstance(NULL);
 
