@@ -13,8 +13,7 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 #include <IPHlpApi.h>
-#endif
-
 #pragma comment(lib, "Ws2_32.lib")
+#endif
 
 #endif // _NWLCOMMON_H

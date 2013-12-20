@@ -6,6 +6,7 @@
 
 class IGfxViewport {
 public:
+	virtual ~IGfxViewport();
 	virtual void Resize(int, int, int, int) = 0;
 
 	virtual int GetViewportWidth() const = 0;

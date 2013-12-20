@@ -1,0 +1,4 @@
+add_subdirectory(Core)
+add_subdirectory(GfxRenderSubsystem)
+add_subdirectory(AudioSubsystem)
+add_subdirectory(NetworkLibrary)

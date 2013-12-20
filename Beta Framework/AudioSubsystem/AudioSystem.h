@@ -5,7 +5,6 @@
 #include "ASCommon.h"
 #include "fmod.h"
 #include "fmod.hpp"
-#include "fmod_studio.hpp"
 
 #define CHECK_FMOD_ERROR_VOID(result)	if (CheckFMODError(result)) return;
 

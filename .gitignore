@@ -17,3 +17,8 @@ Extras*
 *.sdf
 *.suo
 ipch*
+CMakeCache.txt
+*CMakeFiles*
+*.swp
+*cmake_install.cmake
+*.a
