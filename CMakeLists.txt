@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 project(OGF)
+include(CTest)
 
 # C++11 is necessary
 add_definitions(-std=c++11)
@@ -53,6 +54,11 @@ add_subdirectory(Beta\ Framework)
 # DELTA APPLICATIONS
 add_subdirectory(Delta\ Applications)
 
-enable_testing()
-add_test(CoreGTest Delta\ Applications/GTests/Framework/Core/CORE-GTest)
+set(GTEST_SUBDIR 
+	Delta\ Applications/GTests/
+)
+
+add_test(CoreGTestMessageServer ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-MessageServer)
+add_test(CoreGTestMessageClient ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-MessageClient)
+add_test(CoreGTestErrorCatch ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-ErrorCatch)
 

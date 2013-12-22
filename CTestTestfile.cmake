@@ -4,6 +4,8 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-ADD_TEST(CoreGTest "Delta Applications/GTests/Framework/Core/CORE-GTest")
+ADD_TEST(CoreGTestMessageServer "Delta Applications/GTests/Framework/Core/CORE-GTest-MessageServer")
+ADD_TEST(CoreGTestMessageClient "Delta Applications/GTests/Framework/Core/CORE-GTest-MessageClient")
+ADD_TEST(CoreGTestErrorCatch "Delta Applications/GTests/Framework/Core/CORE-GTest-ErrorCatch")
 SUBDIRS(Beta Framework)
 SUBDIRS(Delta Applications)

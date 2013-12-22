@@ -112,25 +112,55 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/rule:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/rule"
-.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/rule
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule
 
 # Convenience name for target.
-CORE-GTest: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/rule
-.PHONY : CORE-GTest
+CORE-GTest-ErrorCatch: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule
+.PHONY : CORE-GTest-ErrorCatch
 
 # fast build rule for target.
-CORE-GTest/fast:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build"
-.PHONY : CORE-GTest/fast
+CORE-GTest-ErrorCatch/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build"
+.PHONY : CORE-GTest-ErrorCatch/fast
+
+# Convenience name for target.
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/rule
+
+# Convenience name for target.
+CORE-GTest-MessageClient: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/rule
+.PHONY : CORE-GTest-MessageClient
+
+# fast build rule for target.
+CORE-GTest-MessageClient/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build"
+.PHONY : CORE-GTest-MessageClient/fast
+
+# Convenience name for target.
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/rule
+
+# Convenience name for target.
+CORE-GTest-MessageServer: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/rule
+.PHONY : CORE-GTest-MessageServer
+
+# fast build rule for target.
+CORE-GTest-MessageServer/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build"
+.PHONY : CORE-GTest-MessageServer/fast
 
 Users/michaelbao/Code/gtest/src/gtest_main.o: Users/michaelbao/Code/gtest/src/gtest_main.cc.o
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.o
 
 # target to build an object file
 Users/michaelbao/Code/gtest/src/gtest_main.cc.o:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.o
 
 Users/michaelbao/Code/gtest/src/gtest_main.i: Users/michaelbao/Code/gtest/src/gtest_main.cc.i
@@ -138,7 +168,9 @@ Users/michaelbao/Code/gtest/src/gtest_main.i: Users/michaelbao/Code/gtest/src/gt
 
 # target to preprocess a source file
 Users/michaelbao/Code/gtest/src/gtest_main.cc.i:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.i
 
 Users/michaelbao/Code/gtest/src/gtest_main.s: Users/michaelbao/Code/gtest/src/gtest_main.cc.s
@@ -146,7 +178,9 @@ Users/michaelbao/Code/gtest/src/gtest_main.s: Users/michaelbao/Code/gtest/src/gt
 
 # target to generate assembly for a file
 Users/michaelbao/Code/gtest/src/gtest_main.cc.s:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.s
 
 error_catch_gtest.o: error_catch_gtest.cpp.o
@@ -154,7 +188,7 @@ error_catch_gtest.o: error_catch_gtest.cpp.o
 
 # target to build an object file
 error_catch_gtest.cpp.o:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/error_catch_gtest.cpp.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/error_catch_gtest.cpp.o"
 .PHONY : error_catch_gtest.cpp.o
 
 error_catch_gtest.i: error_catch_gtest.cpp.i
@@ -162,7 +196,7 @@ error_catch_gtest.i: error_catch_gtest.cpp.i
 
 # target to preprocess a source file
 error_catch_gtest.cpp.i:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/error_catch_gtest.cpp.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/error_catch_gtest.cpp.i"
 .PHONY : error_catch_gtest.cpp.i
 
 error_catch_gtest.s: error_catch_gtest.cpp.s
@@ -170,7 +204,7 @@ error_catch_gtest.s: error_catch_gtest.cpp.s
 
 # target to generate assembly for a file
 error_catch_gtest.cpp.s:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/error_catch_gtest.cpp.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/error_catch_gtest.cpp.s"
 .PHONY : error_catch_gtest.cpp.s
 
 message_client_gtest.o: message_client_gtest.cpp.o
@@ -178,7 +212,7 @@ message_client_gtest.o: message_client_gtest.cpp.o
 
 # target to build an object file
 message_client_gtest.cpp.o:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_client_gtest.cpp.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/message_client_gtest.cpp.o"
 .PHONY : message_client_gtest.cpp.o
 
 message_client_gtest.i: message_client_gtest.cpp.i
@@ -186,7 +220,7 @@ message_client_gtest.i: message_client_gtest.cpp.i
 
 # target to preprocess a source file
 message_client_gtest.cpp.i:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_client_gtest.cpp.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/message_client_gtest.cpp.i"
 .PHONY : message_client_gtest.cpp.i
 
 message_client_gtest.s: message_client_gtest.cpp.s
@@ -194,7 +228,7 @@ message_client_gtest.s: message_client_gtest.cpp.s
 
 # target to generate assembly for a file
 message_client_gtest.cpp.s:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_client_gtest.cpp.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/message_client_gtest.cpp.s"
 .PHONY : message_client_gtest.cpp.s
 
 message_server_gtest.o: message_server_gtest.cpp.o
@@ -202,7 +236,7 @@ message_server_gtest.o: message_server_gtest.cpp.o
 
 # target to build an object file
 message_server_gtest.cpp.o:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_server_gtest.cpp.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/message_server_gtest.cpp.o"
 .PHONY : message_server_gtest.cpp.o
 
 message_server_gtest.i: message_server_gtest.cpp.i
@@ -210,7 +244,7 @@ message_server_gtest.i: message_server_gtest.cpp.i
 
 # target to preprocess a source file
 message_server_gtest.cpp.i:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_server_gtest.cpp.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/message_server_gtest.cpp.i"
 .PHONY : message_server_gtest.cpp.i
 
 message_server_gtest.s: message_server_gtest.cpp.s
@@ -218,7 +252,7 @@ message_server_gtest.s: message_server_gtest.cpp.s
 
 # target to generate assembly for a file
 message_server_gtest.cpp.s:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_server_gtest.cpp.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/message_server_gtest.cpp.s"
 .PHONY : message_server_gtest.cpp.s
 
 # Help Target
@@ -227,7 +261,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... CORE-GTest"
+	@echo "... CORE-GTest-ErrorCatch"
+	@echo "... CORE-GTest-MessageClient"
+	@echo "... CORE-GTest-MessageServer"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
