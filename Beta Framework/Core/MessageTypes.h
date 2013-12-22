@@ -32,6 +32,10 @@ struct sMessageDataBase {
 struct sKeyInputMessageData: public sMessageDataBase {
 	char	mKeyState; // 0 - Down, 1 - Up, 2 - Repeat
 	int32_t mKeyCode;  // Will contain the keycode (in the case of SDL, SDL_Keycode)
+
+	bool operator==(const sKeyInputMessageData& rhs) const {
+		return (this->mKeyState == rhs.mKeyState && this->mKeyCode == rhs.mKeyCode);
+	}
 };
 typedef std::queue<sKeyInputMessageData>	KeyInputMessageQueue;
 typedef std::vector<class IMessageClient*>	KeyInputClientList;

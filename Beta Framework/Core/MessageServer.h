@@ -22,6 +22,7 @@ public:
 	// Generic Register/Unregister
 	void RegisterClient(class IMessageClient*, EMessageGroups);
 	void UnregisterClient(class IMessageClient*, EMessageGroups);
+	bool CheckIsRegistered(class IMessageClient*, EMessageGroups);
 
 	// Keyboard Input
 	void PushKeyInputMessage(const sKeyInputMessageData&);

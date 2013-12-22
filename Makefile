@@ -244,6 +244,32 @@ SDL-InputTest/fast:
 	$(MAKE) -f "Delta Applications/Tests/SDL-InputTest/CMakeFiles/SDL-InputTest.dir/build.make" "Delta Applications/Tests/SDL-InputTest/CMakeFiles/SDL-InputTest.dir/build"
 .PHONY : SDL-InputTest/fast
 
+#=============================================================================
+# Target rules for targets named CORE-GTest
+
+# Build rule for target.
+CORE-GTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-GTest
+.PHONY : CORE-GTest
+
+# fast build rule for target.
+CORE-GTest/fast:
+	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build"
+.PHONY : CORE-GTest/fast
+
+#=============================================================================
+# Target rules for targets named GFX-GTest
+
+# Build rule for target.
+GFX-GTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-GTest
+.PHONY : GFX-GTest
+
+# fast build rule for target.
+GFX-GTest/fast:
+	$(MAKE) -f "Delta Applications/GTests/Framework/Gfx/CMakeFiles/GFX-GTest.dir/build.make" "Delta Applications/GTests/Framework/Gfx/CMakeFiles/GFX-GTest.dir/build"
+.PHONY : GFX-GTest/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -263,6 +289,8 @@ help:
 	@echo "... GfxRenderExample"
 	@echo "... GfxViewportTest"
 	@echo "... SDL-InputTest"
+	@echo "... CORE-GTest"
+	@echo "... GFX-GTest"
 .PHONY : help
 
 

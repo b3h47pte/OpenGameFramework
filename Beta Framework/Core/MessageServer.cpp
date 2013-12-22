@@ -25,6 +25,7 @@ MessageServer::~MessageServer(void) {
 void MessageServer::RegisterClient(class IMessageClient* client, EMessageGroups grp) {
 	switch (grp) {
 	case EMG_KEYINPUT:
+	
 		RegisterKeyInputClient(client);
 		break;
 	}
@@ -37,11 +38,18 @@ void MessageServer::UnregisterClient(class IMessageClient* client, EMessageGroup
 		break;
 	}
 }
+	
+// TODO: Generalize based on group
+bool MessageServer::CheckIsRegistered(class IMessageClient* client, EMessageGroups group) {
+	std::vector<class IMessageClient*>::const_iterator it = find(mKeyInputClients.begin(), mKeyInputClients.end(), client);
+	return (it != mKeyInputClients.end());
+}
 
 void MessageServer::RegisterKeyInputClient(class IMessageClient* client) {
 	mKeyInputClients.push_back(client);
 }
 
+// TODO: Generalize based on group
 void MessageServer::UnRegisterKeyInputClient(class IMessageClient* client) {
 	std::vector<class IMessageClient*>::const_iterator it = find(mKeyInputClients.begin(), mKeyInputClients.end(), client);
 	mKeyInputClients.erase(it);

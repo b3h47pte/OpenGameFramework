@@ -15,9 +15,9 @@ public:
 	IMessageClient(void);
 	virtual ~IMessageClient(void);
 
-	void RegisterGroup(EMessageGroups);
-	void UnregisterGroup(EMessageGroups);
-	bool IsRegistered(EMessageGroups);
+	virtual void RegisterGroup(EMessageGroups);
+	virtual void UnregisterGroup(EMessageGroups);
+	virtual bool IsRegistered(EMessageGroups);
 
 	/*
 	 * Message notification functions -- child classes should overwrite only the ones that they need.
