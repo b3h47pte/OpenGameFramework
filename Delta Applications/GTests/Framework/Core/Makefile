@@ -139,6 +139,30 @@ Users/michaelbao/Code/gtest/src/gtest_main.cc.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.s
 
+error_catch_gtest.o: error_catch_gtest.cpp.o
+.PHONY : error_catch_gtest.o
+
+# target to build an object file
+error_catch_gtest.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/error_catch_gtest.cpp.o"
+.PHONY : error_catch_gtest.cpp.o
+
+error_catch_gtest.i: error_catch_gtest.cpp.i
+.PHONY : error_catch_gtest.i
+
+# target to preprocess a source file
+error_catch_gtest.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/error_catch_gtest.cpp.i"
+.PHONY : error_catch_gtest.cpp.i
+
+error_catch_gtest.s: error_catch_gtest.cpp.s
+.PHONY : error_catch_gtest.s
+
+# target to generate assembly for a file
+error_catch_gtest.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/error_catch_gtest.cpp.s"
+.PHONY : error_catch_gtest.cpp.s
+
 message_client_gtest.o: message_client_gtest.cpp.o
 .PHONY : message_client_gtest.o
 
@@ -199,6 +223,9 @@ help:
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.o"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.i"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.s"
+	@echo "... error_catch_gtest.o"
+	@echo "... error_catch_gtest.i"
+	@echo "... error_catch_gtest.s"
 	@echo "... message_client_gtest.o"
 	@echo "... message_client_gtest.i"
 	@echo "... message_client_gtest.s"
