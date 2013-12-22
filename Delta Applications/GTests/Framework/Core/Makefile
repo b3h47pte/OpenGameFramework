@@ -139,6 +139,30 @@ Users/michaelbao/Code/gtest/src/gtest_main.cc.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.s
 
+message_client_gtest.o: message_client_gtest.cpp.o
+.PHONY : message_client_gtest.o
+
+# target to build an object file
+message_client_gtest.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_client_gtest.cpp.o"
+.PHONY : message_client_gtest.cpp.o
+
+message_client_gtest.i: message_client_gtest.cpp.i
+.PHONY : message_client_gtest.i
+
+# target to preprocess a source file
+message_client_gtest.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_client_gtest.cpp.i"
+.PHONY : message_client_gtest.cpp.i
+
+message_client_gtest.s: message_client_gtest.cpp.s
+.PHONY : message_client_gtest.s
+
+# target to generate assembly for a file
+message_client_gtest.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest.dir/message_client_gtest.cpp.s"
+.PHONY : message_client_gtest.cpp.s
+
 message_server_gtest.o: message_server_gtest.cpp.o
 .PHONY : message_server_gtest.o
 
@@ -175,6 +199,9 @@ help:
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.o"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.i"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.s"
+	@echo "... message_client_gtest.o"
+	@echo "... message_client_gtest.i"
+	@echo "... message_client_gtest.s"
 	@echo "... message_server_gtest.o"
 	@echo "... message_server_gtest.i"
 	@echo "... message_server_gtest.s"

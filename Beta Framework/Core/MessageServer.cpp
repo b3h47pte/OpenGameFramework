@@ -25,10 +25,13 @@ MessageServer::~MessageServer(void) {
 void MessageServer::RegisterClient(class IMessageClient* client, EMessageGroups grp) {
 	switch (grp) {
 	case EMG_KEYINPUT:
-	
 		RegisterKeyInputClient(client);
 		break;
 	}
+
+	// If client doesn't know it's registered, make sure it does.
+	if (!client->IsRegistered(grp))
+		client->RegisterGroup(grp);
 }
 
 void MessageServer::UnregisterClient(class IMessageClient* client, EMessageGroups grp) {
@@ -37,6 +40,10 @@ void MessageServer::UnregisterClient(class IMessageClient* client, EMessageGroup
 		UnRegisterKeyInputClient(client);
 		break;
 	}
+
+	// Make sure client unregisters itself
+	if (client->IsRegistered(grp))
+		client->UnregisterGroup(grp);
 }
 	
 // TODO: Generalize based on group

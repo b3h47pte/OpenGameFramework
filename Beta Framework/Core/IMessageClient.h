@@ -26,6 +26,10 @@ public:
 
 	virtual void RegisterInitialGroups() = 0;
 
+	virtual class MessageServer* const GetMessageServer() {return mMessageServerRef;}
+
+protected:
+	class MessageServer* const mMessageServerRef;
 private:
 	std::vector<EMessageGroups> mRegisteredGroups;
 };

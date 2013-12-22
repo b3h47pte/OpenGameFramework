@@ -1,5 +1,6 @@
 set(CORE_GTEST_SOURCE 
-	"$ENV{GTEST_DIR}/src/gtest_main.cc" message_server_gtest.cpp
+	"$ENV{GTEST_DIR}/src/gtest_main.cc" message_server_gtest.cpp 
+	message_client_gtest.cpp
 )
 
 add_executable(CORE-GTest ${CORE_GTEST_SOURCE})

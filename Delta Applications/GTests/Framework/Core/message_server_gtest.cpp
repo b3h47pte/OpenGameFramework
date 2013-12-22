@@ -27,10 +27,17 @@ TEST_F(MessageServerTest, IsASingleton) {
 
 // Register and Unregister Client Test
 TEST_F(MessageServerTest, HandlesClientRegistration) {
+	EXPECT_CALL(client, IsRegistered(_)).Times(4);
+
+	EXPECT_CALL(client, RegisterGroup(_)).Times(1);
 	server->RegisterClient(&client, EMG_KEYINPUT);
 	EXPECT_TRUE(server->CheckIsRegistered(&client, EMG_KEYINPUT));
+	EXPECT_TRUE(client.IsRegistered(EMG_KEYINPUT));
+
+	EXPECT_CALL(client, UnregisterGroup(_)).Times(1);
 	server->UnregisterClient(&client, EMG_KEYINPUT);
 	EXPECT_FALSE(server->CheckIsRegistered(&client, EMG_KEYINPUT));
+	EXPECT_FALSE(client.IsRegistered(EMG_KEYINPUT));
 }
 
 /**
@@ -52,6 +59,9 @@ TEST_F(MessageServerTest, ReceivesKeyMessages) {
 	data.mKeyState = INPUT_KEY_DOWN;
 	data.mKeyCode = EKEY_SPACE;
 	server->PushKeyInputMessage(data);
+
+	EXPECT_CALL(client, IsRegistered(_));
+	EXPECT_CALL(client, RegisterGroup(_));
 	server->RegisterClient(&client, EMG_KEYINPUT);
 
 	// Client should receive a message telling that it has a new message!

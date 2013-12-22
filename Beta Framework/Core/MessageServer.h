@@ -20,13 +20,13 @@ public:
 	~MessageServer(void);
 
 	// Generic Register/Unregister
-	void RegisterClient(class IMessageClient*, EMessageGroups);
-	void UnregisterClient(class IMessageClient*, EMessageGroups);
-	bool CheckIsRegistered(class IMessageClient*, EMessageGroups);
+	virtual void RegisterClient(class IMessageClient*, EMessageGroups);
+	virtual void UnregisterClient(class IMessageClient*, EMessageGroups);
+	virtual bool CheckIsRegistered(class IMessageClient*, EMessageGroups);
 
 	// Keyboard Input
-	void PushKeyInputMessage(const sKeyInputMessageData&);
-	sKeyInputMessageData PopKeyInputMessage();
+	virtual void PushKeyInputMessage(const sKeyInputMessageData&);
+	virtual sKeyInputMessageData PopKeyInputMessage();
 
 	/*
 	 * Tick
