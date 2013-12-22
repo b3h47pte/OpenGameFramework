@@ -52,3 +52,7 @@ add_subdirectory(Beta\ Framework)
 
 # DELTA APPLICATIONS
 add_subdirectory(Delta\ Applications)
+
+enable_testing()
+add_test(CoreGTest Delta\ Applications/GTests/Framework/Core/CORE-GTest)
+

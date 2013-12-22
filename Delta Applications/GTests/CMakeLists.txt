@@ -13,4 +13,3 @@ link_directories("$ENV{GMOCK_DIR}/$ENV{GMOCK_LIB}")
 
 add_subdirectory(Framework)
 
-

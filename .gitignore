@@ -22,3 +22,4 @@ CMakeCache.txt
 *.swp
 *cmake_install.cmake
 *.a
+Testing*
