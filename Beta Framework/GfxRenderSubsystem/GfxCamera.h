@@ -59,6 +59,7 @@ private:
 	float mZNear;
 };
 
+// A Function pointer to a function that will create a IGfxCamera.
 #define CAM_FACTORY_FCTN_PTR(var) IGfxCamera* (*var) (float, float)
 
 extern "C"  IGfxCamera* GFX_CREATE_DEFAULT_CAMERA(float inFOV, float inAR);
