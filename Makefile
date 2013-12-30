@@ -697,6 +697,19 @@ CORE-GTest-Wfile/fast:
 .PHONY : CORE-GTest-Wfile/fast
 
 #=============================================================================
+# Target rules for targets named CORE-GTest-WorldObject
+
+# Build rule for target.
+CORE-GTest-WorldObject: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-GTest-WorldObject
+.PHONY : CORE-GTest-WorldObject
+
+# fast build rule for target.
+CORE-GTest-WorldObject/fast:
+	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build"
+.PHONY : CORE-GTest-WorldObject/fast
+
+#=============================================================================
 # Target rules for targets named GFX-GTest
 
 # Build rule for target.
@@ -763,6 +776,7 @@ help:
 	@echo "... CORE-GTest-MessageClient"
 	@echo "... CORE-GTest-MessageServer"
 	@echo "... CORE-GTest-Wfile"
+	@echo "... CORE-GTest-WorldObject"
 	@echo "... GFX-GTest"
 .PHONY : help
 

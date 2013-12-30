@@ -195,6 +195,20 @@ CORE-GTest-Wfile/fast:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build"
 .PHONY : CORE-GTest-Wfile/fast
 
+# Convenience name for target.
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/rule
+
+# Convenience name for target.
+CORE-GTest-WorldObject: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/rule
+.PHONY : CORE-GTest-WorldObject
+
+# fast build rule for target.
+CORE-GTest-WorldObject/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build"
+.PHONY : CORE-GTest-WorldObject/fast
+
 Users/michaelbao/Code/gtest/src/gtest_main.o: Users/michaelbao/Code/gtest/src/gtest_main.cc.o
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.o
 
@@ -206,6 +220,7 @@ Users/michaelbao/Code/gtest/src/gtest_main.cc.o:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.o
 
 Users/michaelbao/Code/gtest/src/gtest_main.i: Users/michaelbao/Code/gtest/src/gtest_main.cc.i
@@ -219,6 +234,7 @@ Users/michaelbao/Code/gtest/src/gtest_main.cc.i:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.i
 
 Users/michaelbao/Code/gtest/src/gtest_main.s: Users/michaelbao/Code/gtest/src/gtest_main.cc.s
@@ -232,6 +248,7 @@ Users/michaelbao/Code/gtest/src/gtest_main.cc.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.s
 
 config_file_gtest.o: config_file_gtest.cpp.o
@@ -378,6 +395,30 @@ wfile_gtest.cpp.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/wfile_gtest.cpp.s"
 .PHONY : wfile_gtest.cpp.s
 
+world_object_gtest.o: world_object_gtest.cpp.o
+.PHONY : world_object_gtest.o
+
+# target to build an object file
+world_object_gtest.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/world_object_gtest.cpp.o"
+.PHONY : world_object_gtest.cpp.o
+
+world_object_gtest.i: world_object_gtest.cpp.i
+.PHONY : world_object_gtest.i
+
+# target to preprocess a source file
+world_object_gtest.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/world_object_gtest.cpp.i"
+.PHONY : world_object_gtest.cpp.i
+
+world_object_gtest.s: world_object_gtest.cpp.s
+.PHONY : world_object_gtest.s
+
+# target to generate assembly for a file
+world_object_gtest.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-WorldObject.dir/world_object_gtest.cpp.s"
+.PHONY : world_object_gtest.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -390,6 +431,7 @@ help:
 	@echo "... CORE-GTest-MessageClient"
 	@echo "... CORE-GTest-MessageServer"
 	@echo "... CORE-GTest-Wfile"
+	@echo "... CORE-GTest-WorldObject"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
@@ -414,6 +456,9 @@ help:
 	@echo "... wfile_gtest.o"
 	@echo "... wfile_gtest.i"
 	@echo "... wfile_gtest.s"
+	@echo "... world_object_gtest.o"
+	@echo "... world_object_gtest.i"
+	@echo "... world_object_gtest.s"
 .PHONY : help
 
 

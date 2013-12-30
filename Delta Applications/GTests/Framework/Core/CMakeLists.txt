@@ -38,4 +38,10 @@ target_link_libraries(CORE-GTest-ConfigFile gtest)
 target_link_libraries(CORE-GTest-ConfigFile gtest_main)
 target_link_libraries(CORE-GTest-ConfigFile gmock)
 
+add_executable(CORE-GTest-WorldObject ${GTEST_SOURCE} world_object_gtest.cpp )
+target_link_libraries(CORE-GTest-WorldObject Core)
+target_link_libraries(CORE-GTest-WorldObject gtest)
+target_link_libraries(CORE-GTest-WorldObject gtest_main)
+target_link_libraries(CORE-GTest-WorldObject gmock)
+
 
