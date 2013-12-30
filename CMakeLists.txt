@@ -62,4 +62,7 @@ add_test(CoreGTestMessageServer ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-Messag
 add_test(CoreGTestMessageClient ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-MessageClient)
 add_test(CoreGTestErrorCatch ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-ErrorCatch)
 add_test(CoreGTestIntrList ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-IntrusiveLink)
+add_test(CoreGTestWfile ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-Wfile)
+add_test(CoreGTestConfigFile ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-ConfigFile)
+add_test(CoreGTestWorldObject ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-WorldObject)
 

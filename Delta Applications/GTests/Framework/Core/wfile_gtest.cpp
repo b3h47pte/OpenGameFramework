@@ -1,9 +1,17 @@
 #include "gtest-common.h"
+#include "stdio.h"
+#include <iostream>
+#include <fstream>
 #include "WFile.h"
 
 
 class WFileTest: public testing::Test {
 	void SetUp() {
+		std::ofstream newFile;
+		newFile.open("test.txt");
+		newFile << "Hello\nThere\nHowdy\nNeehao";
+		newFile.close();
+
 		// text.txt contents:
 		//	Hello
 		//	There
@@ -14,6 +22,8 @@ class WFileTest: public testing::Test {
 	}
 
 	void TearDown() {
+		std::string filename = "test.txt";
+		remove(filename.c_str());
 		delete file;
 	}
 protected:
@@ -23,7 +33,7 @@ protected:
 TEST_F(WFileTest, ReadAllTextData) {
 	std::vector<std::string> lineData;
 	file->ReadAllTextData(lineData);
-	EXPECT_EQ(lineData.size(), 5); // Four lines plus newline.
+	EXPECT_EQ(lineData.size(), 4);
 	EXPECT_EQ(lineData[0], "Hello");
 	EXPECT_EQ(lineData[1], "There");
 	EXPECT_EQ(lineData[2], "Howdy");
