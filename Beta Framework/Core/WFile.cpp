@@ -13,7 +13,7 @@ WFile::~WFile(void)
 {
 }
 
-char* WFile::ReadAllBinaryDataNull() {
+char* WFile::ReadAllBinaryDataNull(int& len) {
 	ifstream file(mFileName, std::ios::in | std::ios::binary);
 	if (!file.is_open()) 
 		return NULL;
@@ -27,6 +27,7 @@ char* WFile::ReadAllBinaryDataNull() {
 	file.read(allData, fsize);
 	allData[fsize] = '\0';
 	file.close();
+	len = fsize;
 	return allData;
 }
 

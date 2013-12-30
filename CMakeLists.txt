@@ -61,4 +61,5 @@ set(GTEST_SUBDIR
 add_test(CoreGTestMessageServer ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-MessageServer)
 add_test(CoreGTestMessageClient ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-MessageClient)
 add_test(CoreGTestErrorCatch ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-ErrorCatch)
+add_test(CoreGTestIntrList ${GTEST_SUBDIR}/Framework/Core/CORE-GTest-IntrusiveLink)
 

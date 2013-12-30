@@ -26,6 +26,7 @@ struct ConfigData_t {
 class WConfigFile: public WFile
 {
 public:
+	WConfigFile();
 	WConfigFile(const std::string&);
 	virtual ~WConfigFile(void);
 
@@ -40,7 +41,7 @@ public:
 	void SetIntData(std::string&, const std::string&, int);
 	void SetFloatData(std::string&, const std::string&, float);
 	// Does not assume the input string is null-terminated
-	void SetStrData(std::string&, const std::string&, char*, int); 
+	void SetStrData(std::string&, const std::string&, const char*, int); 
 
 	/*
 	 * Save Config File.

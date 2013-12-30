@@ -6,7 +6,7 @@ template<typename T>
 class TIntrusiveLink
 {
 public:
-	TIntrusiveLink(void): mPrev(NULL), mNext(NULL),
+	TIntrusiveLink(void): mPrev(this), mNext(this),
 		mObject(NULL) {
 	}
 
@@ -47,9 +47,7 @@ public:
 		// Old Previous Node:
 		//	Next: New node
 		//	Previous: Unchanged
-		if (mPrev) {
-			mPrev->mNext = newEle;
-		}
+		mPrev->mNext = newEle;
 
 		// This Node:
 		//	Next: Unchanged
@@ -71,9 +69,7 @@ public:
 		// Old Next Node:
 		//	Next: Unchanged
 		//	Previous: New node
-		if (mNext) {
-			mNext->mPrev = newEle;
-		}
+		mNext->mPrev = newEle;
 
 		// This Node:
 		//	Next: New node.

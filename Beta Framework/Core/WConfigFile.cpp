@@ -7,6 +7,9 @@
 
 using namespace std;
 
+WConfigFile::WConfigFile() {
+}
+
 WConfigFile::WConfigFile(const std::string& inFile) : WFile(inFile) {
 	// Read in each line as a string and then parse it so that we separate the config file into sections and get the key value pairs
 	vector<string> allData;
@@ -121,7 +124,7 @@ void WConfigFile::SetFloatData(std::string& section, const std::string& key, flo
 /*
  * 'size' contains the number of chars in the char array (data).
  */ 
-void WConfigFile::SetStrData(std::string& section, const std::string& key, char* data, int size) {
+void WConfigFile::SetStrData(std::string& section, const std::string& key, const char* data, int size) {
 	transform(section.begin(), section.end(), section.begin(), ::toupper);
 	// If this string data doesn't already exist, we will want to allocate memory for it
 	// Otherwise if it does exist, delete and create new memory

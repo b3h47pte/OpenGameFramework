@@ -19,3 +19,23 @@ target_link_libraries(CORE-GTest-ErrorCatch Core)
 target_link_libraries(CORE-GTest-ErrorCatch gtest)
 target_link_libraries(CORE-GTest-ErrorCatch gtest_main)
 target_link_libraries(CORE-GTest-ErrorCatch gmock)
+
+add_executable(CORE-GTest-IntrusiveLink ${GTEST_SOURCE} intrusive_link_gtest.cpp )
+target_link_libraries(CORE-GTest-IntrusiveLink Core)
+target_link_libraries(CORE-GTest-IntrusiveLink gtest)
+target_link_libraries(CORE-GTest-IntrusiveLink gtest_main)
+target_link_libraries(CORE-GTest-IntrusiveLink gmock)
+
+add_executable(CORE-GTest-Wfile ${GTEST_SOURCE} wfile_gtest.cpp )
+target_link_libraries(CORE-GTest-Wfile Core)
+target_link_libraries(CORE-GTest-Wfile gtest)
+target_link_libraries(CORE-GTest-Wfile gtest_main)
+target_link_libraries(CORE-GTest-Wfile gmock)
+
+add_executable(CORE-GTest-ConfigFile ${GTEST_SOURCE} config_file_gtest.cpp )
+target_link_libraries(CORE-GTest-ConfigFile Core)
+target_link_libraries(CORE-GTest-ConfigFile gtest)
+target_link_libraries(CORE-GTest-ConfigFile gtest_main)
+target_link_libraries(CORE-GTest-ConfigFile gmock)
+
+

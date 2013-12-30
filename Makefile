@@ -619,6 +619,19 @@ SDL-InputTest/fast:
 .PHONY : SDL-InputTest/fast
 
 #=============================================================================
+# Target rules for targets named CORE-GTest-ConfigFile
+
+# Build rule for target.
+CORE-GTest-ConfigFile: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-GTest-ConfigFile
+.PHONY : CORE-GTest-ConfigFile
+
+# fast build rule for target.
+CORE-GTest-ConfigFile/fast:
+	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build"
+.PHONY : CORE-GTest-ConfigFile/fast
+
+#=============================================================================
 # Target rules for targets named CORE-GTest-ErrorCatch
 
 # Build rule for target.
@@ -630,6 +643,19 @@ CORE-GTest-ErrorCatch: cmake_check_build_system
 CORE-GTest-ErrorCatch/fast:
 	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build"
 .PHONY : CORE-GTest-ErrorCatch/fast
+
+#=============================================================================
+# Target rules for targets named CORE-GTest-IntrusiveLink
+
+# Build rule for target.
+CORE-GTest-IntrusiveLink: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-GTest-IntrusiveLink
+.PHONY : CORE-GTest-IntrusiveLink
+
+# fast build rule for target.
+CORE-GTest-IntrusiveLink/fast:
+	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build"
+.PHONY : CORE-GTest-IntrusiveLink/fast
 
 #=============================================================================
 # Target rules for targets named CORE-GTest-MessageClient
@@ -656,6 +682,19 @@ CORE-GTest-MessageServer: cmake_check_build_system
 CORE-GTest-MessageServer/fast:
 	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build"
 .PHONY : CORE-GTest-MessageServer/fast
+
+#=============================================================================
+# Target rules for targets named CORE-GTest-Wfile
+
+# Build rule for target.
+CORE-GTest-Wfile: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CORE-GTest-Wfile
+.PHONY : CORE-GTest-Wfile
+
+# fast build rule for target.
+CORE-GTest-Wfile/fast:
+	$(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build"
+.PHONY : CORE-GTest-Wfile/fast
 
 #=============================================================================
 # Target rules for targets named GFX-GTest
@@ -718,9 +757,12 @@ help:
 	@echo "... GfxRenderExample"
 	@echo "... GfxViewportTest"
 	@echo "... SDL-InputTest"
+	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
+	@echo "... CORE-GTest-IntrusiveLink"
 	@echo "... CORE-GTest-MessageClient"
 	@echo "... CORE-GTest-MessageServer"
+	@echo "... CORE-GTest-Wfile"
 	@echo "... GFX-GTest"
 .PHONY : help
 

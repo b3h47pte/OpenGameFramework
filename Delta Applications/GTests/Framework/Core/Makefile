@@ -112,6 +112,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/rule
+
+# Convenience name for target.
+CORE-GTest-ConfigFile: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/rule
+.PHONY : CORE-GTest-ConfigFile
+
+# fast build rule for target.
+CORE-GTest-ConfigFile/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build"
+.PHONY : CORE-GTest-ConfigFile/fast
+
+# Convenience name for target.
 Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule"
 .PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/rule
@@ -124,6 +138,20 @@ CORE-GTest-ErrorCatch: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE
 CORE-GTest-ErrorCatch/fast:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build"
 .PHONY : CORE-GTest-ErrorCatch/fast
+
+# Convenience name for target.
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/rule
+
+# Convenience name for target.
+CORE-GTest-IntrusiveLink: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/rule
+.PHONY : CORE-GTest-IntrusiveLink
+
+# fast build rule for target.
+CORE-GTest-IntrusiveLink/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build"
+.PHONY : CORE-GTest-IntrusiveLink/fast
 
 # Convenience name for target.
 Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/rule:
@@ -153,14 +181,31 @@ CORE-GTest-MessageServer/fast:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build"
 .PHONY : CORE-GTest-MessageServer/fast
 
+# Convenience name for target.
+Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/rule"
+.PHONY : Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/rule
+
+# Convenience name for target.
+CORE-GTest-Wfile: Delta\ Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/rule
+.PHONY : CORE-GTest-Wfile
+
+# fast build rule for target.
+CORE-GTest-Wfile/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build"
+.PHONY : CORE-GTest-Wfile/fast
+
 Users/michaelbao/Code/gtest/src/gtest_main.o: Users/michaelbao/Code/gtest/src/gtest_main.cc.o
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.o
 
 # target to build an object file
 Users/michaelbao/Code/gtest/src/gtest_main.cc.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.o"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.o
 
 Users/michaelbao/Code/gtest/src/gtest_main.i: Users/michaelbao/Code/gtest/src/gtest_main.cc.i
@@ -168,9 +213,12 @@ Users/michaelbao/Code/gtest/src/gtest_main.i: Users/michaelbao/Code/gtest/src/gt
 
 # target to preprocess a source file
 Users/michaelbao/Code/gtest/src/gtest_main.cc.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.i"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.i
 
 Users/michaelbao/Code/gtest/src/gtest_main.s: Users/michaelbao/Code/gtest/src/gtest_main.cc.s
@@ -178,10 +226,37 @@ Users/michaelbao/Code/gtest/src/gtest_main.s: Users/michaelbao/Code/gtest/src/gt
 
 # target to generate assembly for a file
 Users/michaelbao/Code/gtest/src/gtest_main.cc.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageClient.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/Users/michaelbao/Code/gtest/src/gtest_main.cc.s"
 .PHONY : Users/michaelbao/Code/gtest/src/gtest_main.cc.s
+
+config_file_gtest.o: config_file_gtest.cpp.o
+.PHONY : config_file_gtest.o
+
+# target to build an object file
+config_file_gtest.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/config_file_gtest.cpp.o"
+.PHONY : config_file_gtest.cpp.o
+
+config_file_gtest.i: config_file_gtest.cpp.i
+.PHONY : config_file_gtest.i
+
+# target to preprocess a source file
+config_file_gtest.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/config_file_gtest.cpp.i"
+.PHONY : config_file_gtest.cpp.i
+
+config_file_gtest.s: config_file_gtest.cpp.s
+.PHONY : config_file_gtest.s
+
+# target to generate assembly for a file
+config_file_gtest.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ConfigFile.dir/config_file_gtest.cpp.s"
+.PHONY : config_file_gtest.cpp.s
 
 error_catch_gtest.o: error_catch_gtest.cpp.o
 .PHONY : error_catch_gtest.o
@@ -206,6 +281,30 @@ error_catch_gtest.s: error_catch_gtest.cpp.s
 error_catch_gtest.cpp.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-ErrorCatch.dir/error_catch_gtest.cpp.s"
 .PHONY : error_catch_gtest.cpp.s
+
+intrusive_link_gtest.o: intrusive_link_gtest.cpp.o
+.PHONY : intrusive_link_gtest.o
+
+# target to build an object file
+intrusive_link_gtest.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/intrusive_link_gtest.cpp.o"
+.PHONY : intrusive_link_gtest.cpp.o
+
+intrusive_link_gtest.i: intrusive_link_gtest.cpp.i
+.PHONY : intrusive_link_gtest.i
+
+# target to preprocess a source file
+intrusive_link_gtest.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/intrusive_link_gtest.cpp.i"
+.PHONY : intrusive_link_gtest.cpp.i
+
+intrusive_link_gtest.s: intrusive_link_gtest.cpp.s
+.PHONY : intrusive_link_gtest.s
+
+# target to generate assembly for a file
+intrusive_link_gtest.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-IntrusiveLink.dir/intrusive_link_gtest.cpp.s"
+.PHONY : intrusive_link_gtest.cpp.s
 
 message_client_gtest.o: message_client_gtest.cpp.o
 .PHONY : message_client_gtest.o
@@ -255,30 +354,66 @@ message_server_gtest.cpp.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-MessageServer.dir/message_server_gtest.cpp.s"
 .PHONY : message_server_gtest.cpp.s
 
+wfile_gtest.o: wfile_gtest.cpp.o
+.PHONY : wfile_gtest.o
+
+# target to build an object file
+wfile_gtest.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/wfile_gtest.cpp.o"
+.PHONY : wfile_gtest.cpp.o
+
+wfile_gtest.i: wfile_gtest.cpp.i
+.PHONY : wfile_gtest.i
+
+# target to preprocess a source file
+wfile_gtest.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/wfile_gtest.cpp.i"
+.PHONY : wfile_gtest.cpp.i
+
+wfile_gtest.s: wfile_gtest.cpp.s
+.PHONY : wfile_gtest.s
+
+# target to generate assembly for a file
+wfile_gtest.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/build.make" "Delta Applications/GTests/Framework/Core/CMakeFiles/CORE-GTest-Wfile.dir/wfile_gtest.cpp.s"
+.PHONY : wfile_gtest.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
+	@echo "... CORE-GTest-IntrusiveLink"
 	@echo "... CORE-GTest-MessageClient"
 	@echo "... CORE-GTest-MessageServer"
+	@echo "... CORE-GTest-Wfile"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.o"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.i"
 	@echo "... Users/michaelbao/Code/gtest/src/gtest_main.s"
+	@echo "... config_file_gtest.o"
+	@echo "... config_file_gtest.i"
+	@echo "... config_file_gtest.s"
 	@echo "... error_catch_gtest.o"
 	@echo "... error_catch_gtest.i"
 	@echo "... error_catch_gtest.s"
+	@echo "... intrusive_link_gtest.o"
+	@echo "... intrusive_link_gtest.i"
+	@echo "... intrusive_link_gtest.s"
 	@echo "... message_client_gtest.o"
 	@echo "... message_client_gtest.i"
 	@echo "... message_client_gtest.s"
 	@echo "... message_server_gtest.o"
 	@echo "... message_server_gtest.i"
 	@echo "... message_server_gtest.s"
+	@echo "... wfile_gtest.o"
+	@echo "... wfile_gtest.i"
+	@echo "... wfile_gtest.s"
 .PHONY : help
 
 

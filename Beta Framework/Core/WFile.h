@@ -14,7 +14,11 @@ public:
 	/*
 	 * Reads a file as binary data and puts a NULL at the end.
 	 */
-	char* ReadAllBinaryDataNull();
+	char* ReadAllBinaryDataNull() {
+		int i;
+		return ReadAllBinaryDataNull(i);	
+	} 
+	char* ReadAllBinaryDataNull(int&);
 
 	/*
 	 * Reads a file as pure text data and each line is a string inside the input vector.
@@ -22,6 +26,7 @@ public:
 	void ReadAllTextData(std::vector<std::string>&);
 
 protected:
+	WFile() {}
 	std::string mFileName;
 };
 

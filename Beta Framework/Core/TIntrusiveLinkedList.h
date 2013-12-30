@@ -22,22 +22,22 @@ public:
 	 * Get Head and Tail pointers (for iteration).
 	 */ 
 	TIntrusiveLink<T>* GetHead() { 
-		return mLink.mPrev;
+		return mLink.mNext;
 	}
 
 	TIntrusiveLink<T>* GetTail() {
-		return mLink.mNext;
+		return mLink.mPrev;
 	}
 
 	/* 
 	 * Get and Tail elements (for iteration)
 	 */
 	T* GetHeadElement() {
-		return ((mLink.mPrev != NULL) ? mLink.mPrev->mObject : NULL);
+		return ((mLink.mNext != NULL) ? mLink.mNext->mObject : NULL);
 	}
 
 	T* GetTailElement() {
-		return ((mLink.mNext != NULL) ? mLink.mNext->mObject : NULL);
+		return ((mLink.mPrev != NULL) ? mLink.mPrev->mObject : NULL);
 	}
 
 	/* 
@@ -46,6 +46,14 @@ public:
 	void AppendElement(T* newEle) {
 		TIntrusiveLink<T>* newLink = GetLinkFromElement(newEle);
 		mLink.AddPrevious(newLink, newEle);
+	}
+
+	/*
+	 * Add to linked list at the head.
+	 */
+	void PrependElement(T* newEle) {
+		TIntrusiveLink<T>* newLink = GetLinkFromElement(newEle);
+		mLink.AddNext(newLink, newEle);
 	}
 
 	/*
