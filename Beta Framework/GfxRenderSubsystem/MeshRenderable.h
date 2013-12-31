@@ -44,8 +44,11 @@ public:
 	virtual bool PrepareToRender();
 	virtual bool FinishRender();
 
+	// Number of Vertices
+	int GetVertexCount() const { return mTriangleIndices.size(); }
+
 private:
-	// Mesh Data
+	// Mesh Data (These are never cleared).
 	struct {
 		// Vertex Positions
 		std::vector<glm::vec4>		mVertexPosition;

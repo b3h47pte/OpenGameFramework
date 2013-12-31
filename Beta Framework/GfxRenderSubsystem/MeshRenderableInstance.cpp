@@ -1,3 +1,4 @@
+#include "MeshRenderable.h"
 #include "MeshRenderableInstance.h"
 #include "GfxBackend.h"
 
@@ -19,5 +20,10 @@ MeshRenderableInstance::~MeshRenderableInstance(void)
  */
 void MeshRenderableInstance::OnRender() { 
 	IRenderableInstance::OnRender();
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)0);
+
+	// We need to draw the vertices.
+	const MeshRenderable* mesh = 
+		dynamic_cast<const MeshRenderable*>(GetParentRenderable());
+
+	glDrawElements(GL_TRIANGLES, mesh->GetVertexCount(), GL_UNSIGNED_INT, (void*)0);
 }

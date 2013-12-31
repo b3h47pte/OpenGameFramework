@@ -619,6 +619,19 @@ SDL-InputTest/fast:
 .PHONY : SDL-InputTest/fast
 
 #=============================================================================
+# Target rules for targets named GFX-Cube
+
+# Build rule for target.
+GFX-Cube: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-Cube
+.PHONY : GFX-Cube
+
+# fast build rule for target.
+GFX-Cube/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-Cube/CMakeFiles/GFX-Cube.dir/build.make" "Delta Applications/Tests/GFX-Cube/CMakeFiles/GFX-Cube.dir/build"
+.PHONY : GFX-Cube/fast
+
+#=============================================================================
 # Target rules for targets named CORE-GTest-ConfigFile
 
 # Build rule for target.
@@ -770,6 +783,7 @@ help:
 	@echo "... GfxRenderExample"
 	@echo "... GfxViewportTest"
 	@echo "... SDL-InputTest"
+	@echo "... GFX-Cube"
 	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
 	@echo "... CORE-GTest-IntrusiveLink"

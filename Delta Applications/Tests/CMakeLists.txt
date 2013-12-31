@@ -8,4 +8,4 @@ add_subdirectory(GFX-TextureTest)
 add_subdirectory(GfxRenderExample)
 add_subdirectory(GfxViewportTest)
 add_subdirectory(SDL-InputTest)
-
+add_subdirectory(GFX-Cube)

@@ -42,6 +42,11 @@ public:
 	virtual void SetInternalShaderData(int i, SShaderData* data) { mInternalShaderData[i] = data; }
 	virtual void SetExternalShaderData(int i, SShaderData* data) { mExternalShaderData[i] = data; }
 
+	/*
+	 * Various Accessor Functions.
+	 */
+	const IRenderable* GetParentRenderable() const { return mParentRenderable; }
+
 protected:
 	/*
 	 * Render function. Called in the Gfx Backend Render loop.
