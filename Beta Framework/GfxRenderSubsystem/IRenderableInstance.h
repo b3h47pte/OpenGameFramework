@@ -16,7 +16,7 @@ struct SShaderData {
 	EShaderDataType mType;
 };
 
-class  IRenderableInstance:public WorldObject
+class IRenderableInstance:public WorldObject
 {
 public:
 	IRenderableInstance(class IRenderable*, WorldObject*);

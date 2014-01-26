@@ -2,7 +2,10 @@
 #include "IRenderable.h"
 #include "ITexture.h"
 
-IRenderableInstance::IRenderableInstance(IRenderable* inRen, WorldObject* inObj): mParentRenderable(inRen), mParentObject(inObj), mIsRegistered(false), mShaderProgramID(-1) {
+IRenderableInstance::IRenderableInstance(IRenderable* inRen, WorldObject* inObj): 
+                                          mParentRenderable(inRen), 
+                                          mParentObject(inObj), mIsRegistered(false),
+                                          mShaderProgramID(-1) {
 }
 
 

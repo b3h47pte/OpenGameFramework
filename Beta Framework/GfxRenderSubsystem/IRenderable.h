@@ -8,12 +8,21 @@
 
 /*
  * A renderable object (interface). 
- * If an object is renderable, it must be registered with the Gfx Subsystem which will handle making sure it gets rendered.
- * However, since we want to keep this as modular as possible, I don't specify in what format the renderable has to store its data so at is very primitive state
- *		I will just be reading in vertices/triangles, normals, various textures/color data via some interface functions and rendering that. 
- * EVENTUALLY, I will probably implement something to take care of animations and the like -- maybe allow for more specifics to make OBJ/FBX data more efficient (not sure how that'd work).
- * IRenderable WILL register itself when created and WILL un-register upon destruction. The programmer however is reponsible for marking the Renderable as being ready to render.
- * NOTE: IRenderable ISN'T an INSTANCE. IRenderableInstances are what ACTUALLY are rendered. IRenderables are registered but instances are registered to the IRenderable and they are what get rendered.
+ * If an object is renderable, it must be registered with the Gfx Subsystem 
+ * which will handle making sure it gets rendered.
+ * However, since we want to keep this as modular as possible, I don't specify
+ * in what format the renderable has to store its data so at is very primitive state
+ * I will just be reading in vertices/triangles, normals, 
+ * various textures/color data via some interface functions and rendering that. 
+ * EVENTUALLY, I will probably implement something to take care 
+ * of animations and the like -- maybe allow for more specifics to make 
+ * OBJ/FBX data more efficient (not sure how that'd work).
+ * IRenderable WILL register itself when created and WILL un-register upon 
+ * destruction. The programmer however is reponsible for marking 
+ * the Renderable as being ready to render.
+ * NOTE: IRenderable ISN'T an INSTANCE. IRenderableInstances are what 
+ *  ACTUALLY are rendered. IRenderables are registered but instances 
+ *  are registered to the IRenderable and they are what get rendered.
  */
 class  IRenderable
 {
