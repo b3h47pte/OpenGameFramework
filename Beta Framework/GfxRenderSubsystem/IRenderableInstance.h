@@ -36,11 +36,19 @@ public:
 	friend class IRenderable;
 	friend class GfxBackend;
 
-	virtual GLuint GetShaderProgram() const { return mShaderProgramID; }
+	virtual GLuint GetShaderProgram() const { 
+    return mShaderProgramID;
+  }
 	virtual void SetShaderProgram(GLuint in) { mShaderProgramID = in; }
-	GLint GetUniformLocation(const std::string& in) { return glGetUniformLocation(mShaderProgramID, in.c_str()); }
-	virtual void SetInternalShaderData(int i, SShaderData* data) { mInternalShaderData[i] = data; }
-	virtual void SetExternalShaderData(int i, SShaderData* data) { mExternalShaderData[i] = data; }
+	GLint GetUniformLocation(const std::string& in) { 
+    return glGetUniformLocation(mShaderProgramID, in.c_str()); 
+  }
+	virtual void SetInternalShaderData(int i, SShaderData& data) { 
+    mInternalShaderData[i] = data; 
+  }
+	virtual void SetExternalShaderData(int i, SShaderData& data) { 
+    mExternalShaderData[i] = data; 
+  }
 
 	/*
 	 * Various Accessor Functions.
@@ -80,9 +88,9 @@ private:
 	TIntrusiveLink<IRenderableInstance> mInstanceLink;
 
 	// Uniform Shader Data -- Differentiate between those set internally and those set externally so it can be thread-safe
-	std::map<GLint, SShaderData*> mInternalShaderData;
-	std::map<GLint, SShaderData*> mExternalShaderData;
-	typedef std::map<GLint, SShaderData*>::iterator SHADER_DATA_ITER_t;
+	std::map<GLint, SShaderData> mInternalShaderData;
+	std::map<GLint, SShaderData> mExternalShaderData;
+	typedef std::map<GLint, SShaderData>::iterator SHADER_DATA_ITER_t;
 	/*
 	 * Whether or not this renderable has already been registered by the backend.
 	 * NEVER CHANGE THIS VARIABLE WITHIN IRENDERABLEINSTANCE -- aside from the unregister function.
@@ -101,7 +109,7 @@ private:
 
 	// Load Uniform/Non-Uniform Data into shader program. 
 	// TODO: Do non-uniform data later when I know how it works.
-	void SetUniformShaderData(GLint, SShaderData*);
+	void SetUniformShaderData(GLint, SShaderData&);
 };
 
 #endif // _IRENDERABLEINSTANCE_H

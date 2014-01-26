@@ -24,13 +24,34 @@ public:
 	static glm::vec4	GetWorldForward() { return glm::vec4(0.f, 0.f, -1.f, 0.f); }
 	static glm::vec4	GetWorldRight() { return glm::vec4(1.f, 0.f, 0.f, 0.f); }
 
+  /*
+   * Utility functions for doing simple rotations and translations.
+   */
+  void MoveForward(float distance) {
+    mPosition += GetForwardDirection() * distance;
+    UpdateTransformationMatrix();
+  }
+
+  void MoveRight(float distance) {
+    mPosition += GetRightDirection() * distance;
+    UpdateTransformationMatrix();
+  }
+
+  void MoveUp(float distance) {
+    mPosition += GetUpDirection() * distance;
+    UpdateTransformationMatrix();
+  }
+
 	/*
 	 * Accessor methods for position and rotation.
 	 */
 	virtual glm::vec4		GetPosition() const { return mPosition; }
-	void			SetPosition(const glm::vec4& in) { mPosition = in; UpdateTransformationMatrix(); }
+	void SetPosition(const glm::vec4& in) { 
+    mPosition = in; 
+    UpdateTransformationMatrix(); 
+  }
 
-	virtual glm::fquat		GetQuaternion() const { return mRotation; }
+	virtual glm::fquat GetQuaternion() const { return mRotation; }
 	glm::vec3		GetEulerAngles() const { return glm::eulerAngles(mRotation); }
 	glm::mat4		GetRotationMatrix() const { return glm::mat4_cast(mRotation); }
 	void			SetRotation(const glm::fquat& in) { mRotation = in; UpdateTransformationMatrix(); }
@@ -52,5 +73,6 @@ private:
 	glm::vec4	mPosition;
 	glm::fquat	mRotation;
 };
+
 
 #endif // _WORLDOBJECT_H

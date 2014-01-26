@@ -37,14 +37,16 @@ void GfxBackend::Render(float inDeltaTime) {
 	mActiveViewport->GetViewportPosition(x, y);
 	glViewport(x, y, mActiveViewport->GetViewportWidth(), mActiveViewport->GetViewportHeight());
 
-	glm::mat4 camPerspective = glm::perspective(mActiveViewport->GetCamera()->GetFOV(), 
-		mActiveViewport->GetCamera()->GetAspectRatio(), mActiveViewport->GetCamera()->GetZNear(),
-		mActiveViewport->GetCamera()->GetZFar());
+	glm::mat4 projectionMat = 
+    glm::perspective(mActiveViewport->GetCamera()->GetFOV(), 
+		  mActiveViewport->GetCamera()->GetAspectRatio(), 
+      mActiveViewport->GetCamera()->GetZNear(),
+		  mActiveViewport->GetCamera()->GetZFar());
 	
 	glm::mat4 viewMat = mActiveViewport->GetCamera()->GetTransformationMatrix();
 	
 	SShaderData projData;
-	projData.mData = &camPerspective;
+	projData.mData = &projectionMat;
 	projData.mType = ESDT_MATRIX4x4;
 	projData.mUniform = true;
 
@@ -52,6 +54,7 @@ void GfxBackend::Render(float inDeltaTime) {
 	viewData.mData = &viewMat;
 	viewData.mType = ESDT_MATRIX4x4;
 	viewData.mUniform = true;
+
 	
 	// Step through all registered renderables anx	d grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
@@ -60,7 +63,8 @@ void GfxBackend::Render(float inDeltaTime) {
 		// Renderable will take care of setting its data up so its children can render
 		if (curRenderPtr->PrepareToRender()) {
 
-			// For each Renderable, go through its instances and grab their appropriate information so we can draw 
+			// For each Renderable, go through its instances and grab 
+      // their appropriate information so we can draw 
 			// everything with the same material and mesh in one go
 			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 			
@@ -73,10 +77,10 @@ void GfxBackend::Render(float inDeltaTime) {
 				// MODEL matrix will be determined by the mesh/renderable itself. 
 				// TODO: Generalize this based on the actual object...somehow.
 				int projIndx = curInstPtr->GetUniformLocation("projection_matrix");
-				curInstPtr->SetInternalShaderData(projIndx, &projData);
+				curInstPtr->SetInternalShaderData(projIndx, projData);
 
 				int viewIndx = curInstPtr->GetUniformLocation("view_matrix");
-				curInstPtr->SetInternalShaderData(viewIndx, &viewData);
+				curInstPtr->SetInternalShaderData(viewIndx, viewData);
 
 				curInstPtr->OnRender();
 				curInstPtr->FinishRender();

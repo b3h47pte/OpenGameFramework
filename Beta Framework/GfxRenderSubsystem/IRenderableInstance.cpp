@@ -14,7 +14,8 @@ IRenderableInstance::~IRenderableInstance(void) {
 }
 
 /*
- * Unregister the renderable from the backend. We can access the linked list via our link.
+ * Unregister the renderable from the backend. 
+ * We can access the linked list via our link.
  */
 void IRenderableInstance::UnregisterRenderableInstance() {
 	if (!mIsRegistered)
@@ -51,14 +52,16 @@ void IRenderableInstance::OnRender() {
 void IRenderableInstance::PrepareShaderData() {
 	if (mShaderProgramID != -1) {
 		mTextureLocationCount = 0;
-		for(SHADER_DATA_ITER_t iterator = mInternalShaderData.begin(); iterator != mInternalShaderData.end(); iterator++) {
-			if (iterator->second->mUniform) {
+		for(SHADER_DATA_ITER_t iterator = mInternalShaderData.begin(); 
+        iterator != mInternalShaderData.end(); iterator++) {
+			if (iterator->second.mUniform) {
 				SetUniformShaderData(iterator->first, iterator->second);
 			}
 		}
 
-		for(SHADER_DATA_ITER_t iterator = mExternalShaderData.begin(); iterator != mExternalShaderData.end(); iterator++) {
-			if (iterator->second->mUniform) {
+		for(SHADER_DATA_ITER_t iterator = mExternalShaderData.begin(); 
+        iterator != mExternalShaderData.end(); iterator++) {
+			if (iterator->second.mUniform) {
 				SetUniformShaderData(iterator->first, iterator->second);
 			}
 		}
@@ -67,6 +70,15 @@ void IRenderableInstance::PrepareShaderData() {
 
 void IRenderableInstance::PrepareRender() {
 	glUseProgram(mShaderProgramID);
+
+  // Model Matrix
+  SShaderData modelData;
+  modelData.mType = ESDT_MATRIX4x4;
+  modelData.mData = &mTransformationMatrix;
+  modelData.mUniform = true;
+
+  int modelIndx = GetUniformLocation("model_matrix");
+  SetInternalShaderData(modelIndx, modelData);
 
 	PreRender();
 }
@@ -80,18 +92,19 @@ void IRenderableInstance::FinishRender() {
 /*
  * Calls the appropriate glUniform* function on the shader.
  */
-void IRenderableInstance::SetUniformShaderData(GLint inLoc, SShaderData* inData) {
-	switch (inData->mType) {
+void IRenderableInstance::SetUniformShaderData(GLint inLoc, SShaderData& inData) {
+	switch (inData.mType) {
 	case ESDT_MATRIX4x4:
-		glUniformMatrix4fv(inLoc, 1, GL_FALSE, glm::value_ptr(*(glm::vec4*)inData->mData));
+		glUniformMatrix4fv(inLoc, 1, GL_FALSE, 
+      glm::value_ptr(*(glm::vec4*)inData.mData));
 		break;
 	case ESDT_TEX2D:
 		{
 			glUseProgram(mShaderProgramID);
-			GLint loc = glGetUniformLocation(mShaderProgramID, inData->mLocation.c_str());
+			GLint loc = glGetUniformLocation(mShaderProgramID, inData.mLocation.c_str());
 			glUniform1i(loc, mTextureLocationCount);
 			glActiveTexture(GL_TEXTURE0 + mTextureLocationCount);
-			ITexture* tex = (ITexture*)inData->mData;
+			ITexture* tex = (ITexture*)inData.mData;
 			glBindTexture(tex->GetTextureBindTarget(), tex->GetTextureID());
 			++mTextureLocationCount;
 		}

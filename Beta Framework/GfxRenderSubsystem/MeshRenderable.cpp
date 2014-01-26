@@ -52,15 +52,16 @@ IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parOb
 	glDetachShader(newProg, mVertexShaderId);
 	glDetachShader(newProg, mFragShaderId);
 	newInst->SetShaderProgram(newProg);
-	if (glIsProgram(newProg) == GL_FALSE) std::cout << "no longer a program?" <<std::endl;
+	if (glIsProgram(newProg) == GL_FALSE) 
+    std::cout << "no longer a program?" <<std::endl;
 	
 	return newInst;
 }
 
 /*
- * FinalizeData will take the vertex/shader/material data that was input and then create the 
- * necessary OpenGL buffers and shaders and retain information necessary
- * for this renerable to reload the state later for rendering. Also handled registering the mesh with the graphics subsystem.
+ * FinalizeData will take the vertex/shader/material data that was input 
+ * and then create the necessary OpenGL buffers and shaders and retain the
+ * information necessary for this renerable to reload the state later for rendering.  * Also handled registering the mesh with the graphics subsystem.
  */
 void MeshRenderable::FinalizeData() {
 	
@@ -156,6 +157,7 @@ void MeshRenderable::AddVertexTex(float t[2]) {
 void MeshRenderable::SetShaderProgram(const std::string&)  {
 	assert(1== 0);
 }
+
 /*
  * Set Vertex/Frag Shaders. 
  */

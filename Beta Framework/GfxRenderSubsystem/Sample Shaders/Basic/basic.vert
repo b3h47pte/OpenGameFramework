@@ -1,6 +1,6 @@
 #version 330
 
-uniform mat4 projection_matrix, view_matrix;
+uniform mat4 projection_matrix, view_matrix, model_matrix;
 
 layout(location = 0) in vec4 vPosition;
 layout(location = 1) in vec4 vNormal;
@@ -10,5 +10,5 @@ out vec4 vs_color;
 
 void main() {
 	vs_color = vec4(0.f, 1.f, 1.f, 1.f);
-	gl_Position = projection_matrix * view_matrix * vPosition;
+	gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
 }
