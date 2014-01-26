@@ -632,6 +632,19 @@ GFX-Cube/fast:
 .PHONY : GFX-Cube/fast
 
 #=============================================================================
+# Target rules for targets named GFX-MultiCube
+
+# Build rule for target.
+GFX-MultiCube: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-MultiCube
+.PHONY : GFX-MultiCube
+
+# fast build rule for target.
+GFX-MultiCube/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-MultiCube/CMakeFiles/GFX-MultiCube.dir/build.make" "Delta Applications/Tests/GFX-MultiCube/CMakeFiles/GFX-MultiCube.dir/build"
+.PHONY : GFX-MultiCube/fast
+
+#=============================================================================
 # Target rules for targets named CORE-GTest-ConfigFile
 
 # Build rule for target.
@@ -784,6 +797,7 @@ help:
 	@echo "... GfxViewportTest"
 	@echo "... SDL-InputTest"
 	@echo "... GFX-Cube"
+	@echo "... GFX-MultiCube"
 	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
 	@echo "... CORE-GTest-IntrusiveLink"
