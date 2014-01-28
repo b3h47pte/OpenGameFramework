@@ -19,3 +19,12 @@ GfxCamera::GfxCamera(void): mZFar(200.f), mZNear(0.5f)
 GfxCamera::~GfxCamera(void)
 {
 }
+
+/*
+ * Construct the view matrix. 
+ */
+void GfxCamera::UpdateTransformationMatrix() {
+  mTransformationMatrix = glm::lookAt(glm::vec3(GetPosition()),
+    glm::vec3(GetPosition() + GetForwardDirection()),
+    glm::vec3(GetWorldUp()));
+}

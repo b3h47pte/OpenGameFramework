@@ -51,6 +51,11 @@ public:
     UpdateTransformationMatrix(); 
   }
 
+  glm::mat4 GetTranslationMatrix() const {
+    return glm::translate(glm::mat4(1.f),
+      glm::vec3(mPosition));
+  }
+
 	virtual glm::fquat GetQuaternion() const { 
     return mRotation; 
   }

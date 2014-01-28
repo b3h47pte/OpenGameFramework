@@ -44,8 +44,11 @@ public:
 	virtual void SetZFar(float in) { mZFar = in; }
 
   virtual glm::mat4 GetProjectionMatrix() const {
-    return glm::perpsective(GetFOV(), GetAspectRatio(), GetZNear(), GetZFar());
+    return glm::perspective(GetFOV(), GetAspectRatio(), GetZNear(), GetZFar());
   }
+
+protected:
+  virtual void UpdateTransformationMatrix();
 
 private:
 	/*

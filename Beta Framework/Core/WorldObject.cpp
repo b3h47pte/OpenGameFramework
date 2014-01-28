@@ -15,7 +15,6 @@ WorldObject::~WorldObject(void) {
  * get a matrix that represents the orientation of the object.
  */
 void WorldObject::UpdateTransformationMatrix() {
-	mTransformationMatrix = glm::lookAt(glm::vec3(mPosition), 
-    glm::vec3(mPosition + GetForwardDirection()), 
-    glm::vec3(GetWorldUp()));
+  // Scale, then Rotate, then Translate.
+  mTransformationMatrix = GetTranslationMatrix()  * GetRotationMatrix();
 }
