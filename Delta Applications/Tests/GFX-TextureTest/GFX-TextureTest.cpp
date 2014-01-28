@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.frag");
 	mesh->FinalizeData();
 	IRenderableInstance* inst = mesh->CreateAndRegisterInstance(NULL);
-	inst->SetExternalShaderData(0, &texData);
+	inst->SetExternalShaderData(0, texData);
 
 	while(gfx->ShouldTick()) {
 		gfx->Tick(0.1f);
