@@ -17,6 +17,8 @@ public:
 
 	virtual float GetZFar() const = 0;
 	virtual void SetZFar(float) = 0;
+
+  virtual glm::mat4 GetProjectionMatrix() const = 0;
 };
 
 /*
@@ -40,6 +42,10 @@ public:
 
 	virtual float GetZFar() const { return mZFar; }
 	virtual void SetZFar(float in) { mZFar = in; }
+
+  virtual glm::mat4 GetProjectionMatrix() const {
+    return glm::perpsective(GetFOV(), GetAspectRatio(), GetZNear(), GetZFar());
+  }
 
 private:
 	/*
