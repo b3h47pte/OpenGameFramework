@@ -51,19 +51,49 @@ public:
     UpdateTransformationMatrix(); 
   }
 
-	virtual glm::fquat GetQuaternion() const { return mRotation; }
-	glm::vec3		GetEulerAngles() const { return glm::eulerAngles(mRotation); }
-	glm::mat4		GetRotationMatrix() const { return glm::mat4_cast(mRotation); }
-	void			SetRotation(const glm::fquat& in) { mRotation = in; UpdateTransformationMatrix(); }
-	void			SetRotation(const glm::vec3& axis, float w) { mRotation = glm::angleAxis(w, glm::normalize(axis)); UpdateTransformationMatrix();}
-	void			SetRotation(const glm::vec3& in) { mRotation = glm::fquat(in); UpdateTransformationMatrix(); }
-	void			SetRotation(const glm::mat4& in) { mRotation = glm::toQuat(in); UpdateTransformationMatrix(); }
+	virtual glm::fquat GetQuaternion() const { 
+    return mRotation; 
+  }
 
-	virtual glm::mat4		GetTransformationMatrix() { return mTransformationMatrix; }
+	glm::vec3	GetEulerAngles() const { 
+    return glm::eulerAngles(mRotation); 
+  }
 
-	virtual glm::vec4 GetForwardDirection() const { return glm::normalize(GetRotationMatrix() * GetWorldForward()); }
-	virtual glm::vec4 GetRightDirection() const { return glm::normalize(GetRotationMatrix() * GetWorldRight()); }
-	virtual glm::vec4 GetUpDirection() const { return glm::normalize(GetRotationMatrix() * GetWorldUp()); }
+	glm::mat4	GetRotationMatrix() const { 
+    return glm::mat4_cast(mRotation); 
+  }
+
+	void SetRotation(const glm::fquat& in) { 
+    mRotation = in; 
+    UpdateTransformationMatrix(); 
+  }
+
+	void SetRotation(const glm::vec3& axis, float w) { 
+    mRotation = glm::angleAxis(w, glm::normalize(axis)); 
+    UpdateTransformationMatrix();
+  }
+
+	void SetRotation(const glm::vec3& in) { 
+    mRotation = glm::fquat(in); 
+    UpdateTransformationMatrix(); 
+  }
+
+	void SetRotation(const glm::mat4& in) { 
+    mRotation = glm::toQuat(in); 
+    UpdateTransformationMatrix(); 
+  } 
+
+	virtual glm::mat4	GetTransformationMatrix() { return mTransformationMatrix; }
+
+	virtual glm::vec4 GetForwardDirection() const { 
+    return glm::normalize(GetRotationMatrix() * GetWorldForward()); 
+  }
+	virtual glm::vec4 GetRightDirection() const { 
+    return glm::normalize(GetRotationMatrix() * GetWorldRight()); 
+  }
+	virtual glm::vec4 GetUpDirection() const { 
+    return glm::normalize(GetRotationMatrix() * GetWorldUp()); 
+  }
 
 protected:
 	virtual void	UpdateTransformationMatrix();
