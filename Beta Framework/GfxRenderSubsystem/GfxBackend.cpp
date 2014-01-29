@@ -126,6 +126,8 @@ bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
 		return false;
 	}
 
+  glEnable(GL_DEPTH_TEST);
+
 	glViewport(0, 0, width, height);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
