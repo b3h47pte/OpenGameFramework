@@ -74,8 +74,8 @@ public:
 		glm::vec4 pos = GetPosition();
 		glm::vec4 fdir = GetForwardDirection();
 		glm::vec4 rdir = GetRightDirection();
-		glm::vec4 udir = GetUpDirection();
-		pos += (delta * (fdir * 1.f * mForward + rdir * 1.f * mRight + udir * 1.f * mUp));
+		pos += (delta * (fdir * 1.f * mForward + rdir * 1.f * 
+      mRight + GetWorldUp() * 1.f * mUp));
 		SetPosition(pos);
 
 		glm::mat4 rot = GetRotationMatrix();
