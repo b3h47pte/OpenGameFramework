@@ -78,7 +78,8 @@ void MeshRenderable::FinalizeData() {
 	glGenBuffers(1, &mVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size() 
-		+ sizeof(glm::vec2) * mTexCoords.size(), NULL, GL_STATIC_DRAW);
+		+ sizeof(glm::vec2) * mTexCoords.size()
+    + GetSizeOfExternalVertexAttr(), NULL, GL_STATIC_DRAW);
 
 	// Vertex Position
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * mVertexPosition.size(), &mVertexPosition[0]);
@@ -87,17 +88,28 @@ void MeshRenderable::FinalizeData() {
 	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size(), sizeof(glm::vec4) * mVertexNormals.size(), &mVertexNormals[0]);
 
 	// Vertex Tex Coord
-	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size(), 
+	glBufferSubData(GL_ARRAY_BUFFER, 
+    sizeof(glm::vec4) * mVertexPosition.size() + 
+      sizeof(glm::vec4) * mVertexNormals.size(), 
 		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]);
 	
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0,  (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*) (sizeof(glm::vec4) * mVertexPosition.size()));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 
+    (void*) (sizeof(glm::vec4) * mVertexPosition.size()));
 	glEnableVertexAttribArray(1);
 
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*) (sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size()));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 
+    (void*) (sizeof(glm::vec4) * mVertexPosition.size() + 
+    sizeof(glm::vec4) * mVertexNormals.size()));
 	glEnableVertexAttribArray(2);
+
+  // Load in and Enable External Per-Vertex Attributes.
+  LoadExternalPerVertexAttr(3,
+    sizeof(glm::vec4) * mVertexPosition.size() + 
+    sizeof(glm::vec4) * mVertexNormals.size() + 
+    sizeof(glm::vec2) * mTexCoords.size());
 
 	// Load Shader Data 
 	// TODO: Load shader program from binary using the shader program name
@@ -167,4 +179,68 @@ void MeshRenderable::SetVertexShader(const std::string& in) {
 
 void MeshRenderable::SetFragShader(const std::string& in) {
 	mFragShaderFile = in;
+}
+
+/*
+ * Support Externally Declared Per-Vertex Attributes.
+ */
+size_t MeshRenderable::GetSizeOfExternalVertexAttr() const {
+  size_t size = 0;
+  size_t mul;
+  for (auto pvd : mExternalPerVertexAttr) {
+    switch (pvd.componentCount) {
+    case 1:
+      mul = sizeof(float);
+      break;
+    case 2:
+      mul = sizeof(glm::vec2);
+      break;
+    case 3:
+      mul = sizeof(glm::vec3);
+      break;
+    case 4:
+      mul = sizeof(glm::vec4);
+      break;
+    default:
+      mul = 0;
+      break;
+    }
+    size += mul * pvd.data.size();
+  }
+  return size;
+}
+
+void MeshRenderable::LoadExternalPerVertexAttr(int startIdx, size_t startSize) {
+  size_t mul;
+  for (auto pvd : mExternalPerVertexAttr) {
+    switch (pvd.componentCount) {
+    case 1:
+      mul = sizeof(float);
+      break;
+    case 2:
+      mul = sizeof(glm::vec2);
+      break;
+    case 3:
+      mul = sizeof(glm::vec3);
+      break;
+    case 4:
+      mul = sizeof(glm::vec4);
+      break;
+    default:
+      mul = 0;
+      break;
+    }
+
+    if (mul == 0)
+      continue;
+
+	  glBufferSubData(GL_ARRAY_BUFFER, startSize,
+      mul * pvd.data.size(), &pvd.data[0]);
+
+    glVertexAttribPointer(startIdx, pvd.componentCount, GL_FLOAT, GL_FALSE, 0, 
+      (void*)startSize);
+    glEnableVertexAttribArray(startIdx);
+
+    startSize += mul * pvd.data.size();
+  }
 }

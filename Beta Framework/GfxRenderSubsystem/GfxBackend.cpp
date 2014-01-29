@@ -35,7 +35,9 @@ void GfxBackend::Render(float inDeltaTime) {
 	int x;
 	int y;
 	mActiveViewport->GetViewportPosition(x, y);
-	glViewport(x, y, mActiveViewport->GetViewportWidth(), mActiveViewport->GetViewportHeight());
+	glViewport(x, y, 
+    mActiveViewport->GetViewportWidth(), 
+    mActiveViewport->GetViewportHeight());
 
 	glm::mat4 projectionMat = mActiveViewport->GetCamera()->GetProjectionMatrix();
 	glm::mat4 viewMat = mActiveViewport->GetCamera()->GetTransformationMatrix();

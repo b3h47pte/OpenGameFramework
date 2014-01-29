@@ -658,6 +658,19 @@ GFX-MultiCubeTex/fast:
 .PHONY : GFX-MultiCubeTex/fast
 
 #=============================================================================
+# Target rules for targets named GFX-Ambient
+
+# Build rule for target.
+GFX-Ambient: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-Ambient
+.PHONY : GFX-Ambient
+
+# fast build rule for target.
+GFX-Ambient/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build.make" "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build"
+.PHONY : GFX-Ambient/fast
+
+#=============================================================================
 # Target rules for targets named CORE-GTest-ConfigFile
 
 # Build rule for target.
@@ -812,6 +825,7 @@ help:
 	@echo "... GFX-Cube"
 	@echo "... GFX-MultiCube"
 	@echo "... GFX-MultiCubeTex"
+	@echo "... GFX-Ambient"
 	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
 	@echo "... CORE-GTest-IntrusiveLink"
