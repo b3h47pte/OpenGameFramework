@@ -88,8 +88,8 @@ int main(int argc, char** argv)
 	for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i) 
 		mesh->AddTriangleIndex(cube_elements[i]);
 
-	mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Ambient/ambient.vert");
-	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Ambient/ambient.frag");
+	mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/MultiColor/multicolor.vert");
+	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/MultiColor/multicolor.frag");
 	mesh->FinalizeData();
 
   // Create 3x3x3 grid of cubes.

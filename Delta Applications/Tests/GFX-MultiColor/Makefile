@@ -82,14 +82,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/michaelbao/Code/ogf && $(CMAKE_COMMAND) -E cmake_progress_start /Users/michaelbao/Code/ogf/CMakeFiles "/Users/michaelbao/Code/ogf/Delta Applications/Tests/GFX-Ambient/CMakeFiles/progress.marks"
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-Ambient/all"
+	cd /Users/michaelbao/Code/ogf && $(CMAKE_COMMAND) -E cmake_progress_start /Users/michaelbao/Code/ogf/CMakeFiles "/Users/michaelbao/Code/ogf/Delta Applications/Tests/GFX-MultiColor/CMakeFiles/progress.marks"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-MultiColor/all"
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/michaelbao/Code/ogf/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-Ambient/clean"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-MultiColor/clean"
 .PHONY : clean
 
 # The main clean target
@@ -98,12 +98,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-Ambient/preinstall"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-MultiColor/preinstall"
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-Ambient/preinstall"
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-MultiColor/preinstall"
 .PHONY : preinstall/fast
 
 # clear depends
@@ -112,42 +112,42 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-Delta\ Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/rule:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/rule"
-.PHONY : Delta\ Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/rule
+Delta\ Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/rule:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f CMakeFiles/Makefile2 "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/rule"
+.PHONY : Delta\ Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/rule
 
 # Convenience name for target.
-GFX-Ambient: Delta\ Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/rule
-.PHONY : GFX-Ambient
+GFX-MultiColor: Delta\ Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/rule
+.PHONY : GFX-MultiColor
 
 # fast build rule for target.
-GFX-Ambient/fast:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build.make" "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build"
-.PHONY : GFX-Ambient/fast
+GFX-MultiColor/fast:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build.make" "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build"
+.PHONY : GFX-MultiColor/fast
 
-GFX-Ambient.o: GFX-Ambient.cpp.o
-.PHONY : GFX-Ambient.o
+GFX-MultiColor.o: GFX-MultiColor.cpp.o
+.PHONY : GFX-MultiColor.o
 
 # target to build an object file
-GFX-Ambient.cpp.o:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build.make" "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/GFX-Ambient.cpp.o"
-.PHONY : GFX-Ambient.cpp.o
+GFX-MultiColor.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build.make" "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/GFX-MultiColor.cpp.o"
+.PHONY : GFX-MultiColor.cpp.o
 
-GFX-Ambient.i: GFX-Ambient.cpp.i
-.PHONY : GFX-Ambient.i
+GFX-MultiColor.i: GFX-MultiColor.cpp.i
+.PHONY : GFX-MultiColor.i
 
 # target to preprocess a source file
-GFX-Ambient.cpp.i:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build.make" "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/GFX-Ambient.cpp.i"
-.PHONY : GFX-Ambient.cpp.i
+GFX-MultiColor.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build.make" "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/GFX-MultiColor.cpp.i"
+.PHONY : GFX-MultiColor.cpp.i
 
-GFX-Ambient.s: GFX-Ambient.cpp.s
-.PHONY : GFX-Ambient.s
+GFX-MultiColor.s: GFX-MultiColor.cpp.s
+.PHONY : GFX-MultiColor.s
 
 # target to generate assembly for a file
-GFX-Ambient.cpp.s:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build.make" "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/GFX-Ambient.cpp.s"
-.PHONY : GFX-Ambient.cpp.s
+GFX-MultiColor.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build.make" "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/GFX-MultiColor.cpp.s"
+.PHONY : GFX-MultiColor.cpp.s
 
 # Help Target
 help:
@@ -155,13 +155,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... GFX-Ambient"
+	@echo "... GFX-MultiColor"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... GFX-Ambient.o"
-	@echo "... GFX-Ambient.i"
-	@echo "... GFX-Ambient.s"
+	@echo "... GFX-MultiColor.o"
+	@echo "... GFX-MultiColor.i"
+	@echo "... GFX-MultiColor.s"
 .PHONY : help
 
 

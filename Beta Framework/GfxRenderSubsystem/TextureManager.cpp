@@ -9,7 +9,8 @@ TextureManager* GetTextureManager() {
 	return mng;
 }
 
-TextureManager::TextureManager(void): mTextureInvalidationTime(DEFAULT_TEXTURE_INVALID_TIME) {
+TextureManager::TextureManager(void): 
+  mTextureInvalidationTime(DEFAULT_TEXTURE_INVALID_TIME) {
 }
 
 
@@ -39,14 +40,16 @@ void TextureManager::Tick(float delta) {
  * after a specified amount of time (configurable, most likely?) of idleness,
  * the texture will be removed.
  */
-bool TextureManager::CheckTextureInvalid(clock_t curTime, class ITexture* inTexture) const {
+bool TextureManager::CheckTextureInvalid(clock_t curTime, 
+                                         class ITexture* inTexture) const {
 	if (inTexture->mReleased)
 		return true;
 
 	if (inTexture->mTextureUseCount > 0)
 		return false;
 
-	if (curTime - inTexture->mTextureLastTouch < mTextureInvalidationTime)
+  clock_t timeElapsed = (curTime - inTexture->mTextureLastTouch) / CLOCKS_PER_SEC;
+	if (timeElapsed < mTextureInvalidationTime)
 		return false;
 
 	return true;
@@ -67,7 +70,10 @@ ITexture* TextureManager::GetTexture(const std::string& id) {
 	return NULL;
 }
 
-ITexture* TextureManager::CreateTexture(const std::string& id, ETextureType type, ETextureDataType dataType) {
+ITexture* TextureManager::CreateTexture(const std::string& id, 
+                                        ETextureType type, 
+                                        ETextureDataType dataType) {
+
 	ITexture* newTex = new ITexture();
 	newTex->mTextureType = type;
 	if (type == ETT_2D) {
@@ -78,7 +84,8 @@ ITexture* TextureManager::CreateTexture(const std::string& id, ETextureType type
 	return newTex;
 }
 
-void TextureManager::SetTextureSpecification(class ITexture* tex, int numTextures, int texWidth, int texHeight) {
+void TextureManager::SetTextureSpecification(class ITexture* tex, int numTextures, 
+                                              int texWidth, int texHeight) {
 	tex->mTextureData = CreateTextureArray(tex->mTextureDataType, numTextures);
 	tex->mNumTextures = numTextures;
 	tex->mTexSizeWidth = texWidth;
@@ -86,20 +93,19 @@ void TextureManager::SetTextureSpecification(class ITexture* tex, int numTexture
 	tex->KeepAliveTouch();
 }
 
-void TextureManager::SetTextureData(class ITexture* tex, int texNum, void* texData) {
-	
-
-
+void TextureManager::SetTextureData(class ITexture* tex, int texNum, 
+                                    void* texData) {
 	size_t dataEleSize = -1;
-	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, tex->mTexSizeWidth, tex->mTexSizeHeight, dataEleSize);
+	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, 
+                                                tex->mTexSizeWidth, 
+                                                tex->mTexSizeHeight, dataEleSize);
 	if (!tex->mTextureData[texNum]) {
 		return;
 	}
 
-	
-
-
-	memcpy(tex->mTextureData[texNum], texData, dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
+	memcpy(tex->mTextureData[texNum], 
+         texData, 
+         dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
 	tex->TextureDataLoaded();
 }
 
@@ -118,7 +124,8 @@ void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {
 	return NULL;
 }
 
-void* TextureManager::CreateTextureData(ETextureDataType type, int width, int height, size_t& outSize) {
+void* TextureManager::CreateTextureData(ETextureDataType type, int width, 
+                                        int height, size_t& outSize) {
 	int num = width * height * 3;
 	switch (type) {
 	case ETDT_INT:

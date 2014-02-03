@@ -658,17 +658,17 @@ GFX-MultiCubeTex/fast:
 .PHONY : GFX-MultiCubeTex/fast
 
 #=============================================================================
-# Target rules for targets named GFX-Ambient
+# Target rules for targets named GFX-MultiColor
 
 # Build rule for target.
-GFX-Ambient: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 GFX-Ambient
-.PHONY : GFX-Ambient
+GFX-MultiColor: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-MultiColor
+.PHONY : GFX-MultiColor
 
 # fast build rule for target.
-GFX-Ambient/fast:
-	$(MAKE) -f "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build.make" "Delta Applications/Tests/GFX-Ambient/CMakeFiles/GFX-Ambient.dir/build"
-.PHONY : GFX-Ambient/fast
+GFX-MultiColor/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build.make" "Delta Applications/Tests/GFX-MultiColor/CMakeFiles/GFX-MultiColor.dir/build"
+.PHONY : GFX-MultiColor/fast
 
 #=============================================================================
 # Target rules for targets named CORE-GTest-ConfigFile
@@ -825,7 +825,7 @@ help:
 	@echo "... GFX-Cube"
 	@echo "... GFX-MultiCube"
 	@echo "... GFX-MultiCubeTex"
-	@echo "... GFX-Ambient"
+	@echo "... GFX-MultiColor"
 	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
 	@echo "... CORE-GTest-IntrusiveLink"

@@ -293,30 +293,6 @@ GfxWindow.cpp.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/GfxWindow.cpp.s"
 .PHONY : GfxWindow.cpp.s
 
-ILight.o: ILight.cpp.o
-.PHONY : ILight.o
-
-# target to build an object file
-ILight.cpp.o:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/ILight.cpp.o"
-.PHONY : ILight.cpp.o
-
-ILight.i: ILight.cpp.i
-.PHONY : ILight.i
-
-# target to preprocess a source file
-ILight.cpp.i:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/ILight.cpp.i"
-.PHONY : ILight.cpp.i
-
-ILight.s: ILight.cpp.s
-.PHONY : ILight.s
-
-# target to generate assembly for a file
-ILight.cpp.s:
-	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/ILight.cpp.s"
-.PHONY : ILight.cpp.s
-
 IRenderable.o: IRenderable.cpp.o
 .PHONY : IRenderable.o
 
@@ -540,9 +516,6 @@ help:
 	@echo "... GfxWindow.o"
 	@echo "... GfxWindow.i"
 	@echo "... GfxWindow.s"
-	@echo "... ILight.o"
-	@echo "... ILight.i"
-	@echo "... ILight.s"
 	@echo "... IRenderable.o"
 	@echo "... IRenderable.i"
 	@echo "... IRenderable.s"
