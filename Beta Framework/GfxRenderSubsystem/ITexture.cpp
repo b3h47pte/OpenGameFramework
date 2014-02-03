@@ -24,14 +24,15 @@ void ITexture::ReleaseResources() {
 	mReleased = true;
 }
 
-void ITexture::TextureDataLoaded() {
-
+void ITexture::PreTextureDataLoaded() {
 	glBindTexture(mBindTarget, mTextureID);
-	// TODO: Generalize and support more mip levels and different data formats.
-	glTexStorage2D(mBindTarget, 4, GL_RGB8, mTexSizeWidth, mTexSizeHeight);
-	glTexSubImage2D(mBindTarget, 0, 0, 0, mTexSizeWidth, mTexSizeHeight, GL_RGB, GL_UNSIGNED_BYTE, mTextureData[0]);
+}
 
-	// TODO: Generalize this into settable parameters as well
+void ITexture::TextureDataLoaded() {
+}
+
+void ITexture::PostTextureDataLoaded() {
+  // TODO: Generalize this into settable parameters as well
 	glTexParameteri(mBindTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(mBindTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(mBindTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

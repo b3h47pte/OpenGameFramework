@@ -14,7 +14,7 @@
  */
 enum ETextureType {
 	ETT_2D,
-  ETT_3D,
+  ETT_CUBE,
 	ETT_UNKNOWN
 };
 

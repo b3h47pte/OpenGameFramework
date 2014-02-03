@@ -38,7 +38,8 @@ GfxReadOBJFile(std::string inFile) {
 		// First extract the definition
 		istringstream iss(s);
 		vector<string> lineData;
-		copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(lineData));
+		copy(istream_iterator<string>(iss), istream_iterator<string>(), 
+          back_inserter<vector<string> >(lineData));
 
 		if (lineData.size() == 0) 
 			continue;
@@ -53,9 +54,11 @@ GfxReadOBJFile(std::string inFile) {
 
 		if (lineData[0].compare("v") == 0) {
 			// Vertex Position
-			// Only support vertices that supply x, y, z. Anything less is an error. Anything more will be ignored.
+			// Only support vertices that supply x, y, z. Anything less is an error. 
+      // Anything more will be ignored.
 			if (lineData.size() < 4) {
-				cout << "ReadOBJFile Error: Input 'v' definition has less than 4 arguments on line: " << lineNum << endl;
+				cout << "ReadOBJFile Error: Input 'v' definition has less than \
+                  4 arguments on line: " << lineNum << endl;
 				return NULL;
 			}
 			float p[4] = {atof(lineData[1].c_str()), atof(lineData[2].c_str()), atof(lineData[3].c_str()), 1.f };
@@ -63,7 +66,8 @@ GfxReadOBJFile(std::string inFile) {
 		} else if (lineData[0].compare("vt") == 0) {
 			// Vertex Texture Coordinate
 			if (lineData.size() < 3) {
-				cout << "ReadOBJFile Error: Input 'vt' definition has less than 3 arguments on line: " << lineNum << endl;
+				cout << "ReadOBJFile Error: Input 'vt' definition has less than 3 \
+                  arguments on line: " << lineNum << endl;
 				return NULL;
 			}
 			float t[2] = {atof(lineData[1].c_str()), atof(lineData[2].c_str())};
@@ -78,14 +82,18 @@ GfxReadOBJFile(std::string inFile) {
 			vertNorm.push_back(n);
 		} else if (lineData[0].compare("f") == 0) { 
 			// Face
-			// Only triangles are supported. Having polygons will cause an error to be created and no mesh to be made.
+			// Only triangles are supported. Having polygons will cause an 
+      // error to be created and no mesh to be made.
 			// All vertices MUST include normal data.
 			if (lineData.size() < 4) {
-				cout << "ReadOBJFile Error: Input 'f' definition has less than 4 arguments on line: " << lineNum << endl;
+				cout << "ReadOBJFile Error: Input 'f' definition has less than 4\
+                 arguments on line: " << lineNum << endl;
 				return NULL;
 			}
-			// Create new vertices in the mesh as we read in the faces (feel free to use the extra memory here(?) because it'll eventually be cleared anyways)
-			// Probably should find an easier/more efficient way to do this without using so much excessive memory but this will work for now
+			// Create new vertices in the mesh as we read in the faces (feel free to 
+      // use the extra memory here(?) because it'll eventually be cleared anyways)
+			// Probably should find an easier/more efficient way to do this without 
+      // using so much excessive memory but this will work for now
 			for (int i = 1; i <= 3; ++i) {
 				size_t firstSlash = lineData[i].find('/');
 				size_t secondSlash = lineData[i].find('/', firstSlash + 1);
@@ -131,7 +139,8 @@ GfxReadOBJFile(std::string inFile) {
  * 4) Return!
  * NOTE: ONLY SUPPORT JPEG FOR NOW. Other file formats will be added in later when I figure out what to do with the alpha channel.
  */
-class ITexture* CreateTextureFromImage(const std::string& id, const std::string& path) {
+class ITexture* CreateTextureFromImage(const std::string& id, 
+                                       const std::string& path) {
 	TextureManager* tm = GetTextureManager();
 	if (!tm) {
 		return NULL;
@@ -184,7 +193,8 @@ class ITexture* CreateTextureFromImage(const std::string& id, const std::string&
 	size_t outSize;
 	uint8_t* data = (uint8_t*)tm->CreateTextureData(ETDT_BYTE, width, height,outSize);
 	if (!data) {
-		std::cout << "CreateTextureFromImage :: Error creating texture data." << std::endl;
+		std::cout << "CreateTextureFromImage :: Error creating texture data." 
+              << std::endl;
 		FreeImage_Unload(bmp);
 		return NULL;
 	}
@@ -201,7 +211,8 @@ class ITexture* CreateTextureFromImage(const std::string& id, const std::string&
 			FreeImage_GetPixelColor(bmp, x, y, &rgb);
 			int idx = x * width * 3 + y * 3;
 #if DEBUG_TO_STDOUT
-			std::cout << (int)rgb.rgbRed << " " << (int)rgb.rgbGreen << " " << (int)rgb.rgbBlue << " ";
+			std::cout << (int)rgb.rgbRed << " " << (int)rgb.rgbGreen << " " 
+                << (int)rgb.rgbBlue << " ";
 #endif
 			data[idx] = (int)rgb.rgbRed;
 			data[idx+1] = (int)rgb.rgbGreen;

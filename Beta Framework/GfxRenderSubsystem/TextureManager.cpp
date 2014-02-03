@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include "ITexture.h"
+#include "Texture2D.h"
 
 TextureManager* GetTextureManager() {
 	static TextureManager* mng = [] (){
@@ -74,12 +75,18 @@ ITexture* TextureManager::CreateTexture(const std::string& id,
                                         ETextureType type, 
                                         ETextureDataType dataType) {
 
-	ITexture* newTex = new ITexture();
-	newTex->mTextureType = type;
+	ITexture* newTex;
 	if (type == ETT_2D) {
+    newTex = new Texture2D();
 		newTex->mBindTarget = GL_TEXTURE_2D;
-	}
+  } else if (type == ETT_CUBE) {
+    newTex = new TextureCube();
+    newTex->mBindTarget = GL_TEXTURE_CUBE_MAP;
+  } else {
+    return NULL; 
+  }
 
+	newTex->mTextureType = type;
 	newTex->mTextureDataType = dataType;
 	return newTex;
 }
@@ -106,7 +113,9 @@ void TextureManager::SetTextureData(class ITexture* tex, int texNum,
 	memcpy(tex->mTextureData[texNum], 
          texData, 
          dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
+  tex->PreTextureDataLoaded();
 	tex->TextureDataLoaded();
+  tex->PostTextureDataLoaded();
 }
 
 void** TextureManager::CreateTextureArray(ETextureDataType type, int num) {

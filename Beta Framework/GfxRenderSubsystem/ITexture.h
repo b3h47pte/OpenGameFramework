@@ -18,11 +18,6 @@ public:
 	unsigned int GetTextureBindTarget() const { return mBindTarget; }
 
 	/*
-	 * Notify when data is modified and should be copied into the texture object.
-	 */
-	void TextureDataLoaded();
-
-	/*
 	 * Release Resources (will be called by destructor but can manually call this just in case).
 	 */
 	void ReleaseResources();
@@ -42,6 +37,13 @@ protected:
 	int					mNumTextures;
 	int					mTexSizeWidth;
 	int					mTexSizeHeight;
+
+	/*
+	 * Notify when data is modified and should be copied into the texture object.
+	 */
+  virtual void PreTextureDataLoaded();
+	virtual void TextureDataLoaded();
+  virtual void PostTextureDataLoaded();
 
 
 private:
