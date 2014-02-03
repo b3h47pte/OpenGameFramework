@@ -461,6 +461,54 @@ SDLWindowKeyboard.cpp.s:
 	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/SDLWindowKeyboard.cpp.s"
 .PHONY : SDLWindowKeyboard.cpp.s
 
+Texture2D.o: Texture2D.cpp.o
+.PHONY : Texture2D.o
+
+# target to build an object file
+Texture2D.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/Texture2D.cpp.o"
+.PHONY : Texture2D.cpp.o
+
+Texture2D.i: Texture2D.cpp.i
+.PHONY : Texture2D.i
+
+# target to preprocess a source file
+Texture2D.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/Texture2D.cpp.i"
+.PHONY : Texture2D.cpp.i
+
+Texture2D.s: Texture2D.cpp.s
+.PHONY : Texture2D.s
+
+# target to generate assembly for a file
+Texture2D.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/Texture2D.cpp.s"
+.PHONY : Texture2D.cpp.s
+
+TextureCube.o: TextureCube.cpp.o
+.PHONY : TextureCube.o
+
+# target to build an object file
+TextureCube.cpp.o:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/TextureCube.cpp.o"
+.PHONY : TextureCube.cpp.o
+
+TextureCube.i: TextureCube.cpp.i
+.PHONY : TextureCube.i
+
+# target to preprocess a source file
+TextureCube.cpp.i:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/TextureCube.cpp.i"
+.PHONY : TextureCube.cpp.i
+
+TextureCube.s: TextureCube.cpp.s
+.PHONY : TextureCube.s
+
+# target to generate assembly for a file
+TextureCube.cpp.s:
+	cd /Users/michaelbao/Code/ogf && $(MAKE) -f "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/build.make" "Beta Framework/GfxRenderSubsystem/CMakeFiles/Gfx.dir/TextureCube.cpp.s"
+.PHONY : TextureCube.cpp.s
+
 TextureManager.o: TextureManager.cpp.o
 .PHONY : TextureManager.o
 
@@ -537,6 +585,12 @@ help:
 	@echo "... SDLWindowKeyboard.o"
 	@echo "... SDLWindowKeyboard.i"
 	@echo "... SDLWindowKeyboard.s"
+	@echo "... Texture2D.o"
+	@echo "... Texture2D.i"
+	@echo "... Texture2D.s"
+	@echo "... TextureCube.o"
+	@echo "... TextureCube.i"
+	@echo "... TextureCube.s"
 	@echo "... TextureManager.o"
 	@echo "... TextureManager.i"
 	@echo "... TextureManager.s"

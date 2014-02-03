@@ -108,6 +108,10 @@ private:
 #ifndef GFXUTILITY_FREEIMAGE
 	friend class ITexture* CreateTextureFromImage(const std::string&, 
                                                 const std::string&);
+
+  friend class ITexture* CreateCubeTextureFromImages(const std::string& id,
+                                            const std::string** paths,
+                                            int numberOfImages);
 #endif //  GFXUTILITY_FREEIMAGE
 };
 

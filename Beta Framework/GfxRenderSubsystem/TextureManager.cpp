@@ -1,6 +1,7 @@
 #include "TextureManager.h"
 #include "ITexture.h"
 #include "Texture2D.h"
+#include "TextureCube.h"
 
 TextureManager* GetTextureManager() {
 	static TextureManager* mng = [] (){

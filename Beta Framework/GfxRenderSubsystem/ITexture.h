@@ -45,6 +45,8 @@ protected:
 	virtual void TextureDataLoaded();
   virtual void PostTextureDataLoaded();
 
+  // Getters for subclasses.
+  unsigned int GetBindTarget() const { return mBindTarget; }
 
 private:
 	bool mReleased;

@@ -132,12 +132,38 @@ GfxReadOBJFile(std::string inFile) {
 
 #ifndef GFXUTILITY_NOFREEIMAGE
 
+/* 
+ * 1) Create Cube Texture.
+ * 2) Load Textures from files.
+ * 3) Put images into texture.
+ * 4) Return.
+ */
+class ITexture* CreateCubeTextureFromImages(const std::string& id,
+                                            const std::string** paths,
+                                            int numberOfImages) {
+	TextureManager* tm = GetTextureManager();
+	if (!tm) {
+		return NULL;
+	}
+
+	ITexture* tex = tm->CreateTexture(id, ETT_CUBE, ETDT_BYTE);
+	if (!tex) {
+		return NULL;
+	}
+
+  std::string* images = new std::string[numberOfImages];
+  for (int i = 0; i < numberOfImages; ++i) {
+
+  }
+}
+
 /*
  * 1) Create Texture
  * 2) Load Data from Image
  * 3) Put image data into texture.
  * 4) Return!
- * NOTE: ONLY SUPPORT JPEG FOR NOW. Other file formats will be added in later when I figure out what to do with the alpha channel.
+ * NOTE: ONLY SUPPORT JPEG FOR NOW. Other file formats will be added in 
+ *  later when I figure out what to do with the alpha channel.
  */
 class ITexture* CreateTextureFromImage(const std::string& id, 
                                        const std::string& path) {
