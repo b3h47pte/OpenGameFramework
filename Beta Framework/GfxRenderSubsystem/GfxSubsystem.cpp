@@ -9,6 +9,8 @@
 #include "GfxViewport.h"
 #include "GfxCamera.h"
 
+#include<algorithm>
+
 /* 
  * Factory Function To create the GFx Subsystem. Will return NULL when it fails.
  */

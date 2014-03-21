@@ -42,6 +42,9 @@
     <Filter Include="Messaging\Server">
       <UniqueIdentifier>{9c7acf32-9dc5-45e4-bfc1-0869074efc46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Testing">
+      <UniqueIdentifier>{91e77fd1-24de-481b-95ae-50d08de1715f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -94,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="MessageKeyboardInputTypes.h">
       <Filter>Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="mock_message_client.h">
+      <Filter>Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="mock_message_server.h">
+      <Filter>Testing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

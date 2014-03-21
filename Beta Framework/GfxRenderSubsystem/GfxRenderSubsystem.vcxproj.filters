@@ -53,12 +53,6 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{95b4f5db-8592-4dea-abbc-6dd6c633905e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Backend\Light">
-      <UniqueIdentifier>{b9b0b6e0-2ff0-4658-9999-c5cf98553c94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Backend\Light\General">
-      <UniqueIdentifier>{5870c4a0-b9ed-4d89-9900-21b889894c2e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Backend\Material">
       <UniqueIdentifier>{2b0f8ed9-1c12-4448-b848-29e8d505d438}</UniqueIdentifier>
     </Filter>
@@ -73,6 +67,12 @@
     </Filter>
     <Filter Include="Sample Shaders\Texture">
       <UniqueIdentifier>{196bb9c0-c107-4445-b7fb-f875ab08a669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Material\Texture\2D">
+      <UniqueIdentifier>{7240a601-d558-42ae-8116-ec20a1a65917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend\Material\Texture\Cube">
+      <UniqueIdentifier>{40c03f5a-33f0-4193-b6c3-23359a060392}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +115,6 @@
     <ClCompile Include="GfxUtility.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="ILight.cpp">
-      <Filter>Backend\Light\General</Filter>
-    </ClCompile>
     <ClCompile Include="SDLWindowKeyboard.cpp">
       <Filter>Frontend\Window\SDL</Filter>
     </ClCompile>
@@ -126,6 +123,12 @@
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Backend\Material\Texture\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureCube.cpp">
+      <Filter>Backend\Material\Texture\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Backend\Material\Texture\2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,14 +177,17 @@
     <ClInclude Include="GfxUtility.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="ILight.h">
-      <Filter>Backend\Light\General</Filter>
-    </ClInclude>
     <ClInclude Include="ITexture.h">
       <Filter>Backend\Material\Texture</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Backend\Material\Texture\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Backend\Material\Texture\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCube.h">
+      <Filter>Backend\Material\Texture\Cube</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

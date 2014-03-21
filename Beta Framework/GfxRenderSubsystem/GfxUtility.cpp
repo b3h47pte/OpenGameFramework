@@ -151,10 +151,11 @@ class ITexture* CreateCubeTextureFromImages(const std::string& id,
 		return NULL;
 	}
 
-  std::string* images = new std::string[numberOfImages];
-  for (int i = 0; i < numberOfImages; ++i) {
-
-  }
+	std::string* images = new std::string[numberOfImages];
+	for (int i = 0; i < numberOfImages; ++i) {
+		
+	}
+	return tex;
 }
 
 /*

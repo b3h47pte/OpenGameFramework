@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -96,7 +96,6 @@
     <ClCompile Include="GfxUtility.cpp" />
     <ClCompile Include="GfxViewport.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
-    <ClCompile Include="ILight.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderableInstance.cpp" />
     <ClCompile Include="ITexture.cpp" />
@@ -104,6 +103,8 @@
     <ClCompile Include="MeshRenderableInstance.cpp" />
     <ClCompile Include="SDLWindow.cpp" />
     <ClCompile Include="SDLWindowKeyboard.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="TextureCube.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +116,6 @@
     <ClInclude Include="GfxUtility.h" />
     <ClInclude Include="GfxViewport.h" />
     <ClInclude Include="GfxWindow.h" />
-    <ClInclude Include="ILight.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderableInstance.h" />
     <ClInclude Include="ITexture.h" />
@@ -124,6 +124,8 @@
     <ClInclude Include="SDLWindow.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureCube.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>

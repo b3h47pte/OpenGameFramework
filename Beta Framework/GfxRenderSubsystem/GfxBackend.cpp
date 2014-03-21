@@ -55,13 +55,11 @@ void GfxBackend::Render(float inDeltaTime) {
 	
 	// Step through all registered renderables anx	d grab their information to render
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
-	while(curRenderPtr) {
-		
+	while(curRenderPtr) {	
 		// Renderable will take care of setting its data up so its children can render
 		if (curRenderPtr->PrepareToRender()) {
-
 			// For each Renderable, go through its instances and grab 
-      // their appropriate information so we can draw 
+			// their appropriate information so we can draw 
 			// everything with the same material and mesh in one go
 			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 			
@@ -112,10 +110,7 @@ bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
 	// Initialize some basic GLEW/OpenGL stuff if we can -- otherwise wait for the user to pass in the context and the like
 	GLenum err;
 
-#ifdef __APPLE__
 	glewExperimental = GL_TRUE;
-#endif
-
 	err = glewInit();
 	if (GLEW_OK != err) {
 		return false;
