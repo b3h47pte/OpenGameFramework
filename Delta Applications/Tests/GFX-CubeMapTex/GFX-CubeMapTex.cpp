@@ -21,20 +21,20 @@ int main(int argc, char** argv)
   if (!gfx)
     return 0;
 
-  std::string cubeTex[] = { "Textures/grass.jpg", "Textures/elsa.jpg", "Textures/grass.jpg", "Textures/elsa.jpg", "Textures/grass.jpg", "Textures/elsa.jpg" };
+  std::string cubeTex[] = { "Textures/elsa.jpg", "Textures/grass.jpg", "Textures/elsa.jpg", "Textures/grass.jpg", "Textures/elsa.jpg", "Textures/grass.jpg" };
   ITexture* texture = CreateCubeTextureFromImages("test", cubeTex, 6);
 
   float cube_vertices[8][4] = {
     // front
-    { -1.f, -1.f, -3.f, 1.f },
-    { 1.f, -1.f, -3.f, 1.f },
-    { 1.f, 1.f, -3.f, 1.f },
-    { -1.f, 1.f, -3.f, 1.f },
-    // back
     { -1.f, -1.f, -1.f, 1.f },
     { 1.f, -1.f, -1.f, 1.f },
     { 1.f, 1.f, -1.f, 1.f },
-    { -1.f, 1.f, -1.f, 1.f }
+    { -1.f, 1.f, -1.f, 1.f },
+    // back
+    { -1.f, -1.f, 1.f, 1.f },
+    { 1.f, -1.f, 1.f, 1.f },
+    { 1.f, 1.f, 1.f, 1.f },
+    { -1.f, 1.f, 1.f, 1.f }
   };
 
   float norms[3][4] = {
