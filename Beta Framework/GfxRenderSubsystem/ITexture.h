@@ -33,15 +33,15 @@ protected:
 	ETextureType	mTextureType;
 
 	ETextureDataType	mTextureDataType;
-	void**				mTextureData;
+	void**			mTextureData;
 	int					mNumTextures;
-	int					mTexSizeWidth;
-	int					mTexSizeHeight;
+	int*					mTexSizeWidth;
+	int*					mTexSizeHeight;
 
 	/*
 	 * Notify when data is modified and should be copied into the texture object.
 	 */
-  virtual void PreTextureDataLoaded();
+	virtual void PreTextureDataLoaded();
 	virtual void TextureDataLoaded();
   virtual void PostTextureDataLoaded();
 

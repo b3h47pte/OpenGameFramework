@@ -6,7 +6,7 @@ ITexture::ITexture(void): mTextureType(ETT_UNKNOWN), mTextureData(NULL),
                           mReleased(false), mTextureID(0), 
                           mBindTarget(GL_TEXTURE_2D), mTextureUseCount(0), 
                           mTextureLastTouch(clock()) {
-	glGenTextures(1, &mTextureID);
+  OGL_CALL(glGenTextures(1, &mTextureID));
 }
 
 
@@ -19,13 +19,16 @@ void ITexture::ReleaseResources() {
 		return;
 
 	if (glIsTexture(mTextureID))
-		glDeleteTextures(1, &mTextureID);
+    OGL_CALL(glDeleteTextures(1, &mTextureID));
 
 	mReleased = true;
 }
 
 void ITexture::PreTextureDataLoaded() {
-	glBindTexture(mBindTarget, mTextureID);
+  OGL_CALL(glBindTexture(mBindTarget, mTextureID));
+  GLenum err = glGetError();
+  if (err != GL_NO_ERROR)
+    std::cout << "glBindTexture Error: " << err << std::endl;
 }
 
 void ITexture::TextureDataLoaded() {
@@ -33,9 +36,10 @@ void ITexture::TextureDataLoaded() {
 
 void ITexture::PostTextureDataLoaded() {
   // TODO: Generalize this into settable parameters as well
-	glTexParameteri(mBindTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(mBindTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(mBindTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(mBindTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glGenerateMipmap(mBindTarget);
+  OGL_CALL(glTexParameteri(mBindTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+  OGL_CALL(glTexParameteri(mBindTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+  OGL_CALL(glTexParameteri(mBindTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+  OGL_CALL(glTexParameteri(mBindTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+  OGL_CALL(glGenerateMipmap(mBindTarget));
+  OGL_CALL(glBindTexture(mBindTarget, 0));
 }

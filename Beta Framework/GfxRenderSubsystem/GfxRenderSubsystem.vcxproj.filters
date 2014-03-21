@@ -74,6 +74,12 @@
     <Filter Include="Backend\Material\Texture\Cube">
       <UniqueIdentifier>{40c03f5a-33f0-4193-b6c3-23359a060392}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sample Shaders\MultiColor">
+      <UniqueIdentifier>{4dd341de-7ab1-4e3b-b6cf-faa971498d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample Shaders\TextureCube">
+      <UniqueIdentifier>{7242ab63-fbab-4643-a2c2-62c430161b0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -202,6 +208,18 @@
     </None>
     <None Include="Sample Shaders\Texture\texture.vert">
       <Filter>Sample Shaders\Texture</Filter>
+    </None>
+    <None Include="Sample Shaders\MultiColor\multicolor.frag">
+      <Filter>Sample Shaders\MultiColor</Filter>
+    </None>
+    <None Include="Sample Shaders\MultiColor\multicolor.vert">
+      <Filter>Sample Shaders\MultiColor</Filter>
+    </None>
+    <None Include="Sample Shaders\TextureCube\texture.frag">
+      <Filter>Sample Shaders\TextureCube</Filter>
+    </None>
+    <None Include="Sample Shaders\TextureCube\texture.vert">
+      <Filter>Sample Shaders\TextureCube</Filter>
     </None>
   </ItemGroup>
 </Project>

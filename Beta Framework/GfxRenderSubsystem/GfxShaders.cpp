@@ -41,13 +41,13 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 		return false;
 	}
 
-	glShaderSource(shaderId, 1, &data, NULL);
-	glCompileShader(shaderId);
+  OGL_CALL(glShaderSource(shaderId, 1, &data, NULL));
+  OGL_CALL(glCompileShader(shaderId));
 
 	delete [] data;
 
 	int status;
-	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &status);
+  OGL_CALL(glGetShaderiv(shaderId, GL_COMPILE_STATUS, &status));
 	if (status != GL_TRUE) {
 		// Spit out error
 		char buffer[150];

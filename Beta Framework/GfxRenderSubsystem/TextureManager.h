@@ -67,6 +67,7 @@ public:
 	class ITexture* GetTexture(const std::string& id);
 	class ITexture* CreateTexture(const std::string& id, 
                                 ETextureType, ETextureDataType);
+  void FinalizeTexture(class ITexture*);
 
 	/*
 	 * Set Texture Specification (information about the data that'll 
@@ -74,7 +75,15 @@ public:
    *  textures, n if this is an array, 6 for cube) and size of texture 
    *  (width, height).
 	 */
-	void SetTextureSpecification(class ITexture*, int, int, int);
+	void SetTextureSpecification(class ITexture*, int);
+
+  /*
+   * Set Texture Width and Height.
+   * This data isn't necessarily known when we set the texture specification.
+   * It can also be different depending on which texture we use.
+   */
+  void SetTextureWidthHeight(class ITexture*, int, int, int);
+
 
 	/*
 	 * Set Texture Data. Given the texture number (0 for a single texture), 
@@ -102,8 +111,8 @@ private:
 	/*
 	 * Create Texture Data
 	 */
-	void**	CreateTextureArray(ETextureDataType, int);
-	void*	CreateTextureData(ETextureDataType, int, int, size_t&);
+	static void**	CreateTextureArray(ETextureDataType, int);
+	static void*	CreateTextureData(ETextureDataType, int, int, size_t&);
 
 #ifndef GFXUTILITY_FREEIMAGE
 	friend class ITexture* CreateTextureFromImage(const std::string&, 
@@ -112,6 +121,8 @@ private:
   friend class ITexture* CreateCubeTextureFromImages(const std::string& id,
                                             const std::string** paths,
                                             int numberOfImages);
+
+  friend uint8_t* GFXU_FI_LoadByteData(const std::string& path, unsigned int& width, unsigned int& height);
 #endif //  GFXUTILITY_FREEIMAGE
 };
 

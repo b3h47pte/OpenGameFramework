@@ -69,7 +69,7 @@ void IRenderableInstance::PrepareShaderData() {
 }
 
 void IRenderableInstance::PrepareRender() {
-	glUseProgram(mShaderProgramID);
+  OGL_CALL(glUseProgram(mShaderProgramID));
 
   // Model Matrix
   SShaderData modelData;
@@ -86,7 +86,7 @@ void IRenderableInstance::PrepareRender() {
 void IRenderableInstance::FinishRender() {
 	PostRender();
 
-	glUseProgram(0);
+  OGL_CALL(glUseProgram(0));
 }
 
 /*
@@ -95,18 +95,19 @@ void IRenderableInstance::FinishRender() {
 void IRenderableInstance::SetUniformShaderData(GLint inLoc, SShaderData& inData) {
 	switch (inData.mType) {
 	case ESDT_MATRIX4x4:
-		glUniformMatrix4fv(inLoc, 1, GL_FALSE, 
-      glm::value_ptr(*(glm::vec4*)inData.mData));
+    OGL_CALL(glUniformMatrix4fv(inLoc, 1, GL_FALSE,
+      glm::value_ptr(*(glm::vec4*)inData.mData)));
 		break;
 	case ESDT_TEX2D:
+  case ESDT_TEXCUBE:
 		{
-			glUseProgram(mShaderProgramID);
-			GLint loc = glGetUniformLocation(mShaderProgramID, inData.mLocation.c_str());
-			glUniform1i(loc, mTextureLocationCount);
-			glActiveTexture(GL_TEXTURE0 + mTextureLocationCount);
-			ITexture* tex = (ITexture*)inData.mData;
-			glBindTexture(tex->GetTextureBindTarget(), tex->GetTextureID());
-			++mTextureLocationCount;
+		OGL_CALL(glUseProgram(mShaderProgramID));
+    GLint loc = OGL_CALL(glGetUniformLocation(mShaderProgramID, inData.mLocation.c_str()));
+    OGL_CALL(glUniform1i(loc, mTextureLocationCount));
+    OGL_CALL(glActiveTexture(GL_TEXTURE0 + mTextureLocationCount));
+		ITexture* tex = (ITexture*)inData.mData;
+		glBindTexture(tex->GetTextureBindTarget(), tex->GetTextureID());
+		++mTextureLocationCount;
 		}
 		break;
 	default:

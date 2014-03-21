@@ -8,9 +8,9 @@ MeshRenderable::MeshRenderable(void) {
 
 
 MeshRenderable::~MeshRenderable(void) {
-	glDeleteBuffers(1, &mVBO);
-	glDeleteVertexArrays(1, &mVAO);
-	glDeleteBuffers(1, &mEBO);
+  OGL_CALL(glDeleteBuffers(1, &mVBO));
+  OGL_CALL(glDeleteVertexArrays(1, &mVAO));
+  OGL_CALL(glDeleteBuffers(1, &mEBO));
 }
 
 /*
@@ -25,8 +25,8 @@ bool MeshRenderable::PrepareToRender() {
 	if (!mDataSet) {
 		FinalizeData();
 	}
-	glBindVertexArray(mVAO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
+  OGL_CALL(glBindVertexArray(mVAO));
+  OGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO));
 	return true;
 }
 
@@ -34,7 +34,7 @@ bool MeshRenderable::PrepareToRender() {
  * Finish Rendering by unbinding buffers so that these buffers aren't mistakenly read from/modified.
  */
 bool MeshRenderable::FinishRender() {
-	glBindVertexArray(0);
+  OGL_CALL(glBindVertexArray(0));
 	return true;
 }
 
@@ -46,11 +46,11 @@ IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parOb
 	
 	// Create new shader program
 	GLuint newProg = glCreateProgram();
-	glAttachShader(newProg, mVertexShaderId);
-	glAttachShader(newProg, mFragShaderId);
-	glLinkProgram(newProg);
-	glDetachShader(newProg, mVertexShaderId);
-	glDetachShader(newProg, mFragShaderId);
+  OGL_CALL(glAttachShader(newProg, mVertexShaderId));
+  OGL_CALL(glAttachShader(newProg, mFragShaderId));
+  OGL_CALL(glLinkProgram(newProg));
+  OGL_CALL(glDetachShader(newProg, mVertexShaderId));
+  OGL_CALL(glDetachShader(newProg, mFragShaderId));
 	newInst->SetShaderProgram(newProg);
 	if (glIsProgram(newProg) == GL_FALSE) 
     std::cout << "no longer a program?" <<std::endl;
@@ -66,44 +66,44 @@ IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parOb
 void MeshRenderable::FinalizeData() {
 	
 	// Create the VAO to hold the mesh's data (color, position, etc.)
-	glGenVertexArrays(1, &mVAO);
-	glBindVertexArray(mVAO);
+  OGL_CALL(glGenVertexArrays(1, &mVAO));
+  OGL_CALL(glBindVertexArray(mVAO));
 
 	// Create Element Array Buffer (EBO) to hold the indicies of vertices
-	glGenBuffers(1, &mEBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * mTriangleIndices.size(), &mTriangleIndices[0], GL_STATIC_DRAW);
+  OGL_CALL(glGenBuffers(1, &mEBO));
+  OGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO));
+  OGL_CALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mTriangleIndices.size(), &mTriangleIndices[0], GL_STATIC_DRAW));
 
 	// Setup VBO
-	glGenBuffers(1, &mVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, mVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size() 
+  OGL_CALL(glGenBuffers(1, &mVBO));
+  OGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, mVBO));
+  OGL_CALL(glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size()
 		+ sizeof(glm::vec2) * mTexCoords.size()
-    + GetSizeOfExternalVertexAttr(), NULL, GL_STATIC_DRAW);
+    + GetSizeOfExternalVertexAttr(), NULL, GL_STATIC_DRAW));
 
 	// Vertex Position
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * mVertexPosition.size(), &mVertexPosition[0]);
+  OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * mVertexPosition.size(), &mVertexPosition[0]));
 
 	// Vertex Normals
-	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size(), sizeof(glm::vec4) * mVertexNormals.size(), &mVertexNormals[0]);
+  OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size(), sizeof(glm::vec4) * mVertexNormals.size(), &mVertexNormals[0]));
 
 	// Vertex Tex Coord
-	glBufferSubData(GL_ARRAY_BUFFER, 
+  OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER,
     sizeof(glm::vec4) * mVertexPosition.size() + 
       sizeof(glm::vec4) * mVertexNormals.size(), 
-		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]);
+		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]));
 	
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0,  (void*)0);
-	glEnableVertexAttribArray(0);
+  OGL_CALL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, (void*)0));
+  OGL_CALL(glEnableVertexAttribArray(0));
 
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 
-    (void*) (sizeof(glm::vec4) * mVertexPosition.size()));
-	glEnableVertexAttribArray(1);
+  OGL_CALL(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0,
+    (void*) (sizeof(glm::vec4) * mVertexPosition.size())));
+  OGL_CALL(glEnableVertexAttribArray(1));
 
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 
+  OGL_CALL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0,
     (void*) (sizeof(glm::vec4) * mVertexPosition.size() + 
-    sizeof(glm::vec4) * mVertexNormals.size()));
-	glEnableVertexAttribArray(2);
+    sizeof(glm::vec4) * mVertexNormals.size())));
+  OGL_CALL(glEnableVertexAttribArray(2));
 
   // Load in and Enable External Per-Vertex Attributes.
   LoadExternalPerVertexAttr(3,
@@ -137,9 +137,9 @@ void MeshRenderable::FinalizeData() {
 	OnRegistration();
 
 	// Make sure no-one else inadvertently messes around with this mesh data.
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+  OGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+  OGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+  OGL_CALL(glBindVertexArray(0));
 }
 
 /*
@@ -234,12 +234,12 @@ void MeshRenderable::LoadExternalPerVertexAttr(int startIdx, size_t startSize) {
     if (mul == 0)
       continue;
 
-	  glBufferSubData(GL_ARRAY_BUFFER, startSize,
-      mul * pvd.data.size(), &pvd.data[0]);
+    OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, startSize,
+      mul * pvd.data.size(), &pvd.data[0]));
 
-    glVertexAttribPointer(startIdx, pvd.componentCount, GL_FLOAT, GL_FALSE, 0, 
-      (void*)startSize);
-    glEnableVertexAttribArray(startIdx);
+    OGL_CALL(glVertexAttribPointer(startIdx, pvd.componentCount, GL_FLOAT, GL_FALSE, 0,
+      (void*)startSize));
+    OGL_CALL(glEnableVertexAttribArray(startIdx));
 
     startSize += mul * pvd.data.size();
   }

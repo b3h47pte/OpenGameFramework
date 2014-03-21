@@ -65,6 +65,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\fmod\api\lowlevel\inc;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\fmod\api\studio\inc;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

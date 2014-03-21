@@ -92,30 +92,39 @@ ITexture* TextureManager::CreateTexture(const std::string& id,
 	return newTex;
 }
 
-void TextureManager::SetTextureSpecification(class ITexture* tex, int numTextures, 
-                                              int texWidth, int texHeight) {
+void TextureManager::SetTextureSpecification(class ITexture* tex, int numTextures) {
 	tex->mTextureData = CreateTextureArray(tex->mTextureDataType, numTextures);
 	tex->mNumTextures = numTextures;
-	tex->mTexSizeWidth = texWidth;
-	tex->mTexSizeHeight = texHeight;
+  tex->mTexSizeWidth = new int[numTextures];
+  tex->mTexSizeHeight = new int[numTextures];
+  tex->PreTextureDataLoaded();
 	tex->KeepAliveTouch();
+}
+
+void TextureManager::SetTextureWidthHeight(class ITexture* tex, int idx, int texWidth, int texHeight) {
+  assert(tex->mTexSizeWidth && tex->mTexSizeHeight);
+  tex->mTexSizeWidth[idx] = texWidth;
+  tex->mTexSizeHeight[idx] = texHeight;
+  tex->KeepAliveTouch();
 }
 
 void TextureManager::SetTextureData(class ITexture* tex, int texNum, 
                                     void* texData) {
 	size_t dataEleSize = -1;
 	tex->mTextureData[texNum] = CreateTextureData(tex->mTextureDataType, 
-                                                tex->mTexSizeWidth, 
-                                                tex->mTexSizeHeight, dataEleSize);
+                                                tex->mTexSizeWidth[texNum], 
+                                                tex->mTexSizeHeight[texNum], dataEleSize);
 	if (!tex->mTextureData[texNum]) {
 		return;
 	}
 
 	memcpy(tex->mTextureData[texNum], 
          texData, 
-         dataEleSize * tex->mTexSizeWidth * tex->mTexSizeHeight * 3);
-  tex->PreTextureDataLoaded();
-	tex->TextureDataLoaded();
+         dataEleSize * tex->mTexSizeWidth[texNum] * tex->mTexSizeHeight[texNum] * 3);
+}
+
+void TextureManager::FinalizeTexture(class ITexture* tex) {
+  tex->TextureDataLoaded();
   tex->PostTextureDataLoaded();
 }
 

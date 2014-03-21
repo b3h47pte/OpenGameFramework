@@ -34,4 +34,14 @@
 // TODO: Eventually move this out into some sort of build system becaus this define will be useful in more than one subsystem
 #define USE_SDL
 
+// Error Detection for OpenGL
+inline void _DisplayOpenGLError(std::string command) {
+  GLenum err = glGetError();
+  if (err != GL_NO_ERROR) {
+    std::cout << "OpenGL Error: " << err << std::endl;
+    std::cout << "Relevant Command: " << command << std::endl;
+  }
+}
+#define OGL_CALL(x) x; _DisplayOpenGLError(#x);
+
 #endif // _COMMON_GFX_H

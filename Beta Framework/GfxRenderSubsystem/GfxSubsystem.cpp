@@ -40,7 +40,6 @@ GfxSubsystem::GfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)): mStillRunning(true), m
 	for (int i = 1; i < GFX_MAX_VIEWPORTS; i++)
 		mAllViewports[i] = NULL;
 
-
 	// OpenGL initialization
 	if(!mBackend->InitializeGraphicsAPI(mWindow->GetWindowWidth(), mWindow->GetWindowHeight())) {
 		SetError(EGAPI_FAIL);

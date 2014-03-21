@@ -17,7 +17,7 @@ GfxBackend::~GfxBackend(void)
  * Tick renders all elements so perform the clear here (glClear) so that we don't wipe elements from a previous viewport.
  */
 void GfxBackend::PreTick() {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  OGL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
 /*
@@ -35,9 +35,9 @@ void GfxBackend::Render(float inDeltaTime) {
 	int x;
 	int y;
 	mActiveViewport->GetViewportPosition(x, y);
-	glViewport(x, y, 
+  OGL_CALL(glViewport(x, y,
     mActiveViewport->GetViewportWidth(), 
-    mActiveViewport->GetViewportHeight());
+    mActiveViewport->GetViewportHeight()));
 
 	glm::mat4 projectionMat = mActiveViewport->GetCamera()->GetProjectionMatrix();
 	glm::mat4 viewMat = mActiveViewport->GetCamera()->GetTransformationMatrix();
@@ -115,16 +115,19 @@ bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
 	if (GLEW_OK != err) {
 		return false;
 	}
+  // NOTE: glewInit(), even with glewExperimental, may leave us with a OpenGL GL_INVALID_ENUM error.
+  while ((err = glGetError()) != GL_NO_ERROR);
+
 
 	mCurrentTextureManager = GetTextureManager();
 	if (!mCurrentTextureManager) {
 		return false;
 	}
+  
+  OGL_CALL(glEnable(GL_DEPTH_TEST));
 
-  glEnable(GL_DEPTH_TEST);
-
-	glViewport(0, 0, width, height);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  OGL_CALL(glViewport(0, 0, width, height));
+  OGL_CALL(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 
 	return true;
 }

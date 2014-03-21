@@ -12,13 +12,13 @@ void TextureCube::PreTextureDataLoaded() {
 
 void TextureCube::TextureDataLoaded() {
   ITexture::TextureDataLoaded();
-	glTexStorage2D(GetBindTarget(), 10, GL_RGB8, mTexSizeWidth, mTexSizeHeight);
+  OGL_CALL(glTexStorage2D(GetBindTarget(), 3, GL_RGB8, mTexSizeWidth[0], mTexSizeHeight[0]));
   for (int i = 0; i < 6; ++i) {
+    assert(mTexSizeWidth[i] == mTexSizeWidth[0] && mTexSizeHeight[i] == mTexSizeWidth[0]);
     GLenum target = GL_TEXTURE_CUBE_MAP_POSITIVE_X + i;
-    glTexSubImage2D(target, 0, 0, 0, 
-                  mTexSizeWidth, mTexSizeHeight, 
-                  GL_RGB, GL_UNSIGNED_BYTE, mTextureData[i]);
-
+    OGL_CALL(glTexSubImage2D(target, 0, 0, 0,
+                  mTexSizeWidth[i], mTexSizeHeight[i], 
+                  GL_RGB, GL_UNSIGNED_BYTE, mTextureData[i]));
   }
 }
 

@@ -30,6 +30,12 @@ IRenderable* GfxReadOBJFile(std::string);
  * Will read an image and register it with the texture manager.
  */
 class ITexture* CreateTextureFromImage(const std::string&, const std::string&);
+class ITexture* CreateCubeTextureFromImages(const std::string& id, const std::string* paths, int numberOfImages);
+
+/*
+ * Functions to handle loading an image.
+ */
+uint8_t* GFXU_FI_LoadByteData(const std::string& path, unsigned int& width, unsigned int& height);
 
 #endif //  GFXUTILITY_NOFREEIMAGE
 

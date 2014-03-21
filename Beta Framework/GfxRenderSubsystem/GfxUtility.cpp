@@ -139,7 +139,7 @@ GfxReadOBJFile(std::string inFile) {
  * 4) Return.
  */
 class ITexture* CreateCubeTextureFromImages(const std::string& id,
-                                            const std::string** paths,
+                                            const std::string* paths,
                                             int numberOfImages) {
 	TextureManager* tm = GetTextureManager();
 	if (!tm) {
@@ -151,10 +151,15 @@ class ITexture* CreateCubeTextureFromImages(const std::string& id,
 		return NULL;
 	}
 
-	std::string* images = new std::string[numberOfImages];
+  tm->SetTextureSpecification(tex, numberOfImages);
 	for (int i = 0; i < numberOfImages; ++i) {
-		
+    unsigned int width, height;
+    uint8_t* data = GFXU_FI_LoadByteData(paths[i], width, height);
+    tm->SetTextureWidthHeight(tex, i, width, height);
+    tm->SetTextureData(tex, i, data);
+    delete[] data;
 	}
+  tm->FinalizeTexture(tex);
 	return tex;
 }
 
@@ -177,85 +182,92 @@ class ITexture* CreateTextureFromImage(const std::string& id,
 	if (!tex) {
 		return NULL;
 	}
-	
-	// Get file extension to determine what kind of image we are loading.
-	// Supported: JPEG, PNG, TIFF, TARGA, BMP
-	size_t idx = path.find_last_of('.');
-	FREE_IMAGE_FORMAT fmt = FIF_UNKNOWN;
-	if (idx != string::npos) {
-		std::string suffix = path.substr(idx+1);
-		if (suffix == "jpg" || suffix == "jpeg") {
-			fmt = FIF_JPEG;
-		} /*else if (suffix == "png") {
-			fmt = FIF_PNG;
-		} else if (suffix == "tiff" || suffix == "tif") {
-			fmt = FIF_TIFF;
-		} else if (suffix == "tga") {
-			fmt = FIF_TARGA;
-		} else if (suffix == "bmp") {
-			fmt = FIF_BMP;
-		} */ else {
-			// Non-supported file format.
-			std::cout << "CreateTextureFromImage :: Unsupported file format." << std::endl;
-			return NULL;
-		}
-	} else {
-		// No file format? Don't want to assume anything so error out.
-		std::cout << "CreateTextureFromImage :: No file format detected." << std::endl;
-		return NULL;
-	}
-	FIBITMAP* bmp = FreeImage_Load(fmt, path.c_str(), 0);
-	if (!bmp) {
-		// Error loading up the image.
-		std::cout << "CreateTextureFromImage :: Error loading image." << std::endl;
-		return NULL;
-	}
 
-	// Get details about the image.
-	unsigned int width = FreeImage_GetWidth(bmp);
-	unsigned int height = FreeImage_GetHeight(bmp);
-	tm->SetTextureSpecification(tex, 1, width, height);
+  unsigned int width, height;
+  uint8_t* data = GFXU_FI_LoadByteData(path, width, height);
+  tm->SetTextureSpecification(tex, 1);
+  tm->SetTextureWidthHeight(tex, 0, width, height);
+  tm->SetTextureData(tex, 0, data);
+  delete[] data;
 
-	// Create array that contains all the relevant pixel data for the image.
-	size_t outSize;
-	uint8_t* data = (uint8_t*)tm->CreateTextureData(ETDT_BYTE, width, height,outSize);
-	if (!data) {
-		std::cout << "CreateTextureFromImage :: Error creating texture data." 
-              << std::endl;
-		FreeImage_Unload(bmp);
-		return NULL;
-	}
-
-	RGBQUAD rgb;
-
-#if DEBUG_TO_STDOUT
-	std::cout << "P3" << std::endl;
-	std::cout << width << " " << height << " " << "255" << std::endl;
-#endif
-
-	for (unsigned int x = 0; x < width; ++x) {
-		for (unsigned int y = 0; y < height; ++y) {
-			FreeImage_GetPixelColor(bmp, x, y, &rgb);
-			int idx = x * width * 3 + y * 3;
-#if DEBUG_TO_STDOUT
-			std::cout << (int)rgb.rgbRed << " " << (int)rgb.rgbGreen << " " 
-                << (int)rgb.rgbBlue << " ";
-#endif
-			data[idx] = (int)rgb.rgbRed;
-			data[idx+1] = (int)rgb.rgbGreen;
-			data[idx+2] = (int)rgb.rgbBlue;
-		}
-#if DEBUG_TO_STDOUT
-		std::cout << std::endl;
-#endif
-	}
-
-	tm->SetTextureData(tex, 0, data);
-	delete [] data;
-
-	FreeImage_Unload(bmp);
-
+  tm->FinalizeTexture(tex);
 	return tex;
+}
+
+uint8_t* GFXU_FI_LoadByteData(const std::string& path, unsigned int& width, unsigned int& height) {
+  // Get file extension to determine what kind of image we are loading.
+  // Supported: JPEG, PNG, TIFF, TARGA, BMP
+  size_t idx = path.find_last_of('.');
+  FREE_IMAGE_FORMAT fmt = FIF_UNKNOWN;
+  if (idx != string::npos) {
+    std::string suffix = path.substr(idx + 1);
+    if (suffix == "jpg" || suffix == "jpeg") {
+      fmt = FIF_JPEG;
+    } /*else if (suffix == "png") {
+      fmt = FIF_PNG;
+      } else if (suffix == "tiff" || suffix == "tif") {
+      fmt = FIF_TIFF;
+      } else if (suffix == "tga") {
+      fmt = FIF_TARGA;
+      } else if (suffix == "bmp") {
+      fmt = FIF_BMP;
+      } */ else {
+      // Non-supported file format.
+      std::cout << "CreateTextureFromImage :: Unsupported file format." << std::endl;
+      return NULL;
+    }
+  }
+  else {
+    // No file format? Don't want to assume anything so error out.
+    std::cout << "CreateTextureFromImage :: No file format detected." << std::endl;
+    return NULL;
+  }
+  FIBITMAP* bmp = FreeImage_Load(fmt, path.c_str(), 0);
+  if (!bmp) {
+    // Error loading up the image.
+    std::cout << "CreateTextureFromImage :: Error loading image." << std::endl;
+    return NULL;
+  }
+
+  // Get details about the image.
+  width = FreeImage_GetWidth(bmp);
+  height = FreeImage_GetHeight(bmp);
+
+  // Create array that contains all the relevant pixel data for the image.
+  size_t outSize;
+  uint8_t* data = (uint8_t*)TextureManager::CreateTextureData(ETDT_BYTE, width, height, outSize);
+  if (!data) {
+    std::cout << "CreateTextureFromImage :: Error creating texture data."
+      << std::endl;
+    FreeImage_Unload(bmp);
+    return NULL;
+  }
+
+  RGBQUAD rgb;
+
+#if DEBUG_TO_STDOUT
+  std::cout << "P3" << std::endl;
+  std::cout << width << " " << height << " " << "255" << std::endl;
+#endif
+
+  for (unsigned int x = 0; x < width; ++x) {
+    for (unsigned int y = 0; y < height; ++y) {
+      FreeImage_GetPixelColor(bmp, x, y, &rgb);
+      int idx = x * width * 3 + y * 3;
+#if DEBUG_TO_STDOUT
+      std::cout << (int)rgb.rgbRed << " " << (int)rgb.rgbGreen << " "
+        << (int)rgb.rgbBlue << " ";
+#endif
+      data[idx] = (int)rgb.rgbRed;
+      data[idx + 1] = (int)rgb.rgbGreen;
+      data[idx + 2] = (int)rgb.rgbBlue;
+    }
+#if DEBUG_TO_STDOUT
+    std::cout << std::endl;
+#endif
+  }
+  FreeImage_Unload(bmp);
+  return data;
 }
 
 #endif // GFXUTILITY_FREEIMAGE

@@ -75,6 +75,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GFXSUBSYSTEM_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\include;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\Core;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Beta Framework\CoreHeaders;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glm;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\freeimage\win\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +132,10 @@
   <ItemGroup>
     <None Include="Sample Shaders\Basic\basic.frag" />
     <None Include="Sample Shaders\Basic\basic.vert" />
+    <None Include="Sample Shaders\MultiColor\multicolor.frag" />
+    <None Include="Sample Shaders\MultiColor\multicolor.vert" />
+    <None Include="Sample Shaders\TextureCube\texture.frag" />
+    <None Include="Sample Shaders\TextureCube\texture.vert" />
     <None Include="Sample Shaders\Texture\texture.frag" />
     <None Include="Sample Shaders\Texture\texture.vert" />
   </ItemGroup>

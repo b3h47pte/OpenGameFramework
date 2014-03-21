@@ -12,10 +12,10 @@ void Texture2D::PreTextureDataLoaded() {
 
 void Texture2D::TextureDataLoaded() {
   ITexture::TextureDataLoaded();
-	glTexStorage2D(GetBindTarget(), 4, GL_RGB8, mTexSizeWidth, mTexSizeHeight);
-	glTexSubImage2D(GetBindTarget(), 0, 0, 0, 
-                  mTexSizeWidth, mTexSizeHeight, 
-                  GL_RGB, GL_UNSIGNED_BYTE, mTextureData[0]);
+  OGL_CALL(glTexStorage2D(GetBindTarget(), 4, GL_RGB8, mTexSizeWidth[0], mTexSizeHeight[0]));
+  OGL_CALL(glTexSubImage2D(GetBindTarget(), 0, 0, 0,
+                  mTexSizeWidth[0], mTexSizeHeight[0], 
+                  GL_RGB, GL_UNSIGNED_BYTE, mTextureData[0]));
 }
 
 void Texture2D::PostTextureDataLoaded() {

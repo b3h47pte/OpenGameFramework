@@ -5,7 +5,7 @@
 #include "MeshRenderableInstance.h"
 #include "../Bootstrap/camera.h"
 
-#ifndef __WIN32
+#ifndef _WIN32
 #include <unistd.h>
 #define Sleep usleep
 #endif
