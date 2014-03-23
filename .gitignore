@@ -23,3 +23,4 @@ CMakeCache.txt
 *cmake_install.cmake
 *.a
 Testing*
+bin*

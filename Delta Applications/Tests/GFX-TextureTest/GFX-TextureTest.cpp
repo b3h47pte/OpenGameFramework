@@ -53,8 +53,8 @@ int main(int argc, char** argv)
 	mesh->AddTriangleIndex(0);
 	mesh->AddTriangleIndex(1);
 	mesh->AddTriangleIndex(2);
-	mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.vert");
-	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/Texture/texture.frag");
+	mesh->SetVertexShader("Texture/texture.vert");
+	mesh->SetFragShader("Texture/texture.frag");
 	mesh->FinalizeData();
 	IRenderableInstance* inst = mesh->CreateAndRegisterInstance(NULL);
 	inst->SetExternalShaderData(0, texData);

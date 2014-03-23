@@ -13,6 +13,7 @@ public:
 	GfxShaders(void);
 	~GfxShaders(void);
 
+  static std::string GetShaderDirectory();
 	static int	GetShaderID(GLenum, const std::string&);
 	static bool LoadShader(GLenum, const std::string&, const std::string&);
 

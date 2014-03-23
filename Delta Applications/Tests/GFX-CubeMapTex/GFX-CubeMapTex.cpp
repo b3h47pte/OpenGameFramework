@@ -86,8 +86,8 @@ int main(int argc, char** argv)
   for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i)
     mesh->AddTriangleIndex(cube_elements[i]);
 
-  mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/TextureCube/texture.vert");
-  mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/TextureCube/texture.frag");
+  mesh->SetVertexShader("TextureCube/texture.vert");
+  mesh->SetFragShader("TextureCube/texture.frag");
   mesh->FinalizeData();
 
   SShaderData texData;

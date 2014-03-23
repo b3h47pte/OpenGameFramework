@@ -1,6 +1,8 @@
 // GFX-CameraMoveTest.cpp : Defines the entry point for the console application.
 //
+#ifdef _WIN32
 #include "stdafx.h"
+#endif
 #include <iostream>
 #include "MeshRenderable.h"
 #include "MeshRenderableInstance.h"
@@ -89,8 +91,8 @@ int main(int argc, char** argv)
 	for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i) 
 		mesh->AddTriangleIndex(cube_elements[i]);
 
-	mesh->SetVertexShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/MultiColor/multicolor.vert");
-	mesh->SetFragShader("../../../Beta Framework/GfxRenderSubsystem/Sample Shaders/MultiColor/multicolor.frag");
+	mesh->SetVertexShader("MultiColor/multicolor.vert");
+	mesh->SetFragShader("MultiColor/multicolor.frag");
 	mesh->FinalizeData();
 
   // Create 3x3x3 grid of cubes.

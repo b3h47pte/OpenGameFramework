@@ -34,7 +34,9 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 	if (!(shaderId = glCreateShader(type)))
 		return false;
 
-	WFile wfile(file);
+  std::string realFile = GfxShaders::GetShaderDirectory() + file;
+
+	WFile wfile(realFile);
 	const char* data = wfile.ReadAllBinaryDataNull();
 	if (!data) {
 		std::cout << "Load Shader Error: No data read from shader file." << std::endl;
@@ -59,4 +61,8 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 	mShaderStore[type][id] = shaderId;
 
 	return true;
+}
+
+std::string GfxShaders::GetShaderDirectory() {
+  return "../Shaders/";
 }
