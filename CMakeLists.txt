@@ -21,9 +21,9 @@ if (APPLE)
 endif(APPLE)
 
 # SDL
-include_directories(Extras/SDL/include)
-link_directories(${PROJECT_SOURCE_DIR}/Extras/SDL/build)
-link_directories(${PROJECT_SOURCE_DIR}/Extras/SDL/build/.libs)
+include_directories(Extras/SDL2/include)
+link_directories(${PROJECT_SOURCE_DIR}/Extras/SDL2/build)
+link_directories(${PROJECT_SOURCE_DIR}/Extras/SDL2/build/.libs)
 
 
 # FreeImage
@@ -47,6 +47,7 @@ find_library(GLEW_Library GLEW)
 
 # ALPHA TOOLS CURRENTLY CAN NOT BE BUILT BY NON-WINDOWS PLATFORMS
 #add_subdirectory(Alpha\ Tools)
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # BETA FRAMEWORK
 add_subdirectory(Beta\ Framework)

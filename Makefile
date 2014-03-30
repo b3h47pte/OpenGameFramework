@@ -671,6 +671,19 @@ GFX-MultiColor/fast:
 .PHONY : GFX-MultiColor/fast
 
 #=============================================================================
+# Target rules for targets named GFX-CubeMapTex
+
+# Build rule for target.
+GFX-CubeMapTex: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GFX-CubeMapTex
+.PHONY : GFX-CubeMapTex
+
+# fast build rule for target.
+GFX-CubeMapTex/fast:
+	$(MAKE) -f "Delta Applications/Tests/GFX-CubeMapTex/CMakeFiles/GFX-CubeMapTex.dir/build.make" "Delta Applications/Tests/GFX-CubeMapTex/CMakeFiles/GFX-CubeMapTex.dir/build"
+.PHONY : GFX-CubeMapTex/fast
+
+#=============================================================================
 # Target rules for targets named CORE-GTest-ConfigFile
 
 # Build rule for target.
@@ -826,6 +839,7 @@ help:
 	@echo "... GFX-MultiCube"
 	@echo "... GFX-MultiCubeTex"
 	@echo "... GFX-MultiColor"
+	@echo "... GFX-CubeMapTex"
 	@echo "... CORE-GTest-ConfigFile"
 	@echo "... CORE-GTest-ErrorCatch"
 	@echo "... CORE-GTest-IntrusiveLink"

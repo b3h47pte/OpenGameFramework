@@ -5,5 +5,6 @@ set(GFX_ALL_SOURCES
 	GfxViewport.cpp GfxWindow.cpp IRenderable.cpp IRenderableInstance.cpp
 	ITexture.cpp MeshRenderable.cpp MeshRenderableInstance.cpp SDLWindow.cpp
 	SDLWindowKeyboard.cpp TextureManager.cpp Texture2D.cpp TextureCube.cpp
+  ILight.cpp
 )
 add_library(Gfx ${GFX_ALL_SOURCES})
