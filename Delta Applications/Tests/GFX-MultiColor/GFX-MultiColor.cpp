@@ -1,8 +1,7 @@
 // GFX-CameraMoveTest.cpp : Defines the entry point for the console application.
 //
-#ifdef _WIN32
 #include "stdafx.h"
-#endif
+
 #include <iostream>
 #include "MeshRenderable.h"
 #include "MeshRenderableInstance.h"
