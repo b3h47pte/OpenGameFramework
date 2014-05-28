@@ -96,7 +96,7 @@ int main(int argc, char** argv)
   texData.mLocation = "tex";
 
   IRenderableInstance* m1 = mesh->CreateAndRegisterInstance(NULL);
-  m1->SetExternalShaderData(0, texData);
+//  m1->SetExternalShaderData(0, texData);
   while (gfx->ShouldTick()) {
     gfx->Tick(0.1f);
     srv->Tick(0.1f);

@@ -92,6 +92,9 @@
     <Filter Include="Backend\Shaders\Instance">
       <UniqueIdentifier>{4b23f421-60fc-4082-abb2-c0da8b892ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Backend\Material\Instance">
+      <UniqueIdentifier>{e65f36d8-7ace-4e1a-9eef-5368ac32e33b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -153,6 +156,12 @@
     </ClCompile>
     <ClCompile Include="GfxShaderInstance.cpp">
       <Filter>Backend\Shaders\Instance</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Backend\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialInstance.cpp">
+      <Filter>Backend\Material\Instance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +230,12 @@
     </ClInclude>
     <ClInclude Include="CommonShader.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Backend\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialInstance.h">
+      <Filter>Backend\Material\Instance</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

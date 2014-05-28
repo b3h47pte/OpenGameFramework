@@ -99,7 +99,7 @@ int main(int argc, char** argv)
     for (int j = -1; j <= 1; ++j) {
       for (int z = 0; z <= 2; ++z) {
         IRenderableInstance* m1 = mesh->CreateAndRegisterInstance(NULL);
-        m1->SetExternalShaderData(0, texData);
+//        m1->SetExternalShaderData(0, texData);
         m1->MoveRight(i*3.f);
         m1->MoveUp(j*3.f);
         m1->MoveForward(-z*3.f);

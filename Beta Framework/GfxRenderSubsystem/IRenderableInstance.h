@@ -68,6 +68,11 @@ private:
 	 */
 	virtual void PreRender() = 0;
 	virtual void PostRender() = 0;
+
+  /*
+   * Material Instance List. Holds the material instances that are in use by this renderable instance.
+   */
+  std::vector<class MaterialInstance*> mMaterialList;
 };
 
 #endif // _IRENDERABLEINSTANCE_H

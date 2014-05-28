@@ -92,20 +92,6 @@ private:
 		std::vector<int>			mTriangleIndices;
 	};
 
-	// Shader Data
-	struct {
-
-		// File to load Vertex Shader data from
-		std::string			mVertexShaderFile;
-		int	mVertexShaderId;
-
-		// File to load Fragment shader data from
-		std::string			mFragShaderFile;
-		int mFragShaderId;
-
-	};
-
-
 	/*
 	 * Function to create a new mesh instance.
 	 */

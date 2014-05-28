@@ -72,7 +72,7 @@ protected:
 	bool mDataSet;
 
 	/*
-	 * Whether or not the data has errored.
+	 * Whether or not the data has an error.
 	 */
 	bool mDataError;
 
@@ -81,6 +81,11 @@ private:
 	 * Function to create a new renderable instance. Made pure virtual because a renderable will have to know what kind of instance it'll make.
 	 */
 	virtual IRenderableInstance* CreateRenderableInstance(WorldObject*) = 0;
+
+  /*
+   * Material List. Holds the materials to be used by this renderable.
+   */
+  std::vector<class Material*> mMaterialList;
 
 	/*
 	 * A renderable will always be part of the the graphics backend (or at least it should be) so hold its link. 

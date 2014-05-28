@@ -102,6 +102,8 @@
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderableInstance.cpp" />
     <ClCompile Include="ITexture.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MaterialInstance.cpp" />
     <ClCompile Include="MeshRenderable.cpp" />
     <ClCompile Include="MeshRenderableInstance.cpp" />
     <ClCompile Include="SDLWindow.cpp" />
@@ -125,6 +127,8 @@
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderableInstance.h" />
     <ClInclude Include="ITexture.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="MaterialInstance.h" />
     <ClInclude Include="MeshRenderable.h" />
     <ClInclude Include="MeshRenderableInstance.h" />
     <ClInclude Include="SDLWindow.h" />
