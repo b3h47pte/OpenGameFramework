@@ -9,7 +9,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\Michael\Documents\GitHub\OpenGameFramework\Debug;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\SDL2\lib\win\x86;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\glew-1.9.0\lib;C:\Users\Michael\Documents\GitHub\OpenGameFramework\Extras\freeimage\win\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Core.lib;GfxRenderSubsystem.lib;SDL.lib;SDLmain.lib;glew32.lib;OpenGL32.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Core.lib;GfxRenderSubsystem.lib;SDL.lib;SDLmain.lib;glew32.lib;OpenGL32.lib;FreeImage.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

@@ -15,13 +15,8 @@ public:
   ILight(glm::vec4 pos) : WorldObject(pos), isRegistered(false) {}
   virtual ~ILight() {}
 
-  // Initializes the shader for the light.
-  // Loads the shader source, replaces variables as necessary inside the source.
-  // Sends it to the shader manager for loading.
-  virtual void InitializeLight();
-
   virtual int GetShaderID() {
-    return LightShaderId;
+    return ShaderProgramId;
   }
 
   // Whether or not the light has been registered.
@@ -31,8 +26,12 @@ public:
 
   friend class GfxBackend;
 protected:
-  virtual std::string GetLightShaderFile() { 
-    return "Lighting/default_light.frag";
+  virtual std::string GetLightVertexShaderFile() { 
+    return "Lighting/defaultlight.vert";
+  }
+
+  virtual std::string GetLightFragShaderFile() {
+    return "Lighting/defaultlight.frag";
   }
 
   static std::string GetNewLightId();
@@ -50,12 +49,20 @@ protected:
   }
 
 private:
-  int LightShaderId;
+  int VertexShaderId;
+  int FragShaderId;
+  int ShaderProgramId;
+
   std::string LightId;
   bool isRegistered;
   void SetIsRegistered(bool b) {
     isRegistered = b;
   }
+
+  // Initializes the shader for the light.
+  // Loads the shader source, replaces variables as necessary inside the source.
+  // Sends it to the shader manager for loading.
+  virtual void InitializeLight();
 
   /*
   * Link in the linked list of all lights.

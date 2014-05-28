@@ -38,7 +38,7 @@
 inline void _DisplayOpenGLError(std::string command) {
   GLenum err = glGetError();
   if (err != GL_NO_ERROR) {
-    std::cout << "OpenGL Error: " << err << std::endl;
+    std::cout << "OpenGL Error: " << err << " -- " << gluErrorString(err) << std::endl;
     std::cout << "Relevant Command: " << command << std::endl;
   }
 }

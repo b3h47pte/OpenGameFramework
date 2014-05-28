@@ -43,18 +43,6 @@ bool MeshRenderable::FinishRender() {
  */
 IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parObj) {
 	IRenderableInstance* newInst = new MeshRenderableInstance(this, parObj);
-	
-	// Create new shader program
-	GLuint newProg = glCreateProgram();
-  OGL_CALL(glAttachShader(newProg, mVertexShaderId));
-  OGL_CALL(glAttachShader(newProg, mFragShaderId));
-  OGL_CALL(glLinkProgram(newProg));
-  OGL_CALL(glDetachShader(newProg, mVertexShaderId));
-  OGL_CALL(glDetachShader(newProg, mFragShaderId));
-	newInst->SetShaderProgram(newProg);
-	if (glIsProgram(newProg) == GL_FALSE) 
-    std::cout << "no longer a program?" <<std::endl;
-	
 	return newInst;
 }
 
@@ -111,28 +99,8 @@ void MeshRenderable::FinalizeData() {
     sizeof(glm::vec4) * mVertexNormals.size() + 
     sizeof(glm::vec2) * mTexCoords.size());
 
-	// Load Shader Data 
-	// TODO: Load shader program from binary using the shader program name
-	mVertexShaderId = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
-	if (mVertexShaderId == -1) {
-		if (!GfxShaders::LoadShader(GL_VERTEX_SHADER, mVertexShaderFile, mVertexShaderFile)) {	
-			mDataError = true;
-			return;
-		}
-		mVertexShaderId = GfxShaders::GetShaderID(GL_VERTEX_SHADER, mVertexShaderFile);
-	}
-
-	mFragShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
-	if (mFragShaderId == -1) {
-		if (!GfxShaders::LoadShader(GL_FRAGMENT_SHADER, mFragShaderFile, mFragShaderFile)) {
-			mDataError = true;
-			return;
-		}
-		mFragShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mFragShaderFile);
-	}
-
 	mDataSet = true;
-	// Regeister Ourselves
+	// Register Ourselves
 	GetGfxSubsystem(NULL)->RegisterRenderable(this);
 	OnRegistration();
 

@@ -56,39 +56,46 @@ void GfxBackend::Render(float inDeltaTime) {
 	// Step through all registered renderables and grab their information to render using the 
   // lights in the scene.
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
-	while(curRenderPtr) {	
-		// Renderable will take care of setting its data up so its children can render
-		if (curRenderPtr->PrepareToRender()) {
-			// For each Renderable, go through its instances and grab 
-			// their appropriate information so we can draw 
-			// everything with the same material and mesh in one go
-			IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
+  ILight* curLightPtr = mLightList.GetHeadElement();
+  while (curLightPtr) {
+    // Go through each light in the scene and use its shader to render the mesh. 
+    // For each renderable instance, set its material data as necessary into shader.
+    OGL_CALL(glUseProgram(curLightPtr->GetShaderID()));
+    
+	  while(curRenderPtr) {	
+		  // Renderable will take care of setting its data up so its children can render
+		  if (curRenderPtr->PrepareToRender()) {
+			  // For each Renderable, go through its instances and grab 
+			  // their appropriate information so we can draw 
+			  // everything with the same material and mesh in one go
+			  IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 			
-			while (curInstPtr) {
-				GLuint shaderProg = curInstPtr->GetShaderProgram(); (void) shaderProg;
+			  while (curInstPtr) {
+				  curInstPtr->PrepareRender();
 
-				curInstPtr->PrepareRender();
+				  // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
+				  // MODEL matrix will be determined by the mesh/renderable itself. 
+				  // TODO: Generalize this based on the actual object...somehow.
+				  int projIndx = curInstPtr->GetUniformLocation("projection_matrix");
+				  curInstPtr->SetInternalShaderData(projIndx, projData);
 
-				// Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
-				// MODEL matrix will be determined by the mesh/renderable itself. 
-				// TODO: Generalize this based on the actual object...somehow.
-				int projIndx = curInstPtr->GetUniformLocation("projection_matrix");
-				curInstPtr->SetInternalShaderData(projIndx, projData);
+				  int viewIndx = curInstPtr->GetUniformLocation("view_matrix");
+				  curInstPtr->SetInternalShaderData(viewIndx, viewData);
 
-				int viewIndx = curInstPtr->GetUniformLocation("view_matrix");
-				curInstPtr->SetInternalShaderData(viewIndx, viewData);
-
-				curInstPtr->OnRender();
-				curInstPtr->FinishRender();
-				curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
-			}
+				  curInstPtr->OnRender();
+				  curInstPtr->FinishRender();
+				  curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
+			  }
 
 			
-			curRenderPtr->FinishRender();
-		}
+			  curRenderPtr->FinishRender();
+		  }
 		
-		curRenderPtr = mRenderableList.GetNextElement(curRenderPtr);
-	}
+		  curRenderPtr = mRenderableList.GetNextElement(curRenderPtr);
+	  }
+	  
+    curLightPtr = mLightList.GetNextElement(curLightPtr);
+  }
 	
 }
 
@@ -106,6 +113,7 @@ void GfxBackend::RegisterRenderable(IRenderable* inRenderable) {
 void GfxBackend::RegisterLight(ILight* inLight) {
   if (!inLight->GetIsRegistered()) {
     inLight->SetIsRegistered(true);
+    inLight->InitializeLight();
     mLightList.AppendElement(inLight);
   }
 }

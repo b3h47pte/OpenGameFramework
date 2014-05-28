@@ -73,8 +73,6 @@ int main(int argc, char** argv)
   for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i)
     mesh->AddTriangleIndex(cube_elements[i]);
 
-  mesh->SetVertexShader("Lighting/defaultlight.vert");
-  mesh->SetFragShader("Lighting/defaultlight.frag");
   mesh->FinalizeData();
   mesh->CreateAndRegisterInstance(NULL);
 
