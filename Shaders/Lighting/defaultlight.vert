@@ -19,7 +19,7 @@ out Data {
 } DataOut;
 
 void main() {
-	gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
+  gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
 
   DataOut.lightDir = normalize(light.position - vPosition);
   DataOut.normal = normalize(vNormal);

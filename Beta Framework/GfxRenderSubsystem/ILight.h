@@ -9,9 +9,10 @@
  * with lights. This gives users the ability to easily add their own type of 
  * lights.
  */
-class ILight {
+class ILight : public WorldObject {
 public:
-  ILight() {}
+  ILight(): isRegistered(false) {}
+  ILight(glm::vec4 pos) : WorldObject(pos), isRegistered(false) {}
   virtual ~ILight() {}
 
   // Initializes the shader for the light.
@@ -23,6 +24,12 @@ public:
     return LightShaderId;
   }
 
+  // Whether or not the light has been registered.
+  bool GetIsRegistered() {
+    return isRegistered;
+  }
+
+  friend class GfxBackend;
 protected:
   virtual std::string GetLightShaderFile() { 
     return "Lighting/default_light.frag";
@@ -45,6 +52,15 @@ protected:
 private:
   int LightShaderId;
   std::string LightId;
+  bool isRegistered;
+  void SetIsRegistered(bool b) {
+    isRegistered = b;
+  }
+
+  /*
+  * Link in the linked list of all lights.
+  */
+  TIntrusiveLink<ILight> mBackendLink;
 };
 
 

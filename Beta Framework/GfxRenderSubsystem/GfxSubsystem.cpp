@@ -167,7 +167,11 @@ class IGfxViewport* GfxSubsystem::GetViewport(int inView) {
 /*
  * Register a renderable by passing it to the backend. The backend will take care of the details, there is no need to do any checks here for validity.
  */ 
-void GfxSubsystem::RegisterRenderable(IRenderable* inRenderable) {
+void GfxSubsystem::RegisterRenderable(class IRenderable* inRenderable) {
 	mBackend->RegisterRenderable(inRenderable);
+}
+
+void GfxSubsystem::RegisterLight(class ILight* inLight) {
+  mBackend->RegisterLight(inLight);
 }
 

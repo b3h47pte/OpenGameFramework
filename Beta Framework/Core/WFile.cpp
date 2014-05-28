@@ -12,11 +12,11 @@ WFile::WFile(const std::string& in): mFileName(in)
 WFile::~WFile(void)
 {
 }
-
 char* WFile::ReadAllBinaryDataNull(int& len) {
 	ifstream file(mFileName, std::ios::in | std::ios::binary);
-	if (!file.is_open()) 
-		return NULL;
+  if (!file.is_open()) {
+    return NULL;
+  }
 	int fsize;
 	file.seekg(0, file.end); 
 	fsize = (int)file.tellg();

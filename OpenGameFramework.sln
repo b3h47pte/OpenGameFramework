@@ -117,6 +117,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GFX-CubeMapTex", "Delta App
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GFX-BasicLightTest", "Delta Applications\Tests\GFX-BasicLightTest\GFX-BasicLightTest.vcxproj", "{D7349EF5-5C0D-4341-A5DF-A5E6A128F50E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{74703C32-1244-40CA-91D9-FD244F20CAFC} = {74703C32-1244-40CA-91D9-FD244F20CAFC}
+		{C3FE4A41-D966-44B6-AD51-1E83E9A72A68} = {C3FE4A41-D966-44B6-AD51-1E83E9A72A68}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

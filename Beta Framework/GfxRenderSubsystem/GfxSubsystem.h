@@ -22,6 +22,11 @@ public:
 	 */
 	virtual void RegisterRenderable(class IRenderable*) = 0;
 
+  /*
+   * Notify subsystem about a light that wants to get added to the scene.
+   */
+  virtual void RegisterLight(class ILight*) = 0;
+
 	/*
 	 * Camera/Viewport Related. 
 	 * Default Number of Viewport: 1
@@ -48,7 +53,8 @@ public:
 	/*
 	 * Backend Communication.
 	 */
-	virtual void RegisterRenderable(IRenderable*);
+	virtual void RegisterRenderable(class IRenderable*);
+  virtual void RegisterLight(class ILight*);
 
 	/*
 	 * Error Management.

@@ -53,7 +53,8 @@ void GfxBackend::Render(float inDeltaTime) {
 	viewData.mUniform = true;
 
 	
-	// Step through all registered renderables anx	d grab their information to render
+	// Step through all registered renderables and grab their information to render using the 
+  // lights in the scene.
 	IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
 	while(curRenderPtr) {	
 		// Renderable will take care of setting its data up so its children can render
@@ -100,6 +101,13 @@ void GfxBackend::RegisterRenderable(IRenderable* inRenderable) {
 		inRenderable->mIsRegistered = true;
 		mRenderableList.AppendElement(inRenderable);
 	}
+}
+
+void GfxBackend::RegisterLight(ILight* inLight) {
+  if (!inLight->GetIsRegistered()) {
+    inLight->SetIsRegistered(true);
+    mLightList.AppendElement(inLight);
+  }
 }
 
 /*

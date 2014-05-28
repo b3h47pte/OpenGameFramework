@@ -17,6 +17,7 @@ class  WorldObject: public Object
 {
 public:
 	WorldObject();
+  WorldObject(glm::vec4 inPos);
 	WorldObject(glm::vec4 inPos, glm::quat inRot);
 	~WorldObject(void);
 

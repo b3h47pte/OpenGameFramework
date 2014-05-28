@@ -4,6 +4,7 @@
 
 #include "CommonGfx.h"
 #include "IRenderable.h"
+#include "ILight.h"
 
 class GfxBackend: public ITickable
 {
@@ -13,6 +14,8 @@ public:
 
 	// Register Renderable to make sure it gets rendered
 	void RegisterRenderable(class IRenderable*);
+  // Register lights and make sure to keep track of it in our scene.
+  void RegisterLight(class ILight*);
 
 	/*
 	 * Tick
@@ -50,15 +53,20 @@ private:
 	void Render(float);
 
 	/*
-	 * Instrusive Linked List for Rendering Objects.
-	 * I chose an instrusive linked list because: 
+	 * Intrusive Linked List for Rendering Objects.
+	 * I chose an intrusive linked list because: 
 	 *		1) Vectors: to store pointers would be slightly useless in this case since the spatial locality in grabbing the pointers would be ignored when we have to go all over memory
 				to actually access the renderable object.
 			2) Linked List: it may be very possible that an object will be added to the list and then removed in a short amount of time and I would not want to degrade performance due to
 				a lot of removals which are inefficient in a linked list.
-		Therefore, the instrusive linked list allows me to use a linked list without the degradation in performance when removing an element.
+		Therefore, the intrusive linked list allows me to use a linked list without the degradation in performance when removing an element.
 	 */
 	TIntrusiveLinkedList<IRenderable, offsetof(IRenderable, mBackendLink)> mRenderableList;
+
+  /*
+   * Intrusive Linked List for all Lights.
+   */
+  TIntrusiveLinkedList<ILight, offsetof(ILight, mBackendLink)> mLightList;
 
 };
 

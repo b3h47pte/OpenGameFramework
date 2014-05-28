@@ -2,6 +2,7 @@
 //
 #include <iostream>
 #include "MeshRenderable.h"
+#include "ILight.h"
 #include "../Bootstrap/camera.h"
 
 #ifndef _WIN32
@@ -72,10 +73,12 @@ int main(int argc, char** argv)
   for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i)
     mesh->AddTriangleIndex(cube_elements[i]);
 
-  mesh->SetVertexShader("Lighting/default_light.vert");
-  mesh->SetFragShader("Lighting/default_light.frag");
+  mesh->SetVertexShader("Lighting/defaultlight.vert");
+  mesh->SetFragShader("Lighting/defaultlight.frag");
   mesh->FinalizeData();
   mesh->CreateAndRegisterInstance(NULL);
+
+  gfx->RegisterLight(new ILight(glm::vec4(1.f, 1.f, 1.f, 1.f)));
 
   while (gfx->ShouldTick()) {
     gfx->Tick(0.1f);
