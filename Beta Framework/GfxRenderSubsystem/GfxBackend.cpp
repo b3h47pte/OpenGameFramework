@@ -65,6 +65,7 @@ void GfxBackend::Render(float inDeltaTime) {
     OGL_CALL(glUseProgram(lightShader->GetId()));
 
     // Set uniform information about the light. 
+    lightShader->SetLightData(curLightPtr->GetLightData());
     
 	  while(curRenderPtr) {	
 		  // Renderable will take care of setting its data up so its children can render
@@ -80,11 +81,11 @@ void GfxBackend::Render(float inDeltaTime) {
 				  // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
 				  // MODEL matrix will be determined by the mesh/renderable itself. 
 				  // TODO: Generalize this based on the actual object...somehow.
-				  int projIndx = curInstPtr->GetUniformLocation("projection_matrix");
-				  curInstPtr->SetInternalShaderData(projIndx, projData);
+          int projIndx = lightShader->GetUniformLocation("projection_matrix");
+          lightShader->SetUniformData(projIndx, projData);
 
-				  int viewIndx = curInstPtr->GetUniformLocation("view_matrix");
-				  curInstPtr->SetInternalShaderData(viewIndx, viewData);
+          int viewIndx = lightShader->GetUniformLocation("view_matrix");
+          lightShader->SetUniformData(viewIndx, viewData);
 
 				  curInstPtr->OnRender();
 				  curInstPtr->FinishRender();

@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonGfx.h" />
+    <ClInclude Include="CommonShader.h" />
     <ClInclude Include="GfxBackend.h" />
     <ClInclude Include="GfxCamera.h" />
     <ClInclude Include="GfxShaderInstance.h" />

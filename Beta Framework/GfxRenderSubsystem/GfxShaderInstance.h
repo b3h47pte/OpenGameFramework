@@ -1,6 +1,9 @@
 #pragma once
 #ifndef _GFXSHADERINST_H
 #define _GFXSHADERINST_H
+#include "CommonGfx.h"
+#include "CommonShader.h"
+
 /*
  * A shader instance is equivalent to a shader program. 
  * This class will handle the OpenGL calls to set uniform data and the like.
@@ -23,10 +26,16 @@ public:
   
   int GetId() const { return ShaderProgramId; }
 
-  // Light Information
-  void SetLightData(struct RenderLightData*);
+  // Shader Program Accessor Functions
+  int GetUniformLocation(const char* in);
+
+  // Light Information -- Populates the appropriate uniform with the data found in the RenderLightData structure.
+  void SetLightData(const struct RenderLightData*);
 
   // Material Information
+
+  // Other Uniform Information
+  void SetUniformData(int loc, SShaderData&);
 
 protected:
   GfxShaderInstance(int, int);

@@ -5,13 +5,22 @@
 #include "CommonGfx.h"
 
 struct RenderLightData {
-  RenderLightData() {}
-  RenderLightData(glm::vec4 a, glm::vec4 d) : ambient(a), diffuse(d){
-  }
+  RenderLightData();
+  RenderLightData::RenderLightData(glm::vec4 a, glm::vec4 d);
 
   glm::vec4 ambient;
+  std::string ambientName;
+
   glm::vec4 diffuse;
+  std::string diffuseName;
+
   glm::vec4 position;
+  std::string positionName;
+  
+  std::string uniformName;
+ 
+private:
+  void LoadUniformNames();
 };
 
 /*

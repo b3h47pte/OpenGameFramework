@@ -29,3 +29,23 @@ void ILight::InitializeLight() {
   ShaderProgramId = ShaderInstance->GetId();
   data.position = GetPosition();
 }
+
+/************************************************************************/
+/* Render Light Data Information.                                       */
+/************************************************************************/
+
+RenderLightData::RenderLightData() {
+  LoadUniformNames();
+}
+
+RenderLightData::RenderLightData(glm::vec4 a, glm::vec4 d) : ambient(a), diffuse(d) {
+  LoadUniformNames();
+}
+
+void RenderLightData::LoadUniformNames() {
+  // Temporary -- Load these from some sort of config or stored data.
+  uniformName = "light";
+  ambientName = "globalAmbient";
+  diffuseName = "diffuse";
+  positionName = "position";
+}

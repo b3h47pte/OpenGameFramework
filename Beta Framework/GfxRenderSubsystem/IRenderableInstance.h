@@ -4,19 +4,6 @@
 
 #include "CommonGfx.h"
 
-enum EShaderDataType {
-	ESDT_MATRIX4x4,			// Assumes data comes in as glm::mat4
-	ESDT_TEX2D,
-  ESDT_TEXCUBE
-};
-
-struct SShaderData {
-	bool mUniform;
-	void* mData;
-	std::string mLocation;
-	EShaderDataType mType;
-};
-
 class IRenderableInstance:public WorldObject
 {
 public:
@@ -37,20 +24,6 @@ public:
 	friend class IRenderable;
 	friend class GfxBackend;
 
-	virtual GLuint GetShaderProgram() const { 
-    return mShaderProgramID;
-  }
-	virtual void SetShaderProgram(GLuint in) { mShaderProgramID = in; }
-	GLint GetUniformLocation(const std::string& in) { 
-    return glGetUniformLocation(mShaderProgramID, in.c_str()); 
-  }
-	virtual void SetInternalShaderData(int i, SShaderData& data) { 
-    mInternalShaderData[i] = data; 
-  }
-	virtual void SetExternalShaderData(int i, SShaderData& data) { 
-    mExternalShaderData[i] = data; 
-  }
-
 	/*
 	 * Various Accessor Functions.
 	 */
@@ -69,11 +42,6 @@ private:
 	unsigned int mTextureLocationCount;
 
 	/*
-	 * Prepares shader data. 
-	 */
-	virtual void PrepareShaderData();
-
-	/*
 	 * What is the difference between Parent Renderable and Parent Object?
 	 * Parent Renderable -- Parent renderable holds the mesh's data (material, mesh data, etc)
 	 * Parent Object -- The object that this renderable instance is attached to (where we get parent orientation/location from)
@@ -88,10 +56,6 @@ private:
 	 */
 	TIntrusiveLink<IRenderableInstance> mInstanceLink;
 
-	// Uniform Shader Data -- Differentiate between those set internally and those set externally so it can be thread-safe
-	std::map<GLint, SShaderData> mInternalShaderData;
-	std::map<GLint, SShaderData> mExternalShaderData;
-	typedef std::map<GLint, SShaderData>::iterator SHADER_DATA_ITER_t;
 	/*
 	 * Whether or not this renderable has already been registered by the backend.
 	 * NEVER CHANGE THIS VARIABLE WITHIN IRENDERABLEINSTANCE -- aside from the unregister function.
@@ -104,13 +68,6 @@ private:
 	 */
 	virtual void PreRender() = 0;
 	virtual void PostRender() = 0;
-
-	// Shader Data -- all renderables have shader data because OpenGL 4 pretty much mandates everything to be drawn with shaders!
-	GLuint				mShaderProgramID;
-
-	// Load Uniform/Non-Uniform Data into shader program. 
-	// TODO: Do non-uniform data later when I know how it works.
-	void SetUniformShaderData(GLint, SShaderData&);
 };
 
 #endif // _IRENDERABLEINSTANCE_H

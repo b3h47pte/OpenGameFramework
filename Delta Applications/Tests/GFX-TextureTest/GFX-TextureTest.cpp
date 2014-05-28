@@ -10,6 +10,7 @@
 #include "TextureManager.h"
 #include "ITexture.h"
 #include "GfxUtility.h"
+#include "CommonShader.h"
 
 int main(int argc, char** argv)
 {

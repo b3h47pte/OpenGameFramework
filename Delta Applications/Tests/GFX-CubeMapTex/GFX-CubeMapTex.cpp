@@ -7,6 +7,7 @@
 #include "TextureManager.h"
 #include "ITexture.h"
 #include "GfxUtility.h"
+#include "CommonShader.h"
 
 #ifndef _WIN32
 #include <unistd.h>
