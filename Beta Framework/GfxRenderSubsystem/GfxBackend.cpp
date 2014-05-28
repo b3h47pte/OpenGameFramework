@@ -3,6 +3,7 @@
 #include "GfxViewport.h"
 #include "GfxCamera.h"
 #include "TextureManager.h"
+#include "GfxShaderInstance.h"
 
 GfxBackend::GfxBackend(void)
 {
@@ -60,7 +61,10 @@ void GfxBackend::Render(float inDeltaTime) {
   while (curLightPtr) {
     // Go through each light in the scene and use its shader to render the mesh. 
     // For each renderable instance, set its material data as necessary into shader.
-    OGL_CALL(glUseProgram(curLightPtr->GetShaderID()));
+    GfxShaderInstance* lightShader = curLightPtr->GetShader();
+    OGL_CALL(glUseProgram(lightShader->GetId()));
+
+    // Set uniform information about the light. 
     
 	  while(curRenderPtr) {	
 		  // Renderable will take care of setting its data up so its children can render

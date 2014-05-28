@@ -90,8 +90,6 @@ int main(int argc, char** argv)
 	for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i) 
 		mesh->AddTriangleIndex(cube_elements[i]);
 
-	mesh->SetVertexShader("MultiColor/multicolor.vert");
-	mesh->SetFragShader("MultiColor/multicolor.frag");
 	mesh->FinalizeData();
 
   // Create 3x3x3 grid of cubes.

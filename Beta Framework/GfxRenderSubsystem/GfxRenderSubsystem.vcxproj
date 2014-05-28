@@ -92,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="GfxBackend.cpp" />
     <ClCompile Include="GfxCamera.cpp" />
+    <ClCompile Include="GfxShaderInstance.cpp" />
     <ClCompile Include="GfxShaders.cpp" />
     <ClCompile Include="GfxSubsystem.cpp" />
     <ClCompile Include="GfxUtility.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="CommonGfx.h" />
     <ClInclude Include="GfxBackend.h" />
     <ClInclude Include="GfxCamera.h" />
+    <ClInclude Include="GfxShaderInstance.h" />
     <ClInclude Include="GfxShaders.h" />
     <ClInclude Include="GfxSubsystem.h" />
     <ClInclude Include="GfxUtility.h" />
@@ -134,8 +136,8 @@
   <ItemGroup>
     <None Include="..\..\Shaders\Basic\basic.frag" />
     <None Include="..\..\Shaders\Basic\basic.vert" />
-    <None Include="..\..\Shaders\Lighting\default_light.frag" />
-    <None Include="..\..\Shaders\Lighting\default_light.vert" />
+    <None Include="..\..\Shaders\Lighting\defaultlight.frag" />
+    <None Include="..\..\Shaders\Lighting\defaultlight.vert" />
     <None Include="..\..\Shaders\MultiColor\multicolor.frag" />
     <None Include="..\..\Shaders\MultiColor\multicolor.vert" />
     <None Include="..\..\Shaders\Texture3D\texture.frag" />

@@ -61,12 +61,6 @@ private:
   void LoadExternalPerVertexAttr(int startIdx, size_t startSize);
 
 public:
-
-	// Name of the shader program -- not going to be used for now but will be useful once I started saving the program binary out to a file
-	void SetShaderProgram(const std::string&);
-	void SetVertexShader(const std::string&);
-	void SetFragShader(const std::string&);
-
 	/*
 	 * Finalize Data and register data with OpenGL
 	 */ 

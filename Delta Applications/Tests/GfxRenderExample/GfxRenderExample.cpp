@@ -39,8 +39,6 @@ int main(int argc, char** argv)
 	mesh->AddTriangleIndex(0);
 	mesh->AddTriangleIndex(1);
 	mesh->AddTriangleIndex(2);
-	mesh->SetVertexShader("Basic/basic.vert");
-	mesh->SetFragShader("Basic/basic.frag");
 	mesh->FinalizeData();
 	mesh->CreateAndRegisterInstance(NULL);
 

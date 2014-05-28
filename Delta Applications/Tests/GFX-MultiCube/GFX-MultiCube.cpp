@@ -73,8 +73,6 @@ int main(int argc, char** argv)
 	for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i) 
 		mesh->AddTriangleIndex(cube_elements[i]);
 
-	mesh->SetVertexShader("Basic/basic.vert");
-	mesh->SetFragShader("Basic/basic.frag");
 	mesh->FinalizeData();
 
   // Create 3x3x3 grid of cubes.

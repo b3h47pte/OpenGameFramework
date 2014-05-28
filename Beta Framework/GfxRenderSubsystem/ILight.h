@@ -4,6 +4,16 @@
 
 #include "CommonGfx.h"
 
+struct RenderLightData {
+  RenderLightData() {}
+  RenderLightData(glm::vec4 a, glm::vec4 d) : ambient(a), diffuse(d){
+  }
+
+  glm::vec4 ambient;
+  glm::vec4 diffuse;
+  glm::vec4 position;
+};
+
 /*
  * Defines a standard interface for how the graphics subsystem will interact
  * with lights. This gives users the ability to easily add their own type of 
@@ -15,13 +25,24 @@ public:
   ILight(glm::vec4 pos) : WorldObject(pos), isRegistered(false) {}
   virtual ~ILight() {}
 
-  virtual int GetShaderID() {
-    return ShaderProgramId;
+  virtual class GfxShaderInstance* GetShader() {
+    return ShaderInstance;
   }
 
   // Whether or not the light has been registered.
   bool GetIsRegistered() {
     return isRegistered;
+  }
+
+  /*
+   * Retrieve light data for rendering.
+   */
+  const RenderLightData* GetLightData() const {
+    return &data;
+  }
+
+  void SetLightData(RenderLightData& inData) {
+    data = inData;
   }
 
   friend class GfxBackend;
@@ -52,12 +73,16 @@ private:
   int VertexShaderId;
   int FragShaderId;
   int ShaderProgramId;
+  class GfxShaderInstance* ShaderInstance;
 
   std::string LightId;
   bool isRegistered;
   void SetIsRegistered(bool b) {
     isRegistered = b;
   }
+  
+  // Aggregate Data that will be used for rendering
+  RenderLightData data;
 
   // Initializes the shader for the light.
   // Loads the shader source, replaces variables as necessary inside the source.
@@ -69,6 +94,7 @@ private:
   */
   TIntrusiveLink<ILight> mBackendLink;
 };
+
 
 
 #endif // _ILIGHT_H

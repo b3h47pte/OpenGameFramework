@@ -2,6 +2,7 @@
 #include <sstream>
 #include "ILight.h"
 #include "GfxShaders.h"
+#include "GfxShaderInstance.h"
 
 int ILight::CurrentLightCount = 0;
 
@@ -24,10 +25,7 @@ void ILight::InitializeLight() {
     return;
   }
 
-  ShaderProgramId = OGL_CALL(glCreateProgram());
-  OGL_CALL(glAttachShader(ShaderProgramId, VertexShaderId));
-  OGL_CALL(glAttachShader(ShaderProgramId, FragShaderId));
-  OGL_CALL(glLinkProgram(ShaderProgramId));
-  OGL_CALL(glDetachShader(ShaderProgramId, VertexShaderId));
-  OGL_CALL(glDetachShader(ShaderProgramId, FragShaderId));
+  ShaderInstance = GfxShaderInstance::CreateNewInstance(VertexShaderId, FragShaderId);
+  ShaderProgramId = ShaderInstance->GetId();
+  data.position = GetPosition();
 }

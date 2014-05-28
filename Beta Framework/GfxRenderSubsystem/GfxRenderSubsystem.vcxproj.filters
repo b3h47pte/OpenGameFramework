@@ -89,6 +89,9 @@
     <Filter Include="Sample Shaders\TextureCube">
       <UniqueIdentifier>{923e447b-3d93-44ed-9118-73ed486197b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Backend\Shaders\Instance">
+      <UniqueIdentifier>{4b23f421-60fc-4082-abb2-c0da8b892ecd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -147,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="ILight.cpp">
       <Filter>Backend\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="GfxShaderInstance.cpp">
+      <Filter>Backend\Shaders\Instance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,11 +216,11 @@
     <ClInclude Include="ILight.h">
       <Filter>Backend\Lighting</Filter>
     </ClInclude>
+    <ClInclude Include="GfxShaderInstance.h">
+      <Filter>Backend\Shaders\Instance</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Shaders\Lighting\default_light.frag">
-      <Filter>Sample Shaders\Lighting</Filter>
-    </None>
     <None Include="..\..\Shaders\Texture3D\texture.vert">
       <Filter>Sample Shaders\Texture3D</Filter>
     </None>
@@ -245,7 +251,10 @@
     <None Include="..\..\Shaders\TextureCube\texture.vert">
       <Filter>Sample Shaders\TextureCube</Filter>
     </None>
-    <None Include="..\..\Shaders\Lighting\default_light.vert">
+    <None Include="..\..\Shaders\Lighting\defaultlight.frag">
+      <Filter>Sample Shaders\Lighting</Filter>
+    </None>
+    <None Include="..\..\Shaders\Lighting\defaultlight.vert">
       <Filter>Sample Shaders\Lighting</Filter>
     </None>
   </ItemGroup>

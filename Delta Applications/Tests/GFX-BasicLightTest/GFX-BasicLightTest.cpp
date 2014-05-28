@@ -76,7 +76,10 @@ int main(int argc, char** argv)
   mesh->FinalizeData();
   mesh->CreateAndRegisterInstance(NULL);
 
-  gfx->RegisterLight(new ILight(glm::vec4(1.f, 1.f, 1.f, 1.f)));
+  ILight* light = new ILight(glm::vec4(1.f, 1.f, 1.f, 1.f));
+  RenderLightData rld(glm::vec4(1.f, 0.f, 0.f, 1.f), glm::vec4(0.f, 0.f, 0.f, 0.f));
+  light->SetLightData(rld);
+  gfx->RegisterLight(light);
 
   while (gfx->ShouldTick()) {
     gfx->Tick(0.1f);

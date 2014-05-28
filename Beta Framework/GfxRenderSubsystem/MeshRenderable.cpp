@@ -132,24 +132,6 @@ void MeshRenderable::AddVertexTex(float t[2]) {
 }
 
 /*
- * Set Shader Program. Not yet implemented. TODO.
- */
-void MeshRenderable::SetShaderProgram(const std::string&)  {
-	assert(1== 0);
-}
-
-/*
- * Set Vertex/Frag Shaders. 
- */
-void MeshRenderable::SetVertexShader(const std::string& in) {
-	mVertexShaderFile = in;
-}
-
-void MeshRenderable::SetFragShader(const std::string& in) {
-	mFragShaderFile = in;
-}
-
-/*
  * Support Externally Declared Per-Vertex Attributes.
  */
 size_t MeshRenderable::GetSizeOfExternalVertexAttr() const {
