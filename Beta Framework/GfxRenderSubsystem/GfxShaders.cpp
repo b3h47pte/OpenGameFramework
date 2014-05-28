@@ -63,6 +63,7 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 	return true;
 }
 
+// TODO: Make this more accurate...
 std::string GfxShaders::GetShaderDirectory() {
   return "../Shaders/";
 }

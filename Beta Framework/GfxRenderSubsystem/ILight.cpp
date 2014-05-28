@@ -3,6 +3,8 @@
 #include "ILight.h"
 #include "GfxShaders.h"
 
+int ILight::CurrentLightCount = 0;
+
 std::string ILight::GetNewLightId() {
   std::ostringstream sig;
   sig << "__ogf_light_" << ILight::ReserveLight();
@@ -11,23 +13,8 @@ std::string ILight::GetNewLightId() {
 
 void ILight::InitializeLight() {
   // Load the shader file.  
+  SetLightId(ILight::GetNewLightId());
   GfxShaders::LoadShader(GL_FRAGMENT_SHADER, GetLightShaderFile(),
-                         ILight::GetNewLightId());
+                         LightId);
+  LightShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, GetLightId());
 }
-
-void ILight::InsertLightSubroutineType(std::string& curShader) {
-  std::string repText = "%LIGHT_SUBROUTINE_TYPE%";
-  curShader.replace(curShader.find(repText), repText.size(), 
-                    ILight::GetLightSubroutineType());
-}
-
-void ILight::InsertSubroutineSignature(std::string& curShader) {
-  std::ostringstream sig;
-  sig << "subroutine vec4 " << ILight::GetLightSubroutineType() << "();" 
-    << std::endl;
-
-  std::string repText = "%LIGHT_SUBROUTINE_SIGNATURE%";
-  curShader.replace(curShader.find(repText), repText.size(), sig.str());
-}
-
-

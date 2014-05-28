@@ -97,6 +97,7 @@
     <ClCompile Include="GfxUtility.cpp" />
     <ClCompile Include="GfxViewport.cpp" />
     <ClCompile Include="GfxWindow.cpp" />
+    <ClCompile Include="ILight.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="IRenderableInstance.cpp" />
     <ClCompile Include="ITexture.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="GfxUtility.h" />
     <ClInclude Include="GfxViewport.h" />
     <ClInclude Include="GfxWindow.h" />
+    <ClInclude Include="ILight.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="IRenderableInstance.h" />
     <ClInclude Include="ITexture.h" />
@@ -130,14 +132,18 @@
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sample Shaders\Basic\basic.frag" />
-    <None Include="Sample Shaders\Basic\basic.vert" />
-    <None Include="Sample Shaders\MultiColor\multicolor.frag" />
-    <None Include="Sample Shaders\MultiColor\multicolor.vert" />
-    <None Include="Sample Shaders\TextureCube\texture.frag" />
-    <None Include="Sample Shaders\TextureCube\texture.vert" />
-    <None Include="Sample Shaders\Texture\texture.frag" />
-    <None Include="Sample Shaders\Texture\texture.vert" />
+    <None Include="..\..\Shaders\Basic\basic.frag" />
+    <None Include="..\..\Shaders\Basic\basic.vert" />
+    <None Include="..\..\Shaders\Lighting\default_light.frag" />
+    <None Include="..\..\Shaders\Lighting\default_light.vert" />
+    <None Include="..\..\Shaders\MultiColor\multicolor.frag" />
+    <None Include="..\..\Shaders\MultiColor\multicolor.vert" />
+    <None Include="..\..\Shaders\Texture3D\texture.frag" />
+    <None Include="..\..\Shaders\Texture3D\texture.vert" />
+    <None Include="..\..\Shaders\TextureCube\texture.frag" />
+    <None Include="..\..\Shaders\TextureCube\texture.vert" />
+    <None Include="..\..\Shaders\Texture\texture.frag" />
+    <None Include="..\..\Shaders\Texture\texture.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
