@@ -34,7 +34,7 @@ protected:
 	 * Render function. Called in the Gfx Backend Render loop.
 	 */
 	virtual void OnRender();
-	virtual void PrepareRender();
+  virtual void PrepareRender(class GfxShaderInstance*);
 	virtual void FinishRender();
 
 private:

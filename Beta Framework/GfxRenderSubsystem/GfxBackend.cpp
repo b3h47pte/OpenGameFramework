@@ -47,12 +47,13 @@ void GfxBackend::Render(float inDeltaTime) {
 	projData.mData = &projectionMat;
 	projData.mType = ESDT_MATRIX4x4;
 	projData.mUniform = true;
+  projData.mLocation = "projection_matrix";
 
 	SShaderData viewData;
 	viewData.mData = &viewMat;
 	viewData.mType = ESDT_MATRIX4x4;
 	viewData.mUniform = true;
-
+  viewData.mLocation = "view_matrix";
 	
 	// Step through all registered renderables and grab their information to render using the 
   // lights in the scene.
@@ -76,16 +77,17 @@ void GfxBackend::Render(float inDeltaTime) {
 			  IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
 			
 			  while (curInstPtr) {
-				  curInstPtr->PrepareRender();
+          // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
+          // MODEL matrix will be determined by the mesh/renderable itself. 
+          // TODO: Generalize this based on the actual object...somehow.
+          lightShader->SetUniformData(projData);
+          lightShader->SetUniformData(viewData);
+          
+          // Loads mesh specific shader data: model matrix along with material data.
+          curInstPtr->PrepareRender(lightShader);
 
-				  // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
-				  // MODEL matrix will be determined by the mesh/renderable itself. 
-				  // TODO: Generalize this based on the actual object...somehow.
-          int projIndx = lightShader->GetUniformLocation("projection_matrix");
-          lightShader->SetUniformData(projIndx, projData);
-
-          int viewIndx = lightShader->GetUniformLocation("view_matrix");
-          lightShader->SetUniformData(viewIndx, viewData);
+          // Passes all appropriate uniform data to the shader via OpenGL
+          lightShader->PrepareUniformData();
 
 				  curInstPtr->OnRender();
 				  curInstPtr->FinishRender();

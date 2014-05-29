@@ -1,6 +1,7 @@
 #include "IRenderableInstance.h"
 #include "IRenderable.h"
 #include "ITexture.h"
+#include "GfxShaderInstance.h"
 
 IRenderableInstance::IRenderableInstance(IRenderable* inRen, WorldObject* inObj): 
                                           mParentRenderable(inRen), 
@@ -44,12 +45,24 @@ void IRenderableInstance::OnRegistration() {
 void IRenderableInstance::OnRender() {
 }
 
-void IRenderableInstance::PrepareRender() {
+/*
+ * Loads the following uniform data into the shader:
+ *  1) Model Matrix
+ *  2) Material Data.
+ */
+void IRenderableInstance::PrepareRender(GfxShaderInstance* shader) {
 	PreRender();
+
+  // Model Matrix
+  SShaderData data;
+  data.mUniform = true;
+  data.mType = ESDT_MATRIX4x4;
+  data.mLocation = "model_matrix";
+  shader->SetUniformData(data);
+
+
 }
 
 void IRenderableInstance::FinishRender() {
 	PostRender();
-
-  OGL_CALL(glUseProgram(0));
 }

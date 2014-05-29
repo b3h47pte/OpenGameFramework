@@ -1,6 +1,7 @@
 #include "GfxShaderInstance.h"
 #include "CommonGfx.h"
 #include "ILight.h"
+#include "ITexture.h"
 
 GfxShaderInstance::GfxShaderInstance(int VertexId, int FragId) {
   if (VertexId == -1 || FragId == -1) {
@@ -50,8 +51,40 @@ void GfxShaderInstance::SetLightData(const RenderLightData* data) {
   }
 }
 
-void GfxShaderInstance::SetUniformData(int loc, SShaderData& data) {
+void GfxShaderInstance::SetUniformData(SShaderData& data) {
+  mShaderData[data.mLocation] = data;
+}
 
+void GfxShaderInstance::PrepareUniformData() {
+  assert(ShaderProgramId != -1);
+  OGL_CALL(glUseProgram(ShaderProgramId));
+
+  unsigned int textureCount = 0;
+  for (auto& kv : mShaderData) {
+    SShaderData* data = &kv.second;
+    if (!data->mUniform)
+      return;
+
+    int loc = OGL_CALL(glGetUniformLocation(ShaderProgramId, data->mLocation.c_str()));
+    if (loc == -1) {
+      std::cout << "SetUniformData failed to find uniform location: " << data->mLocation << std::endl;
+      return;
+    }
+
+    switch (data->mType) {
+    case ESDT_MATRIX4x4:
+      OGL_CALL(glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(*(glm::mat4*)data->mData)));
+      break;
+    case ESDT_TEX2D:
+    case ESDT_TEXCUBE:
+      OGL_CALL(glUniform1i(loc, textureCount));
+      OGL_CALL(glActiveTexture(GL_TEXTURE0 + textureCount));
+      ITexture* tex = (ITexture*)data->mData;
+      OGL_CALL(glBindTexture(tex->GetTextureBindTarget(), tex->GetTextureID()));
+      ++textureCount;
+      break;
+    }
+  }
 }
 
 /************************************************************************/

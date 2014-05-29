@@ -13,6 +13,9 @@
  *  1) Light information (light position, color, etc.).
  *  2) Material information (what we're shading i.e. diffuse, spec, etc.).
  * These two items must match with the corresponding structures in the GLSL shaders.
+ * 
+ * However, it is also critical that we do our best to reuse shaders instead of creating new ones
+ * for each identical light whose only difference is a change in light properties.
  */
 class GfxShaderInstance
 {
@@ -35,13 +38,18 @@ public:
   // Material Information
 
   // Other Uniform Information
-  void SetUniformData(int loc, SShaderData&);
+  // Stores shader data to load into the shader program when used for rendering.
+  void SetUniformData(SShaderData&);
+  // Loads uniform data into the shader.
+  void PrepareUniformData();
+
 
 protected:
   GfxShaderInstance(int, int);
 
 private:
   int ShaderProgramId;
+  std::map<std::string, SShaderData> mShaderData;
 };
 
 #endif // _GFXSHADERINST_H
