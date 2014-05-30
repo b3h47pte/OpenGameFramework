@@ -15,4 +15,6 @@ struct SShaderData {
   EShaderDataType mType;
 };
 
-#endif
+#define BLINN_PHONG_BRDF 1
+
+#endif // _COMMONSHADER_H

@@ -2,7 +2,6 @@
 #include "Texture2D.h"
 #include "WFile.h"
 #include "GfxUtility.h"
-#include "MaterialConstants.h"
 
 #define PARAM_SEC_ID      0
 #define BODY_SEC_ID       2
@@ -23,6 +22,10 @@ void Material::LoadMaterial() {
   WFile file(realDirectory);
   std::vector<std::string> data;
   file.ReadAllTextData(data);
+
+  // Reset to a default state.
+  mMaterialBodyText = "";
+  ParameterMapping.clear();
 
   int section = INVALID_SEC_ID;
   for (auto& line : data) {
@@ -54,6 +57,9 @@ void Material::LoadMaterial() {
       break;
     }
   }
+
+  ParseEntireShaderBody();
+  GenerateShaderSource();
 }
 
 /*
@@ -65,7 +71,6 @@ void Material::LoadMaterial() {
 void Material::ParseParameter(const std::string& param) {
   size_t split = param.find_first_of(" ");
   if (split == std::string::npos) {
-    std::cerr << "Invalid parameter (" << param << ") in material: " << mMaterialSource << std::endl;
     return;
   }
 
@@ -145,7 +150,15 @@ void Material::ParseParameter(const std::string& param) {
 }
 
 void Material::ParseShaderBodyLine(const std::string& line) {
+  // Note: Need to add in the newline just in case there are comments.
+  // HOWEVER. I do assume that the #version command (or anything like it) is not in here.
+  mMaterialBodyText += (line + "\n");
+}
 
+/*
+ * Replace OGF Material specific keywords with their appropriate replacements.
+ */
+void Material::ParseEntireShaderBody() {
 }
 
 std::string Material::GetMaterialDirectory() const {
@@ -159,5 +172,29 @@ void Material::CleanupMaterialParam(MaterialParam* param) {
   if (param == NULL)
     return;
 
+  if (param->data != NULL) {
+    switch (param->paramType) {
+    case EMPT_VEC4:
+    case EMPT_COLOR:
+      delete (glm::vec4*)param->data;
+      break;
+    case EMPT_TEXTURE2D: // Will eventually be cleaned up by the texture manager.
+      break;
+    case EMPT_FLOAT:
+      delete (float*)param->data;
+      break;
+    default:
+      break;
+    }
+  }
+
   delete param;
+}
+
+/*
+ * Using the data that we have about the function body and the input parameters generate 
+ * valid GLSL code that can be used as a fragment shader.
+ */
+void Material::GenerateShaderSource() {
+
 }
