@@ -9,11 +9,11 @@
 
 #include <stdio.h>
 #ifdef _WIN32
-	#include<tchar.h>
+  #include<tchar.h>
 #else
-	#define _TCHAR char*
-	#define Sleep usleep
-	#include <unistd.h>
+  #define _TCHAR char*
+  #define Sleep usleep
+  #include <unistd.h>
 #endif
 
 // TODO: reference additional headers your program requires here

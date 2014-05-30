@@ -17,11 +17,11 @@
 #endif
 
 #ifdef _WIN32
-	#include <Windows.h>
+  #include <Windows.h>
 #endif
 
 // Other Defines Need for the Gfx Subsystem
-#define GFX_MAX_VIEWPORTS	4
+#define GFX_MAX_VIEWPORTS  4
 
 // Core
 #include "CoreExternal.h"

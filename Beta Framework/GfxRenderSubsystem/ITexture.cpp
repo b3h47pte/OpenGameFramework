@@ -2,7 +2,7 @@
 
 
 ITexture::ITexture(void): mTextureType(ETT_UNKNOWN), mTextureData(NULL),
-	                        mNumTextures(0), mTexSizeWidth(0), mTexSizeHeight(0), 
+                          mNumTextures(0), mTexSizeWidth(0), mTexSizeHeight(0), 
                           mReleased(false), mTextureID(0), 
                           mBindTarget(GL_TEXTURE_2D), mTextureUseCount(0), 
                           mTextureLastTouch(clock()) {
@@ -11,17 +11,17 @@ ITexture::ITexture(void): mTextureType(ETT_UNKNOWN), mTextureData(NULL),
 
 
 ITexture::~ITexture(void) {
-	ReleaseResources();
+  ReleaseResources();
 }
 
 void ITexture::ReleaseResources() {
-	if (mReleased)
-		return;
+  if (mReleased)
+    return;
 
-	if (glIsTexture(mTextureID))
+  if (glIsTexture(mTextureID))
     OGL_CALL(glDeleteTextures(1, &mTextureID));
 
-	mReleased = true;
+  mReleased = true;
 }
 
 void ITexture::PreTextureDataLoaded() {

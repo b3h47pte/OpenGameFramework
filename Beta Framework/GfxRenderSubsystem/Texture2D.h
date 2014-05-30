@@ -16,11 +16,11 @@ protected:
   Texture2D(void);
   virtual ~Texture2D(void);
 
- 	/*
-	 * Notify when data is modified and should be copied into the texture object.
-	 */
+   /*
+   * Notify when data is modified and should be copied into the texture object.
+   */
   virtual void PreTextureDataLoaded();
-	virtual void TextureDataLoaded();
+  virtual void TextureDataLoaded();
   virtual void PostTextureDataLoaded();
 
  

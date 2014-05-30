@@ -16,13 +16,13 @@ GfxShaders::~GfxShaders(void)
  * Gets the shader ID. Returns -1 if the Shader is not found.
  */
 int GfxShaders::GetShaderID(GLenum type, const std::string& id) {
-	if (mShaderStore.find(type) != mShaderStore.end()) {
-		if (mShaderStore[type].find(id) != mShaderStore[type].end()) {
-			return mShaderStore[type][id];
-		}
-	} 
+  if (mShaderStore.find(type) != mShaderStore.end()) {
+    if (mShaderStore[type].find(id) != mShaderStore[type].end()) {
+      return mShaderStore[type][id];
+    }
+  } 
 
-	return -1;
+  return -1;
 }
 
 /*
@@ -30,18 +30,18 @@ int GfxShaders::GetShaderID(GLenum type, const std::string& id) {
  * NOTE: Input shader MUST be NULL terminated.
  */
 bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::string& id) {
-	int shaderId;
-	if (!(shaderId = glCreateShader(type)))
-		return false;
+  int shaderId;
+  if (!(shaderId = glCreateShader(type)))
+    return false;
 
   std::string realFile = GfxShaders::GetShaderDirectory() + file;
 
-	WFile wfile(realFile);
-	const char* data = wfile.ReadAllBinaryDataNull();
-	if (!data) {
-		std::cout << "Load Shader Error: No data read from shader file." << std::endl;
-		return false;
-	}
+  WFile wfile(realFile);
+  const char* data = wfile.ReadAllBinaryDataNull();
+  if (!data) {
+    std::cout << "Load Shader Error: No data read from shader file." << std::endl;
+    return false;
+  }
   bool ret = PrepareShader(type, data, id, shaderId);
   delete[] data;
   return ret;

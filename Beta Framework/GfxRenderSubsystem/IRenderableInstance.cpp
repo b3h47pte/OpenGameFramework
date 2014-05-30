@@ -10,7 +10,7 @@ IRenderableInstance::IRenderableInstance(IRenderable* inRen, WorldObject* inObj)
 
 
 IRenderableInstance::~IRenderableInstance(void) {
-	UnregisterRenderableInstance();
+  UnregisterRenderableInstance();
 }
 
 /*
@@ -18,12 +18,12 @@ IRenderableInstance::~IRenderableInstance(void) {
  * We can access the linked list via our link.
  */
 void IRenderableInstance::UnregisterRenderableInstance() {
-	if (!mIsRegistered)
-		return;
+  if (!mIsRegistered)
+    return;
 
-	mInstanceLink.Unlink();
-	mIsRegistered = false;
-	OnDeregistration();
+  mInstanceLink.Unlink();
+  mIsRegistered = false;
+  OnDeregistration();
 }
 
 /* 
@@ -51,7 +51,7 @@ void IRenderableInstance::OnRender() {
  *  2) Material Data.
  */
 void IRenderableInstance::PrepareRender(GfxShaderInstance* shader) {
-	PreRender();
+  PreRender();
 
   // Model Matrix
   SShaderData data;
@@ -64,5 +64,5 @@ void IRenderableInstance::PrepareRender(GfxShaderInstance* shader) {
 }
 
 void IRenderableInstance::FinishRender() {
-	PostRender();
+  PostRender();
 }

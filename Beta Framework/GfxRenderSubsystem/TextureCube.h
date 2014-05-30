@@ -16,11 +16,11 @@ protected:
   TextureCube(void);
   virtual ~TextureCube(void);
   
-	/*
-	 * Notify when data is modified and should be copied into the texture object.
-	 */
+  /*
+   * Notify when data is modified and should be copied into the texture object.
+   */
   virtual void PreTextureDataLoaded();
-	virtual void TextureDataLoaded();
+  virtual void TextureDataLoaded();
   virtual void PostTextureDataLoaded();
 
 private:

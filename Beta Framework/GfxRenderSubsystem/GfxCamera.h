@@ -6,17 +6,17 @@
 
 class  IGfxCamera: public WorldObject {
 public:
-	virtual float GetFOV() const = 0;
-	virtual void SetFOV(float) = 0;
+  virtual float GetFOV() const = 0;
+  virtual void SetFOV(float) = 0;
 
-	virtual float GetAspectRatio() const = 0;
-	virtual void SetAspectRatio(float) = 0;
+  virtual float GetAspectRatio() const = 0;
+  virtual void SetAspectRatio(float) = 0;
 
-	virtual float GetZNear() const = 0;
-	virtual void SetZNear(float) = 0;
+  virtual float GetZNear() const = 0;
+  virtual void SetZNear(float) = 0;
 
-	virtual float GetZFar() const = 0;
-	virtual void SetZFar(float) = 0;
+  virtual float GetZFar() const = 0;
+  virtual void SetZFar(float) = 0;
 
   virtual glm::mat4 GetProjectionMatrix() const = 0;
 };
@@ -28,20 +28,20 @@ public:
 class GfxCamera: public IGfxCamera
 {
 public:
-	GfxCamera(void);
-	~GfxCamera(void);
+  GfxCamera(void);
+  ~GfxCamera(void);
 
-	virtual float GetFOV() const { return mFOV; }
-	virtual void SetFOV(float in) {mFOV = in;}
+  virtual float GetFOV() const { return mFOV; }
+  virtual void SetFOV(float in) {mFOV = in;}
 
-	virtual float GetAspectRatio() const { return mAspectRatio; }
-	virtual void SetAspectRatio(float in) { mAspectRatio = in; }
+  virtual float GetAspectRatio() const { return mAspectRatio; }
+  virtual void SetAspectRatio(float in) { mAspectRatio = in; }
 
-	virtual float GetZNear() const { return mZNear; }
-	virtual void SetZNear(float in) { mZNear = in; }
+  virtual float GetZNear() const { return mZNear; }
+  virtual void SetZNear(float in) { mZNear = in; }
 
-	virtual float GetZFar() const { return mZFar; }
-	virtual void SetZFar(float in) { mZFar = in; }
+  virtual float GetZFar() const { return mZFar; }
+  virtual void SetZFar(float in) { mZFar = in; }
 
   virtual glm::mat4 GetProjectionMatrix() const {
     return glm::perspective(GetFOV(), GetAspectRatio(), GetZNear(), GetZFar());
@@ -51,21 +51,21 @@ protected:
   virtual void UpdateTransformationMatrix();
 
 private:
-	/*
-	 * FOV (Y-Direction)
-	 */
-	float mFOV;
+  /*
+   * FOV (Y-Direction)
+   */
+  float mFOV;
 
-	/*
-	 * Aspect Ratio
-	 */
-	float mAspectRatio;
+  /*
+   * Aspect Ratio
+   */
+  float mAspectRatio;
 
-	/*
-	 * Z-Far/Near. Defaults to 1.f and 200.f
-	 */
-	float mZFar;
-	float mZNear;
+  /*
+   * Z-Far/Near. Defaults to 1.f and 200.f
+   */
+  float mZFar;
+  float mZNear;
 };
 
 // A Function pointer to a function that will create a IGfxCamera.

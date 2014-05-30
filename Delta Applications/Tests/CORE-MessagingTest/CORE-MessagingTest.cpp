@@ -7,42 +7,42 @@
 
 class TestMessageClient: public IMessageClient {
 public:
-	TestMessageClient() { RegisterInitialGroups(); }
-	~TestMessageClient() {}
+  TestMessageClient() { RegisterInitialGroups(); }
+  ~TestMessageClient() {}
 
-	virtual void NotifyKeyInputMessage(const sKeyInputMessageData& in) {
-		std::cout << "Notify Key Input Message:" << std::endl;
-		std::cout << "Clock Time: " << in.mClockTickTime << std::endl;
-		std::cout << "Key Code: " << in.mKeyCode << std::endl;
-		std::cout << "Key State: " << (int)in.mKeyState << std::endl;
-	}
+  virtual void NotifyKeyInputMessage(const sKeyInputMessageData& in) {
+    std::cout << "Notify Key Input Message:" << std::endl;
+    std::cout << "Clock Time: " << in.mClockTickTime << std::endl;
+    std::cout << "Key Code: " << in.mKeyCode << std::endl;
+    std::cout << "Key State: " << (int)in.mKeyState << std::endl;
+  }
 
 protected:
-	virtual void RegisterInitialGroups() { 
-		GetGlobalMessageServer()->RegisterClient(this, EMG_KEYINPUT); 
-	}
+  virtual void RegisterInitialGroups() { 
+    GetGlobalMessageServer()->RegisterClient(this, EMG_KEYINPUT); 
+  }
 
 private:
 };
 
 int main(int argc, char** argv)
 {
-	MessageServer* srv = GetGlobalMessageServer();
-	TestMessageClient* client = new TestMessageClient();
+  MessageServer* srv = GetGlobalMessageServer();
+  TestMessageClient* client = new TestMessageClient();
 
-	sKeyInputMessageData data;
-	data.mClockTickTime = clock();
-	data.mKeyCode = 0;
-	data.mKeyState = 1;
-	srv->PushKeyInputMessage(data);
+  sKeyInputMessageData data;
+  data.mClockTickTime = clock();
+  data.mKeyCode = 0;
+  data.mKeyState = 1;
+  srv->PushKeyInputMessage(data);
 
-	srv->Tick(0.1f);
+  srv->Tick(0.1f);
 
-	delete client;
+  delete client;
 
-	int exit;
-	std::cin >> exit;
+  int exit;
+  std::cin >> exit;
 
-	return 0;
+  return 0;
 }
 

@@ -12,96 +12,96 @@ template<typename T, size_t inOffset>
 class TIntrusiveLinkedList
 {
 public:
-	TIntrusiveLinkedList(void): mOffset(inOffset) {
-	}
+  TIntrusiveLinkedList(void): mOffset(inOffset) {
+  }
 
-	~TIntrusiveLinkedList(void) {
-	}
+  ~TIntrusiveLinkedList(void) {
+  }
 
-	/*
-	 * Get Head and Tail pointers (for iteration).
-	 */ 
-	TIntrusiveLink<T>* GetHead() { 
-		return mLink.mNext;
-	}
+  /*
+   * Get Head and Tail pointers (for iteration).
+   */ 
+  TIntrusiveLink<T>* GetHead() { 
+    return mLink.mNext;
+  }
 
-	TIntrusiveLink<T>* GetTail() {
-		return mLink.mPrev;
-	}
+  TIntrusiveLink<T>* GetTail() {
+    return mLink.mPrev;
+  }
 
-	/* 
-	 * Get and Tail elements (for iteration)
-	 */
-	T* GetHeadElement() {
-		return ((mLink.mNext != NULL) ? mLink.mNext->mObject : NULL);
-	}
+  /* 
+   * Get and Tail elements (for iteration)
+   */
+  T* GetHeadElement() {
+    return ((mLink.mNext != NULL) ? mLink.mNext->mObject : NULL);
+  }
 
-	T* GetTailElement() {
-		return ((mLink.mPrev != NULL) ? mLink.mPrev->mObject : NULL);
-	}
+  T* GetTailElement() {
+    return ((mLink.mPrev != NULL) ? mLink.mPrev->mObject : NULL);
+  }
 
-	/* 
-	 * Add to linked list at the tail.
-	 */
-	void AppendElement(T* newEle) {
-		TIntrusiveLink<T>* newLink = GetLinkFromElement(newEle);
-		mLink.AddPrevious(newLink, newEle);
-	}
+  /* 
+   * Add to linked list at the tail.
+   */
+  void AppendElement(T* newEle) {
+    TIntrusiveLink<T>* newLink = GetLinkFromElement(newEle);
+    mLink.AddPrevious(newLink, newEle);
+  }
 
-	/*
-	 * Add to linked list at the head.
-	 */
-	void PrependElement(T* newEle) {
-		TIntrusiveLink<T>* newLink = GetLinkFromElement(newEle);
-		mLink.AddNext(newLink, newEle);
-	}
+  /*
+   * Add to linked list at the head.
+   */
+  void PrependElement(T* newEle) {
+    TIntrusiveLink<T>* newLink = GetLinkFromElement(newEle);
+    mLink.AddNext(newLink, newEle);
+  }
 
-	/*
-	 * Get the Link element from the input element which definitely has a link element
-	 */
-	TIntrusiveLink<T>* GetLinkFromElement(T* newEle) {
-		return (TIntrusiveLink<T>*)((size_t)(newEle) + mOffset);
-	}
+  /*
+   * Get the Link element from the input element which definitely has a link element
+   */
+  TIntrusiveLink<T>* GetLinkFromElement(T* newEle) {
+    return (TIntrusiveLink<T>*)((size_t)(newEle) + mOffset);
+  }
 
-	/*
-	 * Get Next/Previous Link OR Get Next/Previous Element
-	 * Note that if next/previous happens to link back to mLink then we should ignore that! Never pass mLink to anyone
-	 */ 
-	TIntrusiveLink<T>* GetPreviousLink(TIntrusiveLink<T>* inLink) {
-		if (inLink->mPrev == &mLink) 
-			return NULL;
+  /*
+   * Get Next/Previous Link OR Get Next/Previous Element
+   * Note that if next/previous happens to link back to mLink then we should ignore that! Never pass mLink to anyone
+   */ 
+  TIntrusiveLink<T>* GetPreviousLink(TIntrusiveLink<T>* inLink) {
+    if (inLink->mPrev == &mLink) 
+      return NULL;
 
-		return inLink->mPrev;
-	}
+    return inLink->mPrev;
+  }
 
-	TIntrusiveLink<T>* GetNextLink(TIntrusiveLink<T>* inLink) {
-		if (inLink->mNext == &mLink) 
-			return NULL;
+  TIntrusiveLink<T>* GetNextLink(TIntrusiveLink<T>* inLink) {
+    if (inLink->mNext == &mLink) 
+      return NULL;
 
-		return inLink->mNext;
-	}
+    return inLink->mNext;
+  }
 
-	T* GetPreviousElement(T* inObj) {
-		TIntrusiveLink<T>* inLink = GetLinkFromElement(inObj);
-		TIntrusiveLink<T>* relLink = GetPreviousLink(inLink);
-		if (relLink) 
-			return relLink->mObject;
-		return NULL;
-	}
+  T* GetPreviousElement(T* inObj) {
+    TIntrusiveLink<T>* inLink = GetLinkFromElement(inObj);
+    TIntrusiveLink<T>* relLink = GetPreviousLink(inLink);
+    if (relLink) 
+      return relLink->mObject;
+    return NULL;
+  }
 
 
-	T* GetNextElement(T* inObj) {
-		TIntrusiveLink<T>* inLink = GetLinkFromElement(inObj);
-		TIntrusiveLink<T>* relLink = GetNextLink(inLink);
-		if (relLink) 
-			return relLink->mObject;
-		return NULL;
-	}
+  T* GetNextElement(T* inObj) {
+    TIntrusiveLink<T>* inLink = GetLinkFromElement(inObj);
+    TIntrusiveLink<T>* relLink = GetNextLink(inLink);
+    if (relLink) 
+      return relLink->mObject;
+    return NULL;
+  }
 
 private:
-	// Link to the head
-	TIntrusiveLink<T> mLink;
-	size_t mOffset;
+  // Link to the head
+  TIntrusiveLink<T> mLink;
+  size_t mOffset;
 };
 
 #endif // _TIntrusiveLinkEDLIST_H

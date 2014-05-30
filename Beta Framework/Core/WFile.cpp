@@ -13,32 +13,32 @@ WFile::~WFile(void)
 {
 }
 char* WFile::ReadAllBinaryDataNull(int& len) {
-	ifstream file(mFileName, std::ios::in | std::ios::binary);
+  ifstream file(mFileName, std::ios::in | std::ios::binary);
   if (!file.is_open()) {
     return NULL;
   }
-	int fsize;
-	file.seekg(0, file.end); 
-	fsize = (int)file.tellg();
-	file.seekg(0, file.beg);
+  int fsize;
+  file.seekg(0, file.end); 
+  fsize = (int)file.tellg();
+  file.seekg(0, file.beg);
 
-	char* allData = new char[fsize+1];
-	if (!allData) return NULL;
-	file.read(allData, fsize);
-	allData[fsize] = '\0';
-	file.close();
-	len = fsize;
-	return allData;
+  char* allData = new char[fsize+1];
+  if (!allData) return NULL;
+  file.read(allData, fsize);
+  allData[fsize] = '\0';
+  file.close();
+  len = fsize;
+  return allData;
 }
 
 void WFile::ReadAllTextData(std::vector<std::string>& outObjData) {
-	ifstream file(mFileName, std::ios::in);
-	string line;
-	if (file.is_open()) {
-		while (file.good()) { 
-			getline(file, line);
-			outObjData.push_back(line);
-		}
-	}
-	file.close();
+  ifstream file(mFileName, std::ios::in);
+  string line;
+  if (file.is_open()) {
+    while (file.good()) { 
+      getline(file, line);
+      outObjData.push_back(line);
+    }
+  }
+  file.close();
 }

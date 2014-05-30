@@ -1,7 +1,7 @@
 /*
  * Utility functions for the Gfx Render Subsystem.
  * Functionalities include: 
- *		- Reading in mesh data (OBJ, FBX, etc.)
+ *    - Reading in mesh data (OBJ, FBX, etc.)
  */ 
 
 #pragma once

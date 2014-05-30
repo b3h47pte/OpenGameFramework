@@ -2,12 +2,12 @@
 #include "IMessageClient.h"
 
 MessageServer* GetGlobalMessageServer() {
-	static MessageServer* msg = [] () {
-		MessageServer* srv = new MessageServer();
-		if (!srv) return (MessageServer*)NULL;
-		return srv;
-	}();
-	return msg;
+  static MessageServer* msg = [] () {
+    MessageServer* srv = new MessageServer();
+    if (!srv) return (MessageServer*)NULL;
+    return srv;
+  }();
+  return msg;
 }
 
 MessageServer::MessageServer(void): mProcessKeyInputMessages(true) {
@@ -23,56 +23,56 @@ MessageServer::~MessageServer(void) {
  * register/unregister functions to perform the work.
  */
 void MessageServer::RegisterClient(class IMessageClient* client, EMessageGroups grp) {
-	switch (grp) {
-	case EMG_KEYINPUT:
-		RegisterKeyInputClient(client);
-		break;
-	}
+  switch (grp) {
+  case EMG_KEYINPUT:
+    RegisterKeyInputClient(client);
+    break;
+  }
 
-	// If client doesn't know it's registered, make sure it does.
-	if (!client->IsRegistered(grp))
-		client->RegisterGroup(grp);
+  // If client doesn't know it's registered, make sure it does.
+  if (!client->IsRegistered(grp))
+    client->RegisterGroup(grp);
 }
 
 void MessageServer::UnregisterClient(class IMessageClient* client, EMessageGroups grp) {
-	switch (grp) {
-	case EMG_KEYINPUT:
-		UnRegisterKeyInputClient(client);
-		break;
-	}
+  switch (grp) {
+  case EMG_KEYINPUT:
+    UnRegisterKeyInputClient(client);
+    break;
+  }
 
-	// Make sure client unregisters itself
-	if (client->IsRegistered(grp))
-		client->UnregisterGroup(grp);
+  // Make sure client unregisters itself
+  if (client->IsRegistered(grp))
+    client->UnregisterGroup(grp);
 }
-	
+  
 // TODO: Generalize based on group
 bool MessageServer::CheckIsRegistered(class IMessageClient* client, EMessageGroups group) {
-	std::vector<class IMessageClient*>::const_iterator it = find(mKeyInputClients.begin(), mKeyInputClients.end(), client);
-	return (it != mKeyInputClients.end());
+  std::vector<class IMessageClient*>::const_iterator it = find(mKeyInputClients.begin(), mKeyInputClients.end(), client);
+  return (it != mKeyInputClients.end());
 }
 
 void MessageServer::RegisterKeyInputClient(class IMessageClient* client) {
-	mKeyInputClients.push_back(client);
+  mKeyInputClients.push_back(client);
 }
 
 // TODO: Generalize based on group
 void MessageServer::UnRegisterKeyInputClient(class IMessageClient* client) {
-	std::vector<class IMessageClient*>::const_iterator it = find(mKeyInputClients.begin(), mKeyInputClients.end(), client);
-	mKeyInputClients.erase(it);
+  std::vector<class IMessageClient*>::const_iterator it = find(mKeyInputClients.begin(), mKeyInputClients.end(), client);
+  mKeyInputClients.erase(it);
 }
 
 /*
  * Input Messages.
  */
 void MessageServer::PushKeyInputMessage(const sKeyInputMessageData& inData) {
-	mKeyInputQueue.push(inData);
+  mKeyInputQueue.push(inData);
 }
 
 sKeyInputMessageData MessageServer::PopKeyInputMessage() {
-	sKeyInputMessageData top = mKeyInputQueue.front();
-	mKeyInputQueue.pop();
-	return top;
+  sKeyInputMessageData top = mKeyInputQueue.front();
+  mKeyInputQueue.pop();
+  return top;
 }
 
 /*
@@ -80,18 +80,18 @@ sKeyInputMessageData MessageServer::PopKeyInputMessage() {
  * TODO: When doing multi-threading, make sure to lock the queues when reading off of it.
  */ 
 void MessageServer::Tick(float) {
-	ProcessKeyInputMessages();
+  ProcessKeyInputMessages();
 }
 
 void MessageServer::ProcessKeyInputMessages() {
-	if (!mProcessKeyInputMessages)
-		return;
+  if (!mProcessKeyInputMessages)
+    return;
 
-	while (!mKeyInputQueue.empty()) {
-		sKeyInputMessageData data = mKeyInputQueue.front();
-		for (auto client : mKeyInputClients) {
-			client->NotifyKeyInputMessage(data);
-		}
-		mKeyInputQueue.pop();
-	}
+  while (!mKeyInputQueue.empty()) {
+    sKeyInputMessageData data = mKeyInputQueue.front();
+    for (auto client : mKeyInputClients) {
+      client->NotifyKeyInputMessage(data);
+    }
+    mKeyInputQueue.pop();
+  }
 }

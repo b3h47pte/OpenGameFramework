@@ -6,7 +6,7 @@
 
 /*
  * Initialize NWL -- 
- *	- Initialize socket API (i.e WinSock)
+ *  - Initialize socket API (i.e WinSock)
  */ 
 int InitializeNWL();
 

@@ -10,17 +10,17 @@
 class GfxShaders
 {
 public:
-	GfxShaders(void);
-	~GfxShaders(void);
+  GfxShaders(void);
+  ~GfxShaders(void);
 
   static std::string GetShaderDirectory();
-	static int	GetShaderID(GLenum, const std::string&);
-	static bool LoadShader(GLenum, const std::string&, const std::string&);
+  static int  GetShaderID(GLenum, const std::string&);
+  static bool LoadShader(GLenum, const std::string&, const std::string&);
   static bool LoadShaderFromText(GLenum, const std::string&, const std::string&);
 
 private:
   static bool PrepareShader(GLenum, const char*, const std::string&, int);
-	static std::map<GLenum, std::map<std::string, GLuint> > mShaderStore;
+  static std::map<GLenum, std::map<std::string, GLuint> > mShaderStore;
 };
 
 #endif // _GFXSHADERS_H

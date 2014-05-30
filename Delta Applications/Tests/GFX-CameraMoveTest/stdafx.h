@@ -9,12 +9,12 @@
 
 #include <stdio.h>
 #ifdef _WIN32
-	#include<tchar.h>
+  #include<tchar.h>
 #else
-	#define _TCHAR char*
+  #define _TCHAR char*
 
-	#include <unistd.h>
-	#define Sleep usleep
+  #include <unistd.h>
+  #define Sleep usleep
 #endif
 
 

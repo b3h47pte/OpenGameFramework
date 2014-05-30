@@ -12,26 +12,26 @@
 class IMessageClient
 {
 public:
-	IMessageClient(void);
-	virtual ~IMessageClient(void);
+  IMessageClient(void);
+  virtual ~IMessageClient(void);
 
-	virtual void RegisterGroup(EMessageGroups);
-	virtual void UnregisterGroup(EMessageGroups);
-	virtual bool IsRegistered(EMessageGroups);
+  virtual void RegisterGroup(EMessageGroups);
+  virtual void UnregisterGroup(EMessageGroups);
+  virtual bool IsRegistered(EMessageGroups);
 
-	/*
-	 * Message notification functions -- child classes should overwrite only the ones that they need.
-	 */
-	virtual void NotifyKeyInputMessage(const sKeyInputMessageData&) {}
+  /*
+   * Message notification functions -- child classes should overwrite only the ones that they need.
+   */
+  virtual void NotifyKeyInputMessage(const sKeyInputMessageData&) {}
 
-	virtual void RegisterInitialGroups() = 0;
+  virtual void RegisterInitialGroups() = 0;
 
-	virtual class MessageServer* const GetMessageServer() {return mMessageServerRef;}
+  virtual class MessageServer* const GetMessageServer() {return mMessageServerRef;}
 
 protected:
-	class MessageServer* const mMessageServerRef;
+  class MessageServer* const mMessageServerRef;
 private:
-	std::vector<EMessageGroups> mRegisteredGroups;
+  std::vector<EMessageGroups> mRegisteredGroups;
 };
 
 #endif // _IMESSAGECLIENT_H

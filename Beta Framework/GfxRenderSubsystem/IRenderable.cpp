@@ -10,33 +10,33 @@ IRenderable::IRenderable(): mDataSet(false), mDataError(false), mIsRegistered(fa
 }
 
 IRenderable::~IRenderable() {
-	UnregisterRenderable();
+  UnregisterRenderable();
 }
 
 /*
  * Create and register and instance for rendering.
  */
 IRenderableInstance* IRenderable::CreateAndRegisterInstance(WorldObject* parObj) {
-	IRenderableInstance* newInst = CreateRenderableInstance(parObj);
+  IRenderableInstance* newInst = CreateRenderableInstance(parObj);
 
-	if (newInst) {
-		mInstanceList.AppendElement(newInst);
-		newInst->OnRegistration();
-	}
+  if (newInst) {
+    mInstanceList.AppendElement(newInst);
+    newInst->OnRegistration();
+  }
 
-	return newInst;
+  return newInst;
 }
 
 /*
  * Unregister the renderable from the backend. We can access the linked list via our link.
  */
 void IRenderable::UnregisterRenderable() {
-	if (!mIsRegistered)
-		return;
+  if (!mIsRegistered)
+    return;
 
-	mBackendLink.Unlink();
-	mIsRegistered = false;
-	OnDeregistration();
+  mBackendLink.Unlink();
+  mIsRegistered = false;
+  OnDeregistration();
 }
 
 /* 

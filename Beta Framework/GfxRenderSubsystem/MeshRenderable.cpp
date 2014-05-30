@@ -19,15 +19,15 @@ MeshRenderable::~MeshRenderable(void) {
  * 2) Prepare shaders.
  */
 bool MeshRenderable::PrepareToRender() {
-	if (mDataError)
-		return false;
+  if (mDataError)
+    return false;
 
-	if (!mDataSet) {
-		FinalizeData();
-	}
+  if (!mDataSet) {
+    FinalizeData();
+  }
   OGL_CALL(glBindVertexArray(mVAO));
   OGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO));
-	return true;
+  return true;
 }
 
 /*
@@ -35,15 +35,15 @@ bool MeshRenderable::PrepareToRender() {
  */
 bool MeshRenderable::FinishRender() {
   OGL_CALL(glBindVertexArray(0));
-	return true;
+  return true;
 }
 
 /*
  * Create a Mesh Renderable Instance for use.
  */
 IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parObj) {
-	IRenderableInstance* newInst = new MeshRenderableInstance(this, parObj);
-	return newInst;
+  IRenderableInstance* newInst = new MeshRenderableInstance(this, parObj);
+  return newInst;
 }
 
 /*
@@ -52,35 +52,35 @@ IRenderableInstance* MeshRenderable::CreateRenderableInstance(WorldObject* parOb
  * information necessary for this renerable to reload the state later for rendering.  * Also handled registering the mesh with the graphics subsystem.
  */
 void MeshRenderable::FinalizeData() {
-	
-	// Create the VAO to hold the mesh's data (color, position, etc.)
+  
+  // Create the VAO to hold the mesh's data (color, position, etc.)
   OGL_CALL(glGenVertexArrays(1, &mVAO));
   OGL_CALL(glBindVertexArray(mVAO));
 
-	// Create Element Array Buffer (EBO) to hold the indicies of vertices
+  // Create Element Array Buffer (EBO) to hold the indicies of vertices
   OGL_CALL(glGenBuffers(1, &mEBO));
   OGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO));
   OGL_CALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mTriangleIndices.size(), &mTriangleIndices[0], GL_STATIC_DRAW));
 
-	// Setup VBO
+  // Setup VBO
   OGL_CALL(glGenBuffers(1, &mVBO));
   OGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, mVBO));
   OGL_CALL(glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size() + sizeof(glm::vec4) * mVertexNormals.size()
-		+ sizeof(glm::vec2) * mTexCoords.size()
+    + sizeof(glm::vec2) * mTexCoords.size()
     + GetSizeOfExternalVertexAttr(), NULL, GL_STATIC_DRAW));
 
-	// Vertex Position
+  // Vertex Position
   OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * mVertexPosition.size(), &mVertexPosition[0]));
 
-	// Vertex Normals
+  // Vertex Normals
   OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * mVertexPosition.size(), sizeof(glm::vec4) * mVertexNormals.size(), &mVertexNormals[0]));
 
-	// Vertex Tex Coord
+  // Vertex Tex Coord
   OGL_CALL(glBufferSubData(GL_ARRAY_BUFFER,
     sizeof(glm::vec4) * mVertexPosition.size() + 
       sizeof(glm::vec4) * mVertexNormals.size(), 
-		sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]));
-	
+    sizeof(glm::vec2) * mTexCoords.size(), &mTexCoords[0]));
+  
   OGL_CALL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, (void*)0));
   OGL_CALL(glEnableVertexAttribArray(0));
 
@@ -99,12 +99,12 @@ void MeshRenderable::FinalizeData() {
     sizeof(glm::vec4) * mVertexNormals.size() + 
     sizeof(glm::vec2) * mTexCoords.size());
 
-	mDataSet = true;
-	// Register Ourselves
-	GetGfxSubsystem(NULL)->RegisterRenderable(this);
-	OnRegistration();
+  mDataSet = true;
+  // Register Ourselves
+  GetGfxSubsystem(NULL)->RegisterRenderable(this);
+  OnRegistration();
 
-	// Make sure no-one else inadvertently messes around with this mesh data.
+  // Make sure no-one else inadvertently messes around with this mesh data.
   OGL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
   OGL_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
   OGL_CALL(glBindVertexArray(0));
@@ -114,21 +114,21 @@ void MeshRenderable::FinalizeData() {
  * Add vertex.
  */
 void MeshRenderable::AddVertex(float p[4], float n[4], float t[2]) {
-	AddVertexPosition(p);
-	AddVertexNormal(n);
-	AddVertexTex(t);
+  AddVertexPosition(p);
+  AddVertexNormal(n);
+  AddVertexTex(t);
 }
 
 void MeshRenderable::AddVertexPosition(float p[4]) {
-	mVertexPosition.push_back(glm::vec4(p[0], p[1], p[2], p[3]));
+  mVertexPosition.push_back(glm::vec4(p[0], p[1], p[2], p[3]));
 }
 
 void MeshRenderable::AddVertexNormal(float n[4]) {
-	mVertexNormals.push_back(glm::vec4(n[0], n[1], n[2], n[3]));
+  mVertexNormals.push_back(glm::vec4(n[0], n[1], n[2], n[3]));
 }
 
 void MeshRenderable::AddVertexTex(float t[2]) {
-	mTexCoords.push_back(glm::vec2(t[0], t[1]));
+  mTexCoords.push_back(glm::vec2(t[0], t[1]));
 }
 
 /*
