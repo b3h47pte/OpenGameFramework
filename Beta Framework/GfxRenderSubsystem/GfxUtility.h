@@ -12,17 +12,12 @@
 
 class IRenderable;
 
-#ifndef GFXUTILITY_NOOBJ
 /*
  * Reads in an OBJ file and creates a MeshRenderable object. 
  * Creating an instance and registering the renderable/instance is up to the user.
  * Setting the proper shader data is also up to the user.
  */
 IRenderable* GfxReadOBJFile(std::string);
-
-#endif
-
-#ifndef GFXUTILITY_NOFREEIMAGE
 
 #include "FreeImage.h"
 
@@ -36,8 +31,5 @@ class ITexture* CreateCubeTextureFromImages(const std::string& id, const std::st
  * Functions to handle loading an image.
  */
 uint8_t* GFXU_FI_LoadByteData(const std::string& path, unsigned int& width, unsigned int& height);
-
-#endif //  GFXUTILITY_NOFREEIMAGE
-
 
 #endif // _GFXUTILITY_H

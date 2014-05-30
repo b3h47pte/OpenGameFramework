@@ -185,6 +185,10 @@ class ITexture* CreateTextureFromImage(const std::string& id,
 
   unsigned int width, height;
   uint8_t* data = GFXU_FI_LoadByteData(path, width, height);
+  if (data == NULL) {
+    delete tex;
+    return NULL;
+  }
   tm->SetTextureSpecification(tex, 1);
   tm->SetTextureWidthHeight(tex, 0, width, height);
   tm->SetTextureData(tex, 0, data);

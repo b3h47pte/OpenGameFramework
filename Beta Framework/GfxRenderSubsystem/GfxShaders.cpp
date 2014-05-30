@@ -42,25 +42,38 @@ bool GfxShaders::LoadShader(GLenum type, const std::string& file, const std::str
 		std::cout << "Load Shader Error: No data read from shader file." << std::endl;
 		return false;
 	}
+  bool ret = PrepareShader(type, data, id, shaderId);
+  delete[] data;
+  return ret;
+}
 
+/*
+ * Compiles/links the shader and stores the Shader ID for future reference. 
+ * This function takes the text given to it and compiles it.
+ * NOTE: Input shader MUST be NULL terminated.
+ */
+bool GfxShaders::LoadShaderFromText(GLenum type, const std::string& data, const std::string& id) {
+  int shaderId;
+  if (!(shaderId = glCreateShader(type)))
+    return false;
+  return PrepareShader(type, data.c_str(), id, shaderId);
+}
+
+
+bool GfxShaders::PrepareShader(GLenum type, const char* data, const std::string& id, int shaderId) {
   OGL_CALL(glShaderSource(shaderId, 1, &data, NULL));
   OGL_CALL(glCompileShader(shaderId));
-
-	delete [] data;
-
-	int status;
+  int status;
   OGL_CALL(glGetShaderiv(shaderId, GL_COMPILE_STATUS, &status));
-	if (status != GL_TRUE) {
-		// Spit out error
-		char buffer[150];
-		glGetShaderInfoLog(shaderId, 150, NULL, buffer);
-		std::cout << "Load Shader Error: " << buffer << std::endl;
-		return false;
-	}
-
-	mShaderStore[type][id] = shaderId;
-
-	return true;
+  if (status != GL_TRUE) {
+    // Spit out error
+    char buffer[150];
+    glGetShaderInfoLog(shaderId, 150, NULL, buffer);
+    std::cout << "Load Shader Error: " << buffer << std::endl;
+    return false;
+  }
+  mShaderStore[type][id] = shaderId;
+  return true;
 }
 
 // TODO: Make this more accurate...

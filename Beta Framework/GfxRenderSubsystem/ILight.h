@@ -34,10 +34,6 @@ public:
   ILight(glm::vec4 pos) : WorldObject(pos), isRegistered(false) {}
   virtual ~ILight() {}
 
-  virtual class GfxShaderInstance* GetShader() {
-    return ShaderInstance;
-  }
-
   // Whether or not the light has been registered.
   bool GetIsRegistered() {
     return isRegistered;
@@ -79,11 +75,6 @@ protected:
   }
 
 private:
-  int VertexShaderId;
-  int FragShaderId;
-  int ShaderProgramId;
-  class GfxShaderInstance* ShaderInstance;
-
   std::string LightId;
   bool isRegistered;
   void SetIsRegistered(bool b) {

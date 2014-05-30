@@ -89,6 +89,7 @@ ITexture* TextureManager::CreateTexture(const std::string& id,
 
 	newTex->mTextureType = type;
 	newTex->mTextureDataType = dataType;
+  mAllTextures[id] = newTex;
 	return newTex;
 }
 

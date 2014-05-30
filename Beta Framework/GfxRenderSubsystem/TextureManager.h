@@ -114,7 +114,6 @@ private:
 	static void**	CreateTextureArray(ETextureDataType, int);
 	static void*	CreateTextureData(ETextureDataType, int, int, size_t&);
 
-#ifndef GFXUTILITY_FREEIMAGE
 	friend class ITexture* CreateTextureFromImage(const std::string&, 
                                                 const std::string&);
 
@@ -123,7 +122,6 @@ private:
                                             int numberOfImages);
 
   friend uint8_t* GFXU_FI_LoadByteData(const std::string& path, unsigned int& width, unsigned int& height);
-#endif //  GFXUTILITY_FREEIMAGE
 };
 
 TextureManager* GetTextureManager();

@@ -62,7 +62,7 @@ void GfxBackend::Render(float inDeltaTime) {
   while (curLightPtr) {
     // Go through each light in the scene and use its shader to render the mesh. 
     // For each renderable instance, set its material data as necessary into shader.
-    GfxShaderInstance* lightShader = curLightPtr->GetShader();
+    GfxShaderInstance* lightShader = NULL;
     OGL_CALL(glUseProgram(lightShader->GetId()));
 
     // Set uniform information about the light. 

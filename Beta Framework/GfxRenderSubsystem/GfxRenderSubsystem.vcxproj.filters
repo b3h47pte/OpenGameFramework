@@ -237,6 +237,9 @@
     <ClInclude Include="MaterialInstance.h">
       <Filter>Backend\Material\Instance</Filter>
     </ClInclude>
+    <ClInclude Include="MaterialConstants.h">
+      <Filter>Backend\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Shaders\Texture3D\texture.vert">
