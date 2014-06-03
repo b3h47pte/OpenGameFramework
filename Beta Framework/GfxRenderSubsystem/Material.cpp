@@ -4,10 +4,9 @@
 #include "GfxUtility.h"
 
 #define PARAM_SEC_ID      0
-#define BODY_SEC_ID       2
 #define INVALID_SEC_ID    -1
 
-Material::Material(std::string& source): mMaterialSource(source) {
+Material::Material(std::string& source, std::string& uniqueId): mMaterialSource(source), mMaterialId(uniqueId) {
   LoadMaterial();
 }
 
@@ -24,7 +23,7 @@ void Material::LoadMaterial() {
   file.ReadAllTextData(data);
 
   // Reset to a default state.
-  mMaterialBodyText = "";
+  MaterialBodyMapping.clear();
   ParameterMapping.clear();
 
   int section = INVALID_SEC_ID;
@@ -40,8 +39,7 @@ void Material::LoadMaterial() {
     if (header == MAT_PARAMETER_SECTION) {
       section = PARAM_SEC_ID;
       continue;
-    } else if (header == MAT_BODY_SECTION) {
-      section = BODY_SEC_ID;
+    } else if (ParseBRDFSectionHeader(header, section)) {
       continue;
     }
 
@@ -49,11 +47,8 @@ void Material::LoadMaterial() {
     case PARAM_SEC_ID:
       ParseParameter(stripped);
       break;
-    case BODY_SEC_ID:
-      ParseShaderBodyLine(stripped);
-      break;
     default:
-      continue;
+      ParseShaderBodyLine(stripped, section);
       break;
     }
   }
@@ -149,10 +144,37 @@ void Material::ParseParameter(const std::string& param) {
   delete newParam;
 }
 
-void Material::ParseShaderBodyLine(const std::string& line) {
+void Material::ParseShaderBodyLine(const std::string& line, int section) {
+  if (!CheckValidBRDFSection(section))
+    return;
   // Note: Need to add in the newline just in case there are comments.
   // HOWEVER. I do assume that the #version command (or anything like it) is not in here.
-  mMaterialBodyText += (line + "\n");
+  MaterialBodyMapping[section] += (line + "\n");
+}
+
+/*
+ * Determine whether or not the input section ID is a valid section for the in-use BRDF.
+ */
+bool Material::CheckValidBRDFSection(int section) {
+#if BLINN_PHONG_BRDF
+  return (section == DIFFUSE_SEC_ID) || (section == SPECULAR_SEC_ID);
+#endif
+}
+
+/*
+ * Returns whether or not a new section was found. 
+ * If so, sets the section variable accordingly.
+ */
+bool Material::ParseBRDFSectionHeader(const std::string& header, int& section) {
+#if BLINN_PHONG_BRDF
+  if (header == BRDF_DIFFUSE)
+    section = DIFFUSE_SEC_ID;
+  else if (header == BRDF_SPECULAR)
+    section = SPECULAR_SEC_ID;
+  else
+    return false;
+  return true;
+#endif // BRDF
 }
 
 /*
@@ -196,5 +218,86 @@ void Material::CleanupMaterialParam(MaterialParam* param) {
  * valid GLSL code that can be used as a fragment shader.
  */
 void Material::GenerateShaderSource() {
+  mShaderSource = GLSL_VERSION_TEXT + "\n";
+  mShaderSource += (BRDF_STRUCT_STRING + "\n");
+  mShaderSource += (LIGHT_PARAM_STRUCT_STRING + "\n");
 
+  // Parameters - each of them is a uniform
+  for (auto& kv : ParameterMapping) {
+    mShaderSource += "uniform ";
+    switch (kv.second->paramType) {
+    case EMPT_TEXTURE2D:
+      mShaderSource += "sampler2D ";
+      break;
+    case EMPT_VEC4:
+    case EMPT_COLOR:
+      mShaderSource += "vec4 ";
+      break;
+    case EMPT_FLOAT:
+      mShaderSource += "float ";
+      break;
+    default:
+      break;
+    }
+    mShaderSource += (GenerateShaderParameterName(mMaterialId, kv.first) + ";\n");
+  }
+
+  // Non-Calculated Parameters
+  mShaderSource += mBRDFProperties.ToString(mMaterialId);
+
+  // BRDF ELEMENT CALCULATION BODIES
+  for (auto& kv : MaterialBodyMapping) {
+    mShaderSource += ("vec4 " + GenerateShaderFunctionName(mMaterialId, ConvertSectionIdToString(kv.first)) + "() {\n");
+    mShaderSource += kv.second;
+    mShaderSource += "}\n";
+  }
+  
+  // MAIN SHADER BODY (This gets automatically generated).
+  // Generate a BRDF structure and pass it to the appropriate lighting function as determined by the 'lightId' in the light struct.
+  mShaderSource += ("vec4 " + GenerateShaderFunctionName(mMaterialId, "main") + "(" + GLSL_LIGHT_PARAM_STRUCT + " " + GLSL_LIGHT_PARAM_NAME + ") {\n");
+  mShaderSource += GenerateBRDFStructure(mMaterialId, "brdf");
+  // Light Dispatch..
+  mShaderSource += GLSL_POINT_LIGHT_DISPATCH;
+  mShaderSource += GLSL_DIR_LIGHT_DISPATCH;
+  mShaderSource += "}\n";
+}
+
+std::string Material::GenerateBRDFStructure(const std::string& id, const std::string& name) {
+  std::string res = (GLSL_BRDF_PARAM_STRUCT + " " + name + ";\n");
+#if BLINN_PHONG_BRDF
+  res += (name + "." + BRDF_DIFFUSE_VAR + " = " + GenerateShaderFunctionName(id, BRDF_DIFFUSE_VAR) + "\n");
+  res += (name + "." + BRDF_SPECULAR_VAR + " = " + GenerateShaderFunctionName(id, BRDF_SPECULAR_VAR) + "\n");
+#endif // BRDF
+  return res;
+}
+
+std::string Material::ConvertSectionIdToString(int section) {
+  switch (section) {
+#if BLINN_PHONG_BRDF
+  case DIFFUSE_SEC_ID:
+    return "diffuse";
+  case SPECULAR_SEC_ID:
+    return "specular";
+#endif
+  default:
+    break;
+  }
+  return "";
+}
+
+std::string Material::GenerateShaderParameterName(const std::string& id, const std::string& param) {
+  return (id + "_" + param + "_param");
+}
+
+std::string Material::GenerateShaderFunctionName(const std::string& id, const std::string& extra) {
+  return (id + "_" + extra + "_call");
+}
+
+std::string MaterialBRDFProperties::ToString(const std::string& id) {
+  std::string res = "";
+#if BLINN_PHONG_BRDF
+  res += "uniform vec4 " + Material::GenerateShaderParameterName(id, "ambient") + ";\n";
+  res += "uniform float " + Material::GenerateShaderParameterName(id, "shininess") + ";\n";
+#endif // BRDF
+  return res;
 }

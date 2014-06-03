@@ -19,15 +19,6 @@ struct MaterialParam {
   void* data;
 };
 
-// These are other BRDF properties that should be specified by the material
-// and shouldn't necessarily be calculated.
-#if BLINN_PHONG_BRDF
-struct MaterialBRDFProperties {
-  glm::vec4 ambient;
-  float shininess;
-};
-#endif // BRDF
-
 /*
  * Materials determine how a mesh gets rendered (i.e. its diffuse color, specular color, etc.). 
  * The goal is to eventually allow for the creation of complex materials like those that can be made
@@ -35,13 +26,17 @@ struct MaterialBRDFProperties {
  *  
  * General Idea: Each material is linked with the 'base' material that has all the lighting functions. 
  *  This lighting function will be used to determine the effect of various lights on the material. The base
- *  material will declare these subroutines but it will be up to the individual material to define them as
- *  appropriate. The materials then will each implement their own main function that calculates the 
- *  various parameters of the BRDF. It is also important to note that each material shader will each be a "pseudo-shader" that will be 
+ *  material will define these functions based on the BRDF chosen; however, all the other materials must
+ *  pass in the BRDF parameters to it.
+ *  
+ *  The materials then will each implement their own 'main' function that calculates the 
+ *  various parameters of the BRDF and outputs a final color. 
+ *  
+ *  It is also important to note that each material shader will each be a "pseudo-shader" that will be 
  *  split into sections:
  *    1) Material Parameters. Uniforms that the material needs.
- *    2) Function Body. Pseudo-GLSL that will be used as the shader. This should not include the subroutine/function declaration and the curly braces.
- *        There will be a number of function bodies as specified by the BRDF model being used.
+ *    2) Function Bodies for each item in the BRDF.
+ *        Each function body will return a vec4.
  *    
  *  It is important to note that the version of GLSL that is used is not determined by the material, but by the engine.
  *  It could be interesting, in the future, to make it configurable.
@@ -51,19 +46,24 @@ struct MaterialBRDFProperties {
  *  
  * A dispatch shader will be generated during a pre-process phase which will combine the materials necessary for
  * a renderable (which may have different materials). Then each vertex (which will each have a material ID), will
- * be shaded using the appropriate material by calling the appropriate material function. 
+ * be shaded using the appropriate material by calling the appropriate material function. The dispatch function
+ * will set the appropriate 'out' variable that sets the color. 
  */
 class Material
 {
 public:
-  Material(std::string& source);
+  Material(std::string& source, std::string& uniqueId);
   virtual ~Material();
+
+  static std::string GenerateShaderParameterName(const std::string& id, const std::string& param);
+  static std::string GenerateShaderFunctionName(const std::string& id, const std::string& extra);
 
 protected:
   void CleanupMaterialParam(MaterialParam*);
 
 private:
   std::string mMaterialSource;
+  std::string mMaterialId; // Unique ID. If multiple materials are linked to each other that have the same ID, then bad things will happen.
   std::string GetMaterialDirectory() const;
   /*
    * Load material from the file specified by 'mMaterialSource' 
@@ -74,14 +74,18 @@ private:
   void ParseParameter(const std::string& param);
   std::map<std::string, MaterialParam*> ParameterMapping;
 
-  void ParseShaderBodyLine(const std::string& line);
+  void ParseShaderBodyLine(const std::string& line, int section);
   void ParseEntireShaderBody();
-  std::string mMaterialBodyText;
+  std::map<int, std::string> MaterialBodyMapping;
+  std::string ConvertSectionIdToString(int section);
 
   // Actual GLSL that gets created from the material. 
   std::string mShaderSource;
 
   // BRDF Properties. These should be defined by the creator of the material.
+  bool ParseBRDFSectionHeader(const std::string& header, int& section);
+  bool CheckValidBRDFSection(int section);
+  std::string GenerateBRDFStructure(const std::string& id, const std::string& name);
   MaterialBRDFProperties mBRDFProperties;
 };
 

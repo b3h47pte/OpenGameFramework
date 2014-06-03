@@ -71,9 +71,6 @@
     <Filter Include="Backend\Lighting">
       <UniqueIdentifier>{32bdb532-b2e8-4a39-a8d3-5b7ac96bdfdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sample Shaders\Lighting">
-      <UniqueIdentifier>{e68eccd4-58d8-4854-99d9-f2091f406167}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sample Shaders\Texture3D">
       <UniqueIdentifier>{6cbaadc6-3666-4ec9-a40f-d68b968dddd7}</UniqueIdentifier>
     </Filter>
@@ -271,12 +268,6 @@
     </None>
     <None Include="..\..\Shaders\TextureCube\texture.vert">
       <Filter>Sample Shaders\TextureCube</Filter>
-    </None>
-    <None Include="..\..\Shaders\Lighting\defaultlight.frag">
-      <Filter>Sample Shaders\Lighting</Filter>
-    </None>
-    <None Include="..\..\Shaders\Lighting\defaultlight.vert">
-      <Filter>Sample Shaders\Lighting</Filter>
     </None>
   </ItemGroup>
 </Project>
