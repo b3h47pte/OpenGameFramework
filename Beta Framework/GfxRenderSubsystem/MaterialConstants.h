@@ -23,8 +23,8 @@ const int POINT_LIGHT_ID = 0;
 const int DIR_LIGHT_ID = 1;
 
 const std::string GLSL_LIGHT_PARAM_NAME = "light";
-const std::string GLSL_POINT_LIGHT_DISPATCH = ("if (" + GLSL_LIGHT_PARAM_NAME + "== 0) POINT_LIGHT_DISPATCH(" + GLSL_LIGHT_PARAM_NAME + ");\n");
-const std::string GLSL_DIR_LIGHT_DISPATCH = ("if (" + GLSL_LIGHT_PARAM_NAME + "== 1) DIR_LIGHT_DISPATCH(" + GLSL_LIGHT_PARAM_NAME + ");\n");
+const std::string GLSL_POINT_LIGHT_DISPATCH = ("if (" + GLSL_LIGHT_PARAM_NAME + "== 0) return POINT_LIGHT_DISPATCH(" + GLSL_LIGHT_PARAM_NAME + ", brdf);\n");
+const std::string GLSL_DIR_LIGHT_DISPATCH = ("if (" + GLSL_LIGHT_PARAM_NAME + "== 1) return DIR_LIGHT_DISPATCH(" + GLSL_LIGHT_PARAM_NAME + ", brdf);\n");
 
 #if BLINN_PHONG_BRDF
 const std::string BRDF_DIFFUSE = "..DIFFS";
