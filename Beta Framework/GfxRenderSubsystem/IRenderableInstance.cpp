@@ -58,6 +58,7 @@ void IRenderableInstance::PrepareRender(GfxShaderInstance* shader) {
   data.mUniform = true;
   data.mType = ESDT_MATRIX4x4;
   data.mLocation = "model_matrix";
+  data.mData = &mTransformationMatrix;
   shader->SetUniformData(data);
 
 

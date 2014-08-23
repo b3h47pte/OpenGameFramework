@@ -46,7 +46,7 @@ public:
   /*
    * Accessor methods for position and rotation.
    */
-  virtual glm::vec4    GetPosition() const { return mPosition; }
+  virtual glm::vec4 GetPosition() const { return mPosition; }
   void SetPosition(const glm::vec4& in) { 
     mPosition = in; 
     UpdateTransformationMatrix(); 
