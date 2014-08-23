@@ -44,6 +44,11 @@ GfxSubsystem::GfxSubsystem(CAM_FACTORY_FCTN_PTR(camptr)): mStillRunning(true), m
   if(!mBackend->InitializeGraphicsAPI(mWindow->GetWindowWidth(), mWindow->GetWindowHeight())) {
     SetError(EGAPI_FAIL);
   }
+
+  // Backend initialize
+  if (!mBackend->PostInitialization()) {
+    SetError(EGAPI_FAIL);
+  }
 }
 
 GfxSubsystem::~GfxSubsystem(void) {

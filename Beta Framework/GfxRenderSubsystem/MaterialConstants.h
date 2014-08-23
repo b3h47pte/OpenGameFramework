@@ -27,6 +27,7 @@ const std::string GLSL_POINT_LIGHT_DISPATCH = ("if (" + GLSL_LIGHT_PARAM_NAME + 
 const std::string GLSL_DIR_LIGHT_DISPATCH = ("if (" + GLSL_LIGHT_PARAM_NAME + "== 1) return DIR_LIGHT_DISPATCH(" + GLSL_LIGHT_PARAM_NAME + ", brdf);\n");
 
 #if BLINN_PHONG_BRDF
+const std::string BRDF_NAME = "BlinnPhong";
 const std::string BRDF_DIFFUSE = "..DIFFS";
 const std::string BRDF_DIFFUSE_VAR = "diffuse";
 const int DIFFUSE_SEC_ID = 1;

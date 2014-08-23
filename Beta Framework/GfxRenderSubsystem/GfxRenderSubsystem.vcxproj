@@ -142,6 +142,8 @@
   <ItemGroup>
     <None Include="..\..\Shaders\Basic\basic.frag" />
     <None Include="..\..\Shaders\Basic\basic.vert" />
+    <None Include="..\..\Shaders\BlinnPhong\base.frag" />
+    <None Include="..\..\Shaders\BlinnPhong\base.vert" />
     <None Include="..\..\Shaders\MultiColor\multicolor.frag" />
     <None Include="..\..\Shaders\MultiColor\multicolor.vert" />
     <None Include="..\..\Shaders\Texture3D\texture.frag" />

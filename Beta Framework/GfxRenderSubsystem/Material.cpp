@@ -2,6 +2,7 @@
 #include "Texture2D.h"
 #include "WFile.h"
 #include "GfxUtility.h"
+#include "GfxShaders.h"
 
 #define PARAM_SEC_ID      0
 #define INVALID_SEC_ID    -1
@@ -55,6 +56,7 @@ void Material::LoadMaterial() {
 
   ParseEntireShaderBody();
   GenerateShaderSource();
+  CompileShader();
 }
 
 /*
@@ -300,4 +302,16 @@ std::string MaterialBRDFProperties::ToString(const std::string& id) {
   res += "uniform float " + Material::GenerateShaderParameterName(id, "shininess") + ";\n";
 #endif // BRDF
   return res;
+}
+
+/*
+ * Compiles the Shader.
+ * Does nothing if an empty string is used.
+ * If the material fails to compile, an assertion is thrown.
+ */
+void Material::CompileShader() {
+  if (mShaderSource.empty())
+    return;
+  assert(GfxShaders::LoadShaderFromText(GL_FRAGMENT_SHADER, mShaderSource, mMaterialId));
+  mShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mMaterialId);
 }

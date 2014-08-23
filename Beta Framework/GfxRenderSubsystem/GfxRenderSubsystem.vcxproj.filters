@@ -92,6 +92,9 @@
     <Filter Include="Backend\Material\Instance">
       <UniqueIdentifier>{e65f36d8-7ace-4e1a-9eef-5368ac32e33b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sample Shaders\BlinnPhong">
+      <UniqueIdentifier>{be4770ec-4509-42fe-b892-e1b996483f24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -268,6 +271,12 @@
     </None>
     <None Include="..\..\Shaders\TextureCube\texture.vert">
       <Filter>Sample Shaders\TextureCube</Filter>
+    </None>
+    <None Include="..\..\Shaders\BlinnPhong\base.frag">
+      <Filter>Sample Shaders\BlinnPhong</Filter>
+    </None>
+    <None Include="..\..\Shaders\BlinnPhong\base.vert">
+      <Filter>Sample Shaders\BlinnPhong</Filter>
     </None>
   </ItemGroup>
 </Project>

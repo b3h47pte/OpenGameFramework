@@ -70,6 +70,7 @@ private:
    */
   void LoadMaterial();
   void GenerateShaderSource();
+  void CompileShader();
 
   void ParseParameter(const std::string& param);
   std::map<std::string, MaterialParam*> ParameterMapping;
@@ -81,6 +82,7 @@ private:
 
   // Actual GLSL that gets created from the material. 
   std::string mShaderSource;
+  int mShaderId;
 
   // BRDF Properties. These should be defined by the creator of the material.
   bool ParseBRDFSectionHeader(const std::string& header, int& section);

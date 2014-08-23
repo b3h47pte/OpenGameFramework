@@ -34,6 +34,11 @@ public:
    */
   virtual void SetActiveViewport(class IGfxViewport* in) { mActiveViewport = in; }
 
+  /*
+   * Used for any last minute things we need to do.
+   */
+  virtual bool PostInitialization();
+
 private:
 
   /*
@@ -45,6 +50,11 @@ private:
    * Active Viewport.
    */
   class IGfxViewport* mActiveViewport;
+
+  /*
+   * BRDF Shader.
+   */
+  class GfxShaderInstance* mBRDFShader;
   
   /* 
    * Render function. 

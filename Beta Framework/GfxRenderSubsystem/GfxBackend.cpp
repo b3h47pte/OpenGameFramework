@@ -4,6 +4,8 @@
 #include "GfxCamera.h"
 #include "TextureManager.h"
 #include "GfxShaderInstance.h"
+#include "GfxShaders.h"
+#include "MaterialConstants.h"
 
 GfxBackend::GfxBackend(void)
 {
@@ -54,19 +56,24 @@ void GfxBackend::Render(float inDeltaTime) {
   viewData.mType = ESDT_MATRIX4x4;
   viewData.mUniform = true;
   viewData.mLocation = "view_matrix";
-  
+
+  // All the rendering within the framework uses the same BRDF so we can just load up this one shader!
+
   // Step through all registered renderables and grab their information to render using the 
   // lights in the scene.
   IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
   ILight* curLightPtr = mLightList.GetHeadElement();
+
+  // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
+  mBRDFShader->SetUniformData(projData);
+  mBRDFShader->SetUniformData(viewData);
+
   while (curLightPtr) {
     // Go through each light in the scene and use its shader to render the mesh. 
     // For each renderable instance, set its material data as necessary into shader.
-    GfxShaderInstance* lightShader = NULL;
-    OGL_CALL(glUseProgram(lightShader->GetId()));
 
     // Set uniform information about the light. 
-    lightShader->SetLightData(curLightPtr->GetLightData());
+    mBRDFShader->SetLightData(curLightPtr->GetLightData());
     
     while(curRenderPtr) {  
       // Renderable will take care of setting its data up so its children can render
@@ -77,23 +84,16 @@ void GfxBackend::Render(float inDeltaTime) {
         IRenderableInstance* curInstPtr = curRenderPtr->mInstanceList.GetHeadElement();
       
         while (curInstPtr) {
-          // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
-          // MODEL matrix will be determined by the mesh/renderable itself. 
-          // TODO: Generalize this based on the actual object...somehow.
-          lightShader->SetUniformData(projData);
-          lightShader->SetUniformData(viewData);
-          
           // Loads mesh specific shader data: model matrix along with material data.
-          curInstPtr->PrepareRender(lightShader);
+          curInstPtr->PrepareRender(mBRDFShader);
 
           // Passes all appropriate uniform data to the shader via OpenGL
-          lightShader->PrepareUniformData();
+          mBRDFShader->PrepareUniformData();
 
           curInstPtr->OnRender();
           curInstPtr->FinishRender();
           curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
         }
-
       
         curRenderPtr->FinishRender();
       }
@@ -151,6 +151,30 @@ bool GfxBackend::InitializeGraphicsAPI(int width, int height) {
 
   OGL_CALL(glViewport(0, 0, width, height));
   OGL_CALL(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
+
+  return true;
+}
+
+/*
+ * Load up any last thing we need.
+ */
+bool GfxBackend::PostInitialization() {
+  // Load the default BRDF shader (vertex and fragment)
+  int vertId = -1;
+  if (!GfxShaders::LoadShader(GL_VERTEX_SHADER, BRDF_NAME + "/" + "base.vert", "BRDF")) {
+    return false;
+  }
+  vertId = GfxShaders::GetShaderID(GL_VERTEX_SHADER, "BRDF");
+
+  int fragId = -1;
+  if (!GfxShaders::LoadShader(GL_FRAGMENT_SHADER, BRDF_NAME + "/" + "base.frag", "BRDF")) {
+    return false;
+  }
+  fragId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, "BRDF");
+
+  // Create the shader program
+  mBRDFShader = GfxShaderInstance::CreateNewInstance(vertId, fragId);
+  assert(mBRDFShader != NULL);
 
   return true;
 }
