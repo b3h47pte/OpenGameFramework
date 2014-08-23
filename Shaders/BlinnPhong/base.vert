@@ -11,4 +11,6 @@ out vec4 vs_normal;
 
 void main() {
 	gl_Position = projection_matrix * view_matrix * model_matrix * vPosition;
+  vs_position = vPosition;
+  vs_normal = vNormal;
 }

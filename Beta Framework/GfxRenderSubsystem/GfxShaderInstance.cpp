@@ -35,14 +35,9 @@ void GfxShaderInstance::SetLightData(const RenderLightData* data) {
     return;
   }
   OGL_CALL(glUseProgram(ShaderProgramId));
-  int ambientLoc = OGL_CALL(glGetUniformLocation(ShaderProgramId, (data->uniformName + "." + data->ambientName).c_str()));
-  if (ambientLoc != -1) {
-    OGL_CALL(glUniform4fv(ambientLoc, 1, glm::value_ptr(data->ambient)));
-  }
-
-  int diffuseLoc = OGL_CALL(glGetUniformLocation(ShaderProgramId, (data->uniformName + "." + data->diffuseName).c_str()));
+  int diffuseLoc = OGL_CALL(glGetUniformLocation(ShaderProgramId, (data->uniformName + "." + data->colorName).c_str()));
   if (diffuseLoc != -1) {
-    OGL_CALL(glUniform4fv(diffuseLoc, 1, glm::value_ptr(data->diffuse)));
+    OGL_CALL(glUniform4fv(diffuseLoc, 1, glm::value_ptr(data->color)));
   }
 
   int positionLoc = OGL_CALL(glGetUniformLocation(ShaderProgramId, (data->uniformName + "." + data->positionName).c_str()));
@@ -53,6 +48,10 @@ void GfxShaderInstance::SetLightData(const RenderLightData* data) {
 
 void GfxShaderInstance::SetUniformData(SShaderData& data) {
   mShaderData[data.mLocation] = data;
+}
+
+void GfxShaderInstance::RemoveUniformData(std::string location) {
+  mShaderData.erase(location);
 }
 
 void GfxShaderInstance::PrepareUniformData() {
@@ -77,11 +76,16 @@ void GfxShaderInstance::PrepareUniformData() {
       break;
     case ESDT_TEX2D:
     case ESDT_TEXCUBE:
+    {
       OGL_CALL(glUniform1i(loc, textureCount));
       OGL_CALL(glActiveTexture(GL_TEXTURE0 + textureCount));
       ITexture* tex = (ITexture*)data->mData;
       OGL_CALL(glBindTexture(tex->GetTextureBindTarget(), tex->GetTextureID()));
       ++textureCount;
+      break;
+    }
+    case ESDT_VEC4:
+      OGL_CALL(glUniform4fv(loc, 1, glm::value_ptr(*(glm::vec4*)data->mData)));
       break;
     }
   }

@@ -91,7 +91,9 @@ void GfxBackend::Render(float inDeltaTime) {
           mBRDFShader->PrepareUniformData();
 
           curInstPtr->OnRender();
-          curInstPtr->FinishRender();
+
+          // Any changes made in PrepareRender should be removed in FinishRender
+          curInstPtr->FinishRender(mBRDFShader);
           curInstPtr = curRenderPtr->mInstanceList.GetNextElement(curInstPtr);
         }
       

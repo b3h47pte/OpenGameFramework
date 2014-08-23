@@ -26,14 +26,13 @@ RenderLightData::RenderLightData() {
   LoadUniformNames();
 }
 
-RenderLightData::RenderLightData(glm::vec4 a, glm::vec4 d) : ambient(a), diffuse(d) {
+RenderLightData::RenderLightData(glm::vec4 c) : color(c) {
   LoadUniformNames();
 }
 
 void RenderLightData::LoadUniformNames() {
   // Temporary -- Load these from some sort of config or stored data.
   uniformName = "light";
-  ambientName = "globalAmbient";
-  diffuseName = "diffuse";
-  positionName = "position";
+  colorName = "color";
+  positionName = "lightPos";
 }

@@ -61,9 +61,25 @@ void IRenderableInstance::PrepareRender(GfxShaderInstance* shader) {
   data.mData = &mTransformationMatrix;
   shader->SetUniformData(data);
 
+  // Temporary BRDF data [while I get materials setup].
+  SShaderData brdfAmbient;
+  brdfAmbient.mUniform = true;
+  brdfAmbient.mType = ESDT_VEC4;
+  brdfAmbient.mLocation = "brdf.ambient";
+  brdfAmbient.mData = new glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+  shader->SetUniformData(brdfAmbient);
 
+  SShaderData brdfDiffuse;
+  brdfDiffuse.mUniform = true;
+  brdfDiffuse.mType = ESDT_VEC4;
+  brdfDiffuse.mLocation = "brdf.diffuse";
+  brdfDiffuse.mData = new glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  shader->SetUniformData(brdfDiffuse);
 }
 
-void IRenderableInstance::FinishRender() {
+void IRenderableInstance::FinishRender(GfxShaderInstance* shader) {
+  shader->RemoveUniformData("model_matrix");
+  shader->RemoveUniformData("brdf.diffuse");
+  shader->RemoveUniformData("brdf.ambient");
   PostRender();
 }

@@ -35,7 +35,7 @@ protected:
    */
   virtual void OnRender();
   virtual void PrepareRender(class GfxShaderInstance*);
-  virtual void FinishRender();
+  virtual void FinishRender(class GfxShaderInstance*);
 
 private:
   // Texture Location Count -- 0 to n...will allow us to control which texture unit gets assigned to what sampler in the shader.

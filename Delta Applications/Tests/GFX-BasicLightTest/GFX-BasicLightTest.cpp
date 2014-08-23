@@ -31,10 +31,13 @@ int main(int argc, char** argv)
     { -1.f, 1.f, -1.f, 1.f }
   };
 
-  float norms[3][4] = {
-    { 0.f, 0.f, 0.f, 0.f },
-    { 0.f, 0.f, 0.f, 0.f },
-    { 0.f, 0.f, 0.f, 0.f }
+  float norms[6][4] = {
+    { 0.f, 0.f, -1.f, 1.f }, // front
+    { 0.f, 1.f, 0.f, 1.f }, // top
+    { 0.f, 0.f, 1.f, 1.f }, // back
+    { 0.f, -1.f, 0.f, 1.f }, // bottom
+    { 1.f, 0.f, 0.f, 1.f }, // left
+    { -1.f, 0.f, 0.f, 1.f } // right
   };
 
   float tex[3][2] = {
@@ -45,11 +48,7 @@ int main(int argc, char** argv)
 
   const GLubyte* strVersion = glGetString(GL_VERSION);
   std::cout << strVersion << std::endl;
-
-  MeshRenderable* mesh = new MeshRenderable();
-  for (int i = 0; i < 8; ++i)
-    mesh->AddVertex(cube_vertices[i], norms[0], tex[0]);
-
+    
   int cube_elements[] = {
     // front
     0, 1, 2,
@@ -70,14 +69,22 @@ int main(int argc, char** argv)
     1, 5, 6,
     6, 2, 1,
   };
-  for (int i = 0; i < sizeof(cube_elements) / sizeof(int); ++i)
-    mesh->AddTriangleIndex(cube_elements[i]);
+
+  size_t totalElements = sizeof(cube_elements) / sizeof(int);
+  MeshRenderable* mesh = new MeshRenderable();
+  for (size_t i = 0; i < totalElements; ++i) {
+    int faceIdx = (int)i / 6;
+    mesh->AddVertex(cube_vertices[cube_elements[i]], norms[faceIdx], tex[0]);
+  }
+
+  for (size_t i = 0; i < totalElements; ++i)
+    mesh->AddTriangleIndex(i);
 
   mesh->FinalizeData();
   mesh->CreateAndRegisterInstance(NULL);
 
-  ILight* light = new ILight(glm::vec4(1.f, 1.f, 1.f, 1.f));
-  RenderLightData rld(glm::vec4(1.f, 0.f, 0.f, 1.f), glm::vec4(0.f, 0.f, 0.f, 0.f));
+  ILight* light = new ILight(glm::vec4(0.f, 0.f, 0.f, 1.f));
+  RenderLightData rld(glm::vec4(1.f, 0.f, 0.f, 1.f));
   light->SetLightData(rld);
   gfx->RegisterLight(light);
 

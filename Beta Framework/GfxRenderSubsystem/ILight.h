@@ -6,13 +6,10 @@
 
 struct RenderLightData {
   RenderLightData();
-  RenderLightData::RenderLightData(glm::vec4 a, glm::vec4 d);
+  RenderLightData::RenderLightData(glm::vec4 c);
 
-  glm::vec4 ambient;
-  std::string ambientName;
-
-  glm::vec4 diffuse;
-  std::string diffuseName;
+  glm::vec4 color;
+  std::string colorName;
 
   glm::vec4 position;
   std::string positionName;

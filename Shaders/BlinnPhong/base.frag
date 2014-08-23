@@ -24,7 +24,6 @@ layout (location = 0) out vec4 color;
 vec4 POINT_LIGHT_DISPATCH(LIGHT_PARAM_STRUCT inLight, BRDF_PARAM_STRUCT brdf) {
   vec4 toLight = normalize(light.lightPos - vs_position);
   float diff = max(dot(vs_normal, toLight),0);
-
   // Standard Phong Calculation
   vec4 plColor = brdf.ambient * light.color + diff * brdf.diffuse * light.color;
 
