@@ -1,3 +1,7 @@
+#pragma once
+#ifndef _CAMERA_H
+#define _CAMERA_H
+
 // Basic Camera Functionality.
 #include "GfxSubsystem.h"
 #include "MessageServer.h"
@@ -114,4 +118,4 @@ extern "C"  IGfxCamera* GFX_CREATE_TEST_CAMERA(float inFOV, float inAR) {
 	return cam;
 }
 
-
+#endif
