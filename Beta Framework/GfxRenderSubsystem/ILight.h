@@ -49,14 +49,6 @@ public:
 
   friend class GfxBackend;
 protected:
-  virtual std::string GetLightVertexShaderFile() { 
-    return "Lighting/defaultlight.vert";
-  }
-
-  virtual std::string GetLightFragShaderFile() {
-    return "Lighting/defaultlight.frag";
-  }
-
   static std::string GetNewLightId();
   static int CurrentLightCount;
   static int ReserveLight() {
