@@ -32,12 +32,12 @@ int main(int argc, char** argv)
   };
 
   float norms[6][4] = {
-    { 0.f, 0.f, -1.f, 1.f }, // front
-    { 0.f, 1.f, 0.f, 1.f }, // top
-    { 0.f, 0.f, 1.f, 1.f }, // back
-    { 0.f, -1.f, 0.f, 1.f }, // bottom
-    { 1.f, 0.f, 0.f, 1.f }, // left
-    { -1.f, 0.f, 0.f, 1.f } // right
+    { 0.f, 0.f, -1.f, 0.f }, // front
+    { 0.f, 1.f, 0.f, 0.f }, // top
+    { 0.f, 0.f, 1.f, 0.f }, // back
+    { 0.f, -1.f, 0.f, 0.f }, // bottom
+    { 1.f, 0.f, 0.f, 0.f }, // left
+    { -1.f, 0.f, 0.f, 0.f } // right
   };
 
   float tex[3][2] = {
@@ -84,7 +84,7 @@ int main(int argc, char** argv)
   mesh->CreateAndRegisterInstance(NULL);
 
   ILight* light = new ILight(glm::vec4(0.f, 0.f, 0.f, 1.f));
-  RenderLightData rld(glm::vec4(1.f, 0.f, 0.f, 1.f));
+  RenderLightData rld(glm::vec4(0.8f, 0.8f, 0.8f, 1.f));
   light->SetLightData(rld);
   gfx->RegisterLight(light);
 

@@ -46,7 +46,8 @@ public:
   /*
    * Accessor methods for position and rotation.
    */
-  virtual glm::vec4 GetPosition() const { return mPosition; }
+  // TODO: Would be a lot cleaner if we stored position as a vec3 because the 1.0 should be implied. This is kind of hacky.
+  virtual glm::vec4 GetPosition() const { return glm::vec4(mPosition.x, mPosition.y, mPosition.z, 1.0f); }
   void SetPosition(const glm::vec4& in) { 
     mPosition = in; 
     UpdateTransformationMatrix(); 

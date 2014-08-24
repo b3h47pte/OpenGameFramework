@@ -41,6 +41,7 @@ public:
   // Stores shader data to load into the shader program when used for rendering.
   void SetUniformData(SShaderData&);
   void RemoveUniformData(std::string location);
+  void ClearUniformData();
   // Loads uniform data into the shader.
   void PrepareUniformData();
 

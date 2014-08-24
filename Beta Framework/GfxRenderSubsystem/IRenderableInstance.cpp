@@ -73,13 +73,29 @@ void IRenderableInstance::PrepareRender(GfxShaderInstance* shader) {
   brdfDiffuse.mUniform = true;
   brdfDiffuse.mType = ESDT_VEC4;
   brdfDiffuse.mLocation = "brdf.diffuse";
-  brdfDiffuse.mData = new glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  brdfDiffuse.mData = new glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
   shader->SetUniformData(brdfDiffuse);
+
+  SShaderData brdfSpecular;
+  brdfSpecular.mUniform = true;
+  brdfSpecular.mType = ESDT_VEC4;
+  brdfSpecular.mLocation = "brdf.specular";
+  brdfSpecular.mData = new glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  shader->SetUniformData(brdfSpecular);
+
+  SShaderData brdfShininess;
+  brdfShininess.mUniform = true;
+  brdfShininess.mType = ESDT_FLOAT;
+  brdfShininess.mLocation = "brdf.shininess";
+  brdfShininess.mData = new float(20.0f);
+  shader->SetUniformData(brdfShininess);
 }
 
 void IRenderableInstance::FinishRender(GfxShaderInstance* shader) {
   shader->RemoveUniformData("model_matrix");
   shader->RemoveUniformData("brdf.diffuse");
   shader->RemoveUniformData("brdf.ambient");
+  shader->RemoveUniformData("brdf.specular");
+  shader->RemoveUniformData("brdf.shininess");
   PostRender();
 }

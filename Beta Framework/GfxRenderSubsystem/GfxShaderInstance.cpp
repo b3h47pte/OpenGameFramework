@@ -54,6 +54,10 @@ void GfxShaderInstance::RemoveUniformData(std::string location) {
   mShaderData.erase(location);
 }
 
+void GfxShaderInstance::ClearUniformData() {
+  mShaderData.clear();
+}
+
 void GfxShaderInstance::PrepareUniformData() {
   assert(ShaderProgramId != -1);
   OGL_CALL(glUseProgram(ShaderProgramId));
@@ -62,12 +66,12 @@ void GfxShaderInstance::PrepareUniformData() {
   for (auto& kv : mShaderData) {
     SShaderData* data = &kv.second;
     if (!data->mUniform)
-      return;
+      continue;
 
     int loc = OGL_CALL(glGetUniformLocation(ShaderProgramId, data->mLocation.c_str()));
     if (loc == -1) {
       std::cout << "SetUniformData failed to find uniform location: " << data->mLocation << std::endl;
-      return;
+      continue;
     }
 
     switch (data->mType) {
@@ -86,6 +90,9 @@ void GfxShaderInstance::PrepareUniformData() {
     }
     case ESDT_VEC4:
       OGL_CALL(glUniform4fv(loc, 1, glm::value_ptr(*(glm::vec4*)data->mData)));
+      break;
+    case ESDT_FLOAT:
+      OGL_CALL(glUniform1f(loc, *(float*)data->mData));
       break;
     }
   }

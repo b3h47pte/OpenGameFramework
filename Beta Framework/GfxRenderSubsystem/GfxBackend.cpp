@@ -44,6 +44,7 @@ void GfxBackend::Render(float inDeltaTime) {
 
   glm::mat4 projectionMat = mActiveViewport->GetCamera()->GetProjectionMatrix();
   glm::mat4 viewMat = mActiveViewport->GetCamera()->GetTransformationMatrix();
+  glm::vec4 eyePosition = mActiveViewport->GetCamera()->GetPosition();
   
   SShaderData projData;
   projData.mData = &projectionMat;
@@ -57,6 +58,12 @@ void GfxBackend::Render(float inDeltaTime) {
   viewData.mUniform = true;
   viewData.mLocation = "view_matrix";
 
+  SShaderData eyePositionData;
+  eyePositionData.mData = &eyePosition;
+  eyePositionData.mType = ESDT_VEC4;
+  eyePositionData.mUniform = true;
+  eyePositionData.mLocation = "eyePosition";
+
   // All the rendering within the framework uses the same BRDF so we can just load up this one shader!
 
   // Step through all registered renderables and grab their information to render using the 
@@ -64,9 +71,11 @@ void GfxBackend::Render(float inDeltaTime) {
   IRenderable* curRenderPtr = mRenderableList.GetHeadElement();
   ILight* curLightPtr = mLightList.GetHeadElement();
 
-  // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices.
+  // Set uniforms that ALL shaders must accept. PROJECTION and VIEW matrices
+  // as well as the position of the camera/viewer.
   mBRDFShader->SetUniformData(projData);
   mBRDFShader->SetUniformData(viewData);
+  mBRDFShader->SetUniformData(eyePositionData);
 
   while (curLightPtr) {
     // Go through each light in the scene and use its shader to render the mesh. 
@@ -106,6 +115,8 @@ void GfxBackend::Render(float inDeltaTime) {
     curLightPtr = mLightList.GetNextElement(curLightPtr);
   }
   
+  // Clear uniforms because they are no longer valid after this function returns
+  mBRDFShader->ClearUniformData();
 }
 
 /*
