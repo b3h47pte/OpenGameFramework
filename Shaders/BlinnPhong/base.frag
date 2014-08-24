@@ -28,9 +28,6 @@ vec4 POINT_LIGHT_DISPATCH(LIGHT_PARAM_STRUCT inLight, BRDF_PARAM_STRUCT brdf) {
   vec4 L = normalize(inLight.lightPos - vs_position);
   vec4 E = normalize(eyePosition - vs_position);
   vec4 H = normalize(L+E);
-  if (E.w < -0.001f) {
-    return vec4(1.0f, 1.0f, 1.0f, 1.0f);
-  }
 
   float d = max(0, dot(N,L));
   float s = pow(max(0,dot(N,H)), brdf.shininess);
