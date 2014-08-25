@@ -29,8 +29,6 @@ struct MaterialParam {
  *  material will define these functions based on the BRDF chosen; however, all the other materials must
  *  pass in the BRDF parameters to it.
  *  
- *  The materials then will each implement their own 'main' function that calculates the 
- *  various parameters of the BRDF and outputs a final color. 
  *  
  *  It is also important to note that each material shader will each be a "pseudo-shader" that will be 
  *  split into sections:
@@ -43,11 +41,6 @@ struct MaterialParam {
  *       
  * "Pseudo-GLSL": Should be GLSL syntax with a few exceptions where we can present an interface for the material creator to insert
  *    GLSL from an external source. Other than that, the shader code should compile as is.
- *  
- * A dispatch shader will be generated during a pre-process phase which will combine the materials necessary for
- * a renderable (which may have different materials). Then each vertex (which will each have a material ID), will
- * be shaded using the appropriate material by calling the appropriate material function. The dispatch function
- * will set the appropriate 'out' variable that sets the color. 
  */
 class Material
 {
@@ -57,6 +50,8 @@ public:
 
   static std::string GenerateShaderParameterName(const std::string& id, const std::string& param);
   static std::string GenerateShaderFunctionName(const std::string& id, const std::string& extra);
+
+  std::string ToString() const { return mShaderSource; }
 
 protected:
   void CleanupMaterialParam(MaterialParam*);
@@ -88,7 +83,6 @@ private:
   bool ParseBRDFSectionHeader(const std::string& header, int& section);
   bool CheckValidBRDFSection(int section);
   std::string GenerateBRDFStructure(const std::string& id, const std::string& name);
-  MaterialBRDFProperties mBRDFProperties;
 };
 
 #endif // _MATERIAL_H

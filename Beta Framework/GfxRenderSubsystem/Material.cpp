@@ -159,7 +159,7 @@ void Material::ParseShaderBodyLine(const std::string& line, int section) {
  */
 bool Material::CheckValidBRDFSection(int section) {
 #if BLINN_PHONG_BRDF
-  return (section == DIFFUSE_SEC_ID) || (section == SPECULAR_SEC_ID);
+  return (section == DIFFUSE_SEC_ID) || (section == SPECULAR_SEC_ID) || (section == AMBIENT_SEC_ID) || (section == SHININESS_SEC_ID);
 #endif
 }
 
@@ -173,6 +173,10 @@ bool Material::ParseBRDFSectionHeader(const std::string& header, int& section) {
     section = DIFFUSE_SEC_ID;
   else if (header == BRDF_SPECULAR)
     section = SPECULAR_SEC_ID;
+  else if (header == BRDF_AMBIENT)
+    section = AMBIENT_SEC_ID;
+  else if (header == BRDF_SHININESS)
+    section = SHININESS_SEC_ID;
   else
     return false;
   return true;
@@ -186,7 +190,7 @@ void Material::ParseEntireShaderBody() {
 }
 
 std::string Material::GetMaterialDirectory() const {
-  return "../Shaders/Materials/";
+  return "../Materials/";
 }
 
 /*
@@ -220,10 +224,6 @@ void Material::CleanupMaterialParam(MaterialParam* param) {
  * valid GLSL code that can be used as a fragment shader.
  */
 void Material::GenerateShaderSource() {
-  mShaderSource = GLSL_VERSION_TEXT + "\n";
-  mShaderSource += (BRDF_STRUCT_STRING + "\n");
-  mShaderSource += (LIGHT_PARAM_STRUCT_STRING + "\n");
-
   // Parameters - each of them is a uniform
   for (auto& kv : ParameterMapping) {
     mShaderSource += "uniform ";
@@ -244,9 +244,6 @@ void Material::GenerateShaderSource() {
     mShaderSource += (GenerateShaderParameterName(mMaterialId, kv.first) + ";\n");
   }
 
-  // Non-Calculated Parameters
-  mShaderSource += mBRDFProperties.ToString(mMaterialId);
-
   // BRDF ELEMENT CALCULATION BODIES
   for (auto& kv : MaterialBodyMapping) {
     mShaderSource += ("vec4 " + GenerateShaderFunctionName(mMaterialId, ConvertSectionIdToString(kv.first)) + "() {\n");
@@ -264,11 +261,29 @@ void Material::GenerateShaderSource() {
   mShaderSource += "}\n";
 }
 
+/*
+ * The material needs to be linked up to all the base effects that we have to create
+ * all our shader programs. The material is purely fragment shader code, so we use the 
+ * base effect's vertex shader as is and attach the material's newly generated shader code
+ * to the base effect's fragment shader. A dispatch main function is generated to pass 
+ * in the lights to the material's main function.
+ */
+void Material::CompileShader() {
+  // Iterate through all the base effect shaders.
+  // This is determined via a scan of the file system...which should have been done already.
+  
+
+  // Get the vertex shader. This should have been made already, but we can load it here if it comes to that.
+
+}
+
 std::string Material::GenerateBRDFStructure(const std::string& id, const std::string& name) {
   std::string res = (GLSL_BRDF_PARAM_STRUCT + " " + name + ";\n");
 #if BLINN_PHONG_BRDF
-  res += (name + "." + BRDF_DIFFUSE_VAR + " = " + GenerateShaderFunctionName(id, BRDF_DIFFUSE_VAR) + "\n");
-  res += (name + "." + BRDF_SPECULAR_VAR + " = " + GenerateShaderFunctionName(id, BRDF_SPECULAR_VAR) + "\n");
+  res += (name + "." + BRDF_DIFFUSE_VAR + " = " + GenerateShaderFunctionName(id, BRDF_DIFFUSE_VAR) + "();\n");
+  res += (name + "." + BRDF_SPECULAR_VAR + " = " + GenerateShaderFunctionName(id, BRDF_SPECULAR_VAR) + "();\n");
+  res += (name + "." + BRDF_AMBIENT_VAR + " = " + GenerateShaderFunctionName(id, BRDF_AMBIENT_VAR) + "();\n");
+  res += (name + "." + BRDF_SHININESS_VAR + " = " + GenerateShaderFunctionName(id, BRDF_SHININESS_VAR) + "();\n");
 #endif // BRDF
   return res;
 }
@@ -277,9 +292,13 @@ std::string Material::ConvertSectionIdToString(int section) {
   switch (section) {
 #if BLINN_PHONG_BRDF
   case DIFFUSE_SEC_ID:
-    return "diffuse";
+    return BRDF_DIFFUSE_VAR;
   case SPECULAR_SEC_ID:
-    return "specular";
+    return BRDF_SPECULAR_VAR;
+  case AMBIENT_SEC_ID:
+    return BRDF_AMBIENT_VAR;
+  case SHININESS_SEC_ID:
+    return BRDF_SHININESS_VAR;
 #endif
   default:
     break;
@@ -293,25 +312,4 @@ std::string Material::GenerateShaderParameterName(const std::string& id, const s
 
 std::string Material::GenerateShaderFunctionName(const std::string& id, const std::string& extra) {
   return (id + "_" + extra + "_call");
-}
-
-std::string MaterialBRDFProperties::ToString(const std::string& id) {
-  std::string res = "";
-#if BLINN_PHONG_BRDF
-  res += "uniform vec4 " + Material::GenerateShaderParameterName(id, "ambient") + ";\n";
-  res += "uniform float " + Material::GenerateShaderParameterName(id, "shininess") + ";\n";
-#endif // BRDF
-  return res;
-}
-
-/*
- * Compiles the Shader.
- * Does nothing if an empty string is used.
- * If the material fails to compile, an assertion is thrown.
- */
-void Material::CompileShader() {
-  if (mShaderSource.empty())
-    return;
-  assert(GfxShaders::LoadShaderFromText(GL_FRAGMENT_SHADER, mShaderSource, mMaterialId));
-  mShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, mMaterialId);
 }

@@ -95,6 +95,9 @@
     <Filter Include="Sample Shaders\BlinnPhong">
       <UniqueIdentifier>{be4770ec-4509-42fe-b892-e1b996483f24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Backend\Material\Manager">
+      <UniqueIdentifier>{a8f51b54-1ad5-408f-8360-a5adc1e2813c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
@@ -162,6 +165,9 @@
     </ClCompile>
     <ClCompile Include="MaterialInstance.cpp">
       <Filter>Backend\Material\Instance</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialManager.cpp">
+      <Filter>Backend\Material\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="MaterialConstants.h">
       <Filter>Backend\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialManager.h">
+      <Filter>Backend\Material\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

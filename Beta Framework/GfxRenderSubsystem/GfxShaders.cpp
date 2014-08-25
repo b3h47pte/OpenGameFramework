@@ -2,6 +2,9 @@
 #include "WFile.h"
 
 std::map<GLenum, std::map<std::string, GLuint> > GfxShaders::mShaderStore = std::map<GLenum, std::map<std::string, GLuint> >();
+std::map<std::string, SBaseEffectShaderSource> GfxShaders::mBaseEffectStore = std::map<std::string, SBaseEffectShaderSource>();
+// This is the sub-folder within the shaders folder.
+std::string GfxShaders::OGF_BASE_SHADER_FOLDER = "OGFBASE";
 
 GfxShaders::GfxShaders(void)
 {
@@ -79,4 +82,16 @@ bool GfxShaders::PrepareShader(GLenum type, const char* data, const std::string&
 // TODO: Make this more accurate...
 std::string GfxShaders::GetShaderDirectory() {
   return "../Shaders/";
+}
+
+/*
+ * Scan the base effect shader directory and load up all the source files and then return
+ * the mapping to the client to iterate through. The first call to this function will take awhile.
+ */
+std::map<std::string, SBaseEffectShaderSource>* GfxShaders::GetBaseEffects() {
+  if (!mBaseEffectStore.empty()) {
+    return &mBaseEffectStore;
+  }
+
+  return &mBaseEffectStore;
 }

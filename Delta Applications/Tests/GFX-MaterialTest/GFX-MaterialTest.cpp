@@ -1,8 +1,9 @@
-// GFX-CameraMoveTest.cpp : Defines the entry point for the console application.
+// GFX-MaterialTest.cpp : Defines the entry point for the console application.
 //
 #include <iostream>
 #include "MeshRenderable.h"
 #include "ILight.h"
+#include "Material.h"
 #include "../Bootstrap/camera.h"
 #include "../Bootstrap/cube.h"
 
@@ -11,8 +12,7 @@
 #define Sleep usleep
 #endif
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
 
   IGfxSubsystem* gfx = GetGfxSubsystem(GFX_CREATE_TEST_CAMERA);
   MessageServer* srv = GetGlobalMessageServer();
@@ -25,6 +25,11 @@ int main(int argc, char** argv)
   gfx->RegisterLight(light);
 
   CreateCube();
+
+  std::string source = "Basic/basic.ogfmat";
+  std::string id = "TestMat";
+  Material* test = new Material(source, id);
+  std::cout << test->ToString() << std::endl;
 
   while (gfx->ShouldTick()) {
     gfx->Tick(0.1f);

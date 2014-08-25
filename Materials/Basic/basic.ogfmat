@@ -1,0 +1,11 @@
+..DIFFS
+return vec4(0.0f, 0.0f, 0.0f, 1.0f);
+
+..SPECR
+return vec4(0.0f, 0.0f, 0.0f, 1.0f);
+
+..AMBNT
+return vec4(0.0f, 0.0f, 0.0f, 1.0f);
+
+..SHINI
+return vec4(50.0f, 0.0f, 0.0f, 0.0f);

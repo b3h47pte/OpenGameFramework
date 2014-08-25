@@ -64,7 +64,17 @@ void GfxBackend::Render(float inDeltaTime) {
   eyePositionData.mUniform = true;
   eyePositionData.mLocation = "eyePosition";
 
-  // All the rendering within the framework uses the same BRDF so we can just load up this one shader!
+  // TODO: Fix Rendering Loop
+  // Rendering Process: There exists a number of 'base' effects. This includes the basic BRDF rendering, 
+  // blurs, and any other post-process effects. Before the game begins running, it will step through all
+  // the available materials and link them to the base effects to create an actual shader. So if there are
+  // n base effects and m materials, we will have a total of nm shaders. This process may take awhile
+  // and will be cached/done beforehand.
+  //
+  // In the actual rendering loop, we will loop through all active materials. An active material is a material
+  // that is being used on one or more objects in the scene. We will grab the appropriate shader from the 
+  // material and pass in uniforms according to the variables specified in the
+  // material instance for each object. The inner loop will be used to specify the light uniform data.
 
   // Step through all registered renderables and grab their information to render using the 
   // lights in the scene.

@@ -40,6 +40,11 @@ vec4 POINT_LIGHT_DISPATCH(LIGHT_PARAM_STRUCT inLight, BRDF_PARAM_STRUCT brdf) {
 
   return retColor;
 }
+
+vec4 DIR_LIGHT_DISPATCH(LIGHT_PARAM_STRUCT inLight, BRDF_PARAM_STRUCT brdf) {
+  return vec4(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
 void main() {
   // TODO: Dispatch based on type of light.
   color = POINT_LIGHT_DISPATCH(light, brdf);
