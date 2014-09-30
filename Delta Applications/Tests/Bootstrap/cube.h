@@ -32,9 +32,6 @@ inline MeshRenderable* CreateCube() {
     { 0.f, 0.f }
   };
 
-  const GLubyte* strVersion = glGetString(GL_VERSION);
-  std::cout << strVersion << std::endl;
-
   int cube_elements[] = {
     // front
     0, 1, 2,

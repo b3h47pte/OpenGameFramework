@@ -48,10 +48,13 @@ public:
   Material(std::string& source, std::string& uniqueId);
   virtual ~Material();
 
+  static std::string GenerateMaterialShaderName(const std::string& materialId, const std::string& baseShaderName, const std::string& shaderType);
   static std::string GenerateShaderParameterName(const std::string& id, const std::string& param);
   static std::string GenerateShaderFunctionName(const std::string& id, const std::string& extra);
 
   std::string ToString() const { return mShaderSource; }
+  std::string GetUniqueId() const { return mMaterialId;  }
+
 
 protected:
   void CleanupMaterialParam(MaterialParam*);
@@ -78,6 +81,9 @@ private:
   // Actual GLSL that gets created from the material. 
   std::string mShaderSource;
   int mShaderId;
+
+  // Base Effect Shaders after we finish linking everything and creating these programs
+  std::vector<class GfxShaderInstance*> BaseEffectShaders;
 
   // BRDF Properties. These should be defined by the creator of the material.
   bool ParseBRDFSectionHeader(const std::string& header, int& section);

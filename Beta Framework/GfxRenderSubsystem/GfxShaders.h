@@ -5,6 +5,7 @@
 #include "CommonGfx.h"
 #include <map>
 
+// These strings contain the WHOLE text of the shader.
 struct SBaseEffectShaderSource {
   std::string vertexSource;
   std::string fragSource;
@@ -23,6 +24,7 @@ public:
   static int  GetShaderID(GLenum, const std::string&);
   static bool LoadShader(GLenum, const std::string&, const std::string&);
   static bool LoadShaderFromText(GLenum, const std::string&, const std::string&);
+  static std::string LoadShaderText(const std::string& fileName);
 
   // TODO: Do some shader caching goodness.
   // Retrieve the base shader effects source code.
@@ -34,7 +36,7 @@ private:
 
   // Folder where the base shader effects are.
   static std::string OGF_BASE_SHADER_FOLDER;
-  // Cache the base effect shaders (vertex and fragment)
+  // Cache the base effect shaders text (vertex and fragment)
   static std::map<std::string, SBaseEffectShaderSource> mBaseEffectStore;
 };
 

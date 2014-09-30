@@ -17,9 +17,6 @@
     <Filter Include="Backend">
       <UniqueIdentifier>{84ea8c51-5973-4e2c-b801-8aad22ad1c97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sample Shaders">
-      <UniqueIdentifier>{cf9ed711-c6bc-45c6-a27f-101ae46f91ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Backend\Renderable">
       <UniqueIdentifier>{6e1b7e04-84a4-4a18-bd4e-4a287bdd7ad3}</UniqueIdentifier>
     </Filter>
@@ -71,32 +68,29 @@
     <Filter Include="Backend\Lighting">
       <UniqueIdentifier>{32bdb532-b2e8-4a39-a8d3-5b7ac96bdfdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sample Shaders\Texture3D">
-      <UniqueIdentifier>{6cbaadc6-3666-4ec9-a40f-d68b968dddd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample Shaders\Basic">
-      <UniqueIdentifier>{7b352813-7c7e-4fc6-a33d-e1a9514bf18a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample Shaders\Texture">
-      <UniqueIdentifier>{fb09f6b3-008d-4c6e-a9ba-17539e6025d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample Shaders\MultiColor">
-      <UniqueIdentifier>{8e970a09-50cb-4e45-9a0d-c7e63420a1ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample Shaders\TextureCube">
-      <UniqueIdentifier>{923e447b-3d93-44ed-9118-73ed486197b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Backend\Shaders\Instance">
       <UniqueIdentifier>{4b23f421-60fc-4082-abb2-c0da8b892ecd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Backend\Material\Instance">
       <UniqueIdentifier>{e65f36d8-7ace-4e1a-9eef-5368ac32e33b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sample Shaders\BlinnPhong">
-      <UniqueIdentifier>{be4770ec-4509-42fe-b892-e1b996483f24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Backend\Material\Manager">
       <UniqueIdentifier>{a8f51b54-1ad5-408f-8360-a5adc1e2813c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{fee45c8c-152e-4b3c-b0f2-3b807a54e146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials">
+      <UniqueIdentifier>{af487b57-ef23-4c19-8544-30af63f55829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\Basic">
+      <UniqueIdentifier>{daaea874-d56b-4017-9cfd-cf663f8ced09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\OGFBASE">
+      <UniqueIdentifier>{cd55d8c1-1064-4ea1-b094-8e97d7e048c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\OGFBASE\BlinnPhong">
+      <UniqueIdentifier>{2c8969ec-76cf-481d-bcdf-0aa22ec0424a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -251,41 +245,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Shaders\Texture3D\texture.vert">
-      <Filter>Sample Shaders\Texture3D</Filter>
+    <None Include="..\..\Materials\Basic\basic.ogfmat">
+      <Filter>Materials\Basic</Filter>
     </None>
-    <None Include="..\..\Shaders\Texture3D\texture.frag">
-      <Filter>Sample Shaders\Texture3D</Filter>
+    <None Include="..\..\Shaders\OGFBASE\BlinnPhong\base.frag">
+      <Filter>Shaders\OGFBASE\BlinnPhong</Filter>
     </None>
-    <None Include="..\..\Shaders\Basic\basic.vert">
-      <Filter>Sample Shaders\Basic</Filter>
-    </None>
-    <None Include="..\..\Shaders\Basic\basic.frag">
-      <Filter>Sample Shaders\Basic</Filter>
-    </None>
-    <None Include="..\..\Shaders\Texture\texture.frag">
-      <Filter>Sample Shaders\Texture</Filter>
-    </None>
-    <None Include="..\..\Shaders\Texture\texture.vert">
-      <Filter>Sample Shaders\Texture</Filter>
-    </None>
-    <None Include="..\..\Shaders\MultiColor\multicolor.frag">
-      <Filter>Sample Shaders\MultiColor</Filter>
-    </None>
-    <None Include="..\..\Shaders\MultiColor\multicolor.vert">
-      <Filter>Sample Shaders\MultiColor</Filter>
-    </None>
-    <None Include="..\..\Shaders\TextureCube\texture.frag">
-      <Filter>Sample Shaders\TextureCube</Filter>
-    </None>
-    <None Include="..\..\Shaders\TextureCube\texture.vert">
-      <Filter>Sample Shaders\TextureCube</Filter>
-    </None>
-    <None Include="..\..\Shaders\BlinnPhong\base.frag">
-      <Filter>Sample Shaders\BlinnPhong</Filter>
-    </None>
-    <None Include="..\..\Shaders\BlinnPhong\base.vert">
-      <Filter>Sample Shaders\BlinnPhong</Filter>
+    <None Include="..\..\Shaders\OGFBASE\BlinnPhong\base.vert">
+      <Filter>Shaders\OGFBASE\BlinnPhong</Filter>
     </None>
   </ItemGroup>
 </Project>

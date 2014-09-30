@@ -3,11 +3,14 @@
 #include "WFile.h"
 #include "GfxUtility.h"
 #include "GfxShaders.h"
+#include "GfxShaderInstance.h"
+#include "MaterialManager.h"
 
 #define PARAM_SEC_ID      0
 #define INVALID_SEC_ID    -1
 
 Material::Material(std::string& source, std::string& uniqueId): mMaterialSource(source), mMaterialId(uniqueId) {
+  MaterialManager::Get()->RegisterMaterial(this);
   LoadMaterial();
 }
 
@@ -269,12 +272,46 @@ void Material::GenerateShaderSource() {
  * in the lights to the material's main function.
  */
 void Material::CompileShader() {
-  // Iterate through all the base effect shaders.
-  // This is determined via a scan of the file system...which should have been done already.
-  
+  // Iterate through all the base effect shaders.  
+  std::map<std::string, SBaseEffectShaderSource>* baseShaders = GfxShaders::GetBaseEffects();
+  for (auto& shader : *baseShaders) {
+    std::string vertexShader = GenerateMaterialShaderName(mMaterialId, shader.first, std::string("Vertex"));
+    // Get the base vertex shader (which should be complete in and of itself)
+    if (!GfxShaders::LoadShaderFromText(GL_VERTEX_SHADER, shader.second.vertexSource, vertexShader)) {
+      ERROR_PRINT("Error loading base effect vertex shader:" + shader.first);
+      continue;
+    }
 
-  // Get the vertex shader. This should have been made already, but we can load it here if it comes to that.
+    // Load the TEXT of the fragment shader, append it with the material text and then compile it.
+    std::string matFragText = shader.second.fragSource;
+    matFragText += mShaderSource;
 
+    // Generate a main function
+    matFragText += "void main() {\n";
+    matFragText += "return " + GenerateShaderFunctionName(mMaterialId, "main") + "(light);";
+    matFragText += "}";
+
+    // Load the fragment shader.
+    std::string fragmentShader = GenerateMaterialShaderName(mMaterialId, shader.first, std::string("Frag"));
+    if (!GfxShaders::LoadShaderFromText(GL_FRAGMENT_SHADER, matFragText, fragmentShader)) {
+      ERROR_PRINT("Error loading base effect fragment shader:" + shader.first);
+      continue;
+    }
+
+    // Store the shader program for use later.
+    int vertexShaderId = GfxShaders::GetShaderID(GL_VERTEX_SHADER, vertexShader);
+    int fragmentShaderId = GfxShaders::GetShaderID(GL_FRAGMENT_SHADER, fragmentShader);
+    GfxShaderInstance* newInst = GfxShaderInstance::CreateNewInstance(vertexShaderId, fragmentShaderId);
+    BaseEffectShaders.push_back(newInst);
+  }
+}
+
+/*
+ * Generates the shader name based on the material name, the base effect name, and the shader type. 
+ * This lets us easily generate the proper ID to store in the shader manager.
+ */
+std::string Material::GenerateMaterialShaderName(const std::string& materialId, const std::string& baseShaderName, const std::string& shaderType) {
+  return materialId + "_" + baseShaderName + "_" + shaderType;
 }
 
 std::string Material::GenerateBRDFStructure(const std::string& id, const std::string& name) {

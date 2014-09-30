@@ -1,6 +1,10 @@
 #include "GfxShaders.h"
 #include "WFile.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 std::map<GLenum, std::map<std::string, GLuint> > GfxShaders::mShaderStore = std::map<GLenum, std::map<std::string, GLuint> >();
 std::map<std::string, SBaseEffectShaderSource> GfxShaders::mBaseEffectStore = std::map<std::string, SBaseEffectShaderSource>();
 // This is the sub-folder within the shaders folder.
@@ -26,6 +30,16 @@ int GfxShaders::GetShaderID(GLenum type, const std::string& id) {
   } 
 
   return -1;
+}
+
+std::string GfxShaders::LoadShaderText(const std::string& fileName) {
+  std::string realFile = GfxShaders::GetShaderDirectory() + fileName;
+
+  WFile wfile(realFile);
+  const char* data = wfile.ReadAllBinaryDataNull();
+  std::string retData(data);
+  delete[] data;
+  return retData;
 }
 
 /*
@@ -92,6 +106,11 @@ std::map<std::string, SBaseEffectShaderSource>* GfxShaders::GetBaseEffects() {
   if (!mBaseEffectStore.empty()) {
     return &mBaseEffectStore;
   }
+  std::string baseDirectory = GetShaderDirectory() + OGF_BASE_SHADER_FOLDER + "/";
+  // TODO: Generalize file system stuff into Core
+#ifdef _WIN32
+  HANDLE findHandle = INVALID_HANDLE_VALUE;
+#endif
 
   return &mBaseEffectStore;
 }

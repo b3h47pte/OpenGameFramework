@@ -19,6 +19,9 @@ int main(int argc, char** argv) {
   if (!gfx)
     return 0;
 
+  const GLubyte* strVersion = glGetString(GL_VERSION);
+  std::cout << strVersion << std::endl;
+
   ILight* light = new ILight(glm::vec4(0.f, 0.f, 0.f, 1.f));
   RenderLightData rld(glm::vec4(0.8f, 0.8f, 0.8f, 1.f));
   light->SetLightData(rld);
@@ -29,7 +32,6 @@ int main(int argc, char** argv) {
   std::string source = "Basic/basic.ogfmat";
   std::string id = "TestMat";
   Material* test = new Material(source, id);
-  std::cout << test->ToString() << std::endl;
 
   while (gfx->ShouldTick()) {
     gfx->Tick(0.1f);
